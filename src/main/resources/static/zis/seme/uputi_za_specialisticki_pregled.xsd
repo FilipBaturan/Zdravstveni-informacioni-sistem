@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uputi_za_specialisticki_pregled"
+           xmlns:oz2="http://zis.rs/zis/seme/uput_za_specialisticki_pregled"
+>
+
+    <xs:import namespace="http://zis.rs/zis/seme/uput_za_specialisticki_pregled"
+               schemaLocation="uput_za_specialisticki_pregled.xsd"/>
+    <xs:element name="uputi_za_specialisticki_pregled">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="oz2:uput_za_specialisticki_pregled" maxOccurs="unbounded"
+                            minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uput_za_laboratoriju"
+           xmlns:oz1="http://zis.rs/zis/seme/uput_za_laboratoriju">
+    <xs:element name="uput_za_laboratoriju">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zdrastvene_ustanove">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="posaljilac" type="xs:string"/>
+                            <xs:element name="primalac" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="osigurano_lice">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="registarski_broj">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[0-9]"/>
+                                        <xs:length value="10"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element name="osnova_osiguranja" type="xs:string"/>
+                        </xs:sequence>
+                        <xs:attribute ref="oz1:identifikator"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="pregled">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="dijagnoza" type="xs:string"/>
+                            <xs:element name="datum_preuzimanja_materijala" type="xs:string"/>
+                            <xs:element name="posaljilac_materijala" type="xs:string"/>
+                            <xs:element name="posaljilac_pregleda" type="xs:string"/>
+                            <xs:element name="opis_pregleda" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datum" type="xs:date"/>
+                <xs:element name="lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="oz1:identifikator"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="oznaka" type="xs:string" fixed="oz1" use="required"/>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/lekarski_recept"
+           xmlns:lr1="http://zis.rs/zis/seme/lekarski_recept">
+    <xs:element name="lekarski_recept">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naziv_zdrastvene_ustanove" type="xs:string"/>
+                <xs:element name="osigurano_lice">
+                    <xs:complexType>
+                        <xs:attribute ref="lr1:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="osnova_oslobadjenja_participacije" default="512">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:enumeration value="511"/>
+                            <xs:enumeration value="512"/>
+                            <xs:enumeration value="513"/>
+                            <xs:enumeration value="515"/>
+                            <xs:enumeration value="231"/>
+                            <xs:enumeration value="232"/>
+                            <xs:enumeration value="233"/>
+                            <xs:enumeration value="234"/>
+                            <xs:enumeration value="235"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="drzava" type="xs:string"/>
+                <xs:element name="datum_propisivanje_leka" type="xs:date"/>
+                <xs:element name="datum_izdavanja_leka" type="xs:date"/>
+                <xs:element name="dijagnoza">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[0-9]{4}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="opis" type="xs:string"/>
+                <xs:element name="propisani_lek">
+                    <xs:complexType>
+                        <xs:attribute ref="lr1:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="izdati_lek">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="kolicina">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:int">
+                                        <xs:minInclusive value="0"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute ref="lr1:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="lr1:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute fixed="lr1" name="oznaka" type="xs:string" use="required"/>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute use="required" name="bar_kod">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value=""/>
+                        <xs:pattern value="[0-9]{7}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

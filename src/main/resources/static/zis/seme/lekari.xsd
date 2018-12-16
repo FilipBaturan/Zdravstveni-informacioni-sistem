@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://localhost:8080/zis/seme/lekari"
+           xmlns:lkr="http://localhost:8080/zis/seme/lekar">
+    <xs:import namespace="http://localhost:8080/zis/seme/lekar" schemaLocation="lekar.xsd"/>
+    <xs:element name="lekari">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="lkr:lekar"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

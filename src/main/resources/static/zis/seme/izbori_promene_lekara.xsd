@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/izbori_promene_lekara"
+           xmlns:ipl1="http://zis.rs/zis/seme/Izbor_promena_lekara">
+
+    <xs:import namespace="http://zis.rs/zis/seme/Izbor_promena_lekara"
+               schemaLocation="izbor_promena_lekara.xsd"/>
+    <xs:element name="izbori_promene_lekara">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="ipl1:izbor_promena_lekara"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

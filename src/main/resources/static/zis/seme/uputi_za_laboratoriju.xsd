@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uputi_za_laboratoriju"
+           xmlns:oz1="http://zis.rs/zis/seme/uput_za_laboratoriju"
+>
+
+    <xs:import namespace="http://zis.rs/zis/seme/uput_za_laboratoriju"
+               schemaLocation="uput_za_laboratoriju.xsd"/>
+    <xs:element name="uputi_za_laboratoriju">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="oz1:uput_za_laboratoriju" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

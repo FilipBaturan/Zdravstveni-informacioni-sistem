@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://localhost:8080/zis/seme/medicinske_sestra"
+           xmlns:ms="http://localhost:8080/zis/seme/medicinske_sestra" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    <xs:element name="medicinska_sestra">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="korisnik">
+                    <xs:complexType>
+                        <xs:attribute ref="ms:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

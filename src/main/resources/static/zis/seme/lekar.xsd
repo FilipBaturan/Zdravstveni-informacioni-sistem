@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://localhost:8080/zis/seme/lekar" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+           xmlns:lekar="http://localhost:8080/zis/seme/lekar">
+    <xs:element name="lekar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="korisnik">
+                    <xs:complexType>
+                        <xs:attribute ref="lekar:identifkator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element default="ospta_praksa" name="tip">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ospta_praksa"/>
+                            <xs:enumeration value="ginekologije"/>
+                            <xs:enumeration value="pedijatar"/>
+                            <xs:enumeration value="stomatolog"/>
+                            <xs:enumeration value="dermatolog"/>
+                            <xs:enumeration value="ostalo"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element fixed="odrasli" name="oblast_zastite">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="deca"/>
+                            <xs:enumeration value="odrasli"/>
+                            <xs:enumeration value="zene"/>
+                            <xs:enumeration value="stomatologija"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifkator" type="xs:anyURI"/>
+</xs:schema>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://zis.rs/zis/seme/Izbor_promena_lekara" vc:minVersion="1.1"
+           xmlns:ipl1="http://zis.rs/zis/seme/Izbor_promena_lekara"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    <xs:element name="izbor_promena_lekara">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naziv_ustanove" type="xs:string"/>
+                <xs:element name="tip_obrasca" default="izbor">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="izbor"/>
+                            <xs:enumeration value="promena"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element default="ne_radi" name="razlog_promene">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="ne_radi"/>
+                            <xs:enumeration value="promena_prebivalista"/>
+                            <xs:enumeration value="nezadovoljstvo"/>
+                            <xs:enumeration value="odsutan"/>
+                            <xs:enumeration value="nesporazum"/>
+                            <xs:enumeration value="drugo"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="ustanova_proslog_lekara" type="xs:string"/>
+                <xs:element name="prosli_lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="ipl1:identifikator"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="ipl1:identifikator"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="pacijent">
+                    <xs:complexType>
+                        <xs:attribute ref="ipl1:identifikator"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datum" type="xs:date"/>
+            </xs:sequence>
+            <xs:attribute fixed="ipl1" name="oznaka" type="xs:string"/>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

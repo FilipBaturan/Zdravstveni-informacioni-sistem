@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lekari:lekari
+        xmlns:lekari="http://localhost:8080/zis/seme/lekari"
+        xmlns:lkr="http://localhost:8080/zis/seme/lekar"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://localhost:8080/zis/seme/lekari file:/home/themaniac/Documents/XML_i_web_servisi/Projekat/Zdravstveni-informacioni-sistem/src/main/xsd/lekari.xsd">
+    <lkr:lekar id="rs/zis/lekari/id1">
+        <lkr:korisnik lkr:identifkator="rs/zis/korisnici/id1"/>
+        <lkr:tip>ospta_praksa</lkr:tip>
+        <lkr:oblast_zastite>odrasli</lkr:oblast_zastite>
+    </lkr:lekar>
+    <lkr:lekar id="rs/zis/lekari/id2">
+        <lkr:korisnik lkr:identifkator="rs/zis/korisnici/id2"/>
+        <lkr:tip>ospta_praksa</lkr:tip>
+        <lkr:oblast_zastite>odrasli</lkr:oblast_zastite>
+    </lkr:lekar>
+    <lkr:lekar id="rs/zis/lekari/id3">
+        <lkr:korisnik lkr:identifkator="rs/zis/korisnici/id3"/>
+        <lkr:tip>ospta_praksa</lkr:tip>
+        <lkr:oblast_zastite>odrasli</lkr:oblast_zastite>
+    </lkr:lekar>
+</lekari:lekari>

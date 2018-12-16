@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://zis.rs/zis/sema/zdrastveni_karton"
+           xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    <xs:element name="zdravstveni_karton">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:group ref="zko:pacijent"/>
+                <xs:group ref="zko:dokumenti"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute name="jmbg" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{13}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="broj_zdr_knjizice" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{11}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="broj_kartona" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[a-zA-Z]{2}[0-9]{3}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="lbo" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{11}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="upozorenje" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:group name="pacijent">
+        <xs:sequence>
+            <xs:element name="ime" type="xs:string"/>
+            <xs:element name="prezime" type="xs:string"/>
+            <xs:element name="pol">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="muski"/>
+                        <xs:enumeration value="zenski"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="nosilac_osiguranja">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ime" type="xs:string"/>
+                        <xs:element name="prezime" type="xs:string"/>
+                        <xs:element name="srodstvo" type="xs:string"/>
+                        <xs:element name="osnova_osiguranja" type="xs:positiveInteger"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="bracno_stanje">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="neozenjen/neudata"/>
+                        <xs:enumeration value="ozenjen/udata"/>
+                        <xs:enumeration value="udovac/udovica"/>
+                        <xs:enumeration value="razveden/razvedena"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element form="qualified" name="datum_rodjenja" type="xs:date"/>
+            <xs:element name="adresa">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="ulica" type="xs:string"/>
+                        <xs:element name="broj" type="xs:positiveInteger"/>
+                        <xs:element name="broj_stana" type="xs:positiveInteger"/>
+                        <xs:element name="mesto" type="xs:string"/>
+                        <xs:element name="opstina">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="naziv" type="xs:string"/>
+                                    <xs:element name="postanski_broj">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:long">
+                                                <xs:minInclusive value="11000"/>
+                                                <xs:maxInclusive value="40000"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="broj_telefona">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]{10}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+    <xs:group name="dokumenti">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="uputi_za_laboratoriju">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="uput_za_laboratoriju">
+                            <xs:complexType>
+                                <xs:attribute ref="zko:identifikator" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="uputi_za_specialisticki_pregled">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0"
+                                    name="uput_za_specialisticki_pregled">
+                            <xs:complexType>
+                                <xs:attribute ref="zko:identifikator" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="lekarski_recepti">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="lekraski_recept">
+                            <xs:complexType>
+                                <xs:attribute ref="zko:identifikator" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="izvestaji_lekara">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="izvestaj_lekara">
+                            <xs:complexType>
+                                <xs:attribute ref="zko:identifikator" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element maxOccurs="1" minOccurs="1" name="izmene_promene_lekara">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="izmena_promena_lekara">
+                            <xs:complexType>
+                                <xs:attribute ref="zko:identifikator" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:group>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

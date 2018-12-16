@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<korisnici:korisnici
+        xmlns:korisnici="http://zis.rs/zis/seme/korisnici"
+        xmlns:korisnik="http://zis.rs/zis/seme/korisnik"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://zis.rs/zis/seme/korisnici">
+    <korisnik:korisnik id="rs/zis/korisnici/id1">
+        <korisnik:ime>ime0</korisnik:ime>
+        <korisnik:prezime>prezime0</korisnik:prezime>
+        <korisnik:jmbg>0000000000000</korisnik:jmbg>
+        <korisnik:aktivan>true</korisnik:aktivan>
+        <korisnik:korisnicko_ime>korisnicko_ime0</korisnik:korisnicko_ime>
+        <korisnik:lozinka>lozinka0</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik id="rs/zis/korisnici/id2">
+        <korisnik:ime>ime1</korisnik:ime>
+        <korisnik:prezime>prezime1</korisnik:prezime>
+        <korisnik:jmbg>0000000000000</korisnik:jmbg>
+        <korisnik:aktivan>true</korisnik:aktivan>
+        <korisnik:korisnicko_ime>korisnicko_ime1</korisnik:korisnicko_ime>
+        <korisnik:lozinka>lozinka1</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik id="rs/zis/korisnici/id3">
+        <korisnik:ime>ime2</korisnik:ime>
+        <korisnik:prezime>prezime2</korisnik:prezime>
+        <korisnik:jmbg>0000000000000</korisnik:jmbg>
+        <korisnik:aktivan>true</korisnik:aktivan>
+        <korisnik:korisnicko_ime>korisnicko_ime2</korisnik:korisnicko_ime>
+        <korisnik:lozinka>lozinka2</korisnik:lozinka>
+    </korisnik:korisnik>
+</korisnici:korisnici>

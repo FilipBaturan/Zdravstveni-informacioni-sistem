@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/pacijent"
+           xmlns:pacijent="http://zis.rs/zis/seme/pacijent">
+    <xs:element name="pacijent">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="korisnik">
+                    <xs:complexType>
+                        <xs:attribute ref="pacijent:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="zdrastveni_karton">
+                    <xs:complexType>
+                        <xs:attribute ref="pacijent:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>
