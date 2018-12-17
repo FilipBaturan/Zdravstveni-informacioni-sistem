@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.domain.entities.Lek;
-import zis.rs.zis.domain.entities.collections.Lekovi;
 import zis.rs.zis.service.definition.LekServis;
 
 import java.util.Calendar;
@@ -37,9 +35,8 @@ public class LekKontroler {
      * @return sve lekove iz baze
      */
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Lekovi> dobaviSve() {
+    public ResponseEntity<String> dobaviSve() {
         logger.info("Traze se svi lekovi: {}.", Calendar.getInstance().getTime());
-
         return new ResponseEntity<>(lekServis.dobaviSve(), HttpStatus.OK);
     }
 
@@ -50,7 +47,7 @@ public class LekKontroler {
      * @return lek sa trazenim id-jem
      */
     @GetMapping(path = "id{id}", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Lek> pretragaPoId(@PathVariable String id) {
+    public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Traze se lek sa id={}: {}.", id, Calendar.getInstance().getTime());
         return new ResponseEntity<>(lekServis.pretragaPoId(URI_PREFIX + "/id" + id), HttpStatus.OK);
     }

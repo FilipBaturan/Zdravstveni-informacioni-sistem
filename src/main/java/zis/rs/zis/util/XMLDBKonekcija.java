@@ -125,6 +125,8 @@ public class XMLDBKonekcija {
     }
 
     public void oslobodiResurse(ResursiBaze resursi) {
-        this.oslobodiResurse(resursi.getKolekcija(), resursi.getXmlResurs());
+        if (resursi != null) {
+            this.oslobodiResurse(resursi.getKolekcija(), resursi.getXmlResurs());
+        }
     }
 }

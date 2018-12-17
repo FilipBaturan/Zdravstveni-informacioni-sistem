@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.domain.entities.collections.Lekari;
 import zis.rs.zis.service.definition.LekarServis;
 
 import java.util.Calendar;
@@ -32,7 +31,7 @@ public class LekarKontroler {
      * @return sve lekare iz baze
      */
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<Lekari> dobaviSve() {
+    public ResponseEntity<String> dobaviSve() {
         logger.info("Traze se svi lekari: {}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(lekarServis.dobaviSve(), HttpStatus.OK);
     }
@@ -44,8 +43,8 @@ public class LekarKontroler {
      * @return lekar sa trazenim id-jem
      */
     @GetMapping(path = "id{id}", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> pretragaPoIdKaskadno(@PathVariable String id) {
+    public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Traze se lekar sa id={}: {}.", id, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(lekarServis.pretragaPoIdKaskadno(URI_PREFIX + "/id" + id), HttpStatus.OK);
+        return new ResponseEntity<>(lekarServis.pretragaPoId(URI_PREFIX + "/id" + id), HttpStatus.OK);
     }
 }

@@ -20,12 +20,12 @@ public class KorisnikServisImpl implements KorisnikServis {
     private XMLDBKonekcija konekcija;
 
     @Override
-    public Korisnici dobaviSve() {
+    public String dobaviSve() {
         return null;
     }
 
     @Override
-    public Korisnik pretragaPoId(String id) {
+    public String pretragaPoId(String id) {
         try {
             ResursiBaze resursi = konekcija.uspostaviKonekciju("/db/rs/zis/korisnici",
                     "korisnici.xml");
@@ -40,7 +40,7 @@ public class KorisnikServisImpl implements KorisnikServis {
                 if (k.getId().equals(id)) {
                     konekcija.oslobodiResurse(resursi);
                     if (k.isAktivan()) {
-                        return k;
+                        return k.toString();
                     } else {
                         break;
                     }
@@ -55,7 +55,7 @@ public class KorisnikServisImpl implements KorisnikServis {
     }
 
     @Override
-    public Korisnik sacuvaj(Korisnik korisnik) {
+    public String sacuvaj(Korisnik korisnik) {
         return null;
     }
 
