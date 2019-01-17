@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://zis.rs/zis/sema/zdrastveni_karton"
-           xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton" vc:minVersion="1.1"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    targetNamespace="http://zis.rs/zis/sema/zdrastveni_karton"
+    xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="zdravstveni_karton">
         <xs:complexType>
             <xs:sequence>
@@ -39,6 +39,7 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="upozorenje" type="xs:string"/>
+            <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:group name="pacijent">
@@ -125,7 +126,7 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element maxOccurs="unbounded" minOccurs="0"
-                                    name="uput_za_specialisticki_pregled">
+                            name="uput_za_specialisticki_pregled">
                             <xs:complexType>
                                 <xs:attribute ref="zko:identifikator" use="required"/>
                             </xs:complexType>

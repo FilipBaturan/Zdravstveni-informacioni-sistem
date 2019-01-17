@@ -19,7 +19,7 @@ public interface LekServis {
      * @param lek koji treba sacuvati u bazu
      * @return sacuvani lek iz baze
      */
-    String sacuvaj(Lek lek);
+    String sacuvaj(String lek);
 
     /**
      * @param id leka koji treba obrisati iz baze

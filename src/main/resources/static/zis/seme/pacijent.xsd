@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/pacijent"
-           xmlns:pacijent="http://zis.rs/zis/seme/pacijent">
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/pacijent"
+    xmlns:pacijent="http://zis.rs/zis/seme/pacijent">
     <xs:element name="pacijent">
         <xs:complexType>
             <xs:sequence>

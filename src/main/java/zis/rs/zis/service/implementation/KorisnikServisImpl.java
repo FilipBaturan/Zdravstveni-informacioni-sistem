@@ -1,6 +1,7 @@
 package zis.rs.zis.service.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.xmldb.api.base.XMLDBException;
 import zis.rs.zis.domain.ObjectFactory;
@@ -18,6 +19,9 @@ public class KorisnikServisImpl implements KorisnikServis {
 
     @Autowired
     private XMLDBKonekcija konekcija;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public String dobaviSve() {
@@ -55,7 +59,12 @@ public class KorisnikServisImpl implements KorisnikServis {
     }
 
     @Override
-    public String sacuvaj(Korisnik korisnik) {
+    public String sacuvaj(String korisnik) {
+        return null;
+    }
+
+    @Override
+    public String registruj(String korisnik) {
         return null;
     }
 

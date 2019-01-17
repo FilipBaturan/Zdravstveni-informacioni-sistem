@@ -7,11 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import zis.rs.zis.service.definition.LekServis;
+import zis.rs.zis.util.Validator;
+import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
 
@@ -28,6 +27,9 @@ public class LekKontroler {
 
     @Autowired
     private LekServis lekServis;
+
+    @Autowired
+    private Validator validator;
 
     /**
      * GET /rs/zis/lekovi
@@ -51,5 +53,19 @@ public class LekKontroler {
         logger.info("Traze se lek sa id={}: {}.", id, Calendar.getInstance().getTime());
         return new ResponseEntity<>(lekServis.pretragaPoId(URI_PREFIX + "/id" + id), HttpStatus.OK);
     }
+
+    /**
+     * POST /rs/zis/lekovi
+     *
+     * @param akcija koja se izvrsava
+     * @return rezultat akcije
+     */
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
+        logger.info("Vrsi se azuriranje leka {}.", Calendar.getInstance().getTime());
+        return new ResponseEntity<>(lekServis.sacuvaj(validator.procesirajAkciju(akcija,
+                "classpath:static/zis/seme/lek.xsd")), HttpStatus.OK);
+    }
+
 
 }

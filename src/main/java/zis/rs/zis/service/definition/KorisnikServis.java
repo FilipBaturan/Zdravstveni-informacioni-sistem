@@ -19,7 +19,13 @@ public interface KorisnikServis {
      * @param korisnik koji treba sacuvati u bazu
      * @return sacuvani lek iz baze
      */
-    String sacuvaj(Korisnik korisnik);
+    String sacuvaj(String korisnik);
+
+    /**
+     * @param korisnik koji treba da se registruje
+     * @return registrovani korisnik
+     */
+    String registruj(String korisnik);
 
     /**
      * @param id korisnika koji treba obrisati iz baze

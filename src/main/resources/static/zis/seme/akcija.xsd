@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/akcija"
+    xmlns:akcija="http://zis.rs/zis/seme/akcija">
+    <xs:element name="akcija">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="kontekst" type="xs:string"/>
+                <xs:element name="funkcija">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="DODAVANJE"/>
+                            <xs:enumeration value="BRISANJE"/>
+                            <xs:enumeration value="IZMENA"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="sadrzaj">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:any minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

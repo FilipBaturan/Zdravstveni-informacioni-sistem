@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uput_za_laboratoriju"
-           xmlns:oz1="http://zis.rs/zis/seme/uput_za_laboratoriju">
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uput_za_laboratoriju"
+    xmlns:oz1="http://zis.rs/zis/seme/uput_za_laboratoriju">
     <xs:element name="uput_za_laboratoriju">
         <xs:complexType>
             <xs:sequence>
@@ -50,6 +50,7 @@
             </xs:sequence>
             <xs:attribute name="oznaka" type="xs:string" fixed="oz1" use="required"/>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:attribute name="identifikator" type="xs:anyURI"/>

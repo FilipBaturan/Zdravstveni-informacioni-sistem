@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://zis.rs/zis/seme/pregled" vc:minVersion="1.1"
-           xmlns:pregled="http://zis.rs/zis/seme/pregled"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    targetNamespace="http://zis.rs/zis/seme/pregled" vc:minVersion="1.1"
+    xmlns:pregled="http://zis.rs/zis/seme/pregled"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="pregled">
         <xs:complexType>
             <xs:sequence>
@@ -11,10 +11,10 @@
                         <xs:attribute ref="pregled:indentifikator" use="required"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element default="true" name="aktivan" type="xs:boolean"/>
                 <xs:element name="datum" type="xs:date"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:attribute name="indentifikator" type="xs:anyURI"/>

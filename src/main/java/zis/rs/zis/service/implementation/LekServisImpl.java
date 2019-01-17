@@ -1,11 +1,14 @@
 package zis.rs.zis.service.implementation;
 
 import org.exist.xmldb.EXistResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
+import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.domain.entities.Lek;
 import zis.rs.zis.service.definition.LekServis;
 import zis.rs.zis.util.*;
@@ -14,6 +17,8 @@ import java.io.IOException;
 
 @Service
 public class LekServisImpl extends IOStrimer implements LekServis {
+
+    private static final Logger logger = LoggerFactory.getLogger(LekServisImpl.class);
 
     @Autowired
     private XMLDBKonekcija konekcija;
@@ -110,8 +115,31 @@ public class LekServisImpl extends IOStrimer implements LekServis {
 
 
     @Override
-    public String sacuvaj(Lek lek) {
-        return null;
+    public String sacuvaj(String lek) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju("/db/rs/zis/lekovi",
+                    "lekovi.xml");
+            String putanjaDoUpita = ResourceUtils
+                    .getFile("classpath:templates/xquery/azuriranje/dodavanje.xml")
+                    .getPath();
+
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    "lek","http://zis.rs/zis/seme/lek" ,"/lekovi:lekovi", lek,
+                    "xmlns:lekovi=\"http://zis.rs/zis/seme/lekovi\"");
+            long mods = xupdateService.updateResource("lekovi.xml", sadrzajUpita);
+            logger.info("[INFO] " + mods + " modifications processed.");
+
+            konekcija.oslobodiResurse(resursi);
+            return "Akcije je uspesno izvrsena";
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSBazomIzuzetak("Onemogucen pristup bazi!");
+        }
     }
 
     @Override
