@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://zis.rs/zis/sema/zdrastveni_karton"
-    xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton" vc:minVersion="1.1"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+           targetNamespace="http://zis.rs/zis/sema/zdrastveni_karton"
+           xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="zdravstveni_karton">
         <xs:complexType>
             <xs:sequence>
@@ -158,7 +158,7 @@
                                         <xs:complexType>
                                             <xs:simpleContent>
                                                 <xs:extension base="xs:string">
-                                                  <xs:anyAttribute processContents="lax"/>
+                                                    <xs:anyAttribute processContents="lax"/>
                                                 </xs:extension>
                                             </xs:simpleContent>
                                         </xs:complexType>
@@ -167,7 +167,7 @@
                                         <xs:complexType>
                                             <xs:simpleContent>
                                                 <xs:extension base="zko:postanski_broj">
-                                                  <xs:anyAttribute processContents="lax"/>
+                                                    <xs:anyAttribute processContents="lax"/>
                                                 </xs:extension>
                                             </xs:simpleContent>
                                         </xs:complexType>
@@ -206,7 +206,7 @@
                 <xs:complexType>
                     <xs:sequence>
                         <xs:element maxOccurs="unbounded" minOccurs="0"
-                            name="uput_za_specialisticki_pregled">
+                                    name="uput_za_specialisticki_pregled">
                             <xs:complexType>
                                 <xs:attribute ref="zko:identifikator" use="required"/>
                             </xs:complexType>

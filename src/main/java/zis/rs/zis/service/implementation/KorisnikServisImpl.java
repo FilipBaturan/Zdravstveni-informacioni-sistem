@@ -28,7 +28,10 @@ import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.validation.SchemaFactory;
@@ -164,7 +167,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
 
     /**
      * @param korisnik koji treba sacuvati u bazi
-     * @param prefiks za prostor imena
+     * @param prefiks  za prostor imena
      */
     private void sacuvajKorisnika(String korisnik, String prefiks) {
         ResursiBaze resursi = null;
@@ -193,37 +196,43 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
     }
 
     /**
-     * @param osoba koju treba sacuvati u bazi
-     * @param prefiks prostora imena
+     * @param osoba        koju treba sacuvati u bazi
+     * @param prefiks      prostora imena
      * @param tipKorisnika tip korisnika
      */
     private void sacuvajOsobu(String osoba, String prefiks, TipKorisnika tipKorisnika) {
         ResursiBaze resursi = null;
         try {
-            String putanjaDoUpita = ResourceUtils
-                    .getFile(maper.dobaviUpit("dodavanje"))
-                    .getPath();
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
             String sadrzajUpita = "";
+            String dokument;
             if (tipKorisnika == TipKorisnika.LEKAR) {
                 resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
                         maper.dobaviDokument("lekari"));
                 sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                         prefiks, maper.dobaviPrefiks("lekar"), maper.dobaviPutanju("lekari"), osoba,
                         maper.dobaviPrefiks("lekari"));
+                dokument = maper.dobaviDokument("lekari");
                 logger.info(sadrzajUpita);
             } else if (tipKorisnika == TipKorisnika.MEDICINSKA_SESTRA) {
                 resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
                         maper.dobaviDokument("medicinske_sestre"));
+                sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                        prefiks, maper.dobaviPrefiks("medicinska_sestra"),
+                        maper.dobaviPutanju("medicinske_sestre"), osoba,
+                        maper.dobaviPrefiks("medicinske_sestre"));
+                dokument = maper.dobaviDokument("medicinske_sestre");
             } else {
                 resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
                         maper.dobaviDokument("zdrastveni_kartoni"));
+                dokument = maper.dobaviDokument("zdrastveni_kartoni");
             }
 
             XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
                     .getService("XUpdateQueryService", "1.0");
             xupdateService.setProperty("indent", "yes");
             logger.info(sadrzajUpita);
-            long mods = xupdateService.updateResource(maper.dobaviDokument("lekari"), sadrzajUpita);
+            long mods = xupdateService.updateResource(dokument, sadrzajUpita);
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);

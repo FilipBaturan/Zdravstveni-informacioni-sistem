@@ -8,21 +8,15 @@
 
 package zis.rs.zis.domain.entities;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -45,13 +39,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "lekar",
-    "datum"
+        "lekar",
+        "datum"
 })
 @XmlRootElement(name = "pregled", namespace = "http://zis.rs/zis/seme/pregled")
 public class Pregled {
@@ -70,10 +62,8 @@ public class Pregled {
     /**
      * Gets the value of the lekar property.
      *
-     * @return
-     *     possible object is
-     *     {@link Pregled.Lekar }
-     *
+     * @return possible object is
+     * {@link Pregled.Lekar }
      */
     public Pregled.Lekar getLekar() {
         return lekar;
@@ -82,10 +72,8 @@ public class Pregled {
     /**
      * Sets the value of the lekar property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link Pregled.Lekar }
-     *
+     * @param value allowed object is
+     *              {@link Pregled.Lekar }
      */
     public void setLekar(Pregled.Lekar value) {
         this.lekar = value;
@@ -93,11 +81,9 @@ public class Pregled {
 
     /**
      * Gets the value of the datum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDatum() {
         return datum;
@@ -105,11 +91,9 @@ public class Pregled {
 
     /**
      * Sets the value of the datum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDatum(XMLGregorianCalendar value) {
         this.datum = value;
@@ -117,11 +101,9 @@ public class Pregled {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -129,11 +111,9 @@ public class Pregled {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -141,7 +121,6 @@ public class Pregled {
 
     /**
      * Gets the value of the aktivan property.
-     * 
      */
     public boolean isAktivan() {
         return aktivan;
@@ -149,7 +128,6 @@ public class Pregled {
 
     /**
      * Sets the value of the aktivan property.
-     * 
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;
@@ -158,9 +136,9 @@ public class Pregled {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -170,8 +148,6 @@ public class Pregled {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -183,11 +159,9 @@ public class Pregled {
 
         /**
          * Gets the value of the indentifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIndentifikator() {
             return indentifikator;
@@ -195,11 +169,9 @@ public class Pregled {
 
         /**
          * Sets the value of the indentifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIndentifikator(String value) {
             this.indentifikator = value;

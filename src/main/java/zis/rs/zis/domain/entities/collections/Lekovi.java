@@ -9,7 +9,6 @@
 package zis.rs.zis.domain.entities.collections;
 
 
-
 import zis.rs.zis.domain.entities.Lek;
 
 import javax.xml.bind.annotation.*;
@@ -19,9 +18,9 @@ import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -33,12 +32,10 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "lek"
+        "lek"
 })
 @XmlRootElement(name = "lekovi", namespace = "http://zis.rs/zis/seme/lekovi")
 public class Lekovi {
@@ -48,25 +45,23 @@ public class Lekovi {
 
     /**
      * Gets the value of the lek property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the lek property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getLek().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Lek }
-     * 
-     * 
      */
     public List<Lek> getLek() {
         if (lek == null) {

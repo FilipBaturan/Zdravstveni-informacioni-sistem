@@ -8,20 +8,14 @@
 
 package zis.rs.zis.domain.entities;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -49,16 +43,14 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ime",
-    "prezime",
-    "jmbg",
-    "korisnickoIme",
-    "lozinka"
+        "ime",
+        "prezime",
+        "jmbg",
+        "korisnickoIme",
+        "lozinka"
 })
 @XmlRootElement(name = "korisnik", namespace = "http://zis.rs/zis/seme/korisnik")
 public class Korisnik {
@@ -81,11 +73,9 @@ public class Korisnik {
 
     /**
      * Gets the value of the ime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getIme() {
         return ime;
@@ -93,11 +83,9 @@ public class Korisnik {
 
     /**
      * Sets the value of the ime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setIme(String value) {
         this.ime = value;
@@ -105,11 +93,9 @@ public class Korisnik {
 
     /**
      * Gets the value of the prezime property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPrezime() {
         return prezime;
@@ -117,11 +103,9 @@ public class Korisnik {
 
     /**
      * Sets the value of the prezime property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPrezime(String value) {
         this.prezime = value;
@@ -129,11 +113,9 @@ public class Korisnik {
 
     /**
      * Gets the value of the jmbg property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getJmbg() {
         return jmbg;
@@ -141,11 +123,9 @@ public class Korisnik {
 
     /**
      * Sets the value of the jmbg property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setJmbg(String value) {
         this.jmbg = value;
@@ -153,11 +133,9 @@ public class Korisnik {
 
     /**
      * Gets the value of the korisnickoIme property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getKorisnickoIme() {
         return korisnickoIme;
@@ -165,11 +143,9 @@ public class Korisnik {
 
     /**
      * Sets the value of the korisnickoIme property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setKorisnickoIme(String value) {
         this.korisnickoIme = value;
@@ -177,11 +153,9 @@ public class Korisnik {
 
     /**
      * Gets the value of the lozinka property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getLozinka() {
         return lozinka;
@@ -189,11 +163,9 @@ public class Korisnik {
 
     /**
      * Sets the value of the lozinka property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLozinka(String value) {
         this.lozinka = value;
@@ -201,11 +173,9 @@ public class Korisnik {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -213,11 +183,9 @@ public class Korisnik {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -225,7 +193,6 @@ public class Korisnik {
 
     /**
      * Gets the value of the aktivan property.
-     * 
      */
     public boolean isAktivan() {
         return aktivan;
@@ -233,7 +200,6 @@ public class Korisnik {
 
     /**
      * Sets the value of the aktivan property.
-     * 
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;

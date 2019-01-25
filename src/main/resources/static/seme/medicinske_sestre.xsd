@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/medicinske_sestre"
-           xmlns:mdc_sestra="http://localhost:8080/zis/seme/medicinske_sestra"
->
-    <xs:import namespace="http://localhost:8080/zis/seme/medicinske_sestra"
+           vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/medicinske_sestre"
+           xmlns:mdc_sestra="http://www.zis.rs/seme/medicinska_sestra"
+           xmlns="http://www.zis.rs/seme/medicinske_sestre">
+    <xs:import namespace="http://www.zis.rs/seme/medicinska_sestra"
                schemaLocation="medicinska_sestra.xsd"/>
-    <xs:element name="medicincke_sestre">
+    <xs:element name="medicinske_sestre">
         <xs:complexType>
             <xs:sequence>
                 <xs:element maxOccurs="unbounded" minOccurs="0" ref="mdc_sestra:medicinska_sestra"/>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://localhost:8080/zis/seme/medicinske_sestra"
-    xmlns:ms="http://localhost:8080/zis/seme/medicinske_sestra" vc:minVersion="1.1"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+           targetNamespace="http://www.zis.rs/seme/medicinska_sestra"
+           xmlns:ms="http://www.zis.rs/seme/medicinska_sestra" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="medicinska_sestra">
         <xs:complexType>
             <xs:sequence>

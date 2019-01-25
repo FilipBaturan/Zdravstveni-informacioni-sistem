@@ -13,7 +13,7 @@ public class Maper {
     private Map<String, String> xmlSeme;
     private Map<String, String> xmlPrefiksi;
     private Map<String, String> xmlPutanje;
-    private Map<String, String>  uriPrefiks;
+    private Map<String, String> uriPrefiks;
 
     public Maper() {
         this.xmlBaza = new HashMap<>();
@@ -57,7 +57,7 @@ public class Maper {
         this.xmlBaza.put("kolekcija", "/db/rs/zis/");
         this.xmlBaza.put("lekari", "lekari.xml");
         this.xmlBaza.put("korisnici", "korisnici.xml");
-        this.xmlBaza.put("medicinskeSestre", "medicinske_sestre.xml");
+        this.xmlBaza.put("medicinske_sestre", "medicinske_sestre.xml");
         this.xmlBaza.put("pacijenti", "pacijenti.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
@@ -75,9 +75,13 @@ public class Maper {
         this.xmlPrefiksi.put("korisnici", "xmlns:ko=\"http://www.zis.rs/seme/korisnici\"");
         this.xmlPrefiksi.put("lekar", "http://www.zis.rs/seme/lekar");
         this.xmlPrefiksi.put("lekari", "xmlns:lekari=\"http://www.zis.rs/seme/lekari\"");
+        this.xmlPrefiksi.put("medicinska_sestra", "http://www.zis.rs/seme/medicinska_sestra");
+        this.xmlPrefiksi.put("medicinske_sestre",
+                "xmlns:medicinske_sestre=\"http://www.zis.rs/seme/medicinske_sestre\"");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
+        this.xmlPutanje.put("medicinske_sestre", "/medicinske_sestre:medicinske_sestre");
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");

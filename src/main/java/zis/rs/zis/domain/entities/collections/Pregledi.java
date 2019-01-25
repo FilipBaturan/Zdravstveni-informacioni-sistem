@@ -9,7 +9,6 @@
 package zis.rs.zis.domain.entities.collections;
 
 
-
 import zis.rs.zis.domain.entities.Pregled;
 
 import javax.xml.bind.annotation.*;
@@ -19,9 +18,9 @@ import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -33,12 +32,10 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pregled"
+        "pregled"
 })
 @XmlRootElement(name = "pregledi", namespace = "http://zis.rs/zis/seme/pregledi")
 public class Pregledi {
@@ -48,25 +45,23 @@ public class Pregledi {
 
     /**
      * Gets the value of the pregled property.
-     * 
+     *
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
      * This is why there is not a <CODE>set</CODE> method for the pregled property.
-     * 
+     *
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
      *    getPregled().add(newItem);
      * </pre>
-     * 
-     * 
+     *
+     *
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link Pregled }
-     * 
-     * 
      */
     public List<Pregled> getPregled() {
         if (pregled == null) {

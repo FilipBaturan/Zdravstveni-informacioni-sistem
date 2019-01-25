@@ -1,7 +1,5 @@
 package zis.rs.zis.service.definition;
 
-import zis.rs.zis.domain.entities.Lek;
-
 public interface LekServis {
 
     /**

@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -47,14 +47,12 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "kontekst",
-    "funkcija",
-    "sadrzaj"
+        "kontekst",
+        "funkcija",
+        "sadrzaj"
 })
 @XmlRootElement(name = "akcija")
 public class Akcija {
@@ -69,10 +67,8 @@ public class Akcija {
     /**
      * Gets the value of the kontekst property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getKontekst() {
         return kontekst;
@@ -81,10 +77,8 @@ public class Akcija {
     /**
      * Sets the value of the kontekst property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setKontekst(String value) {
         this.kontekst = value;
@@ -93,10 +87,8 @@ public class Akcija {
     /**
      * Gets the value of the funkcija property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getFunkcija() {
         return funkcija;
@@ -105,10 +97,8 @@ public class Akcija {
     /**
      * Sets the value of the funkcija property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setFunkcija(String value) {
         this.funkcija = value;
@@ -117,10 +107,8 @@ public class Akcija {
     /**
      * Gets the value of the sadrzaj property.
      *
-     * @return
-     *     possible object is
-     *     {@link Akcija.Sadrzaj }
-     *
+     * @return possible object is
+     * {@link Akcija.Sadrzaj }
      */
     public Akcija.Sadrzaj getSadrzaj() {
         return sadrzaj;
@@ -129,10 +117,8 @@ public class Akcija {
     /**
      * Sets the value of the sadrzaj property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link Akcija.Sadrzaj }
-     *
+     * @param value allowed object is
+     *              {@link Akcija.Sadrzaj }
      */
     public void setSadrzaj(Akcija.Sadrzaj value) {
         this.sadrzaj = value;
@@ -141,9 +127,9 @@ public class Akcija {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -155,12 +141,10 @@ public class Akcija {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "any"
+            "any"
     })
     public static class Sadrzaj {
 
@@ -169,11 +153,9 @@ public class Akcija {
 
         /**
          * Gets the value of the any property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link Object }
-         *     
+         *
+         * @return possible object is
+         * {@link Object }
          */
         public Object getAny() {
             return any;
@@ -181,11 +163,9 @@ public class Akcija {
 
         /**
          * Sets the value of the any property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link Object }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link Object }
          */
         public void setAny(Object value) {
             this.any = value;

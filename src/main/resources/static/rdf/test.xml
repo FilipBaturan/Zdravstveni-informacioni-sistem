@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rdf:RDF
-    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xml:base="http://zis.rs/rdf/#"
-    xmlns:e="http://zis.rs/rdf/voc#"
-    xmlns:dc="http://purl.org/dc/elements/1.1/">
-    
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xml:base="http://zis.rs/rdf/#"
+        xmlns:e="http://zis.rs/rdf/voc#"
+        xmlns:dc="http://purl.org/dc/elements/1.1/">
+
     <rdf:Description rdf:about="lekari/5">
-        <rdf:type rdf:resource="#Lekar" />
+        <rdf:type rdf:resource="#Lekar"/>
     </rdf:Description>
-    
+
     <rdf:Description rdf:about="dokumenti/izvestaji/123">
-        <rdf:type rdf:resource="#IzvestajLekara" />
-        <e:sastavljenOdStrane rdf:resource="lekari/5" />
+        <rdf:type rdf:resource="#IzvestajLekara"/>
+        <e:sastavljenOdStrane rdf:resource="lekari/5"/>
     </rdf:Description>
-    
+
     <rdf:Description rdf:about="zdrastveni_kartoni/1">
-        <rdf:type rdf:resource="#ZdrastveniKarton" />
+        <rdf:type rdf:resource="#ZdrastveniKarton"/>
         <e:poseduje rdf:resource="dokumenti/izvestaji/123"/>
         <e:poseduje rdf:resource="dokumenti/recepti/456"/>
     </rdf:Description>
-    
+
     <rdf:Description rdf:about="lekovi/472">
-        <rdf:type rdf:resource="#Lek" />
+        <rdf:type rdf:resource="#Lek"/>
         <dc:name>Cafetin</dc:name>
     </rdf:Description>
-    
+
     <rdf:Description rdf:about="lekovi/423">
-        <rdf:type rdf:resource="#Lek" />
+        <rdf:type rdf:resource="#Lek"/>
         <dc:name>Brufen</dc:name>
     </rdf:Description>
-    
+
     <rdf:Description rdf:about="dokumenti/recepti/456">
-        <rdf:type rdf:resource="#Recept" />
-        <e:sastavljenOdStrane rdf:resource="lekari/5" />
+        <rdf:type rdf:resource="#Recept"/>
+        <e:sastavljenOdStrane rdf:resource="lekari/5"/>
         <e:preporucen rdf:resource="lekovi/472"/>
         <e:izdat rdf:resource="lekovi/423"/>
     </rdf:Description>

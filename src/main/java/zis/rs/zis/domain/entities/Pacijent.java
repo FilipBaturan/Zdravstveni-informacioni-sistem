@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -45,13 +45,11 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "korisnik",
-    "zdrastveniKarton"
+        "korisnik",
+        "zdrastveniKarton"
 })
 @XmlRootElement(name = "pacijent", namespace = "http://zis.rs/zis/seme/pacijent")
 public class Pacijent {
@@ -67,10 +65,8 @@ public class Pacijent {
     /**
      * Gets the value of the korisnik property.
      *
-     * @return
-     *     possible object is
-     *     {@link Pacijent.Korisnik }
-     *
+     * @return possible object is
+     * {@link Pacijent.Korisnik }
      */
     public Pacijent.Korisnik getKorisnik() {
         return korisnik;
@@ -79,10 +75,8 @@ public class Pacijent {
     /**
      * Sets the value of the korisnik property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link Pacijent.Korisnik }
-     *
+     * @param value allowed object is
+     *              {@link Pacijent.Korisnik }
      */
     public void setKorisnik(Pacijent.Korisnik value) {
         this.korisnik = value;
@@ -91,10 +85,8 @@ public class Pacijent {
     /**
      * Gets the value of the zdrastveniKarton property.
      *
-     * @return
-     *     possible object is
-     *     {@link Pacijent.ZdrastveniKarton }
-     *
+     * @return possible object is
+     * {@link Pacijent.ZdrastveniKarton }
      */
     public Pacijent.ZdrastveniKarton getZdrastveniKarton() {
         return zdrastveniKarton;
@@ -103,10 +95,8 @@ public class Pacijent {
     /**
      * Sets the value of the zdrastveniKarton property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link Pacijent.ZdrastveniKarton }
-     *
+     * @param value allowed object is
+     *              {@link Pacijent.ZdrastveniKarton }
      */
     public void setZdrastveniKarton(Pacijent.ZdrastveniKarton value) {
         this.zdrastveniKarton = value;
@@ -114,11 +104,9 @@ public class Pacijent {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -126,11 +114,9 @@ public class Pacijent {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -139,9 +125,9 @@ public class Pacijent {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -151,8 +137,6 @@ public class Pacijent {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -164,11 +148,9 @@ public class Pacijent {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -176,11 +158,9 @@ public class Pacijent {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;
@@ -191,9 +171,9 @@ public class Pacijent {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -203,8 +183,6 @@ public class Pacijent {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -216,11 +194,9 @@ public class Pacijent {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -228,11 +204,9 @@ public class Pacijent {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;

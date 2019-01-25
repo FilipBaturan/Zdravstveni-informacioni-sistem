@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.*;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -31,14 +31,12 @@ import javax.xml.bind.annotation.*;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "naziv",
-    "sifra",
-    "namena"
+        "naziv",
+        "sifra",
+        "namena"
 })
 @XmlRootElement(name = "lek", namespace = "http://zis.rs/zis/seme/lek")
 public class Lek {
@@ -57,11 +55,9 @@ public class Lek {
 
     /**
      * Gets the value of the naziv property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNaziv() {
         return naziv;
@@ -69,11 +65,9 @@ public class Lek {
 
     /**
      * Sets the value of the naziv property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNaziv(String value) {
         this.naziv = value;
@@ -81,11 +75,9 @@ public class Lek {
 
     /**
      * Gets the value of the sifra property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getSifra() {
         return sifra;
@@ -93,11 +85,9 @@ public class Lek {
 
     /**
      * Sets the value of the sifra property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setSifra(String value) {
         this.sifra = value;
@@ -105,11 +95,9 @@ public class Lek {
 
     /**
      * Gets the value of the namena property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNamena() {
         return namena;
@@ -117,11 +105,9 @@ public class Lek {
 
     /**
      * Sets the value of the namena property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNamena(String value) {
         this.namena = value;
@@ -129,11 +115,9 @@ public class Lek {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -141,11 +125,9 @@ public class Lek {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -153,7 +135,6 @@ public class Lek {
 
     /**
      * Gets the value of the aktivan property.
-     * 
      */
     public boolean isAktivan() {
         return aktivan;
@@ -161,7 +142,6 @@ public class Lek {
 
     /**
      * Sets the value of the aktivan property.
-     * 
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;

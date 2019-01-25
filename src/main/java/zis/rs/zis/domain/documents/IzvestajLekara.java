@@ -14,9 +14,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -52,17 +52,15 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "dijagnoza",
-    "anamneza",
-    "terapija",
-    "datum",
-    "pacijent",
-    "lekar"
+        "dijagnoza",
+        "anamneza",
+        "terapija",
+        "datum",
+        "pacijent",
+        "lekar"
 })
 @XmlRootElement(name = "izvestaj_lekara", namespace = "http://zis.rs/zis/seme/izvestaj_lekara")
 public class IzvestajLekara {
@@ -91,10 +89,8 @@ public class IzvestajLekara {
     /**
      * Gets the value of the dijagnoza property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDijagnoza() {
         return dijagnoza;
@@ -103,10 +99,8 @@ public class IzvestajLekara {
     /**
      * Sets the value of the dijagnoza property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDijagnoza(String value) {
         this.dijagnoza = value;
@@ -115,10 +109,8 @@ public class IzvestajLekara {
     /**
      * Gets the value of the anamneza property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getAnamneza() {
         return anamneza;
@@ -127,10 +119,8 @@ public class IzvestajLekara {
     /**
      * Sets the value of the anamneza property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setAnamneza(String value) {
         this.anamneza = value;
@@ -139,10 +129,8 @@ public class IzvestajLekara {
     /**
      * Gets the value of the terapija property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTerapija() {
         return terapija;
@@ -151,10 +139,8 @@ public class IzvestajLekara {
     /**
      * Sets the value of the terapija property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTerapija(String value) {
         this.terapija = value;
@@ -163,10 +149,8 @@ public class IzvestajLekara {
     /**
      * Gets the value of the datum property.
      *
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDatum() {
         return datum;
@@ -175,10 +159,8 @@ public class IzvestajLekara {
     /**
      * Sets the value of the datum property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDatum(XMLGregorianCalendar value) {
         this.datum = value;
@@ -187,10 +169,8 @@ public class IzvestajLekara {
     /**
      * Gets the value of the pacijent property.
      *
-     * @return
-     *     possible object is
-     *     {@link IzvestajLekara.Pacijent }
-     *
+     * @return possible object is
+     * {@link IzvestajLekara.Pacijent }
      */
     public IzvestajLekara.Pacijent getPacijent() {
         return pacijent;
@@ -199,10 +179,8 @@ public class IzvestajLekara {
     /**
      * Sets the value of the pacijent property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link IzvestajLekara.Pacijent }
-     *
+     * @param value allowed object is
+     *              {@link IzvestajLekara.Pacijent }
      */
     public void setPacijent(IzvestajLekara.Pacijent value) {
         this.pacijent = value;
@@ -211,10 +189,8 @@ public class IzvestajLekara {
     /**
      * Gets the value of the lekar property.
      *
-     * @return
-     *     possible object is
-     *     {@link IzvestajLekara.Lekar }
-     *
+     * @return possible object is
+     * {@link IzvestajLekara.Lekar }
      */
     public IzvestajLekara.Lekar getLekar() {
         return lekar;
@@ -223,10 +199,8 @@ public class IzvestajLekara {
     /**
      * Sets the value of the lekar property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link IzvestajLekara.Lekar }
-     *
+     * @param value allowed object is
+     *              {@link IzvestajLekara.Lekar }
      */
     public void setLekar(IzvestajLekara.Lekar value) {
         this.lekar = value;
@@ -234,11 +208,9 @@ public class IzvestajLekara {
 
     /**
      * Gets the value of the oznaka property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOznaka() {
         if (oznaka == null) {
@@ -250,11 +222,9 @@ public class IzvestajLekara {
 
     /**
      * Sets the value of the oznaka property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOznaka(String value) {
         this.oznaka = value;
@@ -262,11 +232,9 @@ public class IzvestajLekara {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -274,11 +242,9 @@ public class IzvestajLekara {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -286,7 +252,6 @@ public class IzvestajLekara {
 
     /**
      * Gets the value of the aktivan property.
-     * 
      */
     public boolean isAktivan() {
         return aktivan;
@@ -294,7 +259,6 @@ public class IzvestajLekara {
 
     /**
      * Sets the value of the aktivan property.
-     * 
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;
@@ -303,9 +267,9 @@ public class IzvestajLekara {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -315,8 +279,6 @@ public class IzvestajLekara {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -328,11 +290,9 @@ public class IzvestajLekara {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -340,11 +300,9 @@ public class IzvestajLekara {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;
@@ -355,9 +313,9 @@ public class IzvestajLekara {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -367,8 +325,6 @@ public class IzvestajLekara {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -380,11 +336,9 @@ public class IzvestajLekara {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -392,11 +346,9 @@ public class IzvestajLekara {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;

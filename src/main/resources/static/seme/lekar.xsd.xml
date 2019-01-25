@@ -1,5 +1,0 @@
-<lek:lekar id="http://www.company.org/cum/sonoras" xmlns:lek="http://www.zis.rs/seme/lekar">
-  <lek:korisnik lek:identifikator="http://www.any.org/ventos/verrantque"/>
-  <lek:tip>stomatolog</lek:tip>
-  <lek:oblast_zastite>odrasli</lek:oblast_zastite>
-</lek:lekar>

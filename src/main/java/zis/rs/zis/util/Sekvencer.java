@@ -1,14 +1,7 @@
 package zis.rs.zis.util;
 
-import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
-import org.xmldb.api.base.*;
-import org.xmldb.api.modules.XQueryService;
-import org.xmldb.api.modules.XUpdateQueryService;
-
-import java.io.IOException;
 
 @Component
 public class Sekvencer extends IOStrimer {

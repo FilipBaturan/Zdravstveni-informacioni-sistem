@@ -24,13 +24,13 @@ public class Validator {
 
     /**
      * @param akcija koju treba pocesirati
-     * @param sema koja vrsi validaciju
+     * @param sema   koja vrsi validaciju
      * @return sadrzaj akcije
      */
     public String procesirajAkciju(Akcija akcija, String sema) {
         Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        if (((Element)dok.getFirstChild()).hasAttribute("xmlns:akc")){  // ukloni nepotrebne namespace-ove
-            ((Element)dok.getFirstChild()).removeAttribute("xmlns:akc");
+        if (((Element) dok.getFirstChild()).hasAttribute("xmlns:akc")) {  // ukloni nepotrebne namespace-ove
+            ((Element) dok.getFirstChild()).removeAttribute("xmlns:akc");
         }
         try {
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
@@ -49,13 +49,13 @@ public class Validator {
             transformer.transform(new DOMSource(dok), new StreamResult(w));
 
             String sadrzaj = w.toString();
-            if(sadrzaj.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
+            if (sadrzaj.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
                 sadrzaj = sadrzaj.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
             }
             return sadrzaj;
         } catch (TransformerException | IOException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
-        } catch (SAXException e){
+        } catch (SAXException e) {
             throw new ValidacioniIzuzetak("Nevalidni prosledjeni podaci!");
         }
     }

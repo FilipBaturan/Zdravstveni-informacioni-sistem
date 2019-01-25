@@ -8,20 +8,14 @@
 
 package zis.rs.zis.domain.entities;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -64,14 +58,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "korisnik",
-    "tip",
-    "oblastZastite"
+        "korisnik",
+        "tip",
+        "oblastZastite"
 })
 @XmlRootElement(name = "lekar", namespace = "http://zis.rs/zis/seme/lekar")
 public class Lekar {
@@ -89,10 +81,8 @@ public class Lekar {
     /**
      * Gets the value of the korisnik property.
      *
-     * @return
-     *     possible object is
-     *     {@link Lekar.Korisnik }
-     *
+     * @return possible object is
+     * {@link Lekar.Korisnik }
      */
     public Lekar.Korisnik getKorisnik() {
         return korisnik;
@@ -101,10 +91,8 @@ public class Lekar {
     /**
      * Sets the value of the korisnik property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link Lekar.Korisnik }
-     *
+     * @param value allowed object is
+     *              {@link Lekar.Korisnik }
      */
     public void setKorisnik(Lekar.Korisnik value) {
         this.korisnik = value;
@@ -112,11 +100,9 @@ public class Lekar {
 
     /**
      * Gets the value of the tip property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTip() {
         return tip;
@@ -124,11 +110,9 @@ public class Lekar {
 
     /**
      * Sets the value of the tip property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTip(String value) {
         this.tip = value;
@@ -136,11 +120,9 @@ public class Lekar {
 
     /**
      * Gets the value of the oblastZastite property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOblastZastite() {
         return oblastZastite;
@@ -148,11 +130,9 @@ public class Lekar {
 
     /**
      * Sets the value of the oblastZastite property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOblastZastite(String value) {
         this.oblastZastite = value;
@@ -160,11 +140,9 @@ public class Lekar {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -172,11 +150,9 @@ public class Lekar {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -185,9 +161,9 @@ public class Lekar {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -197,8 +173,6 @@ public class Lekar {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -210,11 +184,9 @@ public class Lekar {
 
         /**
          * Gets the value of the identifkator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifkator() {
             return identifkator;
@@ -222,11 +194,9 @@ public class Lekar {
 
         /**
          * Sets the value of the identifkator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifkator(String value) {
             this.identifkator = value;

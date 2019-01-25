@@ -14,9 +14,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -80,19 +80,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "nazivUstanove",
-    "tipObrasca",
-    "razlogPromene",
-    "ustanovaProslogLekara",
-    "prosliLekar",
-    "lekar",
-    "pacijent",
-    "datum"
+        "nazivUstanove",
+        "tipObrasca",
+        "razlogPromene",
+        "ustanovaProslogLekara",
+        "prosliLekar",
+        "lekar",
+        "pacijent",
+        "datum"
 })
 @XmlRootElement(name = "izbor_promena_lekara")
 public class IzborPromenaLekara {
@@ -125,10 +123,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the nazivUstanove property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getNazivUstanove() {
         return nazivUstanove;
@@ -137,10 +133,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the nazivUstanove property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setNazivUstanove(String value) {
         this.nazivUstanove = value;
@@ -149,10 +143,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the tipObrasca property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getTipObrasca() {
         return tipObrasca;
@@ -161,10 +153,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the tipObrasca property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setTipObrasca(String value) {
         this.tipObrasca = value;
@@ -173,10 +163,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the razlogPromene property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getRazlogPromene() {
         return razlogPromene;
@@ -185,10 +173,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the razlogPromene property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setRazlogPromene(String value) {
         this.razlogPromene = value;
@@ -197,10 +183,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the ustanovaProslogLekara property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getUstanovaProslogLekara() {
         return ustanovaProslogLekara;
@@ -209,10 +193,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the ustanovaProslogLekara property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setUstanovaProslogLekara(String value) {
         this.ustanovaProslogLekara = value;
@@ -221,10 +203,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the prosliLekar property.
      *
-     * @return
-     *     possible object is
-     *     {@link IzborPromenaLekara.ProsliLekar }
-     *
+     * @return possible object is
+     * {@link IzborPromenaLekara.ProsliLekar }
      */
     public IzborPromenaLekara.ProsliLekar getProsliLekar() {
         return prosliLekar;
@@ -233,10 +213,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the prosliLekar property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link IzborPromenaLekara.ProsliLekar }
-     *
+     * @param value allowed object is
+     *              {@link IzborPromenaLekara.ProsliLekar }
      */
     public void setProsliLekar(IzborPromenaLekara.ProsliLekar value) {
         this.prosliLekar = value;
@@ -245,10 +223,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the lekar property.
      *
-     * @return
-     *     possible object is
-     *     {@link IzborPromenaLekara.Lekar }
-     *
+     * @return possible object is
+     * {@link IzborPromenaLekara.Lekar }
      */
     public IzborPromenaLekara.Lekar getLekar() {
         return lekar;
@@ -257,10 +233,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the lekar property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link IzborPromenaLekara.Lekar }
-     *
+     * @param value allowed object is
+     *              {@link IzborPromenaLekara.Lekar }
      */
     public void setLekar(IzborPromenaLekara.Lekar value) {
         this.lekar = value;
@@ -269,10 +243,8 @@ public class IzborPromenaLekara {
     /**
      * Gets the value of the pacijent property.
      *
-     * @return
-     *     possible object is
-     *     {@link IzborPromenaLekara.Pacijent }
-     *
+     * @return possible object is
+     * {@link IzborPromenaLekara.Pacijent }
      */
     public IzborPromenaLekara.Pacijent getPacijent() {
         return pacijent;
@@ -281,10 +253,8 @@ public class IzborPromenaLekara {
     /**
      * Sets the value of the pacijent property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link IzborPromenaLekara.Pacijent }
-     *
+     * @param value allowed object is
+     *              {@link IzborPromenaLekara.Pacijent }
      */
     public void setPacijent(IzborPromenaLekara.Pacijent value) {
         this.pacijent = value;
@@ -292,11 +262,9 @@ public class IzborPromenaLekara {
 
     /**
      * Gets the value of the datum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDatum() {
         return datum;
@@ -304,11 +272,9 @@ public class IzborPromenaLekara {
 
     /**
      * Sets the value of the datum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDatum(XMLGregorianCalendar value) {
         this.datum = value;
@@ -316,11 +282,9 @@ public class IzborPromenaLekara {
 
     /**
      * Gets the value of the oznaka property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOznaka() {
         if (oznaka == null) {
@@ -332,11 +296,9 @@ public class IzborPromenaLekara {
 
     /**
      * Sets the value of the oznaka property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOznaka(String value) {
         this.oznaka = value;
@@ -344,11 +306,9 @@ public class IzborPromenaLekara {
 
     /**
      * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -356,11 +316,9 @@ public class IzborPromenaLekara {
 
     /**
      * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -368,7 +326,6 @@ public class IzborPromenaLekara {
 
     /**
      * Gets the value of the aktivan property.
-     * 
      */
     public boolean isAktivan() {
         return aktivan;
@@ -376,7 +333,6 @@ public class IzborPromenaLekara {
 
     /**
      * Sets the value of the aktivan property.
-     * 
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;
@@ -385,9 +341,9 @@ public class IzborPromenaLekara {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -397,8 +353,6 @@ public class IzborPromenaLekara {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -410,11 +364,9 @@ public class IzborPromenaLekara {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -422,11 +374,9 @@ public class IzborPromenaLekara {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;
@@ -437,9 +387,9 @@ public class IzborPromenaLekara {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -449,8 +399,6 @@ public class IzborPromenaLekara {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -462,11 +410,9 @@ public class IzborPromenaLekara {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -474,11 +420,9 @@ public class IzborPromenaLekara {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;
@@ -489,9 +433,9 @@ public class IzborPromenaLekara {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -501,8 +445,6 @@ public class IzborPromenaLekara {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -514,11 +456,9 @@ public class IzborPromenaLekara {
 
         /**
          * Gets the value of the identifikator property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -526,11 +466,9 @@ public class IzborPromenaLekara {
 
         /**
          * Sets the value of the identifikator property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;

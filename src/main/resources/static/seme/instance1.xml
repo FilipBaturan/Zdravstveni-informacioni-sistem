@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <iz:izbori_promene_lekara xmlns:ipl1="http://zis.rs/zis/seme/Izbor_promena_lekara"
-    xmlns:iz="http://zis.rs/zis/seme/izbori_promene_lekara"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
-    xmlns:voc="http://www.zis.rs/rdf/voc#">
+                          xmlns:iz="http://zis.rs/zis/seme/izbori_promene_lekara"
+                          xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+                          xmlns:voc="http://www.zis.rs/rdf/voc#">
     <ipl1:izbor_promena_lekara oznaka="ipl1" id="rs/zis/pacijenti/id1/izbor_promena_lekara/id1" aktivan="true"
-        vocab="http://www.zis.rs/rdf/voc#" 
-        about="http://www.zis.rs/pacijenti/id1/izbor_promena_lekara/id1"
-        typeof="voc:IzborLekara">
+                               vocab="http://www.zis.rs/rdf/voc#"
+                               about="http://www.zis.rs/pacijenti/id1/izbor_promena_lekara/id1"
+                               typeof="voc:IzborLekara">
         <ipl1:naziv_ustanove>naziv_ustanove0</ipl1:naziv_ustanove>
         <ipl1:tip_obrasca>promena</ipl1:tip_obrasca>
         <ipl1:razlog_promene property="voc:razlog_promene" datatype="xs:string">ne_radi</ipl1:razlog_promene>
         <ipl1:ustanova_proslog_lekara>ustanova_proslog_lekara0</ipl1:ustanova_proslog_lekara>
         <ipl1:prosli_lekar rel="voc:prosliLekar" href="http://www.zis.rs/lekari/id3" identifikator="rs/zis/lekari/id3"/>
         <ipl1:lekar rel="voc:lekar" href="http://www.zis.rs/lekari/id5" identifikator="rs/zis/lekari/id5"/>
-        <ipl1:osigurano_lice rel="voc:osiguranoLice" href="http://www.zis.rs/pacijenti/id1/zdrastveni_karton" 
-            identifikator="rs/zis/pacijenti/id1/zdrastveni_karton"/>
+        <ipl1:osigurano_lice rel="voc:osiguranoLice" href="http://www.zis.rs/pacijenti/id1/zdrastveni_karton"
+                             identifikator="rs/zis/pacijenti/id1/zdrastveni_karton"/>
         <ipl1:datum property="voc:datum" datatype="xs:date">2006-05-04</ipl1:datum>
     </ipl1:izbor_promena_lekara>
     <ipl1:izbor_promena_lekara oznaka="ipl1" id="rs/zis/pacijenti/id1/izbor_promena_lekara/id2" aktivan="true"
-        vocab="http://www.zis.rs/rdf/voc#" 
-        about="http://www.zis.rs/pacijenti/id1/izbor_promena_lekara/id2"
-        typeof="voc:IzborLekara">
+                               vocab="http://www.zis.rs/rdf/voc#"
+                               about="http://www.zis.rs/pacijenti/id1/izbor_promena_lekara/id2"
+                               typeof="voc:IzborLekara">
         <ipl1:naziv_ustanove>naziv_ustanove0</ipl1:naziv_ustanove>
         <ipl1:tip_obrasca>promena</ipl1:tip_obrasca>
         <ipl1:razlog_promene property="voc:razlog_promene" datatype="xs:string">odsutan</ipl1:razlog_promene>
         <ipl1:ustanova_proslog_lekara>ustanova_proslog_lekara1</ipl1:ustanova_proslog_lekara>
         <ipl1:prosli_lekar rel="voc:prosliLekar" href="http://www.zis.rs/lekari/id1" identifikator="rs/zis/lekari/id1"/>
         <ipl1:lekar rel="voc:lekar" href="http://www.zis.rs/lekari/id7" identifikator="rs/zis/lekari/id7"/>
-        <ipl1:osigurano_lice rel="voc:osiguranoLice" href="http://www.zis.rs/pacijenti/id1/zdrastveni_karton" identifikator="rs/zis/pacijenti/id1/zdrastveni_karton"/>
+        <ipl1:osigurano_lice rel="voc:osiguranoLice" href="http://www.zis.rs/pacijenti/id1/zdrastveni_karton"
+                             identifikator="rs/zis/pacijenti/id1/zdrastveni_karton"/>
         <ipl1:datum property="voc:datum" datatype="xs:date">2006-05-04</ipl1:datum>
     </ipl1:izbor_promena_lekara>
 </iz:izbori_promene_lekara>

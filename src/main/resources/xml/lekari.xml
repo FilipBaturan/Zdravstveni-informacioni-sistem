@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ko:korisnici
-    xmlns:korisnik="http://www.zis.rs/seme/korisnik"
-    xmlns:ko="http://www.zis.rs/seme/korisnici"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
-    xmlns:voc="http://www.zis.rs/rdf/voc#">>
+        xmlns:korisnik="http://www.zis.rs/seme/korisnik"
+        xmlns:ko="http://www.zis.rs/seme/korisnici"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+        xmlns:voc="http://www.zis.rs/rdf/voc#">>
     <korisnik:korisnik id="http://www.zis.rs/korisnici/id1" aktivan="true">
         <korisnik:ime property="voc:ime" datatype="xs:string">Nebojsa</korisnik:ime>
         <korisnik:prezime property="voc:prezime" datatype="xs:string">Jovanovic</korisnik:prezime>

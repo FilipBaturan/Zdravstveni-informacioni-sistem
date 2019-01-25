@@ -128,7 +128,7 @@ public class LekServisImpl extends IOStrimer implements LekServis {
                     .getService("XUpdateQueryService", "1.0");
             xupdateService.setProperty("indent", "yes");
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    "lek","http://zis.rs/zis/seme/lek" ,"/lekovi:lekovi", lek,
+                    "lek", "http://zis.rs/zis/seme/lek", "/lekovi:lekovi", lek,
                     "xmlns:lekovi=\"http://zis.rs/zis/seme/lekovi\"");
             long mods = xupdateService.updateResource("lekovi.xml", sadrzajUpita);
             logger.info("[INFO] " + mods + " modifications processed.");

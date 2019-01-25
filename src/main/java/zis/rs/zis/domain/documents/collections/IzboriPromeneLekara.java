@@ -9,7 +9,6 @@
 package zis.rs.zis.domain.documents.collections;
 
 
-
 import zis.rs.zis.domain.documents.IzborPromenaLekara;
 
 import javax.xml.bind.annotation.*;
@@ -19,9 +18,9 @@ import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -33,12 +32,10 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "izborPromenaLekara"
+        "izborPromenaLekara"
 })
 @XmlRootElement(name = "izbori_promene_lekara", namespace = "http://zis.rs/zis/seme/izbori_promene_lekara")
 public class IzboriPromeneLekara {
@@ -65,8 +62,6 @@ public class IzboriPromeneLekara {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link IzborPromenaLekara }
-     *
-     *
      */
     public List<IzborPromenaLekara> getIzborPromenaLekara() {
         if (izborPromenaLekara == null) {

@@ -9,7 +9,6 @@
 package zis.rs.zis.domain.documents.collections;
 
 
-
 import zis.rs.zis.domain.documents.UputZaLaboratoriju;
 
 import javax.xml.bind.annotation.*;
@@ -19,9 +18,9 @@ import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -33,12 +32,10 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "uputZaLaboratoriju"
+        "uputZaLaboratoriju"
 })
 @XmlRootElement(name = "uputi_za_laboratoriju", namespace = "http://zis.rs/zis/seme/uputi_za_laboratoriju")
 public class UputiZaLaboratoriju {
@@ -65,8 +62,6 @@ public class UputiZaLaboratoriju {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link UputZaLaboratoriju }
-     *
-     *
      */
     public List<UputZaLaboratoriju> getUputZaLaboratoriju() {
         if (uputZaLaboratoriju == null) {

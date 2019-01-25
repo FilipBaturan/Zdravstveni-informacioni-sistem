@@ -14,9 +14,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -102,15 +102,13 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "zdrastveneUstanove",
-    "osiguranoLice",
-    "pregled",
-    "izvestajSpecialiste"
+        "zdrastveneUstanove",
+        "osiguranoLice",
+        "pregled",
+        "izvestajSpecialiste"
 })
 @XmlRootElement(name = "uput_za_specialisticki_pregled", namespace = "http://zis.rs/zis/seme/uput_za_specialisticki_pregled")
 public class UputZaSpecialistickiPregled {
@@ -134,10 +132,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Gets the value of the zdrastveneUstanove property.
      *
-     * @return
-     *     possible object is
-     *     {@link UputZaSpecialistickiPregled.ZdrastveneUstanove }
-     *
+     * @return possible object is
+     * {@link UputZaSpecialistickiPregled.ZdrastveneUstanove }
      */
     public UputZaSpecialistickiPregled.ZdrastveneUstanove getZdrastveneUstanove() {
         return zdrastveneUstanove;
@@ -146,10 +142,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Sets the value of the zdrastveneUstanove property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link UputZaSpecialistickiPregled.ZdrastveneUstanove }
-     *
+     * @param value allowed object is
+     *              {@link UputZaSpecialistickiPregled.ZdrastveneUstanove }
      */
     public void setZdrastveneUstanove(UputZaSpecialistickiPregled.ZdrastveneUstanove value) {
         this.zdrastveneUstanove = value;
@@ -158,10 +152,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Gets the value of the osiguranoLice property.
      *
-     * @return
-     *     possible object is
-     *     {@link UputZaSpecialistickiPregled.OsiguranoLice }
-     *
+     * @return possible object is
+     * {@link UputZaSpecialistickiPregled.OsiguranoLice }
      */
     public UputZaSpecialistickiPregled.OsiguranoLice getOsiguranoLice() {
         return osiguranoLice;
@@ -170,10 +162,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Sets the value of the osiguranoLice property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link UputZaSpecialistickiPregled.OsiguranoLice }
-     *
+     * @param value allowed object is
+     *              {@link UputZaSpecialistickiPregled.OsiguranoLice }
      */
     public void setOsiguranoLice(UputZaSpecialistickiPregled.OsiguranoLice value) {
         this.osiguranoLice = value;
@@ -182,10 +172,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Gets the value of the pregled property.
      *
-     * @return
-     *     possible object is
-     *     {@link UputZaSpecialistickiPregled.Pregled }
-     *
+     * @return possible object is
+     * {@link UputZaSpecialistickiPregled.Pregled }
      */
     public UputZaSpecialistickiPregled.Pregled getPregled() {
         return pregled;
@@ -194,10 +182,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Sets the value of the pregled property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link UputZaSpecialistickiPregled.Pregled }
-     *
+     * @param value allowed object is
+     *              {@link UputZaSpecialistickiPregled.Pregled }
      */
     public void setPregled(UputZaSpecialistickiPregled.Pregled value) {
         this.pregled = value;
@@ -206,10 +192,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Gets the value of the izvestajSpecialiste property.
      *
-     * @return
-     *     possible object is
-     *     {@link UputZaSpecialistickiPregled.IzvestajSpecialiste }
-     *
+     * @return possible object is
+     * {@link UputZaSpecialistickiPregled.IzvestajSpecialiste }
      */
     public UputZaSpecialistickiPregled.IzvestajSpecialiste getIzvestajSpecialiste() {
         return izvestajSpecialiste;
@@ -218,10 +202,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Sets the value of the izvestajSpecialiste property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link UputZaSpecialistickiPregled.IzvestajSpecialiste }
-     *
+     * @param value allowed object is
+     *              {@link UputZaSpecialistickiPregled.IzvestajSpecialiste }
      */
     public void setIzvestajSpecialiste(UputZaSpecialistickiPregled.IzvestajSpecialiste value) {
         this.izvestajSpecialiste = value;
@@ -230,10 +212,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Gets the value of the oznaka property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getOznaka() {
         if (oznaka == null) {
@@ -246,10 +226,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Sets the value of the oznaka property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setOznaka(String value) {
         this.oznaka = value;
@@ -258,10 +236,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Gets the value of the id property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -270,10 +246,8 @@ public class UputZaSpecialistickiPregled {
     /**
      * Sets the value of the id property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -281,7 +255,6 @@ public class UputZaSpecialistickiPregled {
 
     /**
      * Gets the value of the aktivan property.
-     *
      */
     public boolean isAktivan() {
         return aktivan;
@@ -289,7 +262,6 @@ public class UputZaSpecialistickiPregled {
 
     /**
      * Sets the value of the aktivan property.
-     *
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;
@@ -322,14 +294,12 @@ public class UputZaSpecialistickiPregled {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "bolest",
-        "nalazi",
-        "specialista"
+            "bolest",
+            "nalazi",
+            "specialista"
     })
     public static class IzvestajSpecialiste {
 
@@ -343,10 +313,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the bolest property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getBolest() {
             return bolest;
@@ -355,10 +323,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the bolest property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setBolest(String value) {
             this.bolest = value;
@@ -367,10 +333,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the nalazi property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getNalazi() {
             return nalazi;
@@ -379,10 +343,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the nalazi property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setNalazi(String value) {
             this.nalazi = value;
@@ -391,10 +353,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the specialista property.
          *
-         * @return
-         *     possible object is
-         *     {@link UputZaSpecialistickiPregled.IzvestajSpecialiste.Specialista }
-         *
+         * @return possible object is
+         * {@link UputZaSpecialistickiPregled.IzvestajSpecialiste.Specialista }
          */
         public UputZaSpecialistickiPregled.IzvestajSpecialiste.Specialista getSpecialista() {
             return specialista;
@@ -403,10 +363,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the specialista property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link UputZaSpecialistickiPregled.IzvestajSpecialiste.Specialista }
-         *
+         * @param value allowed object is
+         *              {@link UputZaSpecialistickiPregled.IzvestajSpecialiste.Specialista }
          */
         public void setSpecialista(UputZaSpecialistickiPregled.IzvestajSpecialiste.Specialista value) {
             this.specialista = value;
@@ -427,8 +385,6 @@ public class UputZaSpecialistickiPregled {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         *
-         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -441,10 +397,8 @@ public class UputZaSpecialistickiPregled {
             /**
              * Gets the value of the identifikator property.
              *
-             * @return
-             *     possible object is
-             *     {@link String }
-             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -453,10 +407,8 @@ public class UputZaSpecialistickiPregled {
             /**
              * Sets the value of the identifikator property.
              *
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
@@ -481,8 +433,6 @@ public class UputZaSpecialistickiPregled {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -495,10 +445,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the identifikator property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIdentifikator() {
             return identifikator;
@@ -507,10 +455,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the identifikator property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIdentifikator(String value) {
             this.identifikator = value;
@@ -554,16 +500,14 @@ public class UputZaSpecialistickiPregled {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "datumPrijavljivanja",
-        "datumZavrsetka",
-        "anamneza",
-        "brojProtokola",
-        "lekar"
+            "datumPrijavljivanja",
+            "datumZavrsetka",
+            "anamneza",
+            "brojProtokola",
+            "lekar"
     })
     public static class Pregled {
 
@@ -583,10 +527,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the datumPrijavljivanja property.
          *
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *
+         * @return possible object is
+         * {@link XMLGregorianCalendar }
          */
         public XMLGregorianCalendar getDatumPrijavljivanja() {
             return datumPrijavljivanja;
@@ -595,10 +537,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the datumPrijavljivanja property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *
+         * @param value allowed object is
+         *              {@link XMLGregorianCalendar }
          */
         public void setDatumPrijavljivanja(XMLGregorianCalendar value) {
             this.datumPrijavljivanja = value;
@@ -607,10 +547,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the datumZavrsetka property.
          *
-         * @return
-         *     possible object is
-         *     {@link XMLGregorianCalendar }
-         *
+         * @return possible object is
+         * {@link XMLGregorianCalendar }
          */
         public XMLGregorianCalendar getDatumZavrsetka() {
             return datumZavrsetka;
@@ -619,10 +557,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the datumZavrsetka property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link XMLGregorianCalendar }
-         *
+         * @param value allowed object is
+         *              {@link XMLGregorianCalendar }
          */
         public void setDatumZavrsetka(XMLGregorianCalendar value) {
             this.datumZavrsetka = value;
@@ -631,10 +567,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the anamneza property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getAnamneza() {
             return anamneza;
@@ -643,10 +577,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the anamneza property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setAnamneza(String value) {
             this.anamneza = value;
@@ -655,10 +587,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the brojProtokola property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getBrojProtokola() {
             return brojProtokola;
@@ -667,10 +597,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the brojProtokola property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setBrojProtokola(String value) {
             this.brojProtokola = value;
@@ -679,10 +607,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Gets the value of the lekar property.
          *
-         * @return
-         *     possible object is
-         *     {@link UputZaSpecialistickiPregled.Pregled.Lekar }
-         *
+         * @return possible object is
+         * {@link UputZaSpecialistickiPregled.Pregled.Lekar }
          */
         public UputZaSpecialistickiPregled.Pregled.Lekar getLekar() {
             return lekar;
@@ -691,10 +617,8 @@ public class UputZaSpecialistickiPregled {
         /**
          * Sets the value of the lekar property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link UputZaSpecialistickiPregled.Pregled.Lekar }
-         *
+         * @param value allowed object is
+         *              {@link UputZaSpecialistickiPregled.Pregled.Lekar }
          */
         public void setLekar(UputZaSpecialistickiPregled.Pregled.Lekar value) {
             this.lekar = value;
@@ -703,9 +627,9 @@ public class UputZaSpecialistickiPregled {
 
         /**
          * <p>Java class for anonymous complex type.
-         * 
+         *
          * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         *
          * <pre>
          * &lt;complexType&gt;
          *   &lt;complexContent&gt;
@@ -715,8 +639,6 @@ public class UputZaSpecialistickiPregled {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         * 
-         * 
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -728,11 +650,9 @@ public class UputZaSpecialistickiPregled {
 
             /**
              * Gets the value of the identifikator property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -740,11 +660,9 @@ public class UputZaSpecialistickiPregled {
 
             /**
              * Sets the value of the identifikator property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
@@ -757,9 +675,9 @@ public class UputZaSpecialistickiPregled {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType&gt;
      *   &lt;complexContent&gt;
@@ -772,13 +690,11 @@ public class UputZaSpecialistickiPregled {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     * 
-     * 
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "primalac",
-        "posaljilac"
+            "primalac",
+            "posaljilac"
     })
     public static class ZdrastveneUstanove {
 
@@ -789,11 +705,9 @@ public class UputZaSpecialistickiPregled {
 
         /**
          * Gets the value of the primalac property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getPrimalac() {
             return primalac;
@@ -801,11 +715,9 @@ public class UputZaSpecialistickiPregled {
 
         /**
          * Sets the value of the primalac property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setPrimalac(String value) {
             this.primalac = value;
@@ -813,11 +725,9 @@ public class UputZaSpecialistickiPregled {
 
         /**
          * Gets the value of the posaljilac property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
+         *
+         * @return possible object is
+         * {@link String }
          */
         public String getPosaljilac() {
             return posaljilac;
@@ -825,11 +735,9 @@ public class UputZaSpecialistickiPregled {
 
         /**
          * Sets the value of the posaljilac property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
+         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setPosaljilac(String value) {
             this.posaljilac = value;

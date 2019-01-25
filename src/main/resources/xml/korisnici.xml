@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ko:korisnici
-    xmlns:korisnik="http://www.zis.rs/seme/korisnik"
-    xmlns:ko="http://www.zis.rs/seme/korisnici"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema#"
-    xmlns:voc="http://www.zis.rs/rdf/voc#">>
+<ko:korisnici xmlns:ko="http://www.zis.rs/seme/korisnici" xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+              xmlns:voc="http://www.zis.rs/rdf/voc#" xmlns:korisnik="http://www.zis.rs/seme/korisnik">
     <korisnik:korisnik id="http://www.zis.rs/korisnici/id1" aktivan="true">
         <korisnik:ime property="voc:ime" datatype="xs:string">Nebojsa</korisnik:ime>
         <korisnik:prezime property="voc:prezime" datatype="xs:string">Jovanovic</korisnik:prezime>
@@ -24,5 +20,19 @@
         <korisnik:jmbg property="voc:jmbg" datatype="xs:string">2011990324856</korisnik:jmbg>
         <korisnik:korisnicko_ime>jelena</korisnik:korisnicko_ime>
         <korisnik:lozinka>jelena</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik id="http://www.zis.rs/korisnici/id7" aktivan="true">
+        <korisnik:ime property="voc:ime" datatype="xs:string">Jadranka</korisnik:ime>
+        <korisnik:prezime property="voc:prezime" datatype="xs:string">Zrnic</korisnik:prezime>
+        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">0203987297351</korisnik:jmbg>
+        <korisnik:korisnicko_ime>jadranka</korisnik:korisnicko_ime>
+        <korisnik:lozinka>jadranka</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik id="http://www.zis.rs/korisnici/id9" aktivan="true">
+        <korisnik:ime property="voc:ime" datatype="xs:string">Milica</korisnik:ime>
+        <korisnik:prezime property="voc:prezime" datatype="xs:string">Paunovic</korisnik:prezime>
+        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">0709989652763</korisnik:jmbg>
+        <korisnik:korisnicko_ime>milica</korisnik:korisnicko_ime>
+        <korisnik:lozinka>milica</korisnik:lozinka>
     </korisnik:korisnik>
 </ko:korisnici>

@@ -17,9 +17,9 @@ import java.util.List;
 
 /**
  * <p>Java class for anonymous complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType&gt;
  *   &lt;complexContent&gt;
@@ -63,24 +63,22 @@ import java.util.List;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "ime",
-    "prezime",
-    "pol",
-    "nosilacOsiguranja",
-    "bracnoStanje",
-    "datumRodjenja",
-    "adresa",
-    "brojTelefona",
-    "uputiZaLaboratoriju",
-    "uputiZaSpecialistickiPregled",
-    "lekarskiRecepti",
-    "izvestajiLekara",
-    "izmenePromeneLekara"
+        "ime",
+        "prezime",
+        "pol",
+        "nosilacOsiguranja",
+        "bracnoStanje",
+        "datumRodjenja",
+        "adresa",
+        "brojTelefona",
+        "uputiZaLaboratoriju",
+        "uputiZaSpecialistickiPregled",
+        "lekarskiRecepti",
+        "izvestajiLekara",
+        "izmenePromeneLekara"
 })
 @XmlRootElement(name = "zdravstveni_karton", namespace = "http://zis.rs/zis/sema/zdrastveni_karton")
 public class ZdravstveniKarton {
@@ -131,10 +129,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the ime property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getIme() {
         return ime;
@@ -143,10 +139,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the ime property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setIme(String value) {
         this.ime = value;
@@ -155,10 +149,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the prezime property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPrezime() {
         return prezime;
@@ -167,10 +159,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the prezime property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPrezime(String value) {
         this.prezime = value;
@@ -179,10 +169,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the pol property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getPol() {
         return pol;
@@ -191,10 +179,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the pol property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setPol(String value) {
         this.pol = value;
@@ -203,10 +189,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the nosilacOsiguranja property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.NosilacOsiguranja }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.NosilacOsiguranja }
      */
     public ZdravstveniKarton.NosilacOsiguranja getNosilacOsiguranja() {
         return nosilacOsiguranja;
@@ -215,10 +199,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the nosilacOsiguranja property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.NosilacOsiguranja }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.NosilacOsiguranja }
      */
     public void setNosilacOsiguranja(ZdravstveniKarton.NosilacOsiguranja value) {
         this.nosilacOsiguranja = value;
@@ -227,10 +209,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the bracnoStanje property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBracnoStanje() {
         return bracnoStanje;
@@ -239,10 +219,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the bracnoStanje property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBracnoStanje(String value) {
         this.bracnoStanje = value;
@@ -251,10 +229,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the datumRodjenja property.
      *
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *
+     * @return possible object is
+     * {@link XMLGregorianCalendar }
      */
     public XMLGregorianCalendar getDatumRodjenja() {
         return datumRodjenja;
@@ -263,10 +239,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the datumRodjenja property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *
+     * @param value allowed object is
+     *              {@link XMLGregorianCalendar }
      */
     public void setDatumRodjenja(XMLGregorianCalendar value) {
         this.datumRodjenja = value;
@@ -275,10 +249,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the adresa property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.Adresa }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.Adresa }
      */
     public ZdravstveniKarton.Adresa getAdresa() {
         return adresa;
@@ -287,10 +259,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the adresa property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.Adresa }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.Adresa }
      */
     public void setAdresa(ZdravstveniKarton.Adresa value) {
         this.adresa = value;
@@ -299,10 +269,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the brojTelefona property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBrojTelefona() {
         return brojTelefona;
@@ -311,10 +279,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the brojTelefona property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBrojTelefona(String value) {
         this.brojTelefona = value;
@@ -323,10 +289,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the uputiZaLaboratoriju property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.UputiZaLaboratoriju }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.UputiZaLaboratoriju }
      */
     public ZdravstveniKarton.UputiZaLaboratoriju getUputiZaLaboratoriju() {
         return uputiZaLaboratoriju;
@@ -335,10 +299,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the uputiZaLaboratoriju property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.UputiZaLaboratoriju }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.UputiZaLaboratoriju }
      */
     public void setUputiZaLaboratoriju(ZdravstveniKarton.UputiZaLaboratoriju value) {
         this.uputiZaLaboratoriju = value;
@@ -347,10 +309,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the uputiZaSpecialistickiPregled property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.UputiZaSpecialistickiPregled }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.UputiZaSpecialistickiPregled }
      */
     public ZdravstveniKarton.UputiZaSpecialistickiPregled getUputiZaSpecialistickiPregled() {
         return uputiZaSpecialistickiPregled;
@@ -359,10 +319,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the uputiZaSpecialistickiPregled property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.UputiZaSpecialistickiPregled }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.UputiZaSpecialistickiPregled }
      */
     public void setUputiZaSpecialistickiPregled(ZdravstveniKarton.UputiZaSpecialistickiPregled value) {
         this.uputiZaSpecialistickiPregled = value;
@@ -371,10 +329,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the lekarskiRecepti property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.LekarskiRecepti }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.LekarskiRecepti }
      */
     public ZdravstveniKarton.LekarskiRecepti getLekarskiRecepti() {
         return lekarskiRecepti;
@@ -383,10 +339,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the lekarskiRecepti property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.LekarskiRecepti }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.LekarskiRecepti }
      */
     public void setLekarskiRecepti(ZdravstveniKarton.LekarskiRecepti value) {
         this.lekarskiRecepti = value;
@@ -395,10 +349,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the izvestajiLekara property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.IzvestajiLekara }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.IzvestajiLekara }
      */
     public ZdravstveniKarton.IzvestajiLekara getIzvestajiLekara() {
         return izvestajiLekara;
@@ -407,10 +359,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the izvestajiLekara property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.IzvestajiLekara }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.IzvestajiLekara }
      */
     public void setIzvestajiLekara(ZdravstveniKarton.IzvestajiLekara value) {
         this.izvestajiLekara = value;
@@ -419,10 +369,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the izmenePromeneLekara property.
      *
-     * @return
-     *     possible object is
-     *     {@link ZdravstveniKarton.IzmenePromeneLekara }
-     *
+     * @return possible object is
+     * {@link ZdravstveniKarton.IzmenePromeneLekara }
      */
     public ZdravstveniKarton.IzmenePromeneLekara getIzmenePromeneLekara() {
         return izmenePromeneLekara;
@@ -431,10 +379,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the izmenePromeneLekara property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link ZdravstveniKarton.IzmenePromeneLekara }
-     *
+     * @param value allowed object is
+     *              {@link ZdravstveniKarton.IzmenePromeneLekara }
      */
     public void setIzmenePromeneLekara(ZdravstveniKarton.IzmenePromeneLekara value) {
         this.izmenePromeneLekara = value;
@@ -443,10 +389,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the id property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getId() {
         return id;
@@ -455,10 +399,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the id property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setId(String value) {
         this.id = value;
@@ -467,10 +409,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the jmbg property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getJmbg() {
         return jmbg;
@@ -479,10 +419,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the jmbg property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setJmbg(String value) {
         this.jmbg = value;
@@ -491,10 +429,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the brojZdrKnjizice property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBrojZdrKnjizice() {
         return brojZdrKnjizice;
@@ -503,10 +439,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the brojZdrKnjizice property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBrojZdrKnjizice(String value) {
         this.brojZdrKnjizice = value;
@@ -515,10 +449,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the brojKartona property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBrojKartona() {
         return brojKartona;
@@ -527,10 +459,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the brojKartona property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBrojKartona(String value) {
         this.brojKartona = value;
@@ -539,10 +469,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the lbo property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getLbo() {
         return lbo;
@@ -551,10 +479,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the lbo property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setLbo(String value) {
         this.lbo = value;
@@ -563,10 +489,8 @@ public class ZdravstveniKarton {
     /**
      * Gets the value of the upozorenje property.
      *
-     * @return
-     *     possible object is
-     *     {@link String }
-     *
+     * @return possible object is
+     * {@link String }
      */
     public String getUpozorenje() {
         return upozorenje;
@@ -575,10 +499,8 @@ public class ZdravstveniKarton {
     /**
      * Sets the value of the upozorenje property.
      *
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setUpozorenje(String value) {
         this.upozorenje = value;
@@ -586,7 +508,6 @@ public class ZdravstveniKarton {
 
     /**
      * Gets the value of the aktivan property.
-     *
      */
     public boolean isAktivan() {
         return aktivan;
@@ -594,7 +515,6 @@ public class ZdravstveniKarton {
 
     /**
      * Sets the value of the aktivan property.
-     *
      */
     public void setAktivan(boolean value) {
         this.aktivan = value;
@@ -639,16 +559,14 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "ulica",
-        "broj",
-        "brojStana",
-        "mesto",
-        "opstina"
+            "ulica",
+            "broj",
+            "brojStana",
+            "mesto",
+            "opstina"
     })
     public static class Adresa {
 
@@ -668,10 +586,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the ulica property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getUlica() {
             return ulica;
@@ -680,10 +596,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the ulica property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setUlica(String value) {
             this.ulica = value;
@@ -692,10 +606,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the broj property.
          *
-         * @return
-         *     possible object is
-         *     {@link BigInteger }
-         *
+         * @return possible object is
+         * {@link BigInteger }
          */
         public BigInteger getBroj() {
             return broj;
@@ -704,10 +616,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the broj property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link BigInteger }
-         *
+         * @param value allowed object is
+         *              {@link BigInteger }
          */
         public void setBroj(BigInteger value) {
             this.broj = value;
@@ -716,10 +626,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the brojStana property.
          *
-         * @return
-         *     possible object is
-         *     {@link BigInteger }
-         *
+         * @return possible object is
+         * {@link BigInteger }
          */
         public BigInteger getBrojStana() {
             return brojStana;
@@ -728,10 +636,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the brojStana property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link BigInteger }
-         *
+         * @param value allowed object is
+         *              {@link BigInteger }
          */
         public void setBrojStana(BigInteger value) {
             this.brojStana = value;
@@ -740,10 +646,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the mesto property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getMesto() {
             return mesto;
@@ -752,10 +656,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the mesto property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setMesto(String value) {
             this.mesto = value;
@@ -764,10 +666,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the opstina property.
          *
-         * @return
-         *     possible object is
-         *     {@link ZdravstveniKarton.Adresa.Opstina }
-         *
+         * @return possible object is
+         * {@link ZdravstveniKarton.Adresa.Opstina }
          */
         public ZdravstveniKarton.Adresa.Opstina getOpstina() {
             return opstina;
@@ -776,10 +676,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the opstina property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link ZdravstveniKarton.Adresa.Opstina }
-         *
+         * @param value allowed object is
+         *              {@link ZdravstveniKarton.Adresa.Opstina }
          */
         public void setOpstina(ZdravstveniKarton.Adresa.Opstina value) {
             this.opstina = value;
@@ -810,13 +708,11 @@ public class ZdravstveniKarton {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         *
-         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "", propOrder = {
-            "naziv",
-            "postanskiBroj"
+                "naziv",
+                "postanskiBroj"
         })
         public static class Opstina {
 
@@ -828,10 +724,8 @@ public class ZdravstveniKarton {
             /**
              * Gets the value of the naziv property.
              *
-             * @return
-             *     possible object is
-             *     {@link String }
-             *
+             * @return possible object is
+             * {@link String }
              */
             public String getNaziv() {
                 return naziv;
@@ -840,10 +734,8 @@ public class ZdravstveniKarton {
             /**
              * Sets the value of the naziv property.
              *
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setNaziv(String value) {
                 this.naziv = value;
@@ -851,7 +743,6 @@ public class ZdravstveniKarton {
 
             /**
              * Gets the value of the postanskiBroj property.
-             *
              */
             public int getPostanskiBroj() {
                 return postanskiBroj;
@@ -859,7 +750,6 @@ public class ZdravstveniKarton {
 
             /**
              * Sets the value of the postanskiBroj property.
-             *
              */
             public void setPostanskiBroj(int value) {
                 this.postanskiBroj = value;
@@ -894,12 +784,10 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "izmenaPromenaLekara"
+            "izmenaPromenaLekara"
     })
     public static class IzmenePromeneLekara {
 
@@ -925,8 +813,6 @@ public class ZdravstveniKarton {
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link ZdravstveniKarton.IzmenePromeneLekara.IzmenaPromenaLekara }
-         *
-         *
          */
         public List<ZdravstveniKarton.IzmenePromeneLekara.IzmenaPromenaLekara> getIzmenaPromenaLekara() {
             if (izmenaPromenaLekara == null) {
@@ -950,8 +836,6 @@ public class ZdravstveniKarton {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         *
-         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -964,10 +848,8 @@ public class ZdravstveniKarton {
             /**
              * Gets the value of the identifikator property.
              *
-             * @return
-             *     possible object is
-             *     {@link String }
-             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -976,10 +858,8 @@ public class ZdravstveniKarton {
             /**
              * Sets the value of the identifikator property.
              *
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
@@ -1014,12 +894,10 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "izvestajLekara"
+            "izvestajLekara"
     })
     public static class IzvestajiLekara {
 
@@ -1045,8 +923,6 @@ public class ZdravstveniKarton {
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link ZdravstveniKarton.IzvestajiLekara.IzvestajLekara }
-         *
-         *
          */
         public List<ZdravstveniKarton.IzvestajiLekara.IzvestajLekara> getIzvestajLekara() {
             if (izvestajLekara == null) {
@@ -1070,8 +946,6 @@ public class ZdravstveniKarton {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         *
-         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -1084,10 +958,8 @@ public class ZdravstveniKarton {
             /**
              * Gets the value of the identifikator property.
              *
-             * @return
-             *     possible object is
-             *     {@link String }
-             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -1096,10 +968,8 @@ public class ZdravstveniKarton {
             /**
              * Sets the value of the identifikator property.
              *
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
@@ -1134,12 +1004,10 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "lekraskiRecept"
+            "lekraskiRecept"
     })
     public static class LekarskiRecepti {
 
@@ -1165,8 +1033,6 @@ public class ZdravstveniKarton {
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link ZdravstveniKarton.LekarskiRecepti.LekraskiRecept }
-         *
-         *
          */
         public List<ZdravstveniKarton.LekarskiRecepti.LekraskiRecept> getLekraskiRecept() {
             if (lekraskiRecept == null) {
@@ -1190,8 +1056,6 @@ public class ZdravstveniKarton {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         *
-         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -1204,10 +1068,8 @@ public class ZdravstveniKarton {
             /**
              * Gets the value of the identifikator property.
              *
-             * @return
-             *     possible object is
-             *     {@link String }
-             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -1216,10 +1078,8 @@ public class ZdravstveniKarton {
             /**
              * Sets the value of the identifikator property.
              *
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
@@ -1249,15 +1109,13 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "ime",
-        "prezime",
-        "srodstvo",
-        "osnovaOsiguranja"
+            "ime",
+            "prezime",
+            "srodstvo",
+            "osnovaOsiguranja"
     })
     public static class NosilacOsiguranja {
 
@@ -1274,10 +1132,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the ime property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getIme() {
             return ime;
@@ -1286,10 +1142,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the ime property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setIme(String value) {
             this.ime = value;
@@ -1298,10 +1152,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the prezime property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getPrezime() {
             return prezime;
@@ -1310,10 +1162,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the prezime property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setPrezime(String value) {
             this.prezime = value;
@@ -1322,10 +1172,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the srodstvo property.
          *
-         * @return
-         *     possible object is
-         *     {@link String }
-         *
+         * @return possible object is
+         * {@link String }
          */
         public String getSrodstvo() {
             return srodstvo;
@@ -1334,10 +1182,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the srodstvo property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *
+         * @param value allowed object is
+         *              {@link String }
          */
         public void setSrodstvo(String value) {
             this.srodstvo = value;
@@ -1346,10 +1192,8 @@ public class ZdravstveniKarton {
         /**
          * Gets the value of the osnovaOsiguranja property.
          *
-         * @return
-         *     possible object is
-         *     {@link BigInteger }
-         *
+         * @return possible object is
+         * {@link BigInteger }
          */
         public BigInteger getOsnovaOsiguranja() {
             return osnovaOsiguranja;
@@ -1358,10 +1202,8 @@ public class ZdravstveniKarton {
         /**
          * Sets the value of the osnovaOsiguranja property.
          *
-         * @param value
-         *     allowed object is
-         *     {@link BigInteger }
-         *
+         * @param value allowed object is
+         *              {@link BigInteger }
          */
         public void setOsnovaOsiguranja(BigInteger value) {
             this.osnovaOsiguranja = value;
@@ -1394,12 +1236,10 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "uputZaLaboratoriju"
+            "uputZaLaboratoriju"
     })
     public static class UputiZaLaboratoriju {
 
@@ -1425,8 +1265,6 @@ public class ZdravstveniKarton {
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link ZdravstveniKarton.UputiZaLaboratoriju.UputZaLaboratoriju }
-         *
-         *
          */
         public List<ZdravstveniKarton.UputiZaLaboratoriju.UputZaLaboratoriju> getUputZaLaboratoriju() {
             if (uputZaLaboratoriju == null) {
@@ -1450,8 +1288,6 @@ public class ZdravstveniKarton {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         *
-         *
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -1464,10 +1300,8 @@ public class ZdravstveniKarton {
             /**
              * Gets the value of the identifikator property.
              *
-             * @return
-             *     possible object is
-             *     {@link String }
-             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -1476,10 +1310,8 @@ public class ZdravstveniKarton {
             /**
              * Sets the value of the identifikator property.
              *
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
@@ -1514,12 +1346,10 @@ public class ZdravstveniKarton {
      *   &lt;/complexContent&gt;
      * &lt;/complexType&gt;
      * </pre>
-     *
-     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "uputZaSpecialistickiPregled"
+            "uputZaSpecialistickiPregled"
     })
     public static class UputiZaSpecialistickiPregled {
 
@@ -1545,8 +1375,6 @@ public class ZdravstveniKarton {
          * <p>
          * Objects of the following type(s) are allowed in the list
          * {@link ZdravstveniKarton.UputiZaSpecialistickiPregled.UputZaSpecialistickiPregled }
-         *
-         *
          */
         public List<ZdravstveniKarton.UputiZaSpecialistickiPregled.UputZaSpecialistickiPregled> getUputZaSpecialistickiPregled() {
             if (uputZaSpecialistickiPregled == null) {
@@ -1558,9 +1386,9 @@ public class ZdravstveniKarton {
 
         /**
          * <p>Java class for anonymous complex type.
-         * 
+         *
          * <p>The following schema fragment specifies the expected content contained within this class.
-         * 
+         *
          * <pre>
          * &lt;complexType&gt;
          *   &lt;complexContent&gt;
@@ -1570,8 +1398,6 @@ public class ZdravstveniKarton {
          *   &lt;/complexContent&gt;
          * &lt;/complexType&gt;
          * </pre>
-         * 
-         * 
          */
         @XmlAccessorType(XmlAccessType.FIELD)
         @XmlType(name = "")
@@ -1583,11 +1409,9 @@ public class ZdravstveniKarton {
 
             /**
              * Gets the value of the identifikator property.
-             * 
-             * @return
-             *     possible object is
-             *     {@link String }
-             *     
+             *
+             * @return possible object is
+             * {@link String }
              */
             public String getIdentifikator() {
                 return identifikator;
@@ -1595,11 +1419,9 @@ public class ZdravstveniKarton {
 
             /**
              * Sets the value of the identifikator property.
-             * 
-             * @param value
-             *     allowed object is
-             *     {@link String }
-             *     
+             *
+             * @param value allowed object is
+             *              {@link String }
              */
             public void setIdentifikator(String value) {
                 this.identifikator = value;
