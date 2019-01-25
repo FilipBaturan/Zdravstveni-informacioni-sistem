@@ -1,6 +1,6 @@
 package zis.rs.zis.service.definition;
 
-import zis.rs.zis.domain.entities.Korisnik;
+import zis.rs.zis.util.akcije.Akcija;
 
 public interface KorisnikServis {
 
@@ -22,10 +22,10 @@ public interface KorisnikServis {
     String sacuvaj(String korisnik);
 
     /**
-     * @param korisnik koji treba da se registruje
+     * @param akcija koji treba izvrsiti prilikom registacije
      * @return registrovani korisnik
      */
-    String registruj(String korisnik);
+    String registruj(Akcija akcija);
 
     /**
      * @param id korisnika koji treba obrisati iz baze

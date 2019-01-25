@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zko:zdravstveni_karton xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:voc="http://www.zis.rs/rdf/voc#"
+ xmlns:xs="http://www.w3.org/2001/XMLSchema#"
+ xsi:schemaLocation="zdravstveni_karton.xsd" 
+ id="rs/pacijenti/id1/zdrastveni_karton" jmbg="1205198684232" broj_zdr_knjizice="75234957123"
+ broj_kartona="AA000" lbo="78632412675" aktivan="true"
+ about="http://www.zis.rs/pacijenti/id1/zdrastveni_karton">
+    <zko:osigurano_lice 
+        rel="voc:osiguranoLice" href="http://www.zis.rs/pacijenti/id1">
+        <zko:ime about="http://www.zis.rs/pacijenti/id1"  property="voc:ime" datatype="xs:string">Stefan</zko:ime>
+        <zko:prezime about="http://www.zis.rs/pacijenti/id1" property="voc:prezime" datatype="xs:string">Stefanovic</zko:prezime>
+        <zko:pol about="http://www.zis.rs/pacijenti/id1" property="voc:pol" datatype="xs:string">muski</zko:pol>
+        <zko:nosilac_osiguranja>
+            <zko:ime>Nemanja</zko:ime>
+            <zko:prezime>Stefanovic</zko:prezime>
+            <zko:srodstvo>otac</zko:srodstvo>
+            <zko:osnova_osiguranja>50</zko:osnova_osiguranja>
+        </zko:nosilac_osiguranja>
+        <zko:bracno_stanje>neozenjen/neudata</zko:bracno_stanje>
+        <zko:datum_rodjenja about="http://www.zis.rs/pacijenti/id1" property="voc:datumRodjenja" datatype="xs:date">2006-05-04</zko:datum_rodjenja>
+        <zko:adresa  about="http://www.zis.rs/pacijenti/id1"
+            rel="voc:stanuje" href="http://www.zis.rs/adresa/sremska/23/15/zemun">
+            <zko:ulica about="http://www.zis.rs/adresa/sremska/23/15/zemun" property="voc:ulica">Sremska</zko:ulica>
+            <zko:broj about="http://www.zis.rs/adresa/sremska/23/15/zemun" property="voc:broj">23</zko:broj>
+            <zko:broj_stana about="http://www.zis.rs/adresa/sremska/23/15/zemun" property="voc:brojStana">15</zko:broj_stana>
+            <zko:mesto about="http://www.zis.rs/adresa/sremska/23/15/zemun" property="voc:mesto">Zemun</zko:mesto>
+            <zko:opstina about="http://www.zis.rs/adresa/sremska/23/15/zemun" rel="voc:opstina" href="http://www.zis.rs/opstina/beograd/11000">
+                <zko:naziv about="http://www.zis.rs/opstina/beograd/11000" property="voc:nazivOpstine">Beograd</zko:naziv>
+                <zko:postanski_broj about="http://www.zis.rs/opstina/beograd/11000" property="voc:postanskiBroj">11000</zko:postanski_broj>
+            </zko:opstina>
+        </zko:adresa>
+        <zko:broj_telefona>0618523648</zko:broj_telefona>
+    </zko:osigurano_lice>
+    <zko:odabrani_lekar rel="voc:odabraniLekar" href="http://www.zis.rs/lekari/id1" zko:identifikator="rs/zis/lekari/id1"/>
+    <zko:uputi_za_laboratoriju>
+        <zko:uput_za_laboratoriju zko:identifikator="rs/zis/pacijenti/id1/uputi_za_laboratoriju/id1"/>
+        <zko:uput_za_laboratoriju zko:identifikator="rs/zis/pacijenti/id1/uputi_za_laboratoriju/id2"/>
+    </zko:uputi_za_laboratoriju>
+    <zko:uputi_za_specialisticki_pregled>
+        <zko:uput_za_specialisticki_pregled zko:identifikator="rs/zis/pacijenti/id1/uputi_za_specialisticki_pregled/id1"/>
+        <zko:uput_za_specialisticki_pregled zko:identifikator="rs/zis/pacijenti/id1/uputi_za_specialisticki_pregled/id2"/>
+    </zko:uputi_za_specialisticki_pregled>
+    <zko:lekarski_recepti>
+        <zko:lekraski_recept zko:identifikator="rs/zis/pacijenti/id1/lekarski_recepti/id1"/>
+        <zko:lekraski_recept zko:identifikator="rs/zis/pacijenti/id1/lekarski_recepti/id2"/>
+    </zko:lekarski_recepti>
+    <zko:izvestaji_lekara>
+        <zko:izvestaj_lekara zko:identifikator="rs/zis/pacijenti/id1/izvestaji_lekara/id1"/>
+        <zko:izvestaj_lekara zko:identifikator="rs/zis/pacijenti/id1/izvestaji_lekara/id2"/>
+    </zko:izvestaji_lekara>
+    <zko:izmene_promene_lekara>
+        <zko:izmena_promena_lekara zko:identifikator="rs/zis/pacijenti/id1/izmena_promena_lekara/id1"/>
+        <zko:izmena_promena_lekara zko:identifikator="rs/zis/pacijenti/id1/izmena_promena_lekara/id2"/>
+    </zko:izmene_promene_lekara>
+</zko:zdravstveni_karton>

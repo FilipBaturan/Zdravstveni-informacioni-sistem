@@ -6,7 +6,18 @@
     <xs:element name="zdravstveni_karton">
         <xs:complexType>
             <xs:sequence>
-                <xs:group ref="zko:pacijent"/>
+                <xs:element name="osigurano_lice">
+                    <xs:complexType>
+                        <xs:group ref="zko:osigurano_lice"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="odabrani_lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="zko:identifikator" use="required"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
                 <xs:group ref="zko:dokumenti"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
@@ -40,19 +51,37 @@
             </xs:attribute>
             <xs:attribute name="upozorenje" type="xs:string"/>
             <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
         </xs:complexType>
     </xs:element>
-    <xs:group name="pacijent">
+    <xs:group name="osigurano_lice">
         <xs:sequence>
-            <xs:element name="ime" type="xs:string"/>
-            <xs:element name="prezime" type="xs:string"/>
+            <xs:element name="ime">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:anyAttribute processContents="lax"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="prezime">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:anyAttribute processContents="lax"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="pol">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:enumeration value="muski"/>
-                        <xs:enumeration value="zenski"/>
-                    </xs:restriction>
-                </xs:simpleType>
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="zko:pol">
+                            <xs:anyAttribute processContents="lax"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
             </xs:element>
             <xs:element name="nosilac_osiguranja">
                 <xs:complexType>
@@ -74,30 +103,81 @@
                     </xs:restriction>
                 </xs:simpleType>
             </xs:element>
-            <xs:element form="qualified" name="datum_rodjenja" type="xs:date"/>
+            <xs:element form="qualified" name="datum_rodjenja">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:date">
+                            <xs:anyAttribute processContents="lax"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="adresa">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="ulica" type="xs:string"/>
-                        <xs:element name="broj" type="xs:positiveInteger"/>
-                        <xs:element name="broj_stana" type="xs:positiveInteger"/>
-                        <xs:element name="mesto" type="xs:string"/>
+                        <xs:element name="ulica">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:anyAttribute processContents="lax"/>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="broj">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:positiveInteger">
+                                        <xs:anyAttribute processContents="lax"/>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="broj_stana">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:positiveInteger">
+                                        <xs:anyAttribute processContents="lax"/>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="mesto">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:anyAttribute processContents="lax"/>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
                         <xs:element name="opstina">
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="naziv" type="xs:string"/>
+                                    <xs:element name="naziv">
+                                        <xs:complexType>
+                                            <xs:simpleContent>
+                                                <xs:extension base="xs:string">
+                                                  <xs:anyAttribute processContents="lax"/>
+                                                </xs:extension>
+                                            </xs:simpleContent>
+                                        </xs:complexType>
+                                    </xs:element>
                                     <xs:element name="postanski_broj">
-                                        <xs:simpleType>
-                                            <xs:restriction base="xs:long">
-                                                <xs:minInclusive value="11000"/>
-                                                <xs:maxInclusive value="40000"/>
-                                            </xs:restriction>
-                                        </xs:simpleType>
+                                        <xs:complexType>
+                                            <xs:simpleContent>
+                                                <xs:extension base="zko:postanski_broj">
+                                                  <xs:anyAttribute processContents="lax"/>
+                                                </xs:extension>
+                                            </xs:simpleContent>
+                                        </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>
+                                <xs:anyAttribute processContents="lax"/>
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
+                    <xs:anyAttribute processContents="lax"/>
                 </xs:complexType>
             </xs:element>
             <xs:element name="broj_telefona">
@@ -169,5 +249,17 @@
             </xs:element>
         </xs:sequence>
     </xs:group>
+    <xs:simpleType name="pol">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="muski"/>
+            <xs:enumeration value="zenski"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="postanski_broj">
+        <xs:restriction base="xs:long">
+            <xs:minInclusive value="11000"/>
+            <xs:maxInclusive value="40000"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:attribute name="identifikator" type="xs:anyURI"/>
 </xs:schema>

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import zis.rs.zis.util.KonekcijaSBazomIzuzetak;
+import zis.rs.zis.util.KonekcijaSaBazomIzuzetak;
 import zis.rs.zis.util.TransformacioniIzuzetak;
 import zis.rs.zis.util.ValidacioniIzuzetak;
 
@@ -18,8 +18,8 @@ import zis.rs.zis.util.ValidacioniIzuzetak;
 @ControllerAdvice
 public class IzuzeciKontroler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(KonekcijaSBazomIzuzetak.class)
-    public ResponseEntity<String> opsluziKonekcijuSBazomIzuzetak(KonekcijaSBazomIzuzetak e) {
+    @ExceptionHandler(KonekcijaSaBazomIzuzetak.class)
+    public ResponseEntity<String> opsluziKonekcijuSBazomIzuzetak(KonekcijaSaBazomIzuzetak e) {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

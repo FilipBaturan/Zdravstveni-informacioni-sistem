@@ -43,20 +43,6 @@
                         <xs:attribute ref="lr1:identifikator" use="required"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="izdati_lek">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="kolicina">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:int">
-                                        <xs:minInclusive value="0"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
-                        </xs:sequence>
-                        <xs:attribute ref="lr1:identifikator" use="required"/>
-                    </xs:complexType>
-                </xs:element>
                 <xs:element name="lekar">
                     <xs:complexType>
                         <xs:attribute ref="lr1:identifikator" use="required"/>

@@ -15,12 +15,12 @@ import zis.rs.zis.service.definition.LekarServis;
 import java.util.Calendar;
 
 @RestController
-@RequestMapping("/rs/zis/lekari")
+@RequestMapping("/lekari")
 public class LekarKontroler {
 
     private static final Logger logger = LoggerFactory.getLogger(LekarKontroler.class);
 
-    private static final String URI_PREFIX = "rs/zis/lekari";
+    private static final String URI_PREFIX = "http://www.zis.rs/lekari/";
 
     @Autowired
     private LekarServis lekarServis;
@@ -37,14 +37,14 @@ public class LekarKontroler {
     }
 
     /**
-     * GET /rs/zis/lekari/id{id}
+     * GET /lekari/{id}
      *
      * @param id trazenog lekara
      * @return lekar sa trazenim id-jem
      */
-    @GetMapping(path = "id{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Traze se lekar sa id={}: {}.", id, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(lekarServis.pretragaPoId(URI_PREFIX + "/id" + id), HttpStatus.OK);
+        return new ResponseEntity<>(lekarServis.pretragaPoId(URI_PREFIX + id), HttpStatus.OK);
     }
 }

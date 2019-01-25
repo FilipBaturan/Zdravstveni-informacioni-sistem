@@ -9,7 +9,6 @@ import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
-import zis.rs.zis.domain.entities.Lek;
 import zis.rs.zis.service.definition.LekServis;
 import zis.rs.zis.util.*;
 
@@ -21,14 +20,16 @@ public class LekServisImpl extends IOStrimer implements LekServis {
     private static final Logger logger = LoggerFactory.getLogger(LekServisImpl.class);
 
     @Autowired
-    private XMLDBKonekcija konekcija;
+    private KonfiguracijaKonekcija konekcija;
+
+    @Autowired
+    private Maper maper;
 
     @Override
     public String dobaviSve() {
         ResursiBaze resursi = null;
         try {
-            resursi = konekcija.uspostaviKonekciju("/db/rs/zis/lekovi",
-                    "lekovi.xml");
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekovi"));
             String putanjaDoUpita = ResourceUtils
                     .getFile("classpath:templates/xquery/lekovi/dobavljanjeSvihLekova.xqy")
                     .getPath();
@@ -62,9 +63,9 @@ public class LekServisImpl extends IOStrimer implements LekServis {
                 return lekovi;
             }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
+                XMLDBException | IOException | NullPointerException e) {
             konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSBazomIzuzetak("Onemogucen pristup bazi!");
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 
@@ -72,8 +73,7 @@ public class LekServisImpl extends IOStrimer implements LekServis {
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
         try {
-            resursi = konekcija.uspostaviKonekciju("/db/rs/zis/lekovi",
-                    "lekovi.xml");
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekovi"));
             String putanjaDoUpita = ResourceUtils
                     .getFile("classpath:templates/xquery/lekovi/pretragaPoIdLeka.xqy")
                     .getPath();
@@ -109,7 +109,7 @@ public class LekServisImpl extends IOStrimer implements LekServis {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSBazomIzuzetak("Onemogucen pristup bazi!");
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 
@@ -138,7 +138,7 @@ public class LekServisImpl extends IOStrimer implements LekServis {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSBazomIzuzetak("Onemogucen pristup bazi!");
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 

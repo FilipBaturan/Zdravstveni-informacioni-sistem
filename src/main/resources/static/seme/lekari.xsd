@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/lekari"
-           xmlns:lkr="http://zis.rs/zis/seme/lekar">
-    <xs:import namespace="http://zis.rs/zis/seme/lekar" schemaLocation="lekar.xsd"/>
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/lekari"
+    xmlns:lkr="http://www.zis.rs/seme/lekar" xmlns="http://www.zis.rs/seme/lekari">
+    <xs:import namespace="http://www.zis.rs/seme/lekar" schemaLocation="lekar.xsd"/>
     <xs:element name="lekari">
         <xs:complexType>
             <xs:sequence>

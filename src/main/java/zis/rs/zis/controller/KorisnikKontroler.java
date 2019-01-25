@@ -10,34 +10,38 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import zis.rs.zis.service.definition.KorisnikServis;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
 
 /**
- * API za lekove
+ * API za korisnike
  */
 @RestController
-@RequestMapping("/rs/zis/korisnici")
-public class KorisnikKontroler {
+@RequestMapping("/korisnici")
+public class KorisnikKontroler extends ValidatorKontoler {
 
     private static final Logger logger = LoggerFactory.getLogger(KorisnikKontroler.class);
 
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private KorisnikServis korisnikServis;
+
     /**
-     * POST /rs/zis/autn
+     * POST korisnici/registracija
      *
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
+    @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE,
+            produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> registracija(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje leka {}.", Calendar.getInstance().getTime());
-        return null;
-//        return new ResponseEntity<>(lekServis.sacuvaj(validator.procesirajAkciju(akcija,
-//                "classpath:static/zis/seme/lek.xsd")), HttpStatus.OK);
+        this.validirajAkciju(akcija);
+        return new ResponseEntity<>(korisnikServis.registruj(akcija), HttpStatus.OK);
     }
 }

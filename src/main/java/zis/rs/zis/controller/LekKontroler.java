@@ -64,7 +64,7 @@ public class LekKontroler {
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje leka {}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(lekServis.sacuvaj(validator.procesirajAkciju(akcija,
-                "classpath:static/zis/seme/lek.xsd")), HttpStatus.OK);
+                "classpath:static/seme/lek.xsd")), HttpStatus.OK);
     }
 
 

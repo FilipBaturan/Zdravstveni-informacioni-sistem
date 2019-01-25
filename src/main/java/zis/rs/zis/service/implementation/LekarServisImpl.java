@@ -24,17 +24,17 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
     private KorisnikServis korisnikServis;
 
     @Autowired
-    private XMLDBKonekcija konekcija;
+    private KonfiguracijaKonekcija konekcija;
+
+    @Autowired
+    private Maper maper;
 
     @Override
     public String dobaviSve() {
         ResursiBaze resursi = null;
         try {
-            resursi = konekcija.uspostaviKonekciju("/db/rs/zis/lekari",
-                    "lekari.xml");
-            String putanjaDoUpita = ResourceUtils
-                    .getFile("classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy")
-                    .getPath();
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobaviSveLekare")).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija()
                     .getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
@@ -67,7 +67,7 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSBazomIzuzetak("Onemogucen pristup bazi!");
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 
@@ -75,11 +75,8 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
         try {
-            resursi = konekcija.uspostaviKonekciju("/db/rs/zis/lekari",
-                    "lekari.xml");
-            String putanjaDoUpita = ResourceUtils
-                    .getFile("classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy")
-                    .getPath();
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("pretragaPoId")).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija()
                     .getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
@@ -112,7 +109,7 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSBazomIzuzetak("Onemogucen pristup bazi!");
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 

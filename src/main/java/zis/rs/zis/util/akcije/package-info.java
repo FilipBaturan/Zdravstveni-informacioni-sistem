@@ -5,5 +5,5 @@
 // Generated on: 2018.12.18 at 12:56:18 AM CET 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://zis.rs/zis/seme/akcija", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.zis.rs/seme/akcija", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
 package zis.rs.zis.util.akcije;

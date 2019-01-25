@@ -16,7 +16,8 @@
                 </xs:element>
                 <xs:element name="osigurano_lice">
                     <xs:complexType>
-                        <xs:attribute ref="oz2:identifikator"/>
+                        <xs:attribute ref="oz2:identifikator" use="required"/>
+                        <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="pregled">
@@ -25,20 +26,13 @@
                             <xs:element name="datum_prijavljivanja" type="xs:date"/>
                             <xs:element name="datum_zavrsetka" type="xs:date"/>
                             <xs:element name="anamneza" type="xs:string"/>
-                            <xs:element name="broj_protokola">
-                                <xs:simpleType>
-                                    <xs:restriction base="xs:string">
-                                        <xs:pattern value="[0-9]{5}"/>
-                                        <xs:length value="5"/>
-                                    </xs:restriction>
-                                </xs:simpleType>
-                            </xs:element>
                             <xs:element name="lekar">
                                 <xs:complexType>
-                                    <xs:attribute ref="oz2:identifikator"/>
+                                    <xs:attribute ref="oz2:identifikator" use="required"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
+                        <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="izvestaj_specialiste">
@@ -48,7 +42,8 @@
                             <xs:element name="nalazi" type="xs:string"/>
                             <xs:element name="specialista">
                                 <xs:complexType>
-                                    <xs:attribute ref="oz2:identifikator"/>
+                                    <xs:attribute ref="oz2:identifikator" use="required"/>
+                                    <xs:anyAttribute processContents="lax"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -58,6 +53,7 @@
             <xs:attribute name="oznaka" type="xs:string" fixed="oz2" use="required"/>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
         </xs:complexType>
     </xs:element>
     <xs:attribute name="identifikator" type="xs:anyURI"/>

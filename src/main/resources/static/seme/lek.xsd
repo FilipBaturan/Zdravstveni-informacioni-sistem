@@ -6,12 +6,21 @@
     <xs:element name="lek">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="naziv" type="xs:string"/>
+                <xs:element name="naziv">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="sifra" type="xs:string"/>
                 <xs:element name="namena" type="xs:string"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

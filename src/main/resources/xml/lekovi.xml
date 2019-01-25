@@ -4,17 +4,17 @@
         xmlns:lek="http://zis.rs/zis/seme/lek"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://zis.rs/zis/seme/lekovi">
-    <lek:lek id="http://www.oxygenxml.com/">
+    <lek:lek id="http://www.oxygenxml.com/" aktivan="true">
         <lek:naziv>naziv0</lek:naziv>
         <lek:sifra>sifra0</lek:sifra>
         <lek:namena>namena0</lek:namena>
     </lek:lek>
-    <lek:lek id="http://www.oxygenxml.com/">
+    <lek:lek id="http://www.oxygenxml.com/" aktivan="true">
         <lek:naziv>naziv1</lek:naziv>
         <lek:sifra>sifra1</lek:sifra>
         <lek:namena>namena1</lek:namena>
     </lek:lek>
-    <lek:lek id="http://www.oxygenxml.com/">
+    <lek:lek id="http://www.oxygenxml.com/" aktivan="true">
         <lek:naziv>naziv2</lek:naziv>
         <lek:sifra>sifra2</lek:sifra>
         <lek:namena>namena2</lek:namena>
