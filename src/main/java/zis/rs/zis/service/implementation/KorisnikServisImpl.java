@@ -1,5 +1,6 @@
 package zis.rs.zis.service.implementation;
 
+import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import org.xmldb.api.base.XMLDBException;
+import org.xmldb.api.base.*;
+import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.domain.ObjectFactory;
 import zis.rs.zis.domain.entities.Korisnik;
@@ -36,13 +39,14 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.StringWriter;
 
 
 @Service
 public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
 
-    private static final Logger logger = LoggerFactory.getLogger(LekServisImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(KorisnikServisImpl.class);
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;
@@ -92,25 +96,47 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
     }
 
     @Override
-    public String sacuvaj(String korisnik) {
+    public String sacuvaj(Akcija akcija) {
         return null;
     }
 
     @Override
-    public String registruj(Akcija akcija) {
+    public String[] registruj(Akcija akcija) {
         Document doc = this.konvertujUDokument(akcija);
         if (doc == null) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         }
         this.registruj(doc);
-        return "Registracija uspesna!";
+        return new String[]{"Registracija uspesna!"};
     }
 
     @Override
-    public void obrisi(String id) {
+    public String obrisi(String id) {
+        String putanja = this.pronadjiKorisnika(id);
+        String prefiks = putanja.split("/")[2].split(":")[0];
 
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("brisanje")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks("korisnik"), putanja,
+                    maper.dobaviPrefiks("korisnici"));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument("korisnici"), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            return "Korisnik uspesno obrisan!";
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
     }
-
 
     /**
      * @param akcija koju treba procesirati
@@ -135,7 +161,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
         Node sadrzaj = dokument.getElementsByTagName("sadrzaj").item(0);
 
         if (!sadrzaj.hasChildNodes()) {
-            throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije, sadzaj nesme biti prazan!");
+            throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije, sadzaj akcije biti prazan!");
         }
         Node korisnik = this.dobaviKorisnika(sadrzaj.getFirstChild().getChildNodes());
         Node osoba = this.dobaviOsobu(sadrzaj.getFirstChild().getChildNodes());
@@ -145,21 +171,23 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
         String korisnikPrefiks = korisnik.getNodeName().split(":")[0];
         String osobaPrefiks = osoba.getNodeName().split(":")[0];
         Long korisnikId = sekvencer.dobaviId();
-        String kor = this.validirajKorisnika(korisnik, korisnikId);
+        String kor = this.validirajKorisnika(korisnik, korisnikId, korisnikPrefiks);
         String osb;
+        //this.izmeniKorisnika(kor, korisnikPrefiks);
         if (osoba.getLocalName().equals("lekar")) {
             osb = this.validirajOsobu(osoba, maper.dobaviSemu("lekar"),
-                    maper.dobaviURI("lekar"), osobaPrefiks, korisnikId);
+                    maper.dobaviURI("lekar"), osobaPrefiks, korisnikId, TipKorisnika.LEKAR);
             this.sacuvajKorisnika(kor, korisnikPrefiks);
             this.sacuvajOsobu(osb, osobaPrefiks, TipKorisnika.LEKAR);
         } else if (osoba.getLocalName().equals("medicinska_sestra")) {
             osb = this.validirajOsobu(osoba, maper.dobaviSemu("medicinska_sestra"),
-                    maper.dobaviURI("medicinska_sestra"), osobaPrefiks, korisnikId);
+                    maper.dobaviURI("medicinska_sestra"), osobaPrefiks, korisnikId,
+                    TipKorisnika.MEDICINSKA_SESTRA);
             this.sacuvajKorisnika(kor, korisnikPrefiks);
             this.sacuvajOsobu(osb, osobaPrefiks, TipKorisnika.MEDICINSKA_SESTRA);
         } else {
             osb = this.validirajOsobu(osoba, maper.dobaviSemu("zdravstveni_karton"),
-                    maper.dobaviURI("pacijenti"), osobaPrefiks, korisnikId);
+                    maper.dobaviURI("pacijenti"), osobaPrefiks, korisnikId, TipKorisnika.PACIJENT);
             this.sacuvajKorisnika(kor, korisnikPrefiks);
             this.sacuvajOsobu(osb, osobaPrefiks, TipKorisnika.PACIJENT);
         }
@@ -183,7 +211,6 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     prefiks, maper.dobaviPrefiks("korisnik"), maper.dobaviPutanju("korisnici"), korisnik,
                     maper.dobaviPrefiks("korisnici"));
-            logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument("korisnici"), sadrzajUpita);
             logger.info(mods + " izmene procesirane.");
 
@@ -213,7 +240,6 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
                         prefiks, maper.dobaviPrefiks("lekar"), maper.dobaviPutanju("lekari"), osoba,
                         maper.dobaviPrefiks("lekari"));
                 dokument = maper.dobaviDokument("lekari");
-                logger.info(sadrzajUpita);
             } else if (tipKorisnika == TipKorisnika.MEDICINSKA_SESTRA) {
                 resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
                         maper.dobaviDokument("medicinske_sestre"));
@@ -279,7 +305,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
      * @param korisnik kojeg treba validirati
      * @return xml reprezentacija korisnika
      */
-    private String validirajKorisnika(Node korisnik, Long id) {
+    private String validirajKorisnika(Node korisnik, Long id, String prefiks) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
         fabrika.setNamespaceAware(true);
         try {
@@ -287,7 +313,9 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
             Node importovan = dok.importNode(korisnik, true);
             dok.appendChild(importovan);
 
+            this.proveriOgranicenjaKorisnika(dok, prefiks);
             ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI("korisnik") + id);
+            this.dodajMetaPodatkeKorisniku(dok);
 
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
                     .newSchema(ResourceUtils.getFile(maper.dobaviSemu("korisnik")))
@@ -305,7 +333,8 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
      * @param sema  po kojoj treba validirati osobu
      * @return xml reprezentacija osobe
      */
-    private String validirajOsobu(Node osoba, String sema, String uriPrefiks, String prefiks, Long korisnikId) {
+    private String validirajOsobu(Node osoba, String sema, String uriPrefiks, String prefiks,
+                                  Long korisnikId, TipKorisnika tipKorisnika) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
         fabrika.setNamespaceAware(true);
         try {
@@ -316,6 +345,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
             ((Element) dok.getFirstChild()).setAttribute("id", uriPrefiks + sekvencer.dobaviId());
             ((Element) dok.getFirstChild().getFirstChild())
                     .setAttribute(prefiks + ":identifikator", maper.dobaviURI("korisnik") + korisnikId);
+            this.dodajMetaPodatkeOsobi(dok, tipKorisnika);
 
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
                     .newSchema(ResourceUtils.getFile(sema))
@@ -351,6 +381,179 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
             return sadrzaj;
         } catch (TransformerException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
+        }
+    }
+
+    /**
+     * @param dokument nad kojem se dodaju metapodaci korisnika
+     */
+    private void dodajMetaPodatkeKorisniku(Document dokument) {
+        NodeList elementi = dokument.getFirstChild().getChildNodes();
+        Element element;
+        int count = 0;
+        for (int i = 0; i < elementi.getLength() && count < 3; i++) {
+            element = (Element) elementi.item(i);
+            switch (element.getLocalName()) {
+                case "ime":
+                    element.setAttribute("property", "voc:ime");
+                    element.setAttribute("datatype", "xs:string");
+                    ++count;
+                    break;
+                case "prezime":
+                    element.setAttribute("property", "voc:prezime");
+                    element.setAttribute("datatype", "xs:string");
+                    ++count;
+                    break;
+                case "jmbg":
+                    element.setAttribute("property", "voc:jmbg");
+                    element.setAttribute("datatype", "xs:string");
+                    ++count;
+                    break;
+            }
+        }
+    }
+
+    /**
+     * @param dokument nad kojem se dodaju metapodaci osobe
+     * @param tipKorisnika tip korisnika
+     */
+    private void dodajMetaPodatkeOsobi(Document dokument, TipKorisnika tipKorisnika) {
+        switch (tipKorisnika) {
+            case LEKAR:
+                NodeList elementi = dokument.getFirstChild().getChildNodes();
+                Element element;
+                int count = 0;
+                for (int i = 0; i < elementi.getLength() && count < 2; i++) {
+                    element = (Element) elementi.item(i);
+                    switch (element.getLocalName()) {
+                        case "tip":
+                            element.setAttribute("property", "voc:tipLekara");
+                            element.setAttribute("datatype", "xs:string");
+                            ++count;
+                            break;
+                        case "oblast_zastite":
+                            element.setAttribute("property", "voc:oblastZastite");
+                            element.setAttribute("datatype", "xs:string");
+                            ++count;
+                            break;
+                    }
+                }
+                break;
+            case PACIJENT:
+                break;
+        }
+    }
+
+    /**
+     * @param dokument nad kojim se vrsi provera ogranicenja
+     * @param prefiks za prostor imena
+     */
+    private void proveriOgranicenjaKorisnika(Document dokument, String prefiks) {
+        String korisnickoIme = dokument.getElementsByTagName(prefiks + ":korisnicko_ime")
+                .item(0).getTextContent();
+        String jmbg = dokument.getElementsByTagName(prefiks + ":jmbg").item(0).getTextContent();
+
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("ogranicenjaKorisnika")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), jmbg, korisnickoIme);
+            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
+            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
+            ResourceIterator i = rezultat.getIterator();
+            Resource res = null;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i.hasMoreResources()) {
+                try {
+                    res = i.nextResource();
+                    sb.append(DocumentBuilderFactory.newInstance().newDocumentBuilder()
+                            .parse(new InputSource(new StringReader("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+                                    + res.getContent().toString()))).getFirstChild().getTextContent());
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+                }
+            }
+            String greska = sb.toString();
+            konekcija.oslobodiResurse(resursi);
+            if (!greska.isEmpty()) {
+                throw new ValidacioniIzuzetak(greska);
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | XMLDBException |
+                IOException | ParserConfigurationException | SAXException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
+    /**
+     * @param id trazenog korisnika
+     * @return xpath putanju do pronadjenog korisnika
+     */
+    private String pronadjiKorisnika(String id) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjePutanje")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
+                    .getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    maper.dobaviKolekciju() + maper.dobaviDokument("korisnici"), id);
+            logger.info(sadrzajUpita);
+            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
+            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
+            ResourceIterator i = rezultat.getIterator();
+            Resource res = null;
+            String rez;
+
+            try {
+                res = i.nextResource();
+                rez = (String) res.getContent();
+            } finally {
+                if (res != null)
+                    ((EXistResource) res).freeResources();
+            }
+
+            konekcija.oslobodiResurse(resursi);
+            if (rez.equals("")) {
+                throw new ValidacioniIzuzetak("Trazeni korisnik ne postoji!");
+            }
+            return rez;
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | XMLDBException |
+                IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
+    private void izmeniKorisnika(String korisnik, String prefiks) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
+            String putanjaDoUpita = ResourceUtils
+                    .getFile(maper.dobaviUpit("izmena"))
+                    .getPath();
+
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks("korisnik"), maper.dobaviPutanju("korisnici"), korisnik,
+                    maper.dobaviPrefiks("korisnici"));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument("korisnici"), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 }

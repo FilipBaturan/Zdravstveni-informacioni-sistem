@@ -40,8 +40,27 @@ public class KorisnikKontroler extends ValidatorKontoler {
     @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> registracija(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se azuriranje leka {}.", Calendar.getInstance().getTime());
+        logger.info("Vrsi se registracija korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
-        return new ResponseEntity<>(korisnikServis.registruj(akcija), HttpStatus.OK);
+        // ODRADI CUVANJE U FUSEKI BAZU
+        return new ResponseEntity<>(korisnikServis.registruj(akcija)[0], HttpStatus.OK);
     }
+
+    /**
+     * POST korisnici
+     *
+     * @param akcija koja se izvrsava
+     * @return rezultat akcije
+     */
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
+        logger.info("Vrsi se azuriranje korisnika {}.", Calendar.getInstance().getTime());
+        this.validirajAkciju(akcija);
+        if (akcija.getFunkcija().equals("BRISANJE")) {
+            return new ResponseEntity<>(korisnikServis.obrisi(akcija.getKontekst()), HttpStatus.OK);
+        } else {
+            return null;
+        }
+    }
+
 }

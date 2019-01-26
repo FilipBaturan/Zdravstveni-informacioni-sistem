@@ -16,19 +16,19 @@ public interface KorisnikServis {
     String pretragaPoId(String id);
 
     /**
-     * @param korisnik koji treba sacuvati u bazu
+     * @param akcija koju treba izvrsiti priliko snimanja
      * @return sacuvani lek iz baze
      */
-    String sacuvaj(String korisnik);
+    String sacuvaj(Akcija akcija);
 
     /**
-     * @param akcija koji treba izvrsiti prilikom registacije
+     * @param akcija koju treba izvrsiti prilikom registacije
      * @return registrovani korisnik
      */
-    String registruj(Akcija akcija);
+    String[] registruj(Akcija akcija);
 
     /**
-     * @param id korisnika koji treba obrisati iz baze
+     * @param id korisnika kojeg treba obrisati
      */
-    void obrisi(String id);
+    String obrisi(String id);
 }

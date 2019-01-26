@@ -18,8 +18,6 @@ import java.io.IOException;
 @Service
 public class LekarServisImpl extends IOStrimer implements LekarServis {
 
-    private static final Logger logger = LoggerFactory.getLogger(LekarServisImpl.class);
-
     @Autowired
     private KorisnikServis korisnikServis;
 
@@ -111,16 +109,5 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
-    }
-
-
-    @Override
-    public String sacuvaj(Lekar lekar) {
-        return null;
-    }
-
-    @Override
-    public void obrisi(String id) {
-
     }
 }
