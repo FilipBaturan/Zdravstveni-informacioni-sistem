@@ -1,4 +1,4 @@
-package zis.rs.zis.service.implementation;
+package zis.rs.zis.repository.xml;
 
 import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
@@ -9,15 +9,14 @@ import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
-import zis.rs.zis.service.definition.LekServis;
 import zis.rs.zis.util.*;
 
 import java.io.IOException;
 
 @Service
-public class LekServisImpl extends IOStrimer implements LekServis {
+public class LekXMLRepozertorijum extends IOStrimer {
 
-    private static final Logger logger = LoggerFactory.getLogger(LekServisImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(LekXMLRepozertorijum.class);
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;
@@ -25,7 +24,6 @@ public class LekServisImpl extends IOStrimer implements LekServis {
     @Autowired
     private Maper maper;
 
-    @Override
     public String dobaviSve() {
         ResursiBaze resursi = null;
         try {
@@ -69,7 +67,6 @@ public class LekServisImpl extends IOStrimer implements LekServis {
         }
     }
 
-    @Override
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
         try {
@@ -114,7 +111,6 @@ public class LekServisImpl extends IOStrimer implements LekServis {
     }
 
 
-    @Override
     public String sacuvaj(String lek) {
         ResursiBaze resursi = null;
         try {
@@ -142,7 +138,6 @@ public class LekServisImpl extends IOStrimer implements LekServis {
         }
     }
 
-    @Override
     public void obrisi(String id) {
 
     }

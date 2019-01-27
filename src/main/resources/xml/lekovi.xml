@@ -80,7 +80,7 @@
         <lek:naziv>AZITROMICIN SANDOZ</lek:naziv>
         <lek:sifra>3325572</lek:sifra>
         <lek:dijagnoza>J204</lek:dijagnoza>
-        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence </lek:namena>
+        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence</lek:namena>
     </lek:lek>
     <lek:lek id="http://www.zis.rs/lekovi/id14" aktivan="true">
         <lek:naziv>AZITROMICIN SANDOZ</lek:naziv>

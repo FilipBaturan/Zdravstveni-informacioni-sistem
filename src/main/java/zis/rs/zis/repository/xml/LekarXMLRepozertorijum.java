@@ -1,25 +1,20 @@
-package zis.rs.zis.service.implementation;
+package zis.rs.zis.repository.xml;
 
 import org.exist.xmldb.EXistResource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
-import zis.rs.zis.domain.entities.Lekar;
-import zis.rs.zis.service.definition.KorisnikServis;
-import zis.rs.zis.service.definition.LekarServis;
 import zis.rs.zis.util.*;
 
 import java.io.IOException;
 
 @Service
-public class LekarServisImpl extends IOStrimer implements LekarServis {
+public class LekarXMLRepozertorijum extends IOStrimer {
 
     @Autowired
-    private KorisnikServis korisnikServis;
+    private KorisnikXMLRepozertorijum korisnikXMLRepozertorijum;
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;
@@ -27,7 +22,6 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
     @Autowired
     private Maper maper;
 
-    @Override
     public String dobaviSve() {
         ResursiBaze resursi = null;
         try {
@@ -69,7 +63,6 @@ public class LekarServisImpl extends IOStrimer implements LekarServis {
         }
     }
 
-    @Override
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
         try {

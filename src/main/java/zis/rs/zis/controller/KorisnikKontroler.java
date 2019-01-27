@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.service.definition.KorisnikServis;
+import zis.rs.zis.repository.xml.KorisnikXMLRepozertorijum;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -29,7 +29,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
     private Validator validator;
 
     @Autowired
-    private KorisnikServis korisnikServis;
+    private KorisnikXMLRepozertorijum korisnikRepozertorijum;
 
     /**
      * POST korisnici/registracija
@@ -43,7 +43,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
         logger.info("Vrsi se registracija korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
         // ODRADI CUVANJE U FUSEKI BAZU
-        return new ResponseEntity<>(korisnikServis.registruj(akcija)[0], HttpStatus.OK);
+        return new ResponseEntity<>(korisnikRepozertorijum.registruj(akcija)[0], HttpStatus.OK);
     }
 
     /**
@@ -57,7 +57,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
         logger.info("Vrsi se azuriranje korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
         if (akcija.getFunkcija().equals("BRISANJE")) {
-            return new ResponseEntity<>(korisnikServis.obrisi(akcija.getKontekst()), HttpStatus.OK);
+            return new ResponseEntity<>(korisnikRepozertorijum.obrisi(akcija.getKontekst()), HttpStatus.OK);
         } else {
             return null;
         }

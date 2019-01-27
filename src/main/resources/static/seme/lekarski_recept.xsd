@@ -27,9 +27,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="drzava" type="xs:string"/>
-                <xs:element name="datum_propisivanje_leka" type="xs:date"/>
-                <xs:element name="datum_izdavanja_leka" type="xs:date"/>
+                <xs:element name="datum" type="xs:date"/>
                 <xs:element name="dijagnoza">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">

@@ -18,7 +18,6 @@
                         <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:group ref="zko:dokumenti"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:attribute name="jmbg" use="required">
@@ -186,66 +185,6 @@
                         <xs:pattern value="[0-9]{10}"/>
                     </xs:restriction>
                 </xs:simpleType>
-            </xs:element>
-        </xs:sequence>
-    </xs:group>
-    <xs:group name="dokumenti">
-        <xs:sequence>
-            <xs:element maxOccurs="1" minOccurs="1" name="uputi_za_laboratoriju">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="uput_za_laboratoriju">
-                            <xs:complexType>
-                                <xs:attribute ref="zko:identifikator" use="required"/>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element maxOccurs="1" minOccurs="1" name="uputi_za_specialisticki_pregled">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0"
-                                    name="uput_za_specialisticki_pregled">
-                            <xs:complexType>
-                                <xs:attribute ref="zko:identifikator" use="required"/>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element maxOccurs="1" minOccurs="1" name="lekarski_recepti">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="lekraski_recept">
-                            <xs:complexType>
-                                <xs:attribute ref="zko:identifikator" use="required"/>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element maxOccurs="1" minOccurs="1" name="izvestaji_lekara">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="izvestaj_lekara">
-                            <xs:complexType>
-                                <xs:attribute ref="zko:identifikator" use="required"/>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-            <xs:element maxOccurs="1" minOccurs="1" name="izmene_promene_lekara">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element maxOccurs="unbounded" minOccurs="0" name="izmena_promena_lekara">
-                            <xs:complexType>
-                                <xs:attribute ref="zko:identifikator" use="required"/>
-                            </xs:complexType>
-                        </xs:element>
-                    </xs:sequence>
-                </xs:complexType>
             </xs:element>
         </xs:sequence>
     </xs:group>

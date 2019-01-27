@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.service.definition.LekarServis;
+import zis.rs.zis.repository.xml.LekarXMLRepozertorijum;
 
 import java.util.Calendar;
 
@@ -23,7 +23,7 @@ public class LekarKontroler {
     private static final String URI_PREFIX = "http://www.zis.rs/lekari/";
 
     @Autowired
-    private LekarServis lekarServis;
+    private LekarXMLRepozertorijum lekarServis;
 
     /**
      * GET /rs/zis/lekori

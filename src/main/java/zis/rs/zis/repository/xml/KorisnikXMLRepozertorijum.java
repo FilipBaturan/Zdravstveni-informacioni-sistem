@@ -1,11 +1,11 @@
-package zis.rs.zis.service.implementation;
+package zis.rs.zis.repository.xml;
 
 import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -20,7 +20,6 @@ import zis.rs.zis.domain.ObjectFactory;
 import zis.rs.zis.domain.entities.Korisnik;
 import zis.rs.zis.domain.entities.collections.Korisnici;
 import zis.rs.zis.domain.enums.TipKorisnika;
-import zis.rs.zis.service.definition.KorisnikServis;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -43,10 +42,10 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 
-@Service
-public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
+@Repository
+public class KorisnikXMLRepozertorijum extends IOStrimer {
 
-    private static final Logger logger = LoggerFactory.getLogger(KorisnikServisImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(KorisnikXMLRepozertorijum.class);
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;
@@ -60,12 +59,10 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
     @Autowired
     private Sekvencer sekvencer;
 
-    @Override
     public String dobaviSve() {
         return null;
     }
 
-    @Override
     public String pretragaPoId(String id) {
         try {
             ResursiBaze resursi = konekcija.uspostaviKonekciju("/db/rs/zis/korisnici",
@@ -95,12 +92,10 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
         throw new ValidacioniIzuzetak("Trazeni korisnik ne postoji u bazi!");
     }
 
-    @Override
     public String sacuvaj(Akcija akcija) {
         return null;
     }
 
-    @Override
     public String[] registruj(Akcija akcija) {
         Document doc = this.konvertujUDokument(akcija);
         if (doc == null) {
@@ -110,7 +105,6 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
         return new String[]{"Registracija uspesna!"};
     }
 
-    @Override
     public String obrisi(String id) {
         String putanja = this.pronadjiKorisnika(id);
         String prefiks = putanja.split("/")[2].split(":")[0];
@@ -414,7 +408,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
     }
 
     /**
-     * @param dokument nad kojem se dodaju metapodaci osobe
+     * @param dokument     nad kojem se dodaju metapodaci osobe
      * @param tipKorisnika tip korisnika
      */
     private void dodajMetaPodatkeOsobi(Document dokument, TipKorisnika tipKorisnika) {
@@ -446,7 +440,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
 
     /**
      * @param dokument nad kojim se vrsi provera ogranicenja
-     * @param prefiks za prostor imena
+     * @param prefiks  za prostor imena
      */
     private void proveriOgranicenjaKorisnika(Document dokument, String prefiks) {
         String korisnickoIme = dokument.getElementsByTagName(prefiks + ":korisnicko_ime")
@@ -520,7 +514,7 @@ public class KorisnikServisImpl extends IOStrimer implements KorisnikServis {
             }
 
             konekcija.oslobodiResurse(resursi);
-            if (rez.equals("")) {
+            if (rez.equals("/")) {
                 throw new ValidacioniIzuzetak("Trazeni korisnik ne postoji!");
             }
             return rez;
