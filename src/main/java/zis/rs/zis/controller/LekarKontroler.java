@@ -26,7 +26,7 @@ public class LekarKontroler {
     private LekarXMLRepozertorijum lekarServis;
 
     /**
-     * GET /rs/zis/lekori
+     * GET /rs/zis/lekari
      *
      * @return sve lekare iz baze
      */

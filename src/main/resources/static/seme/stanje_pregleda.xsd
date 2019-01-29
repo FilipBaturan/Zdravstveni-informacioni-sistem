@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:element name="stanje_pregleda">
+        <xs:complexType>
+            <xs:attribute name="pacijent" type="xs:anyURI"/>
+            <xs:attribute name="stanje">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="zakazivanje"/>
+                        <xs:enumeration value="cekanje"/>
+                        <xs:enumeration value="izmenjen pregled"/>
+                        <xs:enumeration value="pregled lek o.p."/>
+                        <xs:enumeration value="pregled lek spec."/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="datum" type="xs:date"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

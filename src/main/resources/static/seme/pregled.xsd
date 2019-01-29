@@ -1,21 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://zis.rs/zis/seme/pregled" vc:minVersion="1.1"
-           xmlns:pregled="http://zis.rs/zis/seme/pregled"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    targetNamespace="http://www.zis.rs/seme/pregled" vc:minVersion="1.1"
+    xmlns:pregled="http://www.zis.rs/seme/pregled"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="pregled">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="lekar">
                     <xs:complexType>
-                        <xs:attribute ref="pregled:indentifikator" use="required"/>
+                        <xs:attribute ref="pregled:identifikator" use="required"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="datum" type="xs:date"/>
+                <xs:element name="pacijent">
+                    <xs:complexType>
+                        <xs:attribute ref="pregled:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
+            <xs:attribute name="tip">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value=""/>
+                        <xs:enumeration value="opsta_praksa"/>
+                        <xs:enumeration value="opsta_praksa"/>
+                        <xs:enumeration value="ginekolog"/>
+                        <xs:enumeration value="pedijatar"/>
+                        <xs:enumeration value="dermatolog"/>
+                        <xs:enumeration value="stomatolog"/>
+                        <xs:enumeration value="drugo"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
         </xs:complexType>
     </xs:element>
-    <xs:attribute name="indentifikator" type="xs:anyURI"/>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
 </xs:schema>
