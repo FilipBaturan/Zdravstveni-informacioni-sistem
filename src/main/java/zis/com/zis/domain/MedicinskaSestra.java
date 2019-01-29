@@ -1,5 +1,8 @@
 package zis.com.zis.domain;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "medicinska_sestra")
 public class MedicinskaSestra extends Korisnik {
 
     public MedicinskaSestra() {

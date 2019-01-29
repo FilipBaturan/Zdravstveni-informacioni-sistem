@@ -1,7 +1,12 @@
 package zis.com.zis.domain;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "lekar")
 public class Lekar extends Korisnik {
 
+    @XmlElement(name = "tip")
     private TipLekara tip;
 
     public Lekar() {

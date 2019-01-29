@@ -1,13 +1,26 @@
 package zis.com.zis.domain;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
+@XmlRootElement(name = "pregled")
 public class Pregled {
 
+    @XmlAttribute(name = "id", required = true)
     private Long id;
+
+    @XmlElement(name = "lekar")
     private Lekar lekar;
+
+    @XmlElement(name = "pacijent")
     private Pacijent pacijent;
+
+    @XmlElement(name = "datum")
     private Date datum;
+
+    @XmlElement(name = "aktivan")
     private boolean aktivan;
 
     public Pregled() {

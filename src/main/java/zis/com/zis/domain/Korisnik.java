@@ -1,8 +1,15 @@
 package zis.com.zis.domain;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+@XmlTransient
 public class Korisnik extends Osoba {
 
+    @XmlElement(name = "korisnicko_ime", required = true)
     private String korisnickoIme;
+
+    @XmlElement(name = "lozinka", required = true)
     private String lozinka;
 
     public Korisnik() {

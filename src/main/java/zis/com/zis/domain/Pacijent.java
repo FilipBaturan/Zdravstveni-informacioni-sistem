@@ -1,11 +1,20 @@
 package zis.com.zis.domain;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.List;
 
+@XmlRootElement(name = "pacijent")
 public class Pacijent extends Korisnik {
 
+    @XmlElement(name = "izabrani_lekar")
     private Lekar izabraniLekar;
+
+    @XmlElement(name = "zdravstveni_karton")
     private ZdrastveniKarton zdrastveniKarton;
+
+    @XmlElement(name = "obavestenja")
     private List<String> obavestenja;
 
     public Pacijent() {
