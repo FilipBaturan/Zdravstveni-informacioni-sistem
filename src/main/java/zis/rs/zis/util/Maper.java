@@ -1,7 +1,15 @@
 package zis.rs.zis.util;
 
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,6 +67,7 @@ public class Maper {
         this.xmlBaza.put("korisnici", "korisnici.xml");
         this.xmlBaza.put("medicinske_sestre", "medicinske_sestre.xml");
         this.xmlBaza.put("pacijenti", "pacijenti.xml");
+        this.xmlBaza.put("pregledi", "pregledi.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
         this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
@@ -69,6 +78,7 @@ public class Maper {
         this.xmlUpiti.put("izmena", "classpath:templates/xquery/azuriranje/izmena.xml");
         this.xmlUpiti.put("dobavljanjePutanje", "classpath:templates/xquery/azuriranje/dobavljanjePutanje.xq");
         this.xmlUpiti.put("brisanje", "classpath:templates/xquery/azuriranje/brisanje.xml");
+        this.xmlUpiti.put("pretragaPoIdPregleda", "classpath:templates/xquery/pregledi/pretragaPoIdPregleda.xqy");
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
         this.xmlSeme.put("korisnik", "classpath:static/seme/korisnik.xsd");
@@ -84,14 +94,34 @@ public class Maper {
         this.xmlPrefiksi.put("medicinske_sestre",
                 "xmlns:medicinske_sestre=\"http://www.zis.rs/seme/medicinske_sestre\"");
 
+        this.xmlPrefiksi.put("pregled", "http://www.zis.rs/seme/pregled");
+        this.xmlPrefiksi.put("pregledi", "xmlns:pr =\"http://www.zis.rs/seme/pregledi\"");
+
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
         this.xmlPutanje.put("medicinske_sestre", "/medicinske_sestre:medicinske_sestre");
+
+        this.xmlPutanje.put("pregledi", "/pr:pregledi");
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");
         this.uriPrefiks.put("medicinska_sestra", "http://www.zis.rs/medicinska_sestra/id");
         this.uriPrefiks.put("pacijenti", "http://www.zis.rs/pacijenti/id");
+
     }
+
+    public Document koverturjUDokument(String xmlSadrzaj)
+    {
+        try {
+            DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            InputSource is = new InputSource();
+            is.setCharacterStream(new StringReader(xmlSadrzaj));
+
+            return db.parse(is);
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+           throw new TransformacioniIzuzetak("Greska prilikom obrade podataka!");
+        }
+    }
+
 
 }

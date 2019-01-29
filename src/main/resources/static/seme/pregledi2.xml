@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pregled xmlns="http://zis.rs/zis/seme/pregled"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://zis.rs/zis/seme/pregled file:/D:/Faks/Semestar%20VII/XML/Projekat/Zdravstveni-informacioni-sistem/src/main/resources/static/seme/pregled.xsd" id="http://www.oxygenxml.com/" aktivan="false">
+    <lekar xmlns:pregled="http://zis.rs/zis/seme/pregled" pregled:indentifikator="http://www.oxygenxml.com/"/>
+    <datum>2006-05-04</datum>
+    <pacijent xmlns:pregled="http://zis.rs/zis/seme/pregled" pregled:indentifikator="http://www.oxygenxml.com/"/>
+</pregled>
