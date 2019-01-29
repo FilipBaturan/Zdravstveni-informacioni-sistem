@@ -37,8 +37,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE,
-            produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> registracija(@RequestBody Akcija akcija) {
         logger.info("Vrsi se registracija korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
@@ -52,7 +51,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);

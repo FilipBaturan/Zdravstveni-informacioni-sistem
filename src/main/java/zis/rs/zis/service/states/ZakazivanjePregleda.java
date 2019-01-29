@@ -1,9 +1,9 @@
 package zis.rs.zis.service.states;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import zis.rs.zis.util.akcije.Akcija;
 
-@Component
+@Service
 public class ZakazivanjePregleda {
 
     /**
@@ -13,7 +13,7 @@ public class ZakazivanjePregleda {
      * @param akcija koju treba izvrsiti
      * @return poruka o rezultatu akcije
      */
-    public String zakaziPregled(Akcija akcija) {
-        return null;
+    public String kreirajPregled(Akcija akcija) {
+        return "Test";
     }
 }
