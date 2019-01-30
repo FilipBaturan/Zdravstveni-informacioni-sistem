@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/stanja_pregleda"
+    xmlns:sp="http://www.zis.rs/seme/stanja_pregleda"
+    xmlns:stp="http://www.zis.rs/seme/stanje_pregleda">
+
+    <xs:import namespace="http://www.zis.rs/seme/stanje_pregleda"
+        schemaLocation="stanje_pregleda.xsd"/>
+    <xs:element name="stanja_pregleda">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="stp:stanje_pregleda"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

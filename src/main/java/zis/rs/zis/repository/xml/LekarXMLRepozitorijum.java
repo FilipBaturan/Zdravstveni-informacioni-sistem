@@ -11,10 +11,7 @@ import zis.rs.zis.util.*;
 import java.io.IOException;
 
 @Service
-public class LekarXMLRepozertorijum extends IOStrimer {
-
-    @Autowired
-    private KorisnikXMLRepozertorijum korisnikXMLRepozertorijum;
+public class LekarXMLRepozitorijum extends IOStrimer {
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;

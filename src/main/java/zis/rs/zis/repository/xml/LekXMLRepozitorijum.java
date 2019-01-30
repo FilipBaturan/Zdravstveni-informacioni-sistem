@@ -14,9 +14,9 @@ import zis.rs.zis.util.*;
 import java.io.IOException;
 
 @Service
-public class LekXMLRepozertorijum extends IOStrimer {
+public class LekXMLRepozitorijum extends IOStrimer {
 
-    private static final Logger logger = LoggerFactory.getLogger(LekXMLRepozertorijum.class);
+    private static final Logger logger = LoggerFactory.getLogger(LekXMLRepozitorijum.class);
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;

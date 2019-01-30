@@ -15,8 +15,8 @@ import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.util.*;
+import zis.rs.zis.util.akcije.Akcija;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
@@ -25,7 +25,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -42,8 +41,10 @@ public class PregledXMLRepozitorijum extends IOStrimer{
     private Maper maper;
 
     @Autowired
-    private Sekvencer sekvencer;
+    private Validator validator;
 
+    @Autowired
+    private Sekvencer sekvencer;
 
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
@@ -86,7 +87,9 @@ public class PregledXMLRepozitorijum extends IOStrimer{
         }
     }
 
-    public String sacuvaj(String pregled) {
+    public String sacuvaj(Akcija akcija) {
+        String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
+
 
         String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
@@ -99,17 +102,18 @@ public class PregledXMLRepozitorijum extends IOStrimer{
             String putanja = maper.dobaviPutanju("pregledi");
 
             Long id = sekvencer.dobaviId();
-            this.validirajPregled(maper.konvertujUDokument(pregled).getFirstChild(), id,  prefiks);
+
+            String dodatId = this.umetniId(maper.konvertujUDokument(pregled).getFirstChild(), id,  prefiks);
 
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    prefiks, maper.dobaviPrefiks("pregled"), maper.dobaviPutanju("pregledi"), pregled,
+                    prefiks, maper.dobaviPrefiks("pregled"), maper.dobaviPutanju("pregledi"), dodatId,
                     maper.dobaviPrefiks("pregledi"));
             logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument("pregledi"), sadrzajUpita);
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
-            return "Pregled uspesno dodat!";
+            return "Uspesno zakazan pregled!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
@@ -121,9 +125,8 @@ public class PregledXMLRepozitorijum extends IOStrimer{
      * @param pregled kojeg treba validirati
      * @return xml reprezentacija pregleda
      */
-    private String validirajPregled(Node pregled, Long id, String prefiks) {
+    private String umetniId(Node pregled, Long id, String prefiks) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
-        fabrika.setNamespaceAware(true);
         try {
             Document dok = fabrika.newDocumentBuilder().newDocument();
             Node importovan = dok.importNode(pregled, true);
@@ -132,14 +135,11 @@ public class PregledXMLRepozitorijum extends IOStrimer{
             this.proveriOgranicenjaPregleda(dok, prefiks);
             ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI("pregled") + id);
 
-            SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
-                    .newSchema(ResourceUtils.getFile(maper.dobaviSemu("pregled")))
-                    .newValidator().validate(new DOMSource(dok));
             return this.konvertujUString(dok);
-        } catch (ParserConfigurationException | IOException e) {
+        } catch (ParserConfigurationException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
-        } catch (SAXException e) {
-            throw new ValidacioniIzuzetak("Nevalidan sadrzaj pregleda!");
+        } catch (ValidacioniIzuzetak e) {
+            throw new ValidacioniIzuzetak(e.getMessage());
         }
     }
 
