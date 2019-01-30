@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pregled:pregled xmlns:pregled="http://www.zis.rs/seme/pregled"
+ xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+ xmlns:pr="http://www.zis.rs/seme/pregledi"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.zis.rs/seme/pregled file:/D:/Faks/Semestar%20VII/XML/Projekat/Zdravstveni-informacioni-sistem/src/main/resources/static/seme/pregledi.xsd" id="http://vOQjzzdU/" aktivan="0">
+    <pregled:lekar pregled:identifikator="http://rPydbkpG/"/>
+    <pregled:datum>2020-08-28T02:36:46</pregled:datum>
+    <pregled:pacijent pregled:identifikator="http://wJGwYnNK/"/>
+</pregled:pregled>
