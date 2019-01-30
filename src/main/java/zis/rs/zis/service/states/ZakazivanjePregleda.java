@@ -16,7 +16,6 @@ public class ZakazivanjePregleda extends Stanje {
 
     @Override
     public String obradiZahtev(Akcija akcija) {
-
         return zakazivanjePregleda.kreirajPregled(akcija);
     }
 
@@ -28,7 +27,6 @@ public class ZakazivanjePregleda extends Stanje {
      * @return poruka o rezultatu akcije
      */
     public String kreirajPregled(Akcija akcija) {
-        return "temp";
-        //return pregledXMLRepozitorijum.sacuvaj(akcija);
+        return pregledXMLRepozitorijum.sacuvaj(akcija);
     }
 }

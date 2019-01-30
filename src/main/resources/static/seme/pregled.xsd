@@ -21,7 +21,6 @@
             <xs:attribute name="tip">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <xs:pattern value=""/>
                         <xs:enumeration value="opsta_praksa"/>
                         <xs:enumeration value="specijalista"/>
                     </xs:restriction>

@@ -163,7 +163,7 @@ public class Maper {
     public String dobaviPacijentaIzPregleda(Akcija akcija) {
         Document dok = this.konvertujUDokument(akcija);
         return dok.getFirstChild().getLastChild().getFirstChild().
-                getChildNodes().item(3).getAttributes().item(0).getNodeValue();
+                getChildNodes().item(2).getAttributes().item(0).getNodeValue();
     }
 
     public String dobaviKolekciju() {
