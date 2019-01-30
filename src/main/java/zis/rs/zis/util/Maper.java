@@ -63,6 +63,8 @@ public class Maper {
         this.xmlUpiti.put("dobavljanjePutanje", "classpath:templates/xquery/azuriranje/dobavljanjePutanje.xq");
         this.xmlUpiti.put("brisanje", "classpath:templates/xquery/azuriranje/brisanje.xml");
         this.xmlUpiti.put("pretragaPoIdPregleda", "classpath:templates/xquery/pregledi/pretragaPoIdPregleda.xqy");
+        this.xmlUpiti.put("ogranicenjaPregleda",
+                "classpath:templates/xquery/pregledi/proveraJedinstvenihPoljaPregleda.xq");
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
         this.xmlSeme.put("korisnik", "classpath:static/seme/korisnik.xsd");
