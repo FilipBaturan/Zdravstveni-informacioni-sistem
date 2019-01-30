@@ -2,7 +2,12 @@ package zis.rs.zis.service.states;
 
 import zis.rs.zis.util.akcije.Akcija;
 
-public class OpstiPregled {
+public class OpstiPregled extends Stanje {
+
+    @Override
+    public String obradiZahtev(Akcija akcija) {
+        return null;
+    }
 
     /**
      * Kreiranje lekarskog izvestaja i opciono

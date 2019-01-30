@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.zis.rs/seme/stanje_pregleda"
+    xmlns:stp="http://www.zis.rs/seme/stanje_pregleda">
 
     <xs:element name="stanje_pregleda">
         <xs:complexType>
-            <xs:attribute name="pacijent" type="xs:anyURI"/>
-            <xs:attribute name="stanje">
+            <xs:attribute name="pacijent" type="xs:anyURI" use="required"/>
+            <xs:attribute name="stanje" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:enumeration value="zakazivanje"/>
                         <xs:enumeration value="cekanje"/>
-                        <xs:enumeration value="izmenjen pregled"/>
-                        <xs:enumeration value="pregled lek o.p."/>
-                        <xs:enumeration value="pregled lek spec."/>
+                        <xs:enumeration value="izmenjen_pregled"/>
+                        <xs:enumeration value="pregled_lek_op"/>
+                        <xs:enumeration value="pregled_lek_spec"/>
+                        <xs:enumeration value="kraj"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
-            <xs:attribute name="datum" type="xs:date"/>
+            <xs:attribute name="datum" type="xs:dateTime" use="required"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

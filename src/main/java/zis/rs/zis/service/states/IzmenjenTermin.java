@@ -4,7 +4,12 @@ import org.springframework.stereotype.Service;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Service
-public class IzmenjenTermin {
+public class IzmenjenTermin extends Stanje {
+
+    @Override
+    public String obradiZahtev(Akcija akcija) {
+        return null;
+    }
 
     /**
      * @param akcija koju treba izvrsiti

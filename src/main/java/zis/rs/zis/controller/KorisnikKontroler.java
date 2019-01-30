@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.repository.xml.KorisnikXMLRepozertorijum;
+import zis.rs.zis.repository.xml.KorisnikXMLRepozitorijum;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -29,7 +29,8 @@ public class KorisnikKontroler extends ValidatorKontoler {
     private Validator validator;
 
     @Autowired
-    private KorisnikXMLRepozertorijum korisnikRepozertorijum;
+    private KorisnikXMLRepozitorijum korisnikRepozertorijum;
+
 
     /**
      * POST korisnici/registracija
@@ -46,7 +47,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
     }
 
     /**
-     * POST korisnici
+     * POST /korisnici
      *
      * @param akcija koja se izvrsava
      * @return rezultat akcije

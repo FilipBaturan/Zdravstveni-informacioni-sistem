@@ -10,6 +10,7 @@ import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.util.*;
+import zis.rs.zis.util.akcije.Akcija;
 
 import java.io.IOException;
 
@@ -23,6 +24,9 @@ public class PregledXMLRepozitorijum extends IOStrimer{
 
     @Autowired
     private Maper maper;
+
+    @Autowired
+    private Validator validator;
 
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
@@ -65,9 +69,10 @@ public class PregledXMLRepozitorijum extends IOStrimer{
         }
     }
 
-    public String sacuvaj(String pregled) {
+    public String sacuvaj(Akcija akcija) {
+        String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
 
-        String prefiks = maper.koverturjUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
+        String prefiks = maper.konverturjUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("pregledi"));
@@ -85,7 +90,7 @@ public class PregledXMLRepozitorijum extends IOStrimer{
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
-            return "Pregled uspesno dodat!";
+            return "Uspesno zakazan pregled!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);

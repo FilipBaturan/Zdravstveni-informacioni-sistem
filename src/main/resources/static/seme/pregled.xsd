@@ -11,7 +11,7 @@
                         <xs:attribute ref="pregled:identifikator" use="required"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="datum" type="xs:date"/>
+                <xs:element name="datum" type="xs:dateTime"/>
                 <xs:element name="pacijent">
                     <xs:complexType>
                         <xs:attribute ref="pregled:identifikator" use="required"/>
@@ -23,12 +23,7 @@
                     <xs:restriction base="xs:string">
                         <xs:pattern value=""/>
                         <xs:enumeration value="opsta_praksa"/>
-                        <xs:enumeration value="opsta_praksa"/>
-                        <xs:enumeration value="ginekolog"/>
-                        <xs:enumeration value="pedijatar"/>
-                        <xs:enumeration value="dermatolog"/>
-                        <xs:enumeration value="stomatolog"/>
-                        <xs:enumeration value="drugo"/>
+                        <xs:enumeration value="specijalista"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>

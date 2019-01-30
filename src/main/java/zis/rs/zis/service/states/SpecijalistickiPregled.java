@@ -4,8 +4,13 @@ import org.springframework.stereotype.Component;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Component
-public class SpecijalistickiPregled {
+public class SpecijalistickiPregled extends Stanje {
 
+
+    @Override
+    public String obradiZahtev(Akcija akcija) {
+        return null;
+    }
 
     /**
      * Azurira vec postojeci uput
