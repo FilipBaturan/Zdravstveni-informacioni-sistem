@@ -103,7 +103,9 @@ public class Maper {
      * @param xmlSadrzaj koji treba konvertovati u dokument
      * @return kreirani dokument
      */
-    public Document konverturjUDokument(String xmlSadrzaj) {
+    public Document konvertujUDokument(String xmlSadrzaj)
+    {
+
         try {
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             InputSource is = new InputSource();
