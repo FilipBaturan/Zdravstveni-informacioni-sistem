@@ -112,7 +112,7 @@ public class Maper {
 
     }
 
-    public Document koverturjUDokument(String xmlSadrzaj)
+    public Document konvertujUDokument(String xmlSadrzaj)
     {
         try {
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();

@@ -88,7 +88,7 @@ public class PregledXMLRepozitorijum extends IOStrimer{
 
     public String sacuvaj(String pregled) {
 
-        String prefiks = maper.koverturjUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
+        String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("pregledi"));
@@ -99,7 +99,7 @@ public class PregledXMLRepozitorijum extends IOStrimer{
             String putanja = maper.dobaviPutanju("pregledi");
 
             Long id = sekvencer.dobaviId();
-            this.validirajPregled(maper.koverturjUDokument(pregled).getFirstChild(), id,  prefiks);
+            this.validirajPregled(maper.konvertujUDokument(pregled).getFirstChild(), id,  prefiks);
 
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     prefiks, maper.dobaviPrefiks("pregled"), maper.dobaviPutanju("pregledi"), pregled,
