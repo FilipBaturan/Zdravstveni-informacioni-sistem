@@ -1,24 +1,27 @@
 package zis.rs.zis.service.states;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import zis.rs.zis.util.akcije.Akcija;
 
-@Component
+@Service
 public class SpecijalistickiPregled extends Stanje {
 
+    @Autowired
+    private SpecijalistickiPregled specijalistickiPregled;
 
     @Override
     public String obradiZahtev(Akcija akcija) {
-        return null;
+        return specijalistickiPregled.kreiranjeIzvestaja(akcija);
     }
 
     /**
-     * Azurira vec postojeci uput
+     * Kreira izvestaj
      *
      * @param akcija koju treba izvrsiti
-     * @return poruka o rezultatu akcije
+     * @return rezultat akcije
      */
-    public String azuriranjeUputa(Akcija akcija) {
+    public String kreiranjeIzvestaja(Akcija akcija) {
         return null;
     }
 

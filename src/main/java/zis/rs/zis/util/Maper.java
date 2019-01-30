@@ -156,6 +156,16 @@ public class Maper {
         }
     }
 
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return id pacijenta
+     */
+    public String dobaviPacijentaIzPregleda(Akcija akcija) {
+        Document dok = this.konvertujUDokument(akcija);
+        return dok.getFirstChild().getLastChild().getFirstChild().
+                getChildNodes().item(3).getAttributes().item(0).getNodeValue();
+    }
+
     public String dobaviKolekciju() {
         return this.xmlBaza.get("kolekcija");
     }

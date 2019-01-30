@@ -8,9 +8,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import zis.rs.zis.repository.xml.PregledXMLRepozitorijum;
-import zis.rs.zis.service.states.ZakazivanjePregleda;
+import zis.rs.zis.service.states.Proces;
 import zis.rs.zis.util.Maper;
-import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
@@ -29,7 +28,7 @@ public class PregledKontroler extends ValidatorKontoler {
     private PregledXMLRepozitorijum pregledXMLRepozitorijum;
 
     @Autowired
-    private ZakazivanjePregleda zakazivanjePregleda;
+    private Proces proces;
 
     /**
      * GET /pregledi/{id}
@@ -40,7 +39,7 @@ public class PregledKontroler extends ValidatorKontoler {
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Traze se pregled sa id={}: {}.", id, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(pregledXMLRepozitorijum.pretragaPoId(maper.dobaviURI("pregled")+ id),
+        return new ResponseEntity<>(pregledXMLRepozitorijum.pretragaPoId(maper.dobaviURI("pregled") + id),
                 HttpStatus.OK);
     }
 
@@ -54,6 +53,6 @@ public class PregledKontroler extends ValidatorKontoler {
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
-        return new ResponseEntity<>(zakazivanjePregleda.kreirajPregled(akcija), HttpStatus.OK);
+        return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
     }
 }

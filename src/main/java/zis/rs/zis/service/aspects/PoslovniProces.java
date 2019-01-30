@@ -1,7 +1,8 @@
 package zis.rs.zis.service.aspects;
 
-import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XUpdateQueryService;
+import zis.rs.zis.domain.enums.TipAkcije;
+import zis.rs.zis.service.states.Proces;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -29,17 +32,47 @@ public class PoslovniProces extends IOStrimer {
     @Autowired
     private Maper maper;
 
+    @Autowired
+    private Proces proces;
+
     private static final Logger logger = LoggerFactory.getLogger(PoslovniProces.class);
 
+
+//    @AfterThrowing(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))",
+//            throwing = "error")
+//    public void afterThrowingAdvice(JoinPoint jp, Throwable error){
+//        System.out.println("Method Signature: "  + jp.getSignature());
+//        System.out.println("Exception: "+error);
+//    }
+
+//    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))",
+//            returning = "retVal")
+//    public void afterReturningAdvice(JoinPoint jp, Object retVal){
+//        logger.info("Method Signature: "  + jp.getSignature());
+//        logger.info("Returning:" + retVal.toString());
+//    }
+
+
+    @Before("execution(* zis.rs.zis.service.states.PrihvatanjeTermina.obradiZahtev(..)) && args(akcija,..)")
+    public void prePrihvatanjaTermina(Akcija akcija) {
+        logger.info("Pre prihvatanja terimna");
+        proces.getPrihvatanjeTermina().setOpcija(TipAkcije.IZMENA_PREGLEDA);
+    }
+
+    @Before("execution(* zis.rs.zis.service.states.IzmenjenTermin.obradiZahtev(..)) && args(akcija,..)")
+    public void prePrihvatanjaIzmenjenogTermina(Akcija akcija) {
+        logger.info("Pre prihvatanja izmenjenog terimna");
+        proces.getPrihvatanjeTermina().setOpcija(TipAkcije.IZMENA_PREGLEDA);
+    }
+
     /**
-     * Dodaje novog pacijenta u poslovni proces i stavalja ga u stanje
-     * zakazivanje pregleda
+     * Dodaje novog pacijenta u poslovni proces i stavalja ga u stanje cekanje
+     *
      * @param akcija koju je potrebno procesirati ciji sadrzaj
      *               predstavlja pregled koji se zakazuje
      */
-    @Before("execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..)) && args(akcija,..)")
-    public void inicijalizacija(Akcija akcija) {
-
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..)) && args(akcija,..)")
+    public void nakonKreiranjaPregleda(Akcija akcija) {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
@@ -61,6 +94,7 @@ public class PoslovniProces extends IOStrimer {
             if (mods == 0) {
                 throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
             }
+            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getPrihvatanjeTermina());
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
@@ -68,24 +102,19 @@ public class PoslovniProces extends IOStrimer {
         }
     }
 
-//    @After("execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))")
-//    public void prihvatanjePregleda() {
-//        // menja stanje pacijenta u stanje prihvatanje termina i zapisuje u fajl
-//        logger.info("Usao u after!");
-//    }
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.izmenaTermina(..)) && args(akcija,..)")
+    public void nakonIzmeneTermina(Akcija akcija) {
 
-    @AfterThrowing(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))",
-            throwing = "error")
-    public void afterThrowingAdvice(JoinPoint jp, Throwable error){
-        System.out.println("Method Signature: "  + jp.getSignature());
-        System.out.println("Exception: "+error);
     }
 
-    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))",
-            returning = "retVal")
-    public void afterReturningAdvice(JoinPoint jp, Object retVal){
-        logger.info("Method Signature: "  + jp.getSignature());
-        logger.info("Returning:" + retVal.toString());
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.odbijanjeTermina(..)) && args(akcija,..)")
+    public void nakonOdbijanjaTermina(Akcija akcija) {
+
+    }
+
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.prihvatanjeTermina(..)) && args(akcija,..)")
+    public void nakonPrihvatanjaTermina(Akcija akcija) {
+
     }
 
     /**
@@ -102,8 +131,8 @@ public class PoslovniProces extends IOStrimer {
 
             Element pregled = dok.createElementNS(maper.dobaviPrefiks("stanje_pregleda"), "stanje_pregleda");
             pregled.setPrefix("stp");
-            pregled.setAttribute("pacijent", this.dobaviPacijenta(akcija));
-            pregled.setAttribute("stanje", "zakazivanje");
+            pregled.setAttribute("pacijent", maper.dobaviPacijentaIzPregleda(akcija));
+            pregled.setAttribute("stanje", "cekanje");
             pregled.setAttribute("datum", LocalDateTime.now().toString());
             dok.appendChild(pregled);
             return maper.konvertujUString(dok);
@@ -112,13 +141,5 @@ public class PoslovniProces extends IOStrimer {
         }
     }
 
-    /**
-     * @param akcija koju je potrebno procesirati
-     * @return id pacijenta
-     */
-    private String dobaviPacijenta(Akcija akcija) {
-        Document dok = maper.konvertujUDokument(akcija);
-        return dok.getFirstChild().getLastChild().getFirstChild().
-                getChildNodes().item(2).getAttributes().item(0).getNodeValue();
-    }
+
 }

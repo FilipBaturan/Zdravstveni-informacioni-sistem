@@ -9,11 +9,15 @@ import zis.rs.zis.util.akcije.Akcija;
 public class ZakazivanjePregleda extends Stanje {
 
     @Autowired
+    private ZakazivanjePregleda zakazivanjePregleda;
+
+    @Autowired
     private PregledXMLRepozitorijum pregledXMLRepozitorijum;
 
     @Override
     public String obradiZahtev(Akcija akcija) {
-        return kreirajPregled(akcija);
+
+        return zakazivanjePregleda.kreirajPregled(akcija);
     }
 
     /**
@@ -24,6 +28,7 @@ public class ZakazivanjePregleda extends Stanje {
      * @return poruka o rezultatu akcije
      */
     public String kreirajPregled(Akcija akcija) {
-        return pregledXMLRepozitorijum.sacuvaj(akcija);
+        return "temp";
+        //return pregledXMLRepozitorijum.sacuvaj(akcija);
     }
 }
