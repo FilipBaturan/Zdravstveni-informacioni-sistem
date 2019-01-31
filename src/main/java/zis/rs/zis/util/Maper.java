@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import zis.rs.zis.domain.enums.TipLekara;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.bind.JAXBContext;
@@ -65,6 +66,8 @@ public class Maper {
         this.xmlUpiti.put("pretragaPoIdPregleda", "classpath:templates/xquery/pregledi/pretragaPoIdPregleda.xqy");
         this.xmlUpiti.put("ogranicenjaPregleda",
                 "classpath:templates/xquery/pregledi/proveraJedinstvenihPoljaPregleda.xq");
+        this.xmlUpiti.put("dobavljanjePutanjeStanja",
+                "classpath:templates/xquery/azuriranje/dobavljanjePutanjeStanjaPacijenta.xq");
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
         this.xmlSeme.put("korisnik", "classpath:static/seme/korisnik.xsd");
@@ -103,8 +106,7 @@ public class Maper {
      * @param xmlSadrzaj koji treba konvertovati u dokument
      * @return kreirani dokument
      */
-    public Document konvertujUDokument(String xmlSadrzaj)
-    {
+    public Document konvertujUDokument(String xmlSadrzaj) {
 
         try {
             DocumentBuilder db = DocumentBuilderFactory.newInstance().newDocumentBuilder();
@@ -163,9 +165,13 @@ public class Maper {
      * @return id pacijenta
      */
     public String dobaviPacijentaIzPregleda(Akcija akcija) {
-        Document dok = this.konvertujUDokument(akcija);
-        return dok.getFirstChild().getLastChild().getFirstChild().
+        return this.konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().
                 getChildNodes().item(2).getAttributes().item(0).getNodeValue();
+    }
+
+    public String dobaviTipLekaraIzPregleda(Akcija akcija) {
+        return this.konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild()
+                .getAttributes().getNamedItem("tip").getNodeValue();
     }
 
     public String dobaviKolekciju() {

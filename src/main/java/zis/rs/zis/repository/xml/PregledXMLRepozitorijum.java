@@ -4,7 +4,7 @@ import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -29,8 +29,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-@Service
-public class PregledXMLRepozitorijum extends IOStrimer{
+@Repository
+public class PregledXMLRepozitorijum extends IOStrimer {
 
     private static final Logger logger = LoggerFactory.getLogger(PregledXMLRepozitorijum.class);
 
@@ -102,7 +102,7 @@ public class PregledXMLRepozitorijum extends IOStrimer{
 
             Long id = sekvencer.dobaviId();
 
-            String dodatId = this.umetniId(maper.konvertujUDokument(pregled).getFirstChild(), id,  prefiks);
+            String dodatId = this.umetniId(maper.konvertujUDokument(pregled).getFirstChild(), id, prefiks);
 
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     prefiks, maper.dobaviPrefiks("pregled"), maper.dobaviPutanju("pregledi"), dodatId,
@@ -349,7 +349,6 @@ public class PregledXMLRepozitorijum extends IOStrimer{
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         }
     }
-
 
 
 }

@@ -1,17 +1,16 @@
 package zis.rs.zis.domain.enums;
 
-public enum TipAkcije {
+public enum Kontekst {
 
-    DODAVANJE("DODAVANJE"),
-    IZMENA("IZMENA"),
-    BRISANJE("BRISANJE");
+    PRIHVATANJE("PRIHVATANJE"),
+    IZMENA("IZMENA");
 
     private final String tekst;
 
     /**
      * @param tekst string reprezentacija enumeracije
      */
-    TipAkcije(final String tekst) {
+    Kontekst(final String tekst) {
         this.tekst = tekst;
     }
 

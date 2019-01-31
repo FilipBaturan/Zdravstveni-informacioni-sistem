@@ -148,7 +148,6 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
         Long korisnikId = sekvencer.dobaviId();
         String kor = this.validirajKorisnika(korisnik, korisnikId, korisnikPrefiks);
         String osb;
-        //this.izmeniKorisnika(kor, korisnikPrefiks);
         if (osoba.getLocalName().equals("lekar")) {
             osb = this.validirajOsobu(osoba, maper.dobaviSemu("lekar"),
                     maper.dobaviURI("lekar"), osobaPrefiks, korisnikId, TipKorisnika.LEKAR);
@@ -452,8 +451,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
             String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjePutanje")).getPath();
-            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
-                    .getService("XQueryService", "1.0");
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     maper.dobaviKolekciju() + maper.dobaviDokument("korisnici"), id);
@@ -488,10 +486,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
-            String putanjaDoUpita = ResourceUtils
-                    .getFile(maper.dobaviUpit("izmena"))
-                    .getPath();
-
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("izmena")).getPath();
             XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
                     .getService("XUpdateQueryService", "1.0");
             xupdateService.setProperty("indent", "yes");

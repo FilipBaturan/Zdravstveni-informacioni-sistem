@@ -1,11 +1,11 @@
 package zis.rs.zis.service.states;
 
-import zis.rs.zis.domain.enums.TipAkcije;
+import zis.rs.zis.domain.enums.Opcije;
 import zis.rs.zis.util.akcije.Akcija;
 
 public abstract class Stanje {
 
-    private TipAkcije opcija;
+    private Opcije opcija;
 
     /**
      * @param akcija koju je potrebno procesirati
@@ -13,11 +13,11 @@ public abstract class Stanje {
      */
     abstract String obradiZahtev(Akcija akcija);
 
-    public TipAkcije getOpcija() {
+    public Opcije getOpcija() {
         return opcija;
     }
 
-    public void setOpcija(TipAkcije opcija) {
+    public void setOpcija(Opcije opcija) {
         this.opcija = opcija;
     }
 }
