@@ -4,7 +4,7 @@ import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
@@ -13,7 +13,7 @@ import zis.rs.zis.util.*;
 
 import java.io.IOException;
 
-@Service
+@Repository
 public class LekXMLRepozitorijum extends IOStrimer {
 
     private static final Logger logger = LoggerFactory.getLogger(LekXMLRepozitorijum.class);

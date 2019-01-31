@@ -12,7 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XUpdateQueryService;
-import zis.rs.zis.domain.enums.TipAkcije;
+import zis.rs.zis.domain.enums.*;
+import zis.rs.zis.repository.xml.StanjaPregledaXMLRepozitorijum;
 import zis.rs.zis.service.states.Proces;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
@@ -27,7 +28,7 @@ import java.time.LocalDateTime;
 public class PoslovniProces extends IOStrimer {
 
     @Autowired
-    private KonfiguracijaKonekcija konekcija;
+    private StanjaPregledaXMLRepozitorijum stanjaRepozitorijum;
 
     @Autowired
     private Maper maper;
@@ -55,14 +56,30 @@ public class PoslovniProces extends IOStrimer {
 
     @Before("execution(* zis.rs.zis.service.states.PrihvatanjeTermina.obradiZahtev(..)) && args(akcija,..)")
     public void prePrihvatanjaTermina(Akcija akcija) {
-        logger.info("Pre prihvatanja terimna");
-        proces.getPrihvatanjeTermina().setOpcija(TipAkcije.IZMENA_PREGLEDA);
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
+            proces.getPrihvatanjeTermina().setOpcija(Opcije.ODBIJANJE_PREGLEDA);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString()) &&
+                akcija.getKontekst().equals(Kontekst.IZMENA.toString())) {
+            proces.getPrihvatanjeTermina().setOpcija(Opcije.IZMENA_PREGLEDA);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString()) &&
+                akcija.getKontekst().equals(Kontekst.PRIHVATANJE.toString())) {
+            proces.getPrihvatanjeTermina().setOpcija(Opcije.PRIHVATANJE_PREGLEDA);
+        } else {
+            throw new ValidacioniIzuzetak("Nevalidna prosledjena akcija!");
+        }
+
     }
 
     @Before("execution(* zis.rs.zis.service.states.IzmenjenTermin.obradiZahtev(..)) && args(akcija,..)")
     public void prePrihvatanjaIzmenjenogTermina(Akcija akcija) {
-        logger.info("Pre prihvatanja izmenjenog terimna");
-        proces.getPrihvatanjeTermina().setOpcija(TipAkcije.IZMENA_PREGLEDA);
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
+            proces.getPrihvatanjeTermina().setOpcija(Opcije.ODBIJANJE_PREGLEDA);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString()) &&
+                akcija.getKontekst().equals(Kontekst.PRIHVATANJE.toString())) {
+            proces.getPrihvatanjeTermina().setOpcija(Opcije.PRIHVATANJE_PREGLEDA);
+        } else {
+            throw new ValidacioniIzuzetak("Nevalidna prosledjena akcija!");
+        }
     }
 
     /**
@@ -73,73 +90,61 @@ public class PoslovniProces extends IOStrimer {
      */
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..)) && args(akcija,..)")
     public void nakonKreiranjaPregleda(Akcija akcija) {
-        ResursiBaze resursi = null;
-        try {
-            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
-                    maper.dobaviDokument("stanja_pregleda"));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
-
-            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
-                    .getService("XUpdateQueryService", "1.0");
-            xupdateService.setProperty("indent", "yes");
-            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    "stp", maper.dobaviPrefiks("stanje_pregleda"),
-                    maper.dobaviPutanju("stanja_pregleda"),
-                    this.konverturjUString(akcija), maper.dobaviPrefiks("stanja_pregleda"));
-            logger.info(sadrzajUpita);
-            long mods = xupdateService.updateResource(maper.dobaviDokument("stanja_pregleda"), sadrzajUpita);
-            logger.info(mods + " izmene procesirane.");
-
-            konekcija.oslobodiResurse(resursi);
-            if (mods == 0) {
-                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
-            }
-            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getPrihvatanjeTermina());
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
-            konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        }
+        stanjaRepozitorijum.dodajNoviProces(akcija);
+        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getPrihvatanjeTermina());
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.izmenaTermina(..)) && args(akcija,..)")
     public void nakonIzmeneTermina(Akcija akcija) {
-
+        stanjaRepozitorijum.izmeniProces(akcija, Stanja.IZMENJEN_TERMIN.toString());
+        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getIzmenjenTermin());
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.odbijanjeTermina(..)) && args(akcija,..)")
     public void nakonOdbijanjaTermina(Akcija akcija) {
-
+        stanjaRepozitorijum.izmeniProces(akcija, Stanja.KRAJ.toString());
+        proces.getProcesi().remove(maper.dobaviPacijentaIzPregleda(akcija));
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.prihvatanjeTermina(..)) && args(akcija,..)")
     public void nakonPrihvatanjaTermina(Akcija akcija) {
-
-    }
-
-    /**
-     * @param akcija koju je potrebno procesirati
-     * @return string reprezentaciju nove stavke poslovnog procesa
-     */
-    private String konverturjUString(Akcija akcija) {
-        try {
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            dbf.setNamespaceAware(true);
-            dbf.setIgnoringElementContentWhitespace(true);
-            dbf.setValidating(false);
-            Document dok = dbf.newDocumentBuilder().newDocument();
-
-            Element pregled = dok.createElementNS(maper.dobaviPrefiks("stanje_pregleda"), "stanje_pregleda");
-            pregled.setPrefix("stp");
-            pregled.setAttribute("pacijent", maper.dobaviPacijentaIzPregleda(akcija));
-            pregled.setAttribute("stanje", "cekanje");
-            pregled.setAttribute("datum", LocalDateTime.now().toString());
-            dok.appendChild(pregled);
-            return maper.konvertujUString(dok);
-        } catch (ParserConfigurationException e) {
-            throw new TransformacioniIzuzetak("Greska pri obradi podataka!");
+        String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
+        if (tipLekara.equals(TipLekara.OPSTA_PRAKSA.toString())) {
+            stanjaRepozitorijum.izmeniProces(akcija, Stanja.OPSTI_PREGLED.toString());
+            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getOpstiPregled());
+        } else {
+            stanjaRepozitorijum.izmeniProces(akcija, Stanja.SPECIJALISTICKI_PREGLED.toString());
+            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getSpecijalistickiPregled());
         }
     }
 
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.odbijanjeTermina(..)) && args(akcija,..)")
+    public void nakonOdbijanjaIzmenjenogTermina(Akcija akcija) {
+        stanjaRepozitorijum.izmeniProces(akcija, Stanja.KRAJ.toString());
+        proces.getProcesi().remove(maper.dobaviPacijentaIzPregleda(akcija));
+    }
 
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.prihvatanjeTermina(..)) && args(akcija,..)")
+    public void nakonPrihvatanjaIzmenjenogTermina(Akcija akcija) {
+        String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
+        if (tipLekara.equals(TipLekara.OPSTA_PRAKSA.toString())) {
+            stanjaRepozitorijum.izmeniProces(akcija, Stanja.OPSTI_PREGLED.toString());
+            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getOpstiPregled());
+        } else {
+            stanjaRepozitorijum.izmeniProces(akcija, Stanja.SPECIJALISTICKI_PREGLED.toString());
+            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getSpecijalistickiPregled());
+        }
+    }
+
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.SpecijalistickiPregled.kreiranjeIzvestaja(..)) && args(akcija,..)")
+    public void nakonSpecijalistickogPregleda(Akcija akcija) {
+        stanjaRepozitorijum.izmeniProces(akcija, Stanja.ZAKAZIVANJE_TERMINA.toString());
+        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getZakazivanjePregleda());
+    }
+
+//    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.SpecijalistickiPregled.kreiranjeIzvestaja(..)) && args(akcija,..)")
+//    public void nakonOpstegPregleda(Akcija akcija) {
+//        stanjaRepozitorijum.izmeniProces(akcija, Stanja.ZAKAZIVANJE_TERMINA.toString());
+//        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getZakazivanjePregleda());
+//    }
 }

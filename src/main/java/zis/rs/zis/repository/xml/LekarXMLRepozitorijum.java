@@ -2,7 +2,7 @@ package zis.rs.zis.repository.xml;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
@@ -10,7 +10,7 @@ import zis.rs.zis.util.*;
 
 import java.io.IOException;
 
-@Service
+@Repository
 public class LekarXMLRepozitorijum extends IOStrimer {
 
     @Autowired

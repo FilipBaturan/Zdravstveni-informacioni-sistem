@@ -2,7 +2,7 @@ package zis.rs.zis.service.states;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zis.rs.zis.domain.enums.TipAkcije;
+import zis.rs.zis.domain.enums.Opcije;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Service
@@ -13,9 +13,9 @@ public class IzmenjenTermin extends Stanje {
 
     @Override
     public String obradiZahtev(Akcija akcija) {
-        if (this.getOpcija() == TipAkcije.ODBIJANJE_PREGLEDA) {
+        if (this.getOpcija() == Opcije.ODBIJANJE_PREGLEDA) {
             return izmenjenTermin.odbijanjeTermina(akcija);
-        } else  {
+        } else {
             return izmenjenTermin.prihvatanjeTermina(akcija);
         }
     }
