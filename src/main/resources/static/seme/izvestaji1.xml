@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<il1:izvestaj_lekara 
+ xmlns:il1="http://zis.rs/zis/seme/izvestaj_lekara"
+ xmlns:iz="http://zis.rs/zis/seme/izvestaji_lekara">
+    <il1:dijagnoza>dijagnoza0</il1:dijagnoza>
+    <il1:anamneza>
+        <il1:link il1:identifikator="http://www.oxygenxml.com/"/>
+        <il1:link il1:identifikator="http://www.oxygenxml.com/"/>
+        <il1:link il1:identifikator="http://www.oxygenxml.com/"/>
+    </il1:anamneza>
+    <il1:terapija>
+        <il1:link il1:identifikator="http://www.oxygenxml.com/"/>
+        <il1:link il1:identifikator="http://www.oxygenxml.com/"/>
+        <il1:link il1:identifikator="http://www.oxygenxml.com/"/>
+    </il1:terapija>
+    <il1:datum>2006-05-04</il1:datum>
+    <il1:osigurano_lice il1:identifikator="http://www.oxygenxml.com/"/>
+    <il1:lekar il1:identifikator="http://www.oxygenxml.com/"/>
+</il1:izvestaj_lekara>
