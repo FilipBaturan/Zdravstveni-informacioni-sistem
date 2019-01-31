@@ -53,6 +53,12 @@ public class PregledKontroler extends ValidatorKontoler {
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
-        return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
+        //return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
+        return new ResponseEntity<>(pregledXMLRepozitorijum.izmeni(akcija), HttpStatus.OK);
     }
+
+
+
+
+
 }
