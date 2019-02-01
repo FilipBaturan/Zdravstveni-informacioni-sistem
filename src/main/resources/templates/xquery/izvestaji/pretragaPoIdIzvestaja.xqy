@@ -1,6 +1,5 @@
-
 declare namespace izvestaji = "http://www.zis.rs/seme/izvestaji";
-declare namespace izvestaj =  "http://www.zis.rs/seme/izvestaj";
+declare namespace izvestaj = "http://www.zis.rs/seme/izvestaj";
 
 declare namespace lekari = "http://www.zis.rs/seme/lekari";
 declare namespace lkr = "http://www.zis.rs/seme/lekar";

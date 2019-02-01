@@ -10,8 +10,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
@@ -21,10 +19,9 @@ import zis.rs.zis.util.akcije.Akcija;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.io.StringReader;
 
 @Repository
-public class IzvestajXMLRepozitorijum extends IOStrimer{
+public class IzvestajXMLRepozitorijum extends IOStrimer {
 
     private static final Logger logger = LoggerFactory.getLogger(IzvestajXMLRepozitorijum.class);
 
@@ -39,6 +36,9 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
 
     @Autowired
     private Sekvencer sekvencer;
+
+    @Autowired
+    private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
     private String dokument = "izvestaji";
     private String prefiksDokumenta = "izvestaj";
@@ -85,9 +85,10 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
         }
     }
 
-    public String sacuvaj(Akcija akcija) {
-    String izvestaj = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
+    public String sacuvaj(Node sadrzaj) {
+        String izvestaj = validator.procesirajAkciju(sadrzaj, maper.dobaviSemu(prefiksDokumenta));
 
+        proveriLekara(sadrzaj);
 
         String prefiks = maper.konvertujUDokument(izvestaj).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
@@ -108,6 +109,10 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
             logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
             logger.info(mods + " izmene procesirane.");
+
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom kreiranja izvestaja!");
+            }
 
             konekcija.oslobodiResurse(resursi);
             return "Uspesno sacuvan izvestaj!";
@@ -151,7 +156,7 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
-//
+
     public String izmeni(Akcija akcija) {
 
         String izvestaj = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
@@ -192,7 +197,6 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
-
 
 
     /**
@@ -301,6 +305,21 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
 //            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
 //        }
 
+    }
+
+    private void proveriLekara(Node sadrzaj) {
+        String lekarId = "";
+        NodeList lista = sadrzaj.getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals("lekar")) {
+                lekarId = element.getAttributes().item(0).getNodeValue();
+                break;
+            }
+        }
+        try{ lekarXMLRepozitorijum.pretragaPoId(lekarId); }
+        catch (ValidacioniIzuzetak izuzetak) { throw izuzetak; }
     }
 
 }

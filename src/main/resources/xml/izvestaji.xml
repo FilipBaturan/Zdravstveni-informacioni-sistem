@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<iz:izvestaji_lekara 
- xmlns:il1="izvestaj.xsd"
- xmlns:iz="izvestaji.xsd">
-    <il1:izvestaj_lekara oznaka="il1" id="http://www.zis.rs/izvestaji/id1" aktivan="true">
-        <il1:dijagnoza>atzzFwGZ4</il1:dijagnoza>
-        <il1:anamneza>
-            <il1:link il1:identifikator="http://hpEamvMQ/"/>
-            <il1:link il1:identifikator="http://QUlSdqTP/"/>
-            <il1:link il1:identifikator="http://KhnappoI/"/>
-        </il1:anamneza>
-        <il1:terapija>
-            <il1:link il1:identifikator="http://cSgKnlJg/"/>
-            <il1:link il1:identifikator="http://lonFptkV/"/>
-            <il1:link il1:identifikator="http://UtmWMvaB/"/>
-        </il1:terapija>
-        <il1:datum>2019-05-01</il1:datum>
-        <il1:osigurano_lice il1:identifikator="http://tGMurVjz/"/>
-        <il1:lekar il1:identifikator="http://uCTfUKWQ/"/>
-    </il1:izvestaj_lekara>
-    <il1:izvestaj_lekara oznaka="il1" id="http://www.zis.rs/lekovi/id2" aktivan="true">
-        <il1:dijagnoza>eCU</il1:dijagnoza>
-        <il1:anamneza>
-            <il1:link il1:identifikator="http://QYGFeydI/"/>
-            <il1:link il1:identifikator="http://SMVivejl/"/>
-            <il1:link il1:identifikator="http://rBncIesh/"/>
-        </il1:anamneza>
-        <il1:terapija>
-            <il1:link il1:identifikator="http://ORqlhVFv/"/>
-            <il1:link il1:identifikator="http://EZuBcofb/"/>
-            <il1:link il1:identifikator="http://jhjihrOD/"/>
-        </il1:terapija>
-        <il1:datum>2020-05-22</il1:datum>
-        <il1:osigurano_lice il1:identifikator="http://DPINumKD/"/>
-        <il1:lekar il1:identifikator="http://kyACapJO/"/>
-    </il1:izvestaj_lekara>
-    <il1:izvestaj_lekara oznaka="il1" id="http://www.zis.rs/izvestaji/id3" aktivan="true">
-        <il1:dijagnoza>XGAqUCpXrEnYbsQgB7yoNXJY-</il1:dijagnoza>
-        <il1:anamneza>
-            <il1:link il1:identifikator="http://vOSRYaoB/"/>
-            <il1:link il1:identifikator="http://FZaLFLIm/"/>
-            <il1:link il1:identifikator="http://eSYUSdTx/"/>
-        </il1:anamneza>
-        <il1:terapija>
-            <il1:link il1:identifikator="http://IbpJCHgi/"/>
-            <il1:link il1:identifikator="http://lGRTCJWl/"/>
-            <il1:link il1:identifikator="http://yqLCdfsL/"/>
-        </il1:terapija>
-        <il1:datum>2020-08-20</il1:datum>
-        <il1:osigurano_lice il1:identifikator="http://IBeVoMtj/"/>
-        <il1:lekar il1:identifikator="http://JILFaWLi/"/>
-    </il1:izvestaj_lekara>
-</iz:izvestaji_lekara>
+<izvestaji:izvestaji
+        xmlns:izvestaji="http://www.zis.rs/seme/izvestaji"
+        xmlns:izvestaj="http://www.zis.rs/seme/izvestaj">
+    <izvestaj:izvestaj oznaka="il1" id="http://www.zis.rs/izvestaji/id1" aktivan="true">
+        <izvestaj:dijagnoza>atzzFwGZ4</izvestaj:dijagnoza>
+        <izvestaj:anamneza>
+            <izvestaj:link izvestaj:identifikator="http://hpEamvMQ/"/>
+            <izvestaj:link izvestaj:identifikator="http://QUlSdqTP/"/>
+            <izvestaj:link izvestaj:identifikator="http://KhnappoI/"/>
+        </izvestaj:anamneza>
+        <izvestaj:terapija>
+            <izvestaj:link izvestaj:identifikator="http://cSgKnlJg/"/>
+            <izvestaj:link izvestaj:identifikator="http://lonFptkV/"/>
+            <izvestaj:link izvestaj:identifikator="http://UtmWMvaB/"/>
+        </izvestaj:terapija>
+        <izvestaj:datum>2019-05-01</izvestaj:datum>
+        <izvestaj:osigurano_lice izvestaj:identifikator="http://tGMurVjz/"/>
+        <izvestaj:lekar izvestaj:identifikator="http://www.zis.rs/lekari/id4"/>
+    </izvestaj:izvestaj>
+    <izvestaj:izvestaj oznaka="il1" id="http://www.zis.rs/izvestaji/id2" aktivan="true">
+        <izvestaj:dijagnoza>eCU</izvestaj:dijagnoza>
+        <izvestaj:anamneza>
+            <izvestaj:link izvestaj:identifikator="http://QYGFeydI/"/>
+            <izvestaj:link izvestaj:identifikator="http://SMVivejl/"/>
+            <izvestaj:link izvestaj:identifikator="http://rBncIesh/"/>
+        </izvestaj:anamneza>
+        <izvestaj:terapija>
+            <izvestaj:link izvestaj:identifikator="http://ORqlhVFv/"/>
+            <izvestaj:link izvestaj:identifikator="http://EZuBcofb/"/>
+            <izvestaj:link izvestaj:identifikator="http://jhjihrOD/"/>
+        </izvestaj:terapija>
+        <izvestaj:datum>2020-05-22</izvestaj:datum>
+        <izvestaj:osigurano_lice izvestaj:identifikator="http://DPINumKD/"/>
+        <izvestaj:lekar izvestaj:identifikator="http://www.zis.rs/lekari/id2/"/>
+    </izvestaj:izvestaj>
+    <izvestaj:izvestaj oznaka="il1" id="http://www.zis.rs/izvestaji/id3" aktivan="true">
+        <izvestaj:dijagnoza>XGAqUCpXrEnYbsQgB7yoNXJY-</izvestaj:dijagnoza>
+        <izvestaj:anamneza>
+            <izvestaj:link izvestaj:identifikator="http://vOSRYaoB/"/>
+            <izvestaj:link izvestaj:identifikator="http://FZaLFLIm/"/>
+            <izvestaj:link izvestaj:identifikator="http://eSYUSdTx/"/>
+        </izvestaj:anamneza>
+        <izvestaj:terapija>
+            <izvestaj:link izvestaj:identifikator="http://IbpJCHgi/"/>
+            <izvestaj:link izvestaj:identifikator="http://lGRTCJWl/"/>
+            <izvestaj:link izvestaj:identifikator="http://yqLCdfsL/"/>
+        </izvestaj:terapija>
+        <izvestaj:datum>2020-08-20</izvestaj:datum>
+        <izvestaj:osigurano_lice izvestaj:identifikator="http://IBeVoMtj/"/>
+        <izvestaj:lekar izvestaj:identifikator="http://www.zis.rs/lekari/id6"/>
+    </izvestaj:izvestaj>
+</izvestaji:izvestaji>

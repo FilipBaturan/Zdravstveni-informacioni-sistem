@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.zis.rs/seme/stanje_pregleda"
-    xmlns:stp="http://www.zis.rs/seme/stanje_pregleda">
+           targetNamespace="http://www.zis.rs/seme/stanje_pregleda"
+>
 
     <xs:element name="stanje_pregleda">
         <xs:complexType>

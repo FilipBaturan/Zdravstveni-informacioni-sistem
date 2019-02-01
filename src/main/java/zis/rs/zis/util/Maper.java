@@ -6,7 +6,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import zis.rs.zis.domain.enums.TipLekara;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.bind.JAXBContext;
@@ -107,8 +106,8 @@ public class Maper {
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");
         this.uriPrefiks.put("medicinska_sestra", "http://www.zis.rs/medicinska_sestra/id");
         this.uriPrefiks.put("pacijent", "http://www.zis.rs/pacijenti/id");
-        this.uriPrefiks.put("pregled", "http://www.zis.rs/pregled/id");
-        this.uriPrefiks.put("izvestaj", "http://www.zis.rs/izvestaj/id");
+        this.uriPrefiks.put("pregled", "http://www.zis.rs/pregledi/id");
+        this.uriPrefiks.put("izvestaj", "http://www.zis.rs/izvestaji/id");
 
     }
 
@@ -130,7 +129,6 @@ public class Maper {
     }
 
     /**
-     *
      * @param cvorovi od kojih je potrebno napraviti xml dokument
      * @return xml dokument
      * @throws Exception
@@ -190,6 +188,41 @@ public class Maper {
     }
 
     /**
+     * @param element koji treba konvertovati u string
+     * @return string reprezentacija elementa
+     */
+    public String konvertujUString(Node element) {
+        DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
+        fabrika.setNamespaceAware(true);
+        try {
+            Document dok = fabrika.newDocumentBuilder().newDocument();
+            Node importovan = dok.importNode(element, true);
+            dok.appendChild(importovan);
+
+            StringWriter w = new StringWriter();
+
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.transform(new DOMSource(dok), new StreamResult(w));
+
+            String sadrzaj = w.toString();
+            if (sadrzaj.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
+                sadrzaj = sadrzaj.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
+            }
+            return sadrzaj;
+
+        } catch (ParserConfigurationException e) {
+            throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
+        } catch (TransformerException e) {
+            throw new TransformacioniIzuzetak("Greska prilikom obrade podataka!");
+        }
+    }
+
+    /**
      * @param akcija koju je potrebno procesirati
      * @return id pacijenta
      */
@@ -198,9 +231,39 @@ public class Maper {
                 getChildNodes().item(2).getAttributes().item(0).getNodeValue();
     }
 
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return tip lekara kod koga se zakazuje pregled
+     */
     public String dobaviTipLekaraIzPregleda(Akcija akcija) {
         return this.konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild()
                 .getAttributes().getNamedItem("tip").getNodeValue();
+    }
+
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return id pacijenta
+     */
+    public String dobaviPacijentaIzIzvestaja(Akcija akcija) {
+        return this.konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes().item(4)
+                .getAttributes().item(0).getNodeValue();
+    }
+
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return id pacijenta
+     */
+    public String dobaviPacijentaIzDokumentacije(Akcija akcija) {
+        NodeList lista = konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals("izvestaj")) {
+                return element.getChildNodes().item(4)
+                        .getAttributes().item(0).getNodeValue();
+            }
+        }
+        throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
     }
 
     public String dobaviKolekciju() {

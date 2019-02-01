@@ -36,8 +36,18 @@ public class Proces {
     }
 
     public String obradiZahtev(Akcija akcija) {
-        return this.procesi.getOrDefault(maper.dobaviPacijentaIzPregleda(akcija), zakazivanjePregleda)
-                .obradiZahtev(akcija);
+        try {
+            return this.procesi.getOrDefault(maper.dobaviPacijentaIzPregleda(akcija), zakazivanjePregleda)
+                    .obradiZahtev(akcija);
+        } catch (NullPointerException e) {
+            try {
+                return this.procesi.getOrDefault(maper.dobaviPacijentaIzIzvestaja(akcija), zakazivanjePregleda)
+                        .obradiZahtev(akcija);
+            } catch (NullPointerException ex) {
+                return this.procesi.getOrDefault(maper.dobaviPacijentaIzDokumentacije(akcija), zakazivanjePregleda)
+                        .obradiZahtev(akcija);
+            }
+        }
     }
 
     public Map<String, Stanje> getProcesi() {

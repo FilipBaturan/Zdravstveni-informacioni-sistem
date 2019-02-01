@@ -9,9 +9,7 @@
                 <xs:element name="dijagnoza">
                     <xs:complexType>
                         <xs:simpleContent>
-                            <xs:extension base="xs:string">
-                                <xs:anyAttribute processContents="lax"/>
-                            </xs:extension>
+                            <xs:extension base="xs:string"></xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
@@ -24,7 +22,6 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="terapija">
@@ -36,7 +33,6 @@
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
-                        <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="datum">

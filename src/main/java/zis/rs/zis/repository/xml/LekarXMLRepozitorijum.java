@@ -90,7 +90,7 @@ public class LekarXMLRepozitorijum extends IOStrimer {
             String lekari = sb.toString();
             konekcija.oslobodiResurse(resursi);
             if (lekari.isEmpty()) {
-                throw new ValidacioniIzuzetak("Ne postoji ni jedan lekar u bazi!");
+                throw new ValidacioniIzuzetak("Trazeni lekar id: " + id + " ne postoji!");
             } else {
                 return lekari;
             }
