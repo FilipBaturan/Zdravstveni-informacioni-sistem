@@ -20,6 +20,7 @@ declare namespace korisnik = "http://www.zis.rs/seme/korisnik";
         </korisnik:korisnik>
         {$lekar/lkr:tip}
         {$lekar/lkr:oblast_zastite}
+        {$lekar/lkr:broj_pacijenata}
     </lkr:lekar>
 }
 </lekari>

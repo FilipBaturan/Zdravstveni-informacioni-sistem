@@ -322,6 +322,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             ((Element) dok.getFirstChild()).setAttribute("id", uriPrefiks + sekvencer.dobaviId());
             ((Element) dok.getFirstChild().getFirstChild())
                     .setAttribute(prefiks + ":identifikator", maper.dobaviURI("korisnik") + korisnikId);
+            dok.getFirstChild().getChildNodes().item(3).setTextContent("0");
             this.dodajMetaPodatkeOsobi(dok, tipKorisnika);
 
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
@@ -386,6 +387,11 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
                         case "oblast_zastite":
                             element.setAttribute("property", "voc:oblastZastite");
                             element.setAttribute("datatype", "xs:string");
+                            ++count;
+                            break;
+                        case "broj_pacijenata":
+                            element.setAttribute("property", "voc:brojPacijenata");
+                            element.setAttribute("datatype", "xs:integer");
                             ++count;
                             break;
                     }
