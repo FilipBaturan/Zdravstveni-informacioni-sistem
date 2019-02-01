@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<izvestaji:izvestaji 
- xmlns:izvestaji="http://zis.rs/zis/seme/izvestaji"
- xmlns:izvestaj="http://zis.rs/zis/seme/izvestaj">
+<izvestaji:izvestaji xmlns:izvestaji="http://www.zis.rs/seme/izvestaji" xmlns:izvestaj="http://www.zis.rs/seme/izvestaj">
     <izvestaj:izvestaj oznaka="il1" id="http://www.zis.rs/izvestaji/id1" aktivan="true">
         <izvestaj:dijagnoza>atzzFwGZ4</izvestaj:dijagnoza>
         <izvestaj:anamneza>
@@ -35,9 +32,9 @@
         <izvestaj:lekar izvestaj:identifikator="http://www.zis.rs/lekari/id2/"/>
     </izvestaj:izvestaj>
     <izvestaj:izvestaj oznaka="il1" id="http://www.zis.rs/izvestaji/id3" aktivan="true">
-        <izvestaj:dijagnoza>XGAqUCpXrEnYbsQgB7yoNXJY-</izvestaj:dijagnoza>
+        <izvestaj:dijagnoza>dijagnoza</izvestaj:dijagnoza>
         <izvestaj:anamneza>
-            <izvestaj:link izvestaj:identifikator="http://vOSRYaoB/"/>
+            <izvestaj:link izvestaj:identifikator="Smislen link"/>
             <izvestaj:link izvestaj:identifikator="http://FZaLFLIm/"/>
             <izvestaj:link izvestaj:identifikator="http://eSYUSdTx/"/>
         </izvestaj:anamneza>
@@ -50,4 +47,5 @@
         <izvestaj:osigurano_lice izvestaj:identifikator="http://IBeVoMtj/"/>
         <izvestaj:lekar izvestaj:identifikator="http://www.zis.rs/lekari/id6"/>
     </izvestaj:izvestaj>
+    
 </izvestaji:izvestaji>
