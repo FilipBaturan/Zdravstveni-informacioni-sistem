@@ -117,103 +117,144 @@ public class IzvestajXMLRepozitorijum extends IOStrimer{
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
+
+    public String obrisi(Akcija akcija) {
+
+        String id = akcija.getKontekst();
+        String izvestaj = pretragaPoId(id);
+        String prefiks = maper.konvertujUDokument(izvestaj).getFirstChild().getNodeName().split(":")[0];
+
+        String putanjaDoIzvestaja = pronadjiIzvestaj(id);
+        ResursiBaze resursi = null;
+
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("brisanje")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), putanjaDoIzvestaja,
+                    maper.dobaviPrefiks(dokument));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
+            return "Izvestaj uspesno obrisan!";
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
 //
-//        public String obrisi(Akcija akcija) {
-//
-//            String id = akcija.getKontekst();
-//            String pregled = pretragaPoId(id);
-//            String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
-//
-//            String putanjaDoPregleda = pronadjiPregled(id);
-//            ResursiBaze resursi = null;
-//
-//            try {
-//                resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("pregledi"));
-//                String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("brisanje")).getPath();
-//                XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
-//                        .getService("XUpdateQueryService", "1.0");
-//                xupdateService.setProperty("indent", "yes");
-//                String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-//                        prefiks, maper.dobaviPrefiks("pregled"), putanjaDoPregleda,
-//                        maper.dobaviPrefiks("pregledi"));
-//                logger.info(sadrzajUpita);
-//                long mods = xupdateService.updateResource(maper.dobaviDokument("pregledi"), sadrzajUpita);
-//                logger.info(mods + " izmene procesirane.");
-//
-//                konekcija.oslobodiResurse(resursi);
-//                if (mods == 0) {
-//                    throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
-//                }
-//                return "Pregled uspesno obrisan!";
-//            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-//                    XMLDBException | IOException e) {
-//                konekcija.oslobodiResurse(resursi);
-//                throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-//            }
-//        }
-//
-//        public String izmeni(Akcija akcija) {
-//
-//            String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
-//            Node cvor = maper.konvertujUDokument(pregled).getFirstChild();
-//            Element el = (Element) cvor;
-//            String id = el.getAttribute("id");
-//
-//
-//            String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
-//            NodeList cvoroviPregleda = maper.konvertujUDokument(pregled).getFirstChild().getChildNodes();
-//
-//            String sadrzajPregleda = null;
-//            try {
-//                sadrzajPregleda = kreirajXmlOdCvorova(cvoroviPregleda);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//            ResursiBaze resursi = null;
-//            try {
-//                resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("pregledi"));
-//                String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("izmena")).getPath();
-//                XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
-//                        .getService("XUpdateQueryService", "1.0");
-//                xupdateService.setProperty("indent", "yes");
-//
-//                String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-//                        prefiks, maper.dobaviPrefiks("pregled"), pronadjiPregled(id), sadrzajPregleda,
-//                        maper.dobaviPrefiks("pregledi"));
-//                logger.info(sadrzajUpita);
-//                long mods = xupdateService.updateResource(maper.dobaviDokument("pregledi"), sadrzajUpita);
-//                logger.info(mods + " izmene procesirane.");
-//
-//                konekcija.oslobodiResurse(resursi);
-//                return "Uspesno izmenjen pregled!";
-//            } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-//                    XMLDBException | IOException e) {
-//                konekcija.oslobodiResurse(resursi);
-//                throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-//            }
-//        }
+    public String izmeni(Akcija akcija) {
+
+        String izvestaj = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
+        Node cvor = maper.konvertujUDokument(izvestaj).getFirstChild();
+        Element el = (Element) cvor;
+        String id = el.getAttribute("id");
+
+
+        String prefiks = maper.konvertujUDokument(izvestaj).getFirstChild().getNodeName().split(":")[0];
+        NodeList cvoroviIzvestaja = maper.konvertujUDokument(izvestaj).getFirstChild().getChildNodes();
+
+        String sadrzajIzvestaja = null;
+        try {
+            sadrzajIzvestaja = maper.kreirajXmlOdCvorova(cvoroviIzvestaja);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("izmena")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), pronadjiIzvestaj(id), sadrzajIzvestaja,
+                    maper.dobaviPrefiks(dokument));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            return "Uspesno izmenjen izvestaj!";
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
 
 
 
     /**
-     * @param pregled kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
+     * @param izvestaj kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
      * @return izmenjena reprezentacija pregleda
      */
-    private String umetniId(Node pregled, Long id, String prefiks) {
+    private String umetniId(Node izvestaj, Long id, String prefiks) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
         try {
             Document dok = fabrika.newDocumentBuilder().newDocument();
-            Node importovan = dok.importNode(pregled, true);
+            Node importovan = dok.importNode(izvestaj, true);
             dok.appendChild(importovan);
 
             this.proveriOgranicenjaPregleda(dok, prefiks);
-            ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI("pregled") + id);
+            ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI("izvestaj") + id);
 
             return maper.konvertujUString(dok);
         } catch (ParserConfigurationException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (ValidacioniIzuzetak e) {
             throw new ValidacioniIzuzetak(e.getMessage());
+        }
+    }
+
+    /**
+     * @param id trazenog pregleda
+     * @return xpath putanju do pronadjenog pregleda
+     */
+    private String pronadjiIzvestaj(String id) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjePutanje")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
+                    .getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    maper.dobaviKolekciju() + maper.dobaviDokument(dokument), id);
+            logger.info(sadrzajUpita);
+            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
+            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
+            ResourceIterator i = rezultat.getIterator();
+            Resource res = null;
+            String rez;
+
+            try {
+                res = i.nextResource();
+                rez = (String) res.getContent();
+            } finally {
+                if (res != null)
+                    ((EXistResource) res).freeResources();
+            }
+
+            konekcija.oslobodiResurse(resursi);
+            if (rez.equals("/")) {
+                throw new ValidacioniIzuzetak("Trazeni izvestaj ne postoji!");
+            }
+            return rez;
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | XMLDBException |
+                IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 

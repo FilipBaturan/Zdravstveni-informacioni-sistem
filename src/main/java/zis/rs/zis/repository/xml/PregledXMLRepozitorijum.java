@@ -167,7 +167,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
 
         String sadrzajPregleda = null;
         try {
-            sadrzajPregleda = kreirajXmlOdCvorova(cvoroviPregleda);
+            sadrzajPregleda = maper.kreirajXmlOdCvorova(cvoroviPregleda);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -262,19 +262,6 @@ public class PregledXMLRepozitorijum extends IOStrimer {
         }
     }
 
-
-    private String kreirajXmlOdCvorova(NodeList cvorovi) throws Exception {
-        StringWriter buf = new StringWriter();
-        for (int i = 0; i < cvorovi.getLength(); i++) {
-            Node elem = cvorovi.item(i);//Your Node
-
-            Transformer xform = TransformerFactory.newInstance().newTransformer();
-            xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-            xform.setOutputProperty(OutputKeys.INDENT, "yes");
-            xform.transform(new DOMSource(elem), new StreamResult(buf));
-        }
-        return buf.toString();
-    }
 
     public String printXmlDocument(Document document) {
         DOMImplementationLS domImplementationLS =

@@ -2,6 +2,8 @@ package zis.rs.zis.util;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import zis.rs.zis.domain.enums.TipLekara;
@@ -125,6 +127,25 @@ public class Maper {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new TransformacioniIzuzetak("Greska prilikom obrade podataka!");
         }
+    }
+
+    /**
+     *
+     * @param cvorovi od kojih je potrebno napraviti xml dokument
+     * @return xml dokument
+     * @throws Exception
+     */
+    public String kreirajXmlOdCvorova(NodeList cvorovi) throws Exception {
+        StringWriter buf = new StringWriter();
+        for (int i = 0; i < cvorovi.getLength(); i++) {
+            Node elem = cvorovi.item(i);//Your Node
+
+            Transformer xform = TransformerFactory.newInstance().newTransformer();
+            xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            xform.setOutputProperty(OutputKeys.INDENT, "yes");
+            xform.transform(new DOMSource(elem), new StreamResult(buf));
+        }
+        return buf.toString();
     }
 
     /**
