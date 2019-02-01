@@ -187,7 +187,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
-            return "Uspesno zakazan pregled!";
+            return "Uspesno izmenjen pregled!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);

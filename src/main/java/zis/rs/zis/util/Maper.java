@@ -53,6 +53,7 @@ public class Maper {
         this.xmlBaza.put("pacijenti", "pacijenti.xml");
         this.xmlBaza.put("pregledi", "pregledi.xml");
         this.xmlBaza.put("stanja_pregleda", "stanja_pregleda.xml");
+        this.xmlBaza.put("izvestaji", "izvestaji.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
         this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
@@ -68,6 +69,8 @@ public class Maper {
                 "classpath:templates/xquery/pregledi/proveraJedinstvenihPoljaPregleda.xq");
         this.xmlUpiti.put("dobavljanjePutanjeStanja",
                 "classpath:templates/xquery/azuriranje/dobavljanjePutanjeStanjaPacijenta.xq");
+        this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
+
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
         this.xmlSeme.put("korisnik", "classpath:static/seme/korisnik.xsd");
@@ -75,6 +78,7 @@ public class Maper {
         this.xmlSeme.put("medicinska_sestra", "classpath:static/seme/medicinska_sestra.xsd");
         this.xmlSeme.put("zdravstveni_karton", "classpath:static/seme/zdravstveni_karton.xsd");
         this.xmlSeme.put("pregled", "classpath:static/seme/pregled.xsd");
+        this.xmlSeme.put("izvestaj", "classpath:static/seme/izvestaj.xsd");
 
         this.xmlPrefiksi.put("korisnik", "http://www.zis.rs/seme/korisnik");
         this.xmlPrefiksi.put("korisnici", "xmlns:ko=\"http://www.zis.rs/seme/korisnici\"");
@@ -87,18 +91,22 @@ public class Maper {
         this.xmlPrefiksi.put("pregledi", "xmlns:pr =\"http://www.zis.rs/seme/pregledi\"");
         this.xmlPrefiksi.put("stanje_pregleda", "http://www.zis.rs/seme/stanje_pregleda");
         this.xmlPrefiksi.put("stanja_pregleda", "xmlns:sp=\"http://www.zis.rs/seme/stanja_pregleda\"");
+        this.xmlPrefiksi.put("izvestaj", "http://www.zis.rs/seme/izvestaj");
+        this.xmlPrefiksi.put("izvestaji", "xmlns:izvestaji =\"http://www.zis.rs/seme/izvestaji\"");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
         this.xmlPutanje.put("medicinske_sestre", "/medicinske_sestre:medicinske_sestre");
         this.xmlPutanje.put("pregledi", "/pr:pregledi");
         this.xmlPutanje.put("stanja_pregleda", "/sp:stanja_pregleda");
+        this.xmlPutanje.put("izvestaji", "/izvestaji:izvestaji");
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");
         this.uriPrefiks.put("medicinska_sestra", "http://www.zis.rs/medicinska_sestra/id");
         this.uriPrefiks.put("pacijent", "http://www.zis.rs/pacijenti/id");
         this.uriPrefiks.put("pregled", "http://www.zis.rs/pregled/id");
+        this.uriPrefiks.put("izvestaj", "http://www.zis.rs/izvestaj/id");
 
     }
 
