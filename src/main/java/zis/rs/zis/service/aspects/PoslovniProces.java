@@ -7,21 +7,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xmldb.api.base.XMLDBException;
-import org.xmldb.api.modules.XUpdateQueryService;
+import org.w3c.dom.NodeList;
 import zis.rs.zis.domain.enums.*;
 import zis.rs.zis.repository.xml.StanjaPregledaXMLRepozitorijum;
 import zis.rs.zis.service.states.Proces;
-import zis.rs.zis.util.*;
+import zis.rs.zis.util.IOStrimer;
+import zis.rs.zis.util.Maper;
+import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.time.LocalDateTime;
 
 @Aspect
 @Configuration
@@ -90,61 +84,97 @@ public class PoslovniProces extends IOStrimer {
      */
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..)) && args(akcija,..)")
     public void nakonKreiranjaPregleda(Akcija akcija) {
-        stanjaRepozitorijum.dodajNoviProces(akcija);
-        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getPrihvatanjeTermina());
+        String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
+        if (proces.getProcesi().containsKey(pacijent)) {
+            stanjaRepozitorijum.izmeniProces(Stanja.CEKANJE.toString(), pacijent);
+        } else {
+            stanjaRepozitorijum.dodajNoviProces(akcija);
+        }
+        proces.getProcesi().put(pacijent, proces.getPrihvatanjeTermina());
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.izmenaTermina(..)) && args(akcija,..)")
     public void nakonIzmeneTermina(Akcija akcija) {
-        stanjaRepozitorijum.izmeniProces(akcija, Stanja.IZMENJEN_TERMIN.toString());
-        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getIzmenjenTermin());
+        String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
+        stanjaRepozitorijum.izmeniProces(Stanja.IZMENJEN_TERMIN.toString(), pacijent);
+        proces.getProcesi().put(pacijent, proces.getIzmenjenTermin());
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.odbijanjeTermina(..)) && args(akcija,..)")
     public void nakonOdbijanjaTermina(Akcija akcija) {
-        stanjaRepozitorijum.izmeniProces(akcija, Stanja.KRAJ.toString());
-        proces.getProcesi().remove(maper.dobaviPacijentaIzPregleda(akcija));
+        String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
+        stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(), pacijent);
+        proces.getProcesi().remove(pacijent);
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.prihvatanjeTermina(..)) && args(akcija,..)")
     public void nakonPrihvatanjaTermina(Akcija akcija) {
         String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
+        String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
         if (tipLekara.equals(TipLekara.OPSTA_PRAKSA.toString())) {
-            stanjaRepozitorijum.izmeniProces(akcija, Stanja.OPSTI_PREGLED.toString());
-            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getOpstiPregled());
+            stanjaRepozitorijum.izmeniProces(Stanja.OPSTI_PREGLED.toString(), pacijent);
+            proces.getProcesi().put(pacijent, proces.getOpstiPregled());
         } else {
-            stanjaRepozitorijum.izmeniProces(akcija, Stanja.SPECIJALISTICKI_PREGLED.toString());
-            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getSpecijalistickiPregled());
+            stanjaRepozitorijum.izmeniProces(Stanja.SPECIJALISTICKI_PREGLED.toString(), pacijent);
+            proces.getProcesi().put(pacijent, proces.getSpecijalistickiPregled());
         }
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.odbijanjeTermina(..)) && args(akcija,..)")
     public void nakonOdbijanjaIzmenjenogTermina(Akcija akcija) {
-        stanjaRepozitorijum.izmeniProces(akcija, Stanja.KRAJ.toString());
-        proces.getProcesi().remove(maper.dobaviPacijentaIzPregleda(akcija));
+        String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
+        stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(), pacijent);
+        proces.getProcesi().remove(pacijent);
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.prihvatanjeTermina(..)) && args(akcija,..)")
     public void nakonPrihvatanjaIzmenjenogTermina(Akcija akcija) {
         String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
+        String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
         if (tipLekara.equals(TipLekara.OPSTA_PRAKSA.toString())) {
-            stanjaRepozitorijum.izmeniProces(akcija, Stanja.OPSTI_PREGLED.toString());
-            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getOpstiPregled());
+            stanjaRepozitorijum.izmeniProces(Stanja.OPSTI_PREGLED.toString(), pacijent);
+            proces.getProcesi().put(pacijent, proces.getOpstiPregled());
         } else {
-            stanjaRepozitorijum.izmeniProces(akcija, Stanja.SPECIJALISTICKI_PREGLED.toString());
-            proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getSpecijalistickiPregled());
+            stanjaRepozitorijum.izmeniProces(Stanja.SPECIJALISTICKI_PREGLED.toString(), pacijent);
+            proces.getProcesi().put(pacijent, proces.getSpecijalistickiPregled());
         }
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.SpecijalistickiPregled.kreiranjeIzvestaja(..)) && args(akcija,..)")
     public void nakonSpecijalistickogPregleda(Akcija akcija) {
-        stanjaRepozitorijum.izmeniProces(akcija, Stanja.ZAKAZIVANJE_TERMINA.toString());
-        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getZakazivanjePregleda());
+        String pacijent = maper.dobaviPacijentaIzIzvestaja(akcija);
+        stanjaRepozitorijum.izmeniProces(Stanja.ZAKAZIVANJE_TERMINA.toString(), pacijent);
+        proces.getProcesi().put(pacijent, proces.getZakazivanjePregleda());
     }
 
-//    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.SpecijalistickiPregled.kreiranjeIzvestaja(..)) && args(akcija,..)")
-//    public void nakonOpstegPregleda(Akcija akcija) {
-//        stanjaRepozitorijum.izmeniProces(akcija, Stanja.ZAKAZIVANJE_TERMINA.toString());
-//        proces.getProcesi().put(maper.dobaviPacijentaIzPregleda(akcija), proces.getZakazivanjePregleda());
-//    }
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.OpstiPregled.kreiranjeDokumentacije(..)) && args(akcija,..)")
+    public void nakonOpstegPregleda(Akcija akcija) {
+        Document dok = maper.konvertujUDokument(akcija);
+        boolean izvestaj = false, uput = false;
+        NodeList lista = dok.getFirstChild().getLastChild().getFirstChild().getChildNodes();
+        for (int i = 0; i < lista.getLength(); i++) {
+            try {
+                switch (lista.item(i).getLocalName()) {
+                    case "izvestaj":
+                        izvestaj = true;
+                        break;
+                    case "uput":
+                        uput = true;
+                        break;
+                }
+            } catch (NullPointerException e) {
+                break;
+            }
+        }
+
+        if (izvestaj && uput) {
+            stanjaRepozitorijum.izmeniProces(Stanja.ZAKAZIVANJE_TERMINA.toString(),
+                    maper.dobaviPacijentaIzDokumentacije(akcija));
+            proces.getProcesi().put(maper.dobaviPacijentaIzDokumentacije(akcija), proces.getZakazivanjePregleda());
+        } else {
+            stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(),
+                    maper.dobaviPacijentaIzDokumentacije(akcija));
+            proces.getProcesi().remove(maper.dobaviPacijentaIzDokumentacije(akcija));
+        }
+    }
 }

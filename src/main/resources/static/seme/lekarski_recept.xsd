@@ -3,7 +3,7 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/lekarski_recept"
     xmlns:lr1="http://zis.rs/zis/seme/lekarski_recept">
-    <xs:element name="lekarski_recept">
+    <xs:element name="recept">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="naziv_zdrastvene_ustanove" type="xs:string"/>

@@ -2,6 +2,8 @@ package zis.rs.zis.util;
 
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import zis.rs.zis.domain.enums.TipLekara;
@@ -169,9 +171,39 @@ public class Maper {
                 getChildNodes().item(2).getAttributes().item(0).getNodeValue();
     }
 
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return tip lekara kod koga se zakazuje pregled
+     */
     public String dobaviTipLekaraIzPregleda(Akcija akcija) {
         return this.konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild()
                 .getAttributes().getNamedItem("tip").getNodeValue();
+    }
+
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return id pacijenta
+     */
+    public String dobaviPacijentaIzIzvestaja(Akcija akcija) {
+        return this.konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes().item(4)
+                .getAttributes().item(0).getNodeValue();
+    }
+
+    /**
+     * @param akcija koju je potrebno procesirati
+     * @return id pacijenta
+     */
+    public String dobaviPacijentaIzDokumentacije(Akcija akcija) {
+        NodeList lista = konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals("izvestaj")) {
+                return element.getChildNodes().item(4)
+                        .getAttributes().item(0).getNodeValue();
+            }
+        }
+        throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
     }
 
     public String dobaviKolekciju() {

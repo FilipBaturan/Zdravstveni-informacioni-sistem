@@ -59,7 +59,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
         }
     }
 
-    public void izmeniProces(Akcija akcija, String stanje) {
+    public void izmeniProces(String stanje, String pacijent) {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
@@ -69,7 +69,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
                     .getService("XUpdateQueryService", "1.0");
             xupdateService.setProperty("indent", "yes");
 
-            String putanja = this.pronadjiPutanjuProcesa(maper.dobaviPacijentaIzPregleda(akcija));
+            String putanja = this.pronadjiPutanjuProcesa(pacijent);
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     "stp", maper.dobaviPrefiks("stanje_pregleda") , putanja + "/@datum",
                     LocalDateTime.now().toString(), maper.dobaviPrefiks("stanja_pregleda"));

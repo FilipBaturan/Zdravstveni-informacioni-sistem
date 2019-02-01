@@ -12,7 +12,7 @@ public class OpstiPregled extends Stanje {
 
     @Override
     public String obradiZahtev(Akcija akcija) {
-        return opstiPregled.kreirajDokumentaciju(akcija);
+        return opstiPregled.kreiranjeDokumentacije(akcija);
     }
 
     /**
@@ -22,7 +22,7 @@ public class OpstiPregled extends Stanje {
      * @param akcija koju treba izvrsiti
      * @return rezultat akcije
      */
-    public String kreirajDokumentaciju(Akcija akcija) {
+    public String kreiranjeDokumentacije(Akcija akcija) {
         return null;
     }
 }

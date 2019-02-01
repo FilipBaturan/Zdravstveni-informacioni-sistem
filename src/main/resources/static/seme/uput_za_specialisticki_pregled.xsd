@@ -3,7 +3,7 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
     vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uput_za_specialisticki_pregled"
     xmlns:oz2="http://zis.rs/zis/seme/uput_za_specialisticki_pregled">
-    <xs:element name="uput_za_specialisticki_pregled">
+    <xs:element name="uput">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="zdrastvene_ustanove">
