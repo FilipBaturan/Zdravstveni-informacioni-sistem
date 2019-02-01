@@ -1,4 +1,5 @@
-<lekari:lekari xmlns:lkr="http://www.zis.rs/seme/lekar" xmlns:lekari="http://www.zis.rs/seme/lekari" xmlns:voc="http://www.zis.rs/rdf/voc#" xmlns:xs="http://www.w3.org/2001/XMLSchema#">
+<lekari:lekari xmlns:lkr="http://www.zis.rs/seme/lekar" xmlns:lekari="http://www.zis.rs/seme/lekari"
+               xmlns:voc="http://www.zis.rs/rdf/voc#" xmlns:xs="http://www.w3.org/2001/XMLSchema#">
     <lkr:lekar about="http://www.zis.rs/lekari/id2" id="http://www.zis.rs/lekari/id2">
         <lkr:korisnik lkr:identifikator="http://www.zis.rs/korisnici/id1"/>
         <lkr:tip property="voc:tipLekara" datatype="xs:string">opsta_praksa</lkr:tip>

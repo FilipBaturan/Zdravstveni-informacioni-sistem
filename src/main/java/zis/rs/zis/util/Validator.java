@@ -5,10 +5,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -54,6 +57,46 @@ public class Validator {
             }
             return sadrzaj;
         } catch (TransformerException | IOException e) {
+            throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
+        } catch (SAXException e) {
+            throw new ValidacioniIzuzetak("Nevalidni prosledjeni podaci!");
+        }
+    }
+
+    /**
+     * @param sadrzaj koji treba validirati
+     * @param sema    koja vrsi validaciju
+     * @return sadrzaj
+     */
+    public String procesirajAkciju(Node sadrzaj, String sema) {
+        DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
+        fabrika.setNamespaceAware(true);
+        try {
+            Document dok = fabrika.newDocumentBuilder().newDocument();
+            Node importovan = dok.importNode(sadrzaj, true);
+            dok.appendChild(importovan);
+
+            SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
+                    .newSchema(ResourceUtils.getFile(sema))
+                    .newValidator().validate(new DOMSource(sadrzaj));
+
+            StringWriter w = new StringWriter();
+
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.transform(new DOMSource(sadrzaj), new StreamResult(w));
+
+            String rezultat = w.toString();
+            if (rezultat.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
+                rezultat = rezultat.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
+            }
+            return rezultat;
+        } catch (TransformerException | IOException | ParserConfigurationException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (SAXException e) {
             throw new ValidacioniIzuzetak("Nevalidni prosledjeni podaci!");

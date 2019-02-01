@@ -71,7 +71,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
 
             String putanja = this.pronadjiPutanjuProcesa(pacijent);
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    "stp", maper.dobaviPrefiks("stanje_pregleda") , putanja + "/@datum",
+                    "stp", maper.dobaviPrefiks("stanje_pregleda"), putanja + "/@datum",
                     LocalDateTime.now().toString(), maper.dobaviPrefiks("stanja_pregleda"));
             logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument("stanja_pregleda"), sadrzajUpita);
@@ -81,7 +81,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
             }
 
             sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    "stp", maper.dobaviPrefiks("stanje_pregleda") , putanja + "/@stanje",
+                    "stp", maper.dobaviPrefiks("stanje_pregleda"), putanja + "/@stanje",
                     stanje, maper.dobaviPrefiks("stanja_pregleda"));
             logger.info(sadrzajUpita);
             mods = xupdateService.updateResource(maper.dobaviDokument("stanja_pregleda"), sadrzajUpita);

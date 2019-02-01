@@ -3,8 +3,6 @@ package zis.rs.zis.service.aspects;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.w3c.dom.Document;
@@ -29,24 +27,6 @@ public class PoslovniProces extends IOStrimer {
 
     @Autowired
     private Proces proces;
-
-    private static final Logger logger = LoggerFactory.getLogger(PoslovniProces.class);
-
-
-//    @AfterThrowing(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))",
-//            throwing = "error")
-//    public void afterThrowingAdvice(JoinPoint jp, Throwable error){
-//        System.out.println("Method Signature: "  + jp.getSignature());
-//        System.out.println("Exception: "+error);
-//    }
-
-//    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.ZakazivanjePregleda.kreirajPregled(..))",
-//            returning = "retVal")
-//    public void afterReturningAdvice(JoinPoint jp, Object retVal){
-//        logger.info("Method Signature: "  + jp.getSignature());
-//        logger.info("Returning:" + retVal.toString());
-//    }
-
 
     @Before("execution(* zis.rs.zis.service.states.PrihvatanjeTermina.obradiZahtev(..)) && args(akcija,..)")
     public void prePrihvatanjaTermina(Akcija akcija) {

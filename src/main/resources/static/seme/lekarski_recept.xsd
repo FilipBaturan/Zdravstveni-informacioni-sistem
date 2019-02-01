@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/lekarski_recept"
-    xmlns:lr1="http://zis.rs/zis/seme/lekarski_recept">
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/lekarski_recept"
+           xmlns:lr1="http://zis.rs/zis/seme/lekarski_recept">
     <xs:element name="recept">
         <xs:complexType>
             <xs:sequence>
@@ -44,7 +44,7 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="opis" type="xs:string"> </xs:element>
+                <xs:element name="opis" type="xs:string"></xs:element>
                 <xs:element name="propisani_lek">
                     <xs:complexType>
                         <xs:attribute ref="lr1:identifikator" use="required"/>

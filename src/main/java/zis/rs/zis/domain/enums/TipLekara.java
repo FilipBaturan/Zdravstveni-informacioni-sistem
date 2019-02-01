@@ -3,7 +3,8 @@ package zis.rs.zis.domain.enums;
 public enum TipLekara {
 
     OPSTA_PRAKSA("opsta_praksa"),
-    SPECIJALISTA("specijalista"),;
+    SPECIJALISTA("specijalista"),
+    ;
 
     private final String tekst;
 

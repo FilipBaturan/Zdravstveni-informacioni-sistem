@@ -6,7 +6,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import zis.rs.zis.domain.enums.TipLekara;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.bind.JAXBContext;
@@ -55,6 +54,7 @@ public class Maper {
         this.xmlBaza.put("pacijenti", "pacijenti.xml");
         this.xmlBaza.put("pregledi", "pregledi.xml");
         this.xmlBaza.put("stanja_pregleda", "stanja_pregleda.xml");
+        this.xmlBaza.put("izvestaji", "izvestaji.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
         this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
@@ -70,6 +70,8 @@ public class Maper {
                 "classpath:templates/xquery/pregledi/proveraJedinstvenihPoljaPregleda.xq");
         this.xmlUpiti.put("dobavljanjePutanjeStanja",
                 "classpath:templates/xquery/azuriranje/dobavljanjePutanjeStanjaPacijenta.xq");
+        this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
+
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
         this.xmlSeme.put("korisnik", "classpath:static/seme/korisnik.xsd");
@@ -77,6 +79,7 @@ public class Maper {
         this.xmlSeme.put("medicinska_sestra", "classpath:static/seme/medicinska_sestra.xsd");
         this.xmlSeme.put("zdravstveni_karton", "classpath:static/seme/zdravstveni_karton.xsd");
         this.xmlSeme.put("pregled", "classpath:static/seme/pregled.xsd");
+        this.xmlSeme.put("izvestaj", "classpath:static/seme/izvestaj.xsd");
 
         this.xmlPrefiksi.put("korisnik", "http://www.zis.rs/seme/korisnik");
         this.xmlPrefiksi.put("korisnici", "xmlns:ko=\"http://www.zis.rs/seme/korisnici\"");
@@ -89,18 +92,22 @@ public class Maper {
         this.xmlPrefiksi.put("pregledi", "xmlns:pr =\"http://www.zis.rs/seme/pregledi\"");
         this.xmlPrefiksi.put("stanje_pregleda", "http://www.zis.rs/seme/stanje_pregleda");
         this.xmlPrefiksi.put("stanja_pregleda", "xmlns:sp=\"http://www.zis.rs/seme/stanja_pregleda\"");
+        this.xmlPrefiksi.put("izvestaj", "http://www.zis.rs/seme/izvestaj");
+        this.xmlPrefiksi.put("izvestaji", "xmlns:izvestaji =\"http://www.zis.rs/seme/izvestaji\"");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
         this.xmlPutanje.put("medicinske_sestre", "/medicinske_sestre:medicinske_sestre");
         this.xmlPutanje.put("pregledi", "/pr:pregledi");
         this.xmlPutanje.put("stanja_pregleda", "/sp:stanja_pregleda");
+        this.xmlPutanje.put("izvestaji", "/izvestaji:izvestaji");
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");
         this.uriPrefiks.put("medicinska_sestra", "http://www.zis.rs/medicinska_sestra/id");
         this.uriPrefiks.put("pacijent", "http://www.zis.rs/pacijenti/id");
-        this.uriPrefiks.put("pregled", "http://www.zis.rs/pregled/id");
+        this.uriPrefiks.put("pregled", "http://www.zis.rs/pregledi/id");
+        this.uriPrefiks.put("izvestaj", "http://www.zis.rs/izvestaji/id");
 
     }
 
@@ -119,6 +126,24 @@ public class Maper {
         } catch (ParserConfigurationException | SAXException | IOException e) {
             throw new TransformacioniIzuzetak("Greska prilikom obrade podataka!");
         }
+    }
+
+    /**
+     * @param cvorovi od kojih je potrebno napraviti xml dokument
+     * @return xml dokument
+     * @throws Exception
+     */
+    public String kreirajXmlOdCvorova(NodeList cvorovi) throws Exception {
+        StringWriter buf = new StringWriter();
+        for (int i = 0; i < cvorovi.getLength(); i++) {
+            Node elem = cvorovi.item(i);//Your Node
+
+            Transformer xform = TransformerFactory.newInstance().newTransformer();
+            xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+            xform.setOutputProperty(OutputKeys.INDENT, "yes");
+            xform.transform(new DOMSource(elem), new StreamResult(buf));
+        }
+        return buf.toString();
     }
 
     /**
@@ -157,6 +182,41 @@ public class Maper {
                 sadrzaj = sadrzaj.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
             }
             return sadrzaj;
+        } catch (TransformerException e) {
+            throw new TransformacioniIzuzetak("Greska prilikom obrade podataka!");
+        }
+    }
+
+    /**
+     * @param element koji treba konvertovati u string
+     * @return string reprezentacija elementa
+     */
+    public String konvertujUString(Node element) {
+        DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
+        fabrika.setNamespaceAware(true);
+        try {
+            Document dok = fabrika.newDocumentBuilder().newDocument();
+            Node importovan = dok.importNode(element, true);
+            dok.appendChild(importovan);
+
+            StringWriter w = new StringWriter();
+
+            TransformerFactory tf = TransformerFactory.newInstance();
+            Transformer transformer = tf.newTransformer();
+            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+            transformer.transform(new DOMSource(dok), new StreamResult(w));
+
+            String sadrzaj = w.toString();
+            if (sadrzaj.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
+                sadrzaj = sadrzaj.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
+            }
+            return sadrzaj;
+
+        } catch (ParserConfigurationException e) {
+            throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (TransformerException e) {
             throw new TransformacioniIzuzetak("Greska prilikom obrade podataka!");
         }

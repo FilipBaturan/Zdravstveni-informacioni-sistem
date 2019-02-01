@@ -22,7 +22,10 @@ import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
@@ -123,7 +126,9 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     public String obrisi(Akcija akcija) {
 
         String id = akcija.getKontekst();
-        String pregled = pretragaPoId(id);
+        //String pregled = pretragaPoId(id);
+        String pregled = maper.konvertujUString(maper.konvertujUDokument(akcija).getFirstChild()
+                .getLastChild().getFirstChild());
         String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
 
         String putanjaDoPregleda = pronadjiPregled(id);
@@ -167,7 +172,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
 
         String sadrzajPregleda = null;
         try {
-            sadrzajPregleda = kreirajXmlOdCvorova(cvoroviPregleda);
+            sadrzajPregleda = maper.kreirajXmlOdCvorova(cvoroviPregleda);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,7 +192,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
-            return "Uspesno zakazan pregled!";
+            return "Uspesno izmenjen pregled!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
@@ -238,8 +243,6 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     }
 
 
-
-
     /**
      * @param pregled kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
      * @return izmenjena reprezentacija pregleda
@@ -262,19 +265,6 @@ public class PregledXMLRepozitorijum extends IOStrimer {
         }
     }
 
-
-    private String kreirajXmlOdCvorova(NodeList cvorovi) throws Exception {
-        StringWriter buf = new StringWriter();
-        for (int i = 0; i < cvorovi.getLength(); i++) {
-            Node elem = cvorovi.item(i);//Your Node
-
-            Transformer xform = TransformerFactory.newInstance().newTransformer();
-            xform.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-            xform.setOutputProperty(OutputKeys.INDENT, "yes");
-            xform.transform(new DOMSource(elem), new StreamResult(buf));
-        }
-        return buf.toString();
-    }
 
     public String printXmlDocument(Document document) {
         DOMImplementationLS domImplementationLS =
