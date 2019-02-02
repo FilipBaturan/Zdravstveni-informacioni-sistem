@@ -74,6 +74,15 @@ public class Maper {
         this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
         this.xmlUpiti.put("ogranicenjaKartona",
                 "classpath:templates/xquery/zdravstveni_kartoni/proveraJedinstvenostiPoljaKartona.xq");
+        this.xmlUpiti.put("dobavljanjeKartonaPrekoKorisnika",
+                "classpath:templates/xquery/zdravstveni_kartoni/dobavljanjeKartonaPrekoKorisnika.xq");
+        this.xmlUpiti.put("fizickoBrisanje", "classpath:templates/xquery/azuriranje/fizickoBrisanje.xml");
+        this.xmlUpiti.put("pretragaPoIdKartona",
+                "classpath:templates/xquery/zdravstveni_kartoni/pretragaPoIdKartona.xq");
+        this.xmlUpiti.put("pretragaPoIdKorisnika",
+                "classpath:templates/xquery/korisnici/pretragaPoIdKorisnika.xqy");
+        this.xmlUpiti.put("dobavljanjeKorisnikaPrekoKartona",
+                "classpath:templates/xquery/korisnici/dobavljanjeKorisnikaPrekoKartona.xq");
 
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
