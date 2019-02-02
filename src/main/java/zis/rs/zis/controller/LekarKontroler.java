@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.repository.xml.LekarXMLRepozertorijum;
+import zis.rs.zis.repository.xml.LekarXMLRepozitorijum;
+import zis.rs.zis.util.Maper;
 
 import java.util.Calendar;
 
@@ -20,13 +21,14 @@ public class LekarKontroler {
 
     private static final Logger logger = LoggerFactory.getLogger(LekarKontroler.class);
 
-    private static final String URI_PREFIX = "http://www.zis.rs/lekari/";
+    @Autowired
+    private LekarXMLRepozitorijum lekarServis;
 
     @Autowired
-    private LekarXMLRepozertorijum lekarServis;
+    private Maper maper;
 
     /**
-     * GET /rs/zis/lekari
+     * GET /lekari
      *
      * @return sve lekare iz baze
      */
@@ -45,6 +47,6 @@ public class LekarKontroler {
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Traze se lekar sa id={}: {}.", id, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(lekarServis.pretragaPoId(URI_PREFIX + id), HttpStatus.OK);
+        return new ResponseEntity<>(lekarServis.pretragaPoId(maper.dobaviURI("lekar") + id), HttpStatus.OK);
     }
 }

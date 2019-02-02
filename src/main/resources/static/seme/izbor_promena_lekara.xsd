@@ -24,7 +24,6 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="ustanova_proslog_lekara" type="xs:string"/>
                 <xs:element name="prosli_lekar">
                     <xs:complexType>
                         <xs:attribute ref="ipl1:identifikator" use="required"/>

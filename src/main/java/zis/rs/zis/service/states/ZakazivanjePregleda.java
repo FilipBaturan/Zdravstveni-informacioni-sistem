@@ -1,10 +1,23 @@
 package zis.rs.zis.service.states;
 
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import zis.rs.zis.repository.xml.PregledXMLRepozitorijum;
 import zis.rs.zis.util.akcije.Akcija;
 
-@Component
-public class ZakazivanjePregleda {
+@Service
+public class ZakazivanjePregleda extends Stanje {
+
+    @Autowired
+    private ZakazivanjePregleda zakazivanjePregleda;
+
+    @Autowired
+    private PregledXMLRepozitorijum pregledXMLRepozitorijum;
+
+    @Override
+    public String obradiZahtev(Akcija akcija) {
+        return zakazivanjePregleda.kreirajPregled(akcija);
+    }
 
     /**
      * Kreira novi kod termim kod lekara opste prakse
@@ -13,7 +26,7 @@ public class ZakazivanjePregleda {
      * @param akcija koju treba izvrsiti
      * @return poruka o rezultatu akcije
      */
-    public String zakaziPregled(Akcija akcija) {
-        return null;
+    public String kreirajPregled(Akcija akcija) {
+        return pregledXMLRepozitorijum.sacuvaj(akcija);
     }
 }

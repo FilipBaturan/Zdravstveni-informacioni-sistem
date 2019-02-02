@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zis.rs.zis.repository.xml.KorisnikXMLRepozertorijum;
+import zis.rs.zis.repository.xml.KorisnikXMLRepozitorijum;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -29,7 +29,8 @@ public class KorisnikKontroler extends ValidatorKontoler {
     private Validator validator;
 
     @Autowired
-    private KorisnikXMLRepozertorijum korisnikRepozertorijum;
+    private KorisnikXMLRepozitorijum korisnikRepozertorijum;
+
 
     /**
      * POST korisnici/registracija
@@ -37,8 +38,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE,
-            produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> registracija(@RequestBody Akcija akcija) {
         logger.info("Vrsi se registracija korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
@@ -47,12 +47,12 @@ public class KorisnikKontroler extends ValidatorKontoler {
     }
 
     /**
-     * POST korisnici
+     * POST /korisnici
      *
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);

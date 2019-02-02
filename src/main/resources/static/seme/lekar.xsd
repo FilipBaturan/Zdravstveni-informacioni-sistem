@@ -29,6 +29,15 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
+                <xs:element name="broj_pacijenata">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="lekar:broj_pacijenata">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:anyAttribute processContents="lax"/>
@@ -49,6 +58,12 @@
             <xs:enumeration value="deca"/>
             <xs:enumeration value="odrasli"/>
             <xs:enumeration value="zene"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="broj_pacijenata">
+        <xs:restriction base="xs:int">
+            <xs:minInclusive value="0"/>
+            <xs:maxInclusive value="50"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:attribute name="identifikator" type="xs:anyURI"/>

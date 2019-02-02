@@ -26,26 +26,19 @@ import zis.rs.zis.util.akcije.Akcija;
 import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
 import java.io.StringReader;
-import java.io.StringWriter;
 
 
 @Repository
-public class KorisnikXMLRepozertorijum extends IOStrimer {
+public class KorisnikXMLRepozitorijum extends IOStrimer {
 
-    private static final Logger logger = LoggerFactory.getLogger(KorisnikXMLRepozertorijum.class);
+    private static final Logger logger = LoggerFactory.getLogger(KorisnikXMLRepozitorijum.class);
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;
@@ -97,7 +90,7 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
     }
 
     public String[] registruj(Akcija akcija) {
-        Document doc = this.konvertujUDokument(akcija);
+        Document doc = maper.konvertujUDokument(akcija);
         if (doc == null) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         }
@@ -124,6 +117,9 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
             return "Korisnik uspesno obrisan!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
@@ -132,21 +128,6 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
         }
     }
 
-    /**
-     * @param akcija koju treba procesirati
-     * @return sadrzaj akcije
-     */
-    private Document konvertujUDokument(Akcija akcija) {
-        try {
-            Marshaller marshaller = JAXBContext.newInstance(zis.rs.zis.util.akcije.ObjectFactory.class)
-                    .createMarshaller();
-            Document dok = DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-            marshaller.marshal(akcija, dok);
-            return dok;
-        } catch (JAXBException | ParserConfigurationException e) {
-            return null;
-        }
-    }
 
     /**
      * @param dokument sa korisnikom i osobom koju treba registovati
@@ -167,7 +148,6 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
         Long korisnikId = sekvencer.dobaviId();
         String kor = this.validirajKorisnika(korisnik, korisnikId, korisnikPrefiks);
         String osb;
-        //this.izmeniKorisnika(kor, korisnikPrefiks);
         if (osoba.getLocalName().equals("lekar")) {
             osb = this.validirajOsobu(osoba, maper.dobaviSemu("lekar"),
                     maper.dobaviURI("lekar"), osobaPrefiks, korisnikId, TipKorisnika.LEKAR);
@@ -195,10 +175,7 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
-            String putanjaDoUpita = ResourceUtils
-                    .getFile(maper.dobaviUpit("dodavanje"))
-                    .getPath();
-
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
             XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
                     .getService("XUpdateQueryService", "1.0");
             xupdateService.setProperty("indent", "yes");
@@ -209,6 +186,9 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
@@ -256,6 +236,9 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException
                 | XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
@@ -314,7 +297,7 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
                     .newSchema(ResourceUtils.getFile(maper.dobaviSemu("korisnik")))
                     .newValidator().validate(new DOMSource(dok));
-            return this.konvertujUString(dok);
+            return maper.konvertujUString(dok);
         } catch (ParserConfigurationException | IOException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (SAXException e) {
@@ -339,12 +322,13 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
             ((Element) dok.getFirstChild()).setAttribute("id", uriPrefiks + sekvencer.dobaviId());
             ((Element) dok.getFirstChild().getFirstChild())
                     .setAttribute(prefiks + ":identifikator", maper.dobaviURI("korisnik") + korisnikId);
+            dok.getFirstChild().getChildNodes().item(3).setTextContent("0");
             this.dodajMetaPodatkeOsobi(dok, tipKorisnika);
 
             SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
                     .newSchema(ResourceUtils.getFile(sema))
                     .newValidator().validate(new DOMSource(dok));
-            return this.konvertujUString(dok);
+            return maper.konvertujUString(dok);
         } catch (ParserConfigurationException | IOException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (SAXException e) {
@@ -352,31 +336,6 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
         }
     }
 
-    /**
-     * @param dokument koji treba konvertuvati u string
-     * @return xml reprezentacija dokumenta
-     */
-    private String konvertujUString(Document dokument) {
-        StringWriter w = new StringWriter();
-
-        TransformerFactory tf = TransformerFactory.newInstance();
-        try {
-            Transformer transformer = tf.newTransformer();
-            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
-            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
-            transformer.transform(new DOMSource(dokument), new StreamResult(w));
-
-            String sadrzaj = w.toString();
-            if (sadrzaj.startsWith("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")) {
-                sadrzaj = sadrzaj.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
-            }
-            return sadrzaj;
-        } catch (TransformerException e) {
-            throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
-        }
-    }
 
     /**
      * @param dokument nad kojem se dodaju metapodaci korisnika
@@ -428,6 +387,11 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
                         case "oblast_zastite":
                             element.setAttribute("property", "voc:oblastZastite");
                             element.setAttribute("datatype", "xs:string");
+                            ++count;
+                            break;
+                        case "broj_pacijenata":
+                            element.setAttribute("property", "voc:brojPacijenata");
+                            element.setAttribute("datatype", "xs:integer");
                             ++count;
                             break;
                     }
@@ -493,8 +457,7 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
             String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjePutanje")).getPath();
-            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
-                    .getService("XQueryService", "1.0");
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     maper.dobaviKolekciju() + maper.dobaviDokument("korisnici"), id);
@@ -529,10 +492,7 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
-            String putanjaDoUpita = ResourceUtils
-                    .getFile(maper.dobaviUpit("izmena"))
-                    .getPath();
-
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("izmena")).getPath();
             XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
                     .getService("XUpdateQueryService", "1.0");
             xupdateService.setProperty("indent", "yes");
@@ -544,6 +504,9 @@ public class KorisnikXMLRepozertorijum extends IOStrimer {
             logger.info(mods + " izmene procesirane.");
 
             konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);

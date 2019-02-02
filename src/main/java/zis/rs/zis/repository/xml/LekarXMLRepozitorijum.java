@@ -2,7 +2,7 @@ package zis.rs.zis.repository.xml;
 
 import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
@@ -10,11 +10,8 @@ import zis.rs.zis.util.*;
 
 import java.io.IOException;
 
-@Service
-public class LekarXMLRepozertorijum extends IOStrimer {
-
-    @Autowired
-    private KorisnikXMLRepozertorijum korisnikXMLRepozertorijum;
+@Repository
+public class LekarXMLRepozitorijum extends IOStrimer {
 
     @Autowired
     private KonfiguracijaKonekcija konekcija;
@@ -93,7 +90,7 @@ public class LekarXMLRepozertorijum extends IOStrimer {
             String lekari = sb.toString();
             konekcija.oslobodiResurse(resursi);
             if (lekari.isEmpty()) {
-                throw new ValidacioniIzuzetak("Ne postoji ni jedan lekar u bazi!");
+                throw new ValidacioniIzuzetak("Trazeni lekar id: " + id + " ne postoji!");
             } else {
                 return lekari;
             }
