@@ -43,7 +43,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     "stp", maper.dobaviPrefiks("stanje_pregleda"),
                     maper.dobaviPutanju("stanja_pregleda"),
-                    this.konverturjUString(akcija, "cekanje"), maper.dobaviPrefiks("stanja_pregleda"));
+                    this.konverturjUString(akcija), maper.dobaviPrefiks("stanja_pregleda"));
             logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument("stanja_pregleda"), sadrzajUpita);
             logger.info(mods + " izmene procesirane.");
@@ -142,7 +142,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
      * @param akcija koju je potrebno procesirati
      * @return string reprezentaciju nove stavke poslovnog procesa
      */
-    private String konverturjUString(Akcija akcija, String stanje) {
+    private String konverturjUString(Akcija akcija) {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(true);
@@ -153,7 +153,7 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
             Element pregled = dok.createElementNS(maper.dobaviPrefiks("stanje_pregleda"), "stanje_pregleda");
             pregled.setPrefix("stp");
             pregled.setAttribute("pacijent", maper.dobaviPacijentaIzPregleda(akcija));
-            pregled.setAttribute("stanje", stanje);
+            pregled.setAttribute("stanje", "cekanje");
             pregled.setAttribute("datum", LocalDateTime.now().toString());
             dok.appendChild(pregled);
             return maper.konvertujUString(dok);

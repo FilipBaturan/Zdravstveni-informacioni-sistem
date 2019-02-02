@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/pacijenti"
-           xmlns:pacijent="http://zis.rs/zis/seme/pacijent">
-    <xs:import namespace="http://zis.rs/zis/seme/pacijent" schemaLocation="pacijent.xsd"/>
+           vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/pacijenti"
+           xmlns:pacijent="http://www.zis.rs/seme/pacijent">
+    <xs:import namespace="http://www.zis.rs/seme/pacijent" schemaLocation="pacijent.xsd"/>
     <xs:element name="pacijenti">
         <xs:complexType>
             <xs:sequence>

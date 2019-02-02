@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://zis.rs/zis/sema/zdrastveni_karton"
-           xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton" vc:minVersion="1.1"
+           targetNamespace="http://www.zis.rs/seme/zdravstveni_karton"
+           xmlns:zko="http://www.zis.rs/seme/zdravstveni_karton" vc:minVersion="1.1"
            xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
     <xs:element name="zdravstveni_karton">
         <xs:complexType>

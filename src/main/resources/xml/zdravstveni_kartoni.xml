@@ -1,0 +1,59 @@
+<zd:zdravstveni_kartoni xmlns:zko="http://www.zis.rs/seme/zdrastveni_karton"
+ xmlns:zd="http://www.zis.rs/seme/zdrastveni_kartoni">
+    <zko:zdravstveni_karton id="http://www.zis.rs/zdravstveni_kartoni/id1" jmbg="0000000000000" broj_zdr_knjizice="00000000000" 
+        broj_kartona="AA000" upozorenje="" lbo="00000000000" aktivan="true">
+        <zko:osigurano_lice>
+            <zko:ime>ime0</zko:ime>
+            <zko:prezime>prezime0</zko:prezime>
+            <zko:pol>muski</zko:pol>
+            <zko:nosilac_osiguranja>
+                <zko:ime>ime1</zko:ime>
+                <zko:prezime>prezime1</zko:prezime>
+                <zko:srodstvo>srodstvo0</zko:srodstvo>
+                <zko:osnova_osiguranja>50</zko:osnova_osiguranja>
+            </zko:nosilac_osiguranja>
+            <zko:bracno_stanje>neozenjen/neudata</zko:bracno_stanje>
+            <zko:datum_rodjenja>2006-05-04</zko:datum_rodjenja>
+            <zko:adresa>
+                <zko:ulica>ulica0</zko:ulica>
+                <zko:broj>50</zko:broj>
+                <zko:broj_stana>50</zko:broj_stana>
+                <zko:mesto>mesto0</zko:mesto>
+                <zko:opstina>
+                    <zko:naziv>naziv0</zko:naziv>
+                    <zko:postanski_broj>25500</zko:postanski_broj>
+                </zko:opstina>
+            </zko:adresa>
+            <zko:broj_telefona>0000000000</zko:broj_telefona>
+        </zko:osigurano_lice>
+        <zko:odabrani_lekar zko:identifikator="http://www.zis.rs/lekari/id1"/>
+    </zko:zdravstveni_karton>
+    <zko:zdravstveni_karton id="http://www.zis.rs/zdravstveni_kartoni/id2" jmbg="0000000000000" broj_zdr_knjizice="00000000000" 
+        broj_kartona="AA000" lbo="00000000000" aktivan="true">
+        <zko:osigurano_lice>
+            <zko:ime>ime2</zko:ime>
+            <zko:prezime>prezime2</zko:prezime>
+            <zko:pol>muski</zko:pol>
+            <zko:nosilac_osiguranja>
+                <zko:ime>ime3</zko:ime>
+                <zko:prezime>prezime3</zko:prezime>
+                <zko:srodstvo>srodstvo1</zko:srodstvo>
+                <zko:osnova_osiguranja>50</zko:osnova_osiguranja>
+            </zko:nosilac_osiguranja>
+            <zko:bracno_stanje>neozenjen/neudata</zko:bracno_stanje>
+            <zko:datum_rodjenja>2006-05-04</zko:datum_rodjenja>
+            <zko:adresa>
+                <zko:ulica>ulica1</zko:ulica>
+                <zko:broj>50</zko:broj>
+                <zko:broj_stana>50</zko:broj_stana>
+                <zko:mesto>mesto1</zko:mesto>
+                <zko:opstina>
+                    <zko:naziv>naziv1</zko:naziv>
+                    <zko:postanski_broj>25500</zko:postanski_broj>
+                </zko:opstina>
+            </zko:adresa>
+            <zko:broj_telefona>0000000000</zko:broj_telefona>
+        </zko:osigurano_lice>
+        <zko:odabrani_lekar zko:identifikator="http://www.zis.rs/lekari/id2"/>
+    </zko:zdravstveni_karton>
+</zd:zdravstveni_kartoni>

@@ -55,6 +55,7 @@ public class Maper {
         this.xmlBaza.put("pregledi", "pregledi.xml");
         this.xmlBaza.put("stanja_pregleda", "stanja_pregleda.xml");
         this.xmlBaza.put("izvestaji", "izvestaji.xml");
+        this.xmlBaza.put("zdravstveni_kartoni", "zdravstveni_kartoni.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
         this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
@@ -71,6 +72,8 @@ public class Maper {
         this.xmlUpiti.put("dobavljanjePutanjeStanja",
                 "classpath:templates/xquery/azuriranje/dobavljanjePutanjeStanjaPacijenta.xq");
         this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
+        this.xmlUpiti.put("ogranicenjaKartona",
+                "classpath:templates/xquery/zdravstveni_kartoni/proveraJedinstvenostiPoljaKartona.xq");
 
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
@@ -94,6 +97,11 @@ public class Maper {
         this.xmlPrefiksi.put("stanja_pregleda", "xmlns:sp=\"http://www.zis.rs/seme/stanja_pregleda\"");
         this.xmlPrefiksi.put("izvestaj", "http://www.zis.rs/seme/izvestaj");
         this.xmlPrefiksi.put("izvestaji", "xmlns:izvestaji =\"http://www.zis.rs/seme/izvestaji\"");
+        this.xmlPrefiksi.put("zdravstveni_karton", "http://www.zis.rs/seme/zdravstveni_karton");
+        this.xmlPrefiksi.put("zdravstveni_kartoni",
+                "xmlns:zdravstveni_kartoni =\"http://www.zis.rs/seme/zdravstveni_kartoni\"");
+        this.xmlPrefiksi.put("pacijent", "http://www.zis.rs/seme/pacijent");
+        this.xmlPrefiksi.put("pacijenti", "xmlns:pacijenti =\"http://www.zis.rs/seme/pacijenti\"");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
@@ -101,6 +109,8 @@ public class Maper {
         this.xmlPutanje.put("pregledi", "/pr:pregledi");
         this.xmlPutanje.put("stanja_pregleda", "/sp:stanja_pregleda");
         this.xmlPutanje.put("izvestaji", "/izvestaji:izvestaji");
+        this.xmlPutanje.put("zdravstveni_kartoni", "/zdravstveni_kartoni:zdravstveni_kartoni");
+        this.xmlPutanje.put("pacijenti", "/pacijenti:pacijenti");
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");
@@ -108,6 +118,7 @@ public class Maper {
         this.uriPrefiks.put("pacijent", "http://www.zis.rs/pacijenti/id");
         this.uriPrefiks.put("pregled", "http://www.zis.rs/pregledi/id");
         this.uriPrefiks.put("izvestaj", "http://www.zis.rs/izvestaji/id");
+        this.uriPrefiks.put("zdravstveni_karton", "http://www.zis.rs/zdravstveni_kartoni/id");
 
     }
 
@@ -131,7 +142,7 @@ public class Maper {
     /**
      * @param cvorovi od kojih je potrebno napraviti xml dokument
      * @return xml dokument
-     * @throws Exception
+     * @throws Exception izuzetak
      */
     public String kreirajXmlOdCvorova(NodeList cvorovi) throws Exception {
         StringWriter buf = new StringWriter();
