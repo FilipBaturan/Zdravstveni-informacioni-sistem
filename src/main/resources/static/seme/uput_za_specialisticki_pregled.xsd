@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/uput_za_specialisticki_pregled"
+           xmlns:oz2="http://zis.rs/zis/seme/uput_za_specialisticki_pregled">
+    <xs:element name="uput_za_specialisticki_pregled">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="zdrastvene_ustanove">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="primalac" type="xs:string"/>
+                            <xs:element name="posaljilac" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="osigurano_lice">
+                    <xs:complexType>
+                        <xs:attribute ref="oz2:identifikator" use="required"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="pregled">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="datum_prijavljivanja" type="xs:date"/>
+                            <xs:element name="datum_zavrsetka" type="xs:date"/>
+                            <xs:element name="anamneza" type="xs:string"/>
+                            <xs:element name="lekar">
+                                <xs:complexType>
+                                    <xs:attribute ref="oz2:identifikator" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="izvestaj_specialiste">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="bolest" type="xs:string"/>
+                            <xs:element name="nalazi" type="xs:string"/>
+                            <xs:element name="specialista">
+                                <xs:complexType>
+                                    <xs:attribute ref="oz2:identifikator" use="required"/>
+                                    <xs:anyAttribute processContents="lax"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="oznaka" type="xs:string" fixed="oz2" use="required"/>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

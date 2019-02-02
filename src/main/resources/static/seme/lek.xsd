@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://zis.rs/zis/seme/lek" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+
+    <xs:element name="lek">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naziv">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="sifra" type="xs:string"/>
+                <xs:element name="dijagnoza" type="xs:string"/>
+                <xs:element name="namena" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

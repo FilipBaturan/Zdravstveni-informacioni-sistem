@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="http://www.zis.rs/seme/lekar" vc:minVersion="1.1"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+           xmlns:lekar="http://www.zis.rs/seme/lekar">
+    <xs:element name="lekar">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="korisnik">
+                    <xs:complexType>
+                        <xs:attribute ref="lekar:identifikator" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element default="opsta_praksa" name="tip">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="lekar:tip">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="oblast_zastite" default="odrasli">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="lekar:oblast_zastite">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="tip">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="opsta_praksa"/>
+            <xs:enumeration value="ginekolog"/>
+            <xs:enumeration value="pedijatar"/>
+            <xs:enumeration value="dermatolog"/>
+            <xs:enumeration value="stomatolog"/>
+            <xs:enumeration value="drugo"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="oblast_zastite">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="deca"/>
+            <xs:enumeration value="odrasli"/>
+            <xs:enumeration value="zene"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>

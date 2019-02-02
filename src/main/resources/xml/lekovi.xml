@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lekovi:lekovi
+        xmlns:lekovi="http://zis.rs/zis/seme/lekovi"
+        xmlns:lek="http://zis.rs/zis/seme/lek"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://zis.rs/zis/seme/lekovi">
+    <lek:lek id="http://www.zis.rs/lekovi/id1" aktivan="true">
+        <lek:naziv>ACIKLOVIR</lek:naziv>
+        <lek:sifra>1328230</lek:sifra>
+        <lek:dijagnoza>B005</lek:dijagnoza>
+        <lek:namena>Bolest oka uzrokovana herpesvirusom</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id2" aktivan="true">
+        <lek:naziv>ACTAPAX</lek:naziv>
+        <lek:sifra>1072915</lek:sifra>
+        <lek:dijagnoza>F411</lek:dijagnoza>
+        <lek:namena>Anksiozni generalizovani poremećaj</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id3" aktivan="true">
+        <lek:naziv>ACTAPAX</lek:naziv>
+        <lek:sifra>1072916</lek:sifra>
+        <lek:dijagnoza>F320</lek:dijagnoza>
+        <lek:namena>Blaga depresijska epizoda</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id4" aktivan="true">
+        <lek:naziv>ACTEMRA</lek:naziv>
+        <lek:sifra>0014401</lek:sifra>
+        <lek:dijagnoza>M051</lek:dijagnoza>
+        <lek:namena>Reumatoidno oboljene pluća</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id5" aktivan="true">
+        <lek:naziv>ACTEMRA</lek:naziv>
+        <lek:sifra>0014401</lek:sifra>
+        <lek:dijagnoza>M052</lek:dijagnoza>
+        <lek:namena>Reumatoidno zapaljenje krvnih sudova</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id6" aktivan="true">
+        <lek:naziv>ACTEMRA</lek:naziv>
+        <lek:sifra>0014401</lek:sifra>
+        <lek:dijagnoza>M06</lek:dijagnoza>
+        <lek:namena>Ostali reumatoidni artritisi</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id7" aktivan="true">
+        <lek:naziv>ACTEMBA</lek:naziv>
+        <lek:sifra>0014402</lek:sifra>
+        <lek:dijagnoza>M064</lek:dijagnoza>
+        <lek:namena>Zapaljensko oboljenje više zglobova</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id8" aktivan="true">
+        <lek:naziv>ADVAGRAF</lek:naziv>
+        <lek:sifra>1014244</lek:sifra>
+        <lek:dijagnoza>Z941</lek:dijagnoza>
+        <lek:namena>Stanje presađenog srca</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id9" aktivan="true">
+        <lek:naziv>ADVAGRAF</lek:naziv>
+        <lek:sifra>1014244</lek:sifra>
+        <lek:dijagnoza>Z942</lek:dijagnoza>
+        <lek:namena>Stanje presađenih pluća</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id10" aktivan="true">
+        <lek:naziv>ADVAGRAF</lek:naziv>
+        <lek:sifra>1014244</lek:sifra>
+        <lek:dijagnoza>Z947</lek:dijagnoza>
+        <lek:namena>Stanje presađene rožnjače</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id11" aktivan="true">
+        <lek:naziv>AZITROMICIN SANDOZ</lek:naziv>
+        <lek:sifra>3325572</lek:sifra>
+        <lek:dijagnoza>J20</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id12" aktivan="true">
+        <lek:naziv>AZITROMICIN SANDOZ</lek:naziv>
+        <lek:sifra>3325572</lek:sifra>
+        <lek:dijagnoza>J203</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis, uzročnik Coxsackie virus</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id13" aktivan="true">
+        <lek:naziv>AZITROMICIN SANDOZ</lek:naziv>
+        <lek:sifra>3325572</lek:sifra>
+        <lek:dijagnoza>J204</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id14" aktivan="true">
+        <lek:naziv>AZITROMICIN SANDOZ</lek:naziv>
+        <lek:sifra>3325572</lek:sifra>
+        <lek:dijagnoza>J208</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan drugim označenim mikroorganizmima</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id15" aktivan="true">
+        <lek:naziv>BERODUAL</lek:naziv>
+        <lek:sifra>7114129</lek:sifra>
+        <lek:dijagnoza>J45</lek:dijagnoza>
+        <lek:namena>Astma</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id16" aktivan="true">
+        <lek:naziv>CALIXTA</lek:naziv>
+        <lek:sifra>1072705</lek:sifra>
+        <lek:dijagnoza>F32</lek:dijagnoza>
+        <lek:namena>Depresija-depresijsko duševno oboljenje</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id17" aktivan="true">
+        <lek:naziv>CALIXTA</lek:naziv>
+        <lek:sifra>1072705</lek:sifra>
+        <lek:dijagnoza>F332</lek:dijagnoza>
+        <lek:namena>Težak povratan depresijski poremećaj bez simptoma psihoze</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id18" aktivan="true">
+        <lek:naziv>CALIXTA</lek:naziv>
+        <lek:sifra>1072705</lek:sifra>
+        <lek:dijagnoza>F333</lek:dijagnoza>
+        <lek:namena>Težak povratan depresijski poremećaj sa simptomima psihoze</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id19" aktivan="true">
+        <lek:naziv>CARDIPINE</lek:naziv>
+        <lek:sifra>1402001</lek:sifra>
+        <lek:dijagnoza>I10</lek:dijagnoza>
+        <lek:namena>Povišen krvni pritisak nepoznatog porekla</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id20" aktivan="true">
+        <lek:naziv>CARDIPINE</lek:naziv>
+        <lek:sifra>1402001</lek:sifra>
+        <lek:dijagnoza>I15</lek:dijagnoza>
+        <lek:namena>Sekundarno povišen krvni pritisak</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id21" aktivan="true">
+        <lek:naziv>CEFEXIN</lek:naziv>
+        <lek:sifra>1321627</lek:sifra>
+        <lek:dijagnoza>J20</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id22" aktivan="true">
+        <lek:naziv>CEFEXIN</lek:naziv>
+        <lek:sifra>1321627</lek:sifra>
+        <lek:dijagnoza>J203</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis, uzročnik Coxsackie virus</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id23" aktivan="true">
+        <lek:naziv>CEFEXIN</lek:naziv>
+        <lek:sifra>1321627</lek:sifra>
+        <lek:dijagnoza>J204</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id24" aktivan="true">
+        <lek:naziv>CEFEXIN</lek:naziv>
+        <lek:sifra>1321627</lek:sifra>
+        <lek:dijagnoza>J208</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan drugim označenim mikroorganizmima</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id25" aktivan="true">
+        <lek:naziv>CEFEXIN</lek:naziv>
+        <lek:sifra>1321627</lek:sifra>
+        <lek:dijagnoza>J32</lek:dijagnoza>
+        <lek:namena>Hronično zapaljenje sinusa</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id26" aktivan="true">
+        <lek:naziv>CEFZIL</lek:naziv>
+        <lek:sifra>3321951</lek:sifra>
+        <lek:dijagnoza>J13</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Streptococcusom pneumoniae(Pneumococcus)</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id27" aktivan="true">
+        <lek:naziv>CEFZIL</lek:naziv>
+        <lek:sifra>3321951</lek:sifra>
+        <lek:dijagnoza>J14</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Haemonophilusom influence</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id28" aktivan="true">
+        <lek:naziv>CEFZIL</lek:naziv>
+        <lek:sifra>3321951</lek:sifra>
+        <lek:dijagnoza>J151</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Pseudomonasom</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id29" aktivan="true">
+        <lek:naziv>CEFZIL</lek:naziv>
+        <lek:sifra>3321951</lek:sifra>
+        <lek:dijagnoza>J152</lek:dijagnoza>
+        <lek:namena>Stafilokokno zapaljenje pluća</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id30" aktivan="true">
+        <lek:naziv>CEFZIL</lek:naziv>
+        <lek:sifra>3321951</lek:sifra>
+        <lek:dijagnoza>J155</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Pseudomonasom</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id31" aktivan="true">
+        <lek:naziv>CEROXIM</lek:naziv>
+        <lek:sifra>1321976</lek:sifra>
+        <lek:dijagnoza>J20</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id32" aktivan="true">
+        <lek:naziv>CEROXIM</lek:naziv>
+        <lek:sifra>1321976</lek:sifra>
+        <lek:dijagnoza>J203</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis, uzročnik Coxsackie virus</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id33" aktivan="true">
+        <lek:naziv>CEFEXIN</lek:naziv>
+        <lek:sifra>1321976</lek:sifra>
+        <lek:dijagnoza>J204</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id34" aktivan="true">
+        <lek:naziv>CEROXIM</lek:naziv>
+        <lek:sifra>1321976</lek:sifra>
+        <lek:dijagnoza>J208</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan drugim označenim mikroorganizmima</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id35" aktivan="true">
+        <lek:naziv>CEROXIM</lek:naziv>
+        <lek:sifra>1321977</lek:sifra>
+        <lek:dijagnoza>L04</lek:dijagnoza>
+        <lek:namena>Akutno zapaljenje limfnog čvora</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id36" aktivan="true">
+        <lek:naziv>CIPRALEX</lek:naziv>
+        <lek:sifra>1072613</lek:sifra>
+        <lek:dijagnoza>F320</lek:dijagnoza>
+        <lek:namena>Blaga depresijska epizoda</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id37" aktivan="true">
+        <lek:naziv>CIPRALEX</lek:naziv>
+        <lek:sifra>1072613</lek:sifra>
+        <lek:dijagnoza>F322</lek:dijagnoza>
+        <lek:namena>Teška depresijska epizoda bez simptoma psihoze</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id38" aktivan="true">
+        <lek:naziv>CIPRALEX</lek:naziv>
+        <lek:sifra>1072613</lek:sifra>
+        <lek:dijagnoza>F323</lek:dijagnoza>
+        <lek:namena>Teška depresijska epizoda sa simptomima psihoze</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id39" aktivan="true">
+        <lek:naziv>ERITROMICIN</lek:naziv>
+        <lek:sifra>1325551</lek:sifra>
+        <lek:dijagnoza>J32</lek:dijagnoza>
+        <lek:namena>Hronično zapaljenje sinusa</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id40" aktivan="true">
+        <lek:naziv>ERITROMICIN</lek:naziv>
+        <lek:sifra>1325551</lek:sifra>
+        <lek:dijagnoza>J42</lek:dijagnoza>
+        <lek:namena>Hronični bronhitis</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id41" aktivan="true">
+        <lek:naziv>ERITROMICIN</lek:naziv>
+        <lek:sifra>1325551</lek:sifra>
+        <lek:dijagnoza>Y400</lek:dijagnoza>
+        <lek:namena>Penicilini</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id42" aktivan="true">
+        <lek:naziv>ERITROMICIN</lek:naziv>
+        <lek:sifra>1325551</lek:sifra>
+        <lek:dijagnoza>A481</lek:dijagnoza>
+        <lek:namena>Legioneloza</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id43" aktivan="true">
+        <lek:naziv>ERITROMICIN</lek:naziv>
+        <lek:sifra>1325552</lek:sifra>
+        <lek:dijagnoza>J03</lek:dijagnoza>
+        <lek:namena>Akutno zapaljenje krajnika</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id44" aktivan="true">
+        <lek:naziv>HEMOMYCIN</lek:naziv>
+        <lek:sifra>3325481</lek:sifra>
+        <lek:dijagnoza>J03</lek:dijagnoza>
+        <lek:namena>Akutno zapaljenje krajnika</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id45" aktivan="true">
+        <lek:naziv>PANCEF</lek:naziv>
+        <lek:sifra>1321622</lek:sifra>
+        <lek:dijagnoza>J20</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id46" aktivan="true">
+        <lek:naziv>PANCEF</lek:naziv>
+        <lek:sifra>1321622</lek:sifra>
+        <lek:dijagnoza>J203</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis, uzročnik Coxsackie virus</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id47" aktivan="true">
+        <lek:naziv>PANCEF</lek:naziv>
+        <lek:sifra>1321622</lek:sifra>
+        <lek:dijagnoza>J204</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id48" aktivan="true">
+        <lek:naziv>PANCEF</lek:naziv>
+        <lek:sifra>1321622</lek:sifra>
+        <lek:dijagnoza>J208</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan drugim označenim mikroorganizmima</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id49" aktivan="true">
+        <lek:naziv>PANCEF</lek:naziv>
+        <lek:sifra>1321622</lek:sifra>
+        <lek:dijagnoza>J32</lek:dijagnoza>
+        <lek:namena>Hronično zapaljenje sinusa</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id50" aktivan="true">
+        <lek:naziv>PANKLAV</lek:naziv>
+        <lek:sifra>3021602</lek:sifra>
+        <lek:dijagnoza>J32</lek:dijagnoza>
+        <lek:namena>Hronično zapaljenje sinusa</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id51" aktivan="true">
+        <lek:naziv>PANKLAV</lek:naziv>
+        <lek:sifra>3021602</lek:sifra>
+        <lek:dijagnoza>J20</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id52" aktivan="true">
+        <lek:naziv>PANKLAV</lek:naziv>
+        <lek:sifra>3021602</lek:sifra>
+        <lek:dijagnoza>J203</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis, uzročnik Coxsackie virus</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id53" aktivan="true">
+        <lek:naziv>PANKLAV</lek:naziv>
+        <lek:sifra>3021602</lek:sifra>
+        <lek:dijagnoza>J204</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan virusom parainfluence</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id54" aktivan="true">
+        <lek:naziv>PANKLAV</lek:naziv>
+        <lek:sifra>3021602</lek:sifra>
+        <lek:dijagnoza>J208</lek:dijagnoza>
+        <lek:namena>Akutni bronhitis uzrokovan drugim označenim mikroorganizmima</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id55" aktivan="true">
+        <lek:naziv>PANKLAV</lek:naziv>
+        <lek:sifra>3021602</lek:sifra>
+        <lek:dijagnoza>J02</lek:dijagnoza>
+        <lek:namena>Akutno zapaljenje ždrela</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id56" aktivan="true">
+        <lek:naziv>PAROKSETIN PHARMAS</lek:naziv>
+        <lek:sifra>1072907</lek:sifra>
+        <lek:dijagnoza>F411</lek:dijagnoza>
+        <lek:namena>Anksiozni generalizovani poremećaj</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id57" aktivan="true">
+        <lek:naziv>PAROKSETIN PHARMAS</lek:naziv>
+        <lek:sifra>1072907</lek:sifra>
+        <lek:dijagnoza>F411</lek:dijagnoza>
+        <lek:namena>Anksiozni generalizovani poremećaj</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id58" aktivan="true">
+        <lek:naziv>LOFOCIN</lek:naziv>
+        <lek:sifra>1329381</lek:sifra>
+        <lek:dijagnoza>J01</lek:dijagnoza>
+        <lek:namena>Akutno zapaljenje sinusa</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id59" aktivan="true">
+        <lek:naziv>LOFOCIN</lek:naziv>
+        <lek:sifra>1329381</lek:sifra>
+        <lek:dijagnoza>J151</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Pseudomonasom</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id60" aktivan="true">
+        <lek:naziv>LOFOCIN</lek:naziv>
+        <lek:sifra>1329381</lek:sifra>
+        <lek:dijagnoza>J155</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Ešerihijom koli</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id61" aktivan="true">
+        <lek:naziv>LOFOCIN</lek:naziv>
+        <lek:sifra>1329381</lek:sifra>
+        <lek:dijagnoza>J156</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano aerobnim Gram-negativnim bakterijama</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id62" aktivan="true">
+        <lek:naziv>LOFOCIN</lek:naziv>
+        <lek:sifra>1329381</lek:sifra>
+        <lek:dijagnoza>J157</lek:dijagnoza>
+        <lek:namena>Zapaljenje pluća uzrokovano Mikroplaymom pneumonije</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id63" aktivan="true">
+        <lek:naziv>PARACETAMOL</lek:naziv>
+        <lek:sifra>3086695</lek:sifra>
+        <lek:dijagnoza>J10</lek:dijagnoza>
+        <lek:namena>Analgetik i antipiretik</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id64" aktivan="true">
+        <lek:naziv>BRUFEN</lek:naziv>
+        <lek:sifra>3162089</lek:sifra>
+        <lek:dijagnoza>J10</lek:dijagnoza>
+        <lek:namena>Analgetik i antipiretik</lek:namena>
+    </lek:lek>
+    <lek:lek id="http://www.zis.rs/lekovi/id65" aktivan="true">
+        <lek:naziv>KLACID</lek:naziv>
+        <lek:sifra>2325625</lek:sifra>
+        <lek:dijagnoza>J02</lek:dijagnoza>
+        <lek:namena>Akutno zapaljenje ždrela</lek:namena>
+    </lek:lek>
+</lekovi:lekovi>

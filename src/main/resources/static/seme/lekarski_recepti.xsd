@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/lekarski_recepti"
+           xmlns:lr1="http://zis.rs/zis/seme/lekarski_recept">
+
+    <xs:import namespace="http://zis.rs/zis/seme/lekarski_recept"
+               schemaLocation="lekarski_recept.xsd"/>
+    <xs:element name="lekarski_recepti">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="lr1:lekarski_recept"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
