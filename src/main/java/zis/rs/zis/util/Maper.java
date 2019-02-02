@@ -56,6 +56,7 @@ public class Maper {
         this.xmlBaza.put("stanja_pregleda", "stanja_pregleda.xml");
         this.xmlBaza.put("izvestaji", "izvestaji.xml");
         this.xmlBaza.put("lekovi", "lekovi.xml");
+        this.xmlBaza.put("recepti", "recepti.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
         this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
@@ -74,6 +75,8 @@ public class Maper {
         this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
         this.xmlUpiti.put("dobaviSveLekove", "classpath:templates/xquery/lekovi/dobavljanjeSvihLekova.xqy");
         this.xmlUpiti.put("pretragaPoIdLeka", "classpath:templates/xquery/lekovi/pretragaPoIdLeka.xqy");
+        this.xmlUpiti.put("dobaviSveRecepte", "classpath:templates/xquery/recepti/dobavljanjeSvihRecepata.xqy");
+        this.xmlUpiti.put("pretragaPoIdRecepta", "classpath:templates/xquery/recepti/pretragaPoIdRecepta.xqy");
 
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
@@ -84,6 +87,8 @@ public class Maper {
         this.xmlSeme.put("pregled", "classpath:static/seme/pregled.xsd");
         this.xmlSeme.put("izvestaj", "classpath:static/seme/izvestaj.xsd");
         this.xmlSeme.put("lek", "classpath:static/seme/lek.xsd");
+        this.xmlSeme.put("recept", "classpath:static/seme/recept.xsd");
+
 
         this.xmlPrefiksi.put("korisnik", "http://www.zis.rs/seme/korisnik");
         this.xmlPrefiksi.put("korisnici", "xmlns:ko=\"http://www.zis.rs/seme/korisnici\"");
@@ -100,6 +105,8 @@ public class Maper {
         this.xmlPrefiksi.put("izvestaji", "xmlns:izvestaji =\"http://www.zis.rs/seme/izvestaji\"");
         this.xmlPrefiksi.put("lek", "http://www.zis.rs/seme/lek");
         this.xmlPrefiksi.put("lekovi", "xmlns:lekovi =\"http://www.zis.rs/seme/lekovi\"");
+        this.xmlPrefiksi.put("recept", "http://www.zis.rs/seme/recept");
+        this.xmlPrefiksi.put("recepti", "xmlns:recepti =\"http://www.zis.rs/seme/recepti\"");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
@@ -108,6 +115,8 @@ public class Maper {
         this.xmlPutanje.put("stanja_pregleda", "/sp:stanja_pregleda");
         this.xmlPutanje.put("izvestaji", "/izvestaji:izvestaji");
         this.xmlPutanje.put("lekovi", "/lekovi:lekovi");
+        this.xmlPutanje.put("recepti", "/recepti:recepti");
+
 
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
@@ -117,6 +126,7 @@ public class Maper {
         this.uriPrefiks.put("pregled", "http://www.zis.rs/pregledi/id");
         this.uriPrefiks.put("izvestaj", "http://www.zis.rs/izvestaji/id");
         this.uriPrefiks.put("lek", "http://www.zis.rs/lekovi/id");
+        this.uriPrefiks.put("recept", "http://www.zis.rs/recepti/id");
 
     }
 
