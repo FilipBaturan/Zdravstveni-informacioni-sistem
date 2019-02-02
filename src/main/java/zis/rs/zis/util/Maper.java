@@ -1,5 +1,6 @@
 package zis.rs.zis.util;
 
+import org.apache.xerces.dom.ElementNSImpl;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -283,6 +284,25 @@ public class Maper {
             }
         }
         throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
+    }
+
+    /**
+     *
+     * @param akcija koja se prosledjuje
+     * @param nazivDokumenta koji treba da se dobavi
+     * @return dokument u obliku cvora
+     */
+    public Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
+        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
+        NodeList lista = dok.getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals(nazivDokumenta)) {
+                return element;
+            }
+        }
+        return null;
     }
 
     public String dobaviKolekciju() {
