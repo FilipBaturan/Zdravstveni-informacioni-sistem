@@ -206,8 +206,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
 
     private void proveriLekara(Document document) {
         String lekarId = document.getFirstChild().getLastChild().getFirstChild().getFirstChild().getAttributes().item(0).getNodeValue();
-        try{ lekarXMLRepozitorijum.pretragaPoId(lekarId); }
-        catch (ValidacioniIzuzetak izuzetak) { throw izuzetak; }
+        lekarXMLRepozitorijum.pretragaPoId(lekarId);
     }
 
 

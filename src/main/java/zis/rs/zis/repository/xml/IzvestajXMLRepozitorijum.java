@@ -201,7 +201,7 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
 
     /**
      * @param izvestaj kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
-     * @return izmenjena reprezentacija pregleda
+     * @return izmenjena reprezentacija izvestaja
      */
     private String umetniId(Node izvestaj, Long id, String prefiks) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
@@ -210,7 +210,6 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
             Node importovan = dok.importNode(izvestaj, true);
             dok.appendChild(importovan);
 
-            this.proveriOgranicenjaPregleda(dok, prefiks);
             ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI("izvestaj") + id);
 
             return maper.konvertujUString(dok);
@@ -222,8 +221,8 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     }
 
     /**
-     * @param id trazenog pregleda
-     * @return xpath putanju do pronadjenog pregleda
+     * @param id trazenog izvestaja
+     * @return xpath putanju do pronadjenog izvestaja
      */
     private String pronadjiIzvestaj(String id) {
         ResursiBaze resursi = null;
@@ -262,50 +261,6 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
         }
     }
 
-
-    private void proveriOgranicenjaPregleda(Document dokument, String prefiks) {
-//        String lekar = dokument.getElementsByTagName(prefiks + ":lekar")
-//                .item(0).getAttributes().item(0).getNodeValue();
-//
-//        String datum = dokument.getElementsByTagName(prefiks + ":datum").item(0).getTextContent();
-//
-//        ResursiBaze resursi = null;
-//        try {
-//            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("pregledi"));
-//            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("ogranicenjaPregleda")).getPath();
-//            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
-//            upitServis.setProperty("indent", "yes");
-//            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), lekar, datum);
-//            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
-//            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
-//            ResourceIterator i = rezultat.getIterator();
-//            Resource res = null;
-//
-//            StringBuilder sb = new StringBuilder();
-//
-//            while (i.hasMoreResources()) {
-//                try {
-//                    res = i.nextResource();
-//                    sb.append(DocumentBuilderFactory.newInstance().newDocumentBuilder()
-//                            .parse(new InputSource(new StringReader("<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
-//                                    + res.getContent().toString()))).getFirstChild().getTextContent());
-//                } finally {
-//                    if (res != null)
-//                        ((EXistResource) res).freeResources();
-//                }
-//            }
-//            String greska = sb.toString();
-//            konekcija.oslobodiResurse(resursi);
-//            if (!greska.isEmpty()) {
-//                throw new ValidacioniIzuzetak(greska);
-//            }
-//        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | XMLDBException |
-//                IOException | ParserConfigurationException | SAXException e) {
-//            konekcija.oslobodiResurse(resursi);
-//            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-//        }
-
-    }
 
     private void proveriLekara(Node sadrzaj) {
         String lekarId = "";

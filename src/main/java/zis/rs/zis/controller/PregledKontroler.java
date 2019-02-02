@@ -80,4 +80,7 @@ public class PregledKontroler extends ValidatorKontoler {
     }
 
 
+
+
+
 }

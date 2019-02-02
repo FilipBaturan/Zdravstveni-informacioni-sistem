@@ -1,6 +1,13 @@
 xquery version "3.1";
 
-declare namespace lekovi = "http://zis.rs/zis/seme/lekovi";
+declare namespace lekovi = "http://www.zis.rs/seme/lekovi";
 
-for $lekari in fn:doc("/db/rs/zis/lekovi/lekovi.xml")/lekovi:lekovi
-return $lekari
+declare namespace lek = "http://www.zis.rs/seme/lek";
+
+for $lek in fn:doc("/db/rs/zis/lekovi.xml")/lekovi:lekovi/lek:lek
+return <lek:lek xmlns:pregled="http://www.zis.rs/seme/lek" id="{$lek/@id}">
+    {$lek/lek:naziv}
+    {$lek/lek:sifra}
+    {$lek/lek:dijagnoza}
+    {$lek/lek:namena}
+</lek:lek>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recepti:recepti
+ xmlns:recept="http://www.zis.rs/seme/recept"
+ xmlns:recepti="http://www.zis.rs/seme/recepti">
+    <recept:recept oznaka="lr1" id="http://ntUHXtLC/" aktivan="1">
+        <recept:naziv_zdrastvene_ustanove>tmWq2wBCR</recept:naziv_zdrastvene_ustanove>
+        <recept:osigurano_lice recept:identifikator="http://zlexpags/"/>
+        <recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije>
+        <recept:datum>2019-06-21Z</recept:datum>
+        <recept:dijagnoza>6248</recept:dijagnoza>
+        <recept:opis>B1</recept:opis>
+        <recept:propisani_lek recept:identifikator="http://RGZufrdO/"/>
+        <recept:lekar recept:identifikator="http://DEsxeZxV/"/>
+    </recept:recept>
+    <recept:recept oznaka="lr1" id="http://SZBHJZCX/" aktivan="1">
+        <recept:naziv_zdrastvene_ustanove>wEcMuZdF1RS33U6c4Or</recept:naziv_zdrastvene_ustanove>
+        <recept:osigurano_lice recept:identifikator="http://KPVlkQIH/"/>
+        <recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije>
+        <recept:datum>2019-08-26Z</recept:datum>
+        <recept:dijagnoza>4610</recept:dijagnoza>
+        <recept:opis>eU-MAqluKTiY</recept:opis>
+        <recept:propisani_lek recept:identifikator="http://FARAOqSF/"/>
+        <recept:lekar recept:identifikator="http://dsxlncLc/"/>
+    </recept:recept>
+    <recept:recept oznaka="lr1" id="http://LbLtOOfP/" aktivan="true">
+        <recept:naziv_zdrastvene_ustanove>m5dR1g5Uvue_8uPwpSmqvvimiM4eH</recept:naziv_zdrastvene_ustanove>
+        <recept:osigurano_lice recept:identifikator="http://hvEYzNTE/"/>
+        <recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije>
+        <recept:datum>2019-06-30</recept:datum>
+        <recept:dijagnoza>6458</recept:dijagnoza>
+        <recept:opis>mWhPm55Gu_dg7ge3Hb0Pt5D7L</recept:opis>
+        <recept:propisani_lek recept:identifikator="http://HdLpmUvT/"/>
+        <recept:lekar recept:identifikator="http://tSnjrAIL/"/>
+    </recept:recept>
+</recepti:recepti>
