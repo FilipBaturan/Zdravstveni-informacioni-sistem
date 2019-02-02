@@ -37,6 +37,9 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     @Autowired
     private Sekvencer sekvencer;
 
+    @Autowired
+    private LekarXMLRepozitorijum lekarXMLRepozitorijum;
+
     private String dokument = "izvestaji";
     private String prefiksDokumenta = "izvestaj";
 
@@ -85,6 +88,7 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     public String sacuvaj(Node sadrzaj) {
         String izvestaj = validator.procesirajAkciju(sadrzaj, maper.dobaviSemu(prefiksDokumenta));
 
+        proveriLekara(sadrzaj);
 
         String prefiks = maper.konvertujUDokument(izvestaj).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
@@ -301,6 +305,21 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
 //            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
 //        }
 
+    }
+
+    private void proveriLekara(Node sadrzaj) {
+        String lekarId = "";
+        NodeList lista = sadrzaj.getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals("lekar")) {
+                lekarId = element.getAttributes().item(0).getNodeValue();
+                break;
+            }
+        }
+        try{ lekarXMLRepozitorijum.pretragaPoId(lekarId); }
+        catch (ValidacioniIzuzetak izuzetak) { throw izuzetak; }
     }
 
 }

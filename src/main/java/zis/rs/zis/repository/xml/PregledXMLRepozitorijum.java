@@ -49,6 +49,9 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     @Autowired
     private Sekvencer sekvencer;
 
+    @Autowired
+    private LekarXMLRepozitorijum lekarXMLRepozitorijum;
+
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
         try {
@@ -93,6 +96,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     public String sacuvaj(Akcija akcija) {
         String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
 
+        proveriLekara(maper.konvertujUDokument(akcija));
 
         String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
@@ -121,12 +125,11 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
-    }
+     }
 
     public String obrisi(Akcija akcija) {
 
         String id = akcija.getKontekst();
-        //String pregled = pretragaPoId(id);
         String pregled = maper.konvertujUString(maper.konvertujUDokument(akcija).getFirstChild()
                 .getLastChild().getFirstChild());
         String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
@@ -166,6 +169,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
         Element el = (Element) cvor;
         String id = el.getAttribute("id");
 
+        proveriLekara(maper.konvertujUDokument(akcija));
 
         String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
         NodeList cvoroviPregleda = maper.konvertujUDokument(pregled).getFirstChild().getChildNodes();
@@ -198,6 +202,12 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
+    }
+
+    private void proveriLekara(Document document) {
+        String lekarId = document.getFirstChild().getLastChild().getFirstChild().getFirstChild().getAttributes().item(0).getNodeValue();
+        try{ lekarXMLRepozitorijum.pretragaPoId(lekarId); }
+        catch (ValidacioniIzuzetak izuzetak) { throw izuzetak; }
     }
 
 

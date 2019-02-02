@@ -1,5 +1,6 @@
 package zis.rs.zis.controller;
 
+import org.apache.xerces.dom.ElementNSImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import zis.rs.zis.repository.xml.IzvestajXMLRepozitorijum;
 import zis.rs.zis.repository.xml.PregledXMLRepozitorijum;
 import zis.rs.zis.service.states.Proces;
@@ -72,7 +76,7 @@ public class PregledKontroler extends ValidatorKontoler {
         logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
         //return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
-        return new ResponseEntity<>(izvestajXMLRepozitorijum.izmeni(akcija), HttpStatus.OK);
+        return new ResponseEntity<>(izvestajXMLRepozitorijum.sacuvaj((ElementNSImpl)akcija.getSadrzaj().getAny()), HttpStatus.OK);
     }
 
 
