@@ -18,7 +18,7 @@ import java.util.Calendar;
 @RequestMapping("/recepti")
 public class ReceptKontroler {
 
-    private static final Logger logger = LoggerFactory.getLogger(LekKontroler.class);
+    private static final Logger logger = LoggerFactory.getLogger(ReceptKontroler.class);
 
     private static final String URI_PREFIX = "/recepti";
 
@@ -51,7 +51,7 @@ public class ReceptKontroler {
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Trazi se recept sa id={}: {}.", id, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(receptServis.pretragaPoId(maper.dobaviURI("lek") + id), HttpStatus.OK);
+        return new ResponseEntity<>(receptServis.pretragaPoId(maper.dobaviURI("recept") + id), HttpStatus.OK);
     }
 
     /**

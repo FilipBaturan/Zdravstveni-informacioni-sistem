@@ -1,210 +1,78 @@
 package zis.rs.zis.repository.xml;
 
-import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.ResourceUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xmldb.api.base.*;
-import org.xmldb.api.modules.XQueryService;
-import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.util.*;
+import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.akcije.Akcija;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 @Repository
 public class ReceptXMLRepozitorijum extends IOStrimer{
-
-    private static final Logger logger = LoggerFactory.getLogger(ReceptXMLRepozitorijum.class);
-
-    @Autowired
-    private KonfiguracijaKonekcija konekcija;
 
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
     @Autowired
+    private LekXMLRepozitorijum lekXMLRepozitorijum;
+
+    @Autowired
+    private KorisnikXMLRepozitorijum korisnikXMLRepozitorijum;
+
+    @Autowired
     private Maper maper;
 
     @Autowired
-    Sekvencer sekvencer;
-
-    @Autowired
-    Validator validator;
+    Operacije operacije;
 
     private String dokument = "recepti";
     private String prefiksDokumenta = "recept";
 
-    public String dobaviSve() {
-        ResursiBaze resursi = null;
-        try {
-            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobaviSveRecepte")).getPath();
-            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
-                    .getService("XQueryService", "1.0");
-            upitServis.setProperty("indent", "yes");
-            String sadrzajUpita = this.ucitajSadrzajFajla(putanjaDoUpita);
-            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
-            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
-            ResourceIterator i = rezultat.getIterator();
-            Resource res = null;
+    public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveRecepte");}
 
-            StringBuilder sb = new StringBuilder();
-
-            while (i.hasMoreResources()) {
-
-                try {
-                    res = i.nextResource();
-                    sb.append(res.getContent().toString());
-                } finally {
-                    if (res != null)
-                        ((EXistResource) res).freeResources();
-
-                }
-            }
-            String recepti = sb.toString();
-            konekcija.oslobodiResurse(resursi);
-            if (recepti.isEmpty()) {
-                throw new ValidacioniIzuzetak("Ne postoji ni jedan recept u bazi!");
-            } else {
-                return recepti;
-            }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException | NullPointerException e) {
-            konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        }
-    }
-
-    public String pretragaPoId(String id) {
-        ResursiBaze resursi = null;
-        try {
-            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("pretragaPoIdRecepta")).getPath();
-            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
-                    .getService("XQueryService", "1.0");
-            upitServis.setProperty("indent", "yes");
-            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), id);
-            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
-            ResourceSet result = upitServis.execute(compiledXquery);
-            ResourceIterator i = result.getIterator();
-            Resource res = null;
-
-            StringBuilder sb = new StringBuilder();
-
-            while (i.hasMoreResources()) {
-
-                try {
-                    res = i.nextResource();
-                    sb.append(res.getContent().toString());
-                } finally {
-                    if (res != null)
-                        ((EXistResource) res).freeResources();
-
-                }
-            }
-            String recepti = sb.toString();
-            konekcija.oslobodiResurse(resursi);
-            if (recepti.isEmpty()) {
-                throw new ValidacioniIzuzetak("Trazeni recept ne postoji u bazi!");
-            } else {
-                return recepti;
-            }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
-            konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        }
-    }
+    public String pretragaPoId(String id) {return operacije.pretragaPoId(id, dokument, "pretragaPoIdRecepta");}
 
     public String sacuvaj(Akcija akcija) {
-        String lek = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
-
-        proveriLekara(maper.dobaviDokument(akcija, "recept"));
-
-        String prefiks = maper.konvertujUDokument(lek).getFirstChild().getNodeName().split(":")[0];
-        ResursiBaze resursi = null;
-        try {
-            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
-            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
-                    .getService("XUpdateQueryService", "1.0");
-            xupdateService.setProperty("indent", "yes");
-
-            Long id = sekvencer.dobaviId();
-
-            String dodatId = this.umetniId(maper.konvertujUDokument(lek).getFirstChild(), id);
-
-            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), maper.dobaviPutanju(dokument), dodatId,
-                    maper.dobaviPrefiks(dokument));
-            logger.info(sadrzajUpita);
-            long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
-            logger.info(mods + " izmene procesirane.");
-
-            if (mods == 0) {
-                throw new KonekcijaSaBazomIzuzetak("Greska prilikom kreiranja leka!");
-            }
-
-            konekcija.oslobodiResurse(resursi);
-            return "Uspesno sacuvan recept!";
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
-            konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        }
+        proveriRecept(maper.dobaviDokument(akcija, "recept"));
+        return operacije.sacuvaj(akcija, dokument, prefiksDokumenta);
     }
 
-    public String obrisi(Akcija akcija) {return "";
-    }
+    public String obrisi(Akcija akcija) { return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdRecepta");}
 
-    public String izmeni(Akcija akcija) {return "";
+    public String izmeni(Akcija akcija) {
+        proveriRecept(maper.dobaviDokument(akcija, "recept") );
+        return operacije.izmeni(akcija, dokument, prefiksDokumenta);
     }
 
 
 
-
-    /**
-     * @param recept kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
-     * @return izmenjena reprezentacija recepta
-     */
-    private String umetniId(Node recept, Long id) {
-        DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
-        try {
-            Document dok = fabrika.newDocumentBuilder().newDocument();
-            Node importovan = dok.importNode(recept, true);
-            dok.appendChild(importovan);
-
-            ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI("recept") + id);
-
-            return maper.konvertujUString(dok);
-        } catch (ParserConfigurationException e) {
-            throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
-        } catch (ValidacioniIzuzetak e) {
-            throw new ValidacioniIzuzetak(e.getMessage());
-        }
-    }
-
-    private void proveriLekara(Node sadrzaj) {
+    private void proveriRecept(Node sadrzaj) {
         String lekarId = "";
+        String korisnikId = "";
+        String lekId = "";
         NodeList lista = sadrzaj.getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
             element = lista.item(i);
-            if (element.getLocalName().equals("lekar")) {
+            if (element.getLocalName().equals("osigurano_lice")) {
+                korisnikId = element.getAttributes().item(0).getNodeValue();
+            }
+            else if (element.getLocalName().equals("propisani_lek")) {
+                lekId = element.getAttributes().item(0).getNodeValue();
+            }
+            else if (element.getLocalName().equals("lekar")) {
                 lekarId = element.getAttributes().item(0).getNodeValue();
                 break;
             }
         }
-        try{ lekarXMLRepozitorijum.pretragaPoId(lekarId); }
+        try{
+            lekarXMLRepozitorijum.pretragaPoId(lekarId);
+            lekXMLRepozitorijum.pretragaPoId(lekId);
+            //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
+        }
         catch (ValidacioniIzuzetak izuzetak) { throw izuzetak; }
     }
 
