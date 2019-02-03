@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.zis.rs/seme/izbor" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:izbor="http://www.zis.rs/seme/izbor">
+    <xs:element name="izbor">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naziv_ustanove" type="xs:string"/>
+                <xs:element name="tip_obrasca" default="izbor">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="izbor"/>
+                            <xs:enumeration value="promena"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element default="ne_radi" name="razlog_promene">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="izbor:razlog_promene_opcije">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="prosli_lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="izbor:identifikator" use="required"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lekar">
+                    <xs:complexType>
+                        <xs:attribute ref="izbor:identifikator" use="required"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="osigurano_lice">
+                    <xs:complexType>
+                        <xs:attribute ref="izbor:identifikator" use="required"/>
+                        <xs:anyAttribute processContents="lax"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="datum">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:anyAttribute processContents="lax"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute fixed="ipl1" name="oznaka" type="xs:string" use="required"/>
+            <xs:attribute name="id" type="xs:anyURI" use="required"/>
+            <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="razlog_promene_opcije">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ne_radi"/>
+            <xs:enumeration value="promena_prebivalista"/>
+            <xs:enumeration value="nezadovoljstvo"/>
+            <xs:enumeration value="odsutan"/>
+            <xs:enumeration value="nesporazum"/>
+            <xs:enumeration value="drugo"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:attribute name="identifikator" type="xs:anyURI"/>
+</xs:schema>
