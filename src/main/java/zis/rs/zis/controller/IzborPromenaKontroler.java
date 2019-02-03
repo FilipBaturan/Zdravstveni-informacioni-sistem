@@ -15,7 +15,7 @@ import zis.rs.zis.util.akcije.Akcija;
 import java.util.Calendar;
 
 @RestController
-@RequestMapping("/izborLekara")
+@RequestMapping("/izbor")
 public class IzborPromenaKontroler {
 
     private static final Logger logger = LoggerFactory.getLogger(zis.rs.zis.controller.IzborPromenaKontroler.class);

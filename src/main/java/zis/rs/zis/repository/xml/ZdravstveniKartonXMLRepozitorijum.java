@@ -78,6 +78,16 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
             if (mods == 0) {
                 throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
             }
+
+            putanja = String.format(maper.dobaviPutanju("brisanjePovezanihRecepata"), id);
+            operacije.obrisi("recepti", "recept", "recept", putanja);
+            putanja = String.format(maper.dobaviPutanju("brisanjePovezanihUputa"), id);
+            operacije.obrisi("uputi", "uput", "uput", putanja);
+            putanja = String.format(maper.dobaviPutanju("brisanjePovezanihIzvestaja"), id);
+            operacije.obrisi("izvestaji", "izvestaj", "izvestaj", putanja);
+            putanja = String.format(maper.dobaviPutanju("brisanjePovezanihIzbora"), id);
+            operacije.obrisi("izbori", "izbor", "izbor", putanja);
+
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
