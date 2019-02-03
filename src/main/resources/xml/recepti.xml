@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="src/main/resources/xsl/recepti.xsl"?>
 <recepti:recepti
  xmlns:recept="http://www.zis.rs/seme/recept"
- xmlns:recepti="http://www.zis.rs/seme/recepti">
+ xmlns:recepti="http://www.zis.rs/seme/recepti"
+>
     <recept:recept oznaka="lr1" id="http://ntUHXtLC/" aktivan="1">
         <recept:naziv_zdrastvene_ustanove>tmWq2wBCR</recept:naziv_zdrastvene_ustanove>
         <recept:osigurano_lice recept:identifikator="http://zlexpags/"/>

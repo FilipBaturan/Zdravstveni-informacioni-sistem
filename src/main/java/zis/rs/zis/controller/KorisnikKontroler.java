@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.repository.xml.KorisnikXMLRepozitorijum;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
@@ -56,7 +57,7 @@ public class KorisnikKontroler extends ValidatorKontoler {
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
-        if (akcija.getFunkcija().equals("BRISANJE")) {
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
             return new ResponseEntity<>(korisnikRepozertorijum.obrisi(akcija.getKontekst()), HttpStatus.OK);
         } else {
             return null;

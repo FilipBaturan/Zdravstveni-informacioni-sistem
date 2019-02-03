@@ -63,7 +63,7 @@ public class Maper {
         this.xmlBaza.put("izbori", "izbori.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
-        this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
+        this.xmlUpiti.put("pretragaPoIdLekara", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
         this.xmlUpiti.put("dodavanje", "classpath:templates/xquery/azuriranje/dodavanje.xml");
         this.xmlUpiti.put("prebrojavanje", "classpath:templates/xquery/azuriranje/prebrojavanjeSvihEntiteta.xq");
         this.xmlUpiti.put("ogranicenjaKorisnika",
@@ -107,7 +107,7 @@ public class Maper {
         this.xmlSeme.put("lek", "classpath:static/seme/lek.xsd");
         this.xmlSeme.put("recept", "classpath:static/seme/recept.xsd");
         this.xmlSeme.put("uput", "classpath:static/seme/uput.xsd");
-        this.xmlSeme.put("izbor", "classpath:static/seme/izbor_promena_lekara.xsd");
+        this.xmlSeme.put("izbor", "classpath:static/seme/izbor.xsd");
 
 
         this.xmlPrefiksi.put("korisnik", "http://www.zis.rs/seme/korisnik");
@@ -134,8 +134,8 @@ public class Maper {
         this.xmlPrefiksi.put("recepti", "xmlns:recepti =\"http://www.zis.rs/seme/recepti\"");
         this.xmlPrefiksi.put("uput", "http://www.zis.rs/seme/uput");
         this.xmlPrefiksi.put("uputi", "xmlns:uputi =\"http://www.zis.rs/seme/uputi\"");
-        this.xmlPrefiksi.put("izbor", "http://www.zis.rs/seme/izbor_promena_lekara");
-        this.xmlPrefiksi.put("izbori", "xmlns:izbori =\"http://www.zis.rs/seme/izbori_promene_lekara\"");
+        this.xmlPrefiksi.put("izbor", "http://www.zis.rs/seme/izbor");
+        this.xmlPrefiksi.put("izbori", "xmlns:izbori =\"http://www.zis.rs/seme/izbori\"");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
@@ -149,6 +149,14 @@ public class Maper {
         this.xmlPutanje.put("recepti", "/recepti:recepti");
         this.xmlPutanje.put("uputi", "/uputi:uputi");
         this.xmlPutanje.put("izbori", "/izbori:izbori");
+        this.xmlPutanje.put("brisanjePovezanihRecepata",
+                "/recepti:recepti/recept:recept[recept:osigurano_lice/@recept:identifikator = '%1$s']");
+        this.xmlPutanje.put("brisanjePovezanihUputa",
+                "/uputi:uputi/uput:uput[uput:osigurano_lice/@uput:identifikator = '%1$s']");
+        this.xmlPutanje.put("brisanjePovezanihIzvestaja",
+                "/izvestaji:izvestaji/izvestaj:izvestaj[izvestaj:osigurano_lice/@izvestaj:identifikator = '%1$s']");
+        this.xmlPutanje.put("brisanjePovezanihIzbora",
+                "/izbori:izbori/izbor:izbor[izbor:osigurano_lice/@izbor:identifikator = '%1$s']");
 
         this.uriPrefiks.put("korisnik", "http://www.zis.rs/korisnici/id");
         this.uriPrefiks.put("lekar", "http://www.zis.rs/lekari/id");

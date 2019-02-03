@@ -156,6 +156,33 @@ public class Operacije extends IOStrimer {
         }
     }
 
+    public void obrisi(String dokument, String prefiks, String prefiksDokumenta, String putanja) {
+        ResursiBaze resursi = null;
+
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("brisanje")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), putanja,
+                    maper.dobaviPrefiks(dokument));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
     public String sacuvaj(Akcija akcija,String dokument, String prefiksDokumenta) {
         String lek = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
 
