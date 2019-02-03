@@ -39,7 +39,7 @@ declare function local:dobavi-lekara ($id as xs:anyURI) as element()* {
         let $pacijent := for $pc in fn:doc("/db/rs/zis/zdravstveni_kartoni.xml")/zd:zdravstveni_kartoni/zko:zdravstveni_karton
         where $izbor/izbor:osigurano_lice/@izbor:identifikator = $pc/@id return $pc
         return
-            <izbor:izbor oznaka="{$izbor/@oznaka}" id="{$izbor/@id}" aktiva="{$izbor/@aktivan}">
+            <izbor:izbor oznaka="{$izbor/@oznaka}" id="{$izbor/@id}" aktivan="{$izbor/@aktivan}">
                 {$izbor/izbor:naziv_ustanove}
                 {$izbor/izbor:tip_obrasca}
                 {$izbor/izbor:razlog_promene}
