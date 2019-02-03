@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/recepti"
+    xmlns="http://www.zis.rs/seme/recepti" xmlns:recept="http://www.zis.rs/seme/recept">
+
+    <xs:import namespace="http://www.zis.rs/seme/recept" schemaLocation="recept.xsd"/>
+    <xs:element name="recepti">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="recept:recept"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

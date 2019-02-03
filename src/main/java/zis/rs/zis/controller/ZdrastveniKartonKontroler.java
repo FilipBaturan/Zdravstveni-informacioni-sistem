@@ -6,12 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import zis.rs.zis.domain.enums.TipAkcije;
-import zis.rs.zis.service.implementation.ZdravstveniKartonServis;
+import zis.rs.zis.service.nonProcessService.ZdravstveniKartonServis;
 import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -26,8 +23,22 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
     @Autowired
     private ZdravstveniKartonServis zdravstveniKartonServis;
 
+
     /**
-     * POST /korisnici
+     * GET /kartoni/{id}
+     *
+     * @param id trazenog lekara
+     * @return lekar sa trazenim id-jem
+     */
+    @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
+        logger.info("Traze se zdravstveni karton sa id={}: {}.", id, Calendar.getInstance().getTime());
+        return new ResponseEntity<>(zdravstveniKartonServis.
+                pretragaPoId(maper.dobaviURI("zdravstveni_karton") + id), HttpStatus.OK);
+    }
+
+    /**
+     * POST /kartoni
      *
      * @param akcija koja se izvrsava
      * @return rezultat akcije

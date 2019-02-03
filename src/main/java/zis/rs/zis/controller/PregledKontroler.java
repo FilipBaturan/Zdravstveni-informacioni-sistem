@@ -76,8 +76,11 @@ public class PregledKontroler extends ValidatorKontoler {
         logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
         //return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
-        return new ResponseEntity<>(izvestajXMLRepozitorijum.sacuvaj((ElementNSImpl)akcija.getSadrzaj().getAny()), HttpStatus.OK);
+        return new ResponseEntity<>(izvestajXMLRepozitorijum.izmeni(akcija), HttpStatus.OK);
     }
+
+
+
 
 
 }

@@ -15,17 +15,11 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
-import zis.rs.zis.domain.ObjectFactory;
-import zis.rs.zis.domain.entities.Korisnik;
-import zis.rs.zis.domain.entities.collections.Korisnici;
 import zis.rs.zis.domain.enums.TipKorisnika;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.XMLConstants;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.dom.DOMSource;

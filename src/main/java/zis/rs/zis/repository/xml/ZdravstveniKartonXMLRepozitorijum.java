@@ -15,6 +15,7 @@ import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.domain.enums.TipKorisnika;
 import zis.rs.zis.util.*;
+import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -33,6 +34,9 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
     @Autowired
+    private Operacije operacije;
+
+    @Autowired
     private OgranicenjaRepozitorijum ogranicenjaRepozitorijum;
 
     @Autowired
@@ -45,44 +49,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
     private Validator validator;
 
     public String pretragaPoId(String id) {
-        ResursiBaze resursi = null;
-        try {
-            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
-                    maper.dobaviDokument("zdravstveni_kartoni"));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("pretragaPoIdKartona")).getPath();
-            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
-            upitServis.setProperty("indent", "yes");
-            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), id);
-            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
-            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
-            ResourceIterator i = rezultat.getIterator();
-            Resource res = null;
-
-            StringBuilder sb = new StringBuilder();
-
-            while (i.hasMoreResources()) {
-
-                try {
-                    res = i.nextResource();
-                    sb.append(res.getContent().toString());
-                } finally {
-                    if (res != null)
-                        ((EXistResource) res).freeResources();
-
-                }
-            }
-            String karton = sb.toString();
-            konekcija.oslobodiResurse(resursi);
-            if (karton.isEmpty()) {
-                throw new ValidacioniIzuzetak("Trazeni karton sa id: " + id + " ne postoji!");
-            } else {
-                return karton;
-            }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
-            konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        }
+        return operacije.pretragaPoId(id, "zdravstveni_kartoni", "pretragaPoIdKartona");
     }
 
     public void obrisi(String id) {
