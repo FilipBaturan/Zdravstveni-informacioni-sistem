@@ -63,7 +63,7 @@ public class Maper {
         this.xmlBaza.put("izbori", "izbori.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
-        this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
+        this.xmlUpiti.put("pretragaPoIdLekara", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
         this.xmlUpiti.put("dodavanje", "classpath:templates/xquery/azuriranje/dodavanje.xml");
         this.xmlUpiti.put("prebrojavanje", "classpath:templates/xquery/azuriranje/prebrojavanjeSvihEntiteta.xq");
         this.xmlUpiti.put("ogranicenjaKorisnika",

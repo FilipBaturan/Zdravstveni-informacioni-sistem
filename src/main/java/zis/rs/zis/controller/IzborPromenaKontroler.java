@@ -15,7 +15,7 @@ import zis.rs.zis.util.akcije.Akcija;
 import java.util.Calendar;
 
 @RestController
-@RequestMapping("/izbor")
+@RequestMapping("/izbori")
 public class IzborPromenaKontroler {
 
     private static final Logger logger = LoggerFactory.getLogger(zis.rs.zis.controller.IzborPromenaKontroler.class);
@@ -30,37 +30,37 @@ public class IzborPromenaKontroler {
     private Maper maper;
 
     /**
-     * GET /rs/uputi
+     * GET /izbori
      *
-     * @return sve upute iz baze
+     * @return sve izbore iz baze
      */
     @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> dobaviSve() {
-        logger.info("Traze se svi izboriLekara: {}.", Calendar.getInstance().getTime());
+        logger.info("Traze se svi izbori lekara: {}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(izborPromenaServis.dobaviSve(), HttpStatus.OK);
     }
 
     /**
-     * GET /izboriLekara/{id}
+     * GET /izbori/{id}
      *
      * @param id trazenog izboraLekara
-     * @return izborLekara sa trazenim id-jem
+     * @return izbor lekara sa trazenim id-jem
      */
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
-        logger.info("Trazi se izborLekara sa id={}: {}.", id, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(izborPromenaServis.pretragaPoId(maper.dobaviURI("uput") + id), HttpStatus.OK);
+        logger.info("Trazi se izbor lekara sa id={}: {}.", id, Calendar.getInstance().getTime());
+        return new ResponseEntity<>(izborPromenaServis.pretragaPoId(maper.dobaviURI("izbor") + id), HttpStatus.OK);
     }
 
     /**
-     * POST izboraLekara
+     * POST /izbori
      *
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se dodavanje izboraLekara {}.", Calendar.getInstance().getTime());
+        logger.info("Vrsi se azuriranje izbora lekara {}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(izborPromenaServis.sacuvaj(akcija), HttpStatus.OK);
     }
 
@@ -77,5 +77,4 @@ public class IzborPromenaKontroler {
     }
 
 }
-
 
