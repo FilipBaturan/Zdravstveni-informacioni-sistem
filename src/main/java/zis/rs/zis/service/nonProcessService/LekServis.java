@@ -11,7 +11,7 @@ import zis.rs.zis.util.akcije.Akcija;
 public class LekServis {
 
     @Autowired
-    LekXMLRepozitorijum lekXMLRepozitorijum;
+    private LekXMLRepozitorijum lekXMLRepozitorijum;
 
     public String dobaviSve() { return lekXMLRepozitorijum.dobaviSve();}
 

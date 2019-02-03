@@ -2,7 +2,6 @@ package zis.rs.zis.repository.xml;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
@@ -14,40 +13,40 @@ import zis.rs.zis.util.akcije.Akcija;
 @Repository
 public class UputXMLRepozitorijum extends IOStrimer{
 
-        @Autowired
-        private LekarXMLRepozitorijum lekarXMLRepozitorijum;
+    @Autowired
+    private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
-        @Autowired
-        private KorisnikXMLRepozitorijum korisnikXMLRepozitorijum;
+    @Autowired
+    private KorisnikXMLRepozitorijum korisnikXMLRepozitorijum;
 
-        @Autowired
-        private Maper maper;
+    @Autowired
+    private Maper maper;
 
-        @Autowired
-        Operacije operacije;
+    @Autowired
+    private Operacije operacije;
 
-        private String dokument = "uputi";
-        private String prefiksDokumenta = "uput";
+    private String dokument = "uputi";
+    private String prefiksDokumenta = "uput";
 
-        public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveUpute");}
+    public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveUpute");}
 
-        public String pretragaPoId(String id) {
-            return operacije.pretragaPoId(id, dokument, "pretragaPoIdUputa");
-        }
+    public String pretragaPoId(String id) {
+        return operacije.pretragaPoId(id, dokument, "pretragaPoIdUputa");
+    }
 
-        public String sacuvaj(Akcija akcija) {
-            proveriUput(maper.dobaviDokument(akcija, prefiksDokumenta));
-            return operacije.sacuvaj(akcija, dokument, prefiksDokumenta);
-        }
+    public String sacuvaj(Akcija akcija) {
+        proveriUput(maper.dobaviDokument(akcija, prefiksDokumenta));
+        return operacije.sacuvaj(akcija, dokument, prefiksDokumenta);
+    }
 
-        public String obrisi(Akcija akcija) {
-            return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdUputa");
-        }
+    public String obrisi(Akcija akcija) {
+        return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdUputa");
+    }
 
-        public String izmeni(Akcija akcija) {
-            proveriUput(maper.dobaviDokument(akcija, prefiksDokumenta) );
-            return operacije.izmeni(akcija, dokument, prefiksDokumenta);
-        }
+    public String izmeni(Akcija akcija) {
+        proveriUput(maper.dobaviDokument(akcija, prefiksDokumenta) );
+        return operacije.izmeni(akcija, dokument, prefiksDokumenta);
+    }
 
     private void proveriUput(Node sadrzaj) {
         String lekarId = "";
@@ -67,13 +66,11 @@ public class UputXMLRepozitorijum extends IOStrimer{
                 break;
             }
         }
-        try {
-            lekarXMLRepozitorijum.pretragaPoId(lekarId);
-            lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
-            //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
-        } catch (ValidacioniIzuzetak izuzetak) {
-            throw izuzetak;
-        }
+
+        lekarXMLRepozitorijum.pretragaPoId(lekarId);
+        lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
+        //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
+
     }
 
 }

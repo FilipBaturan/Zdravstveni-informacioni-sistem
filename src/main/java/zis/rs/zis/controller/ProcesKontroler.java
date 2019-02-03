@@ -34,7 +34,7 @@ public class ProcesKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> proces(@RequestBody Akcija akcija) {
         logger.info("Obradjuje se proces {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);

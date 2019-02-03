@@ -26,7 +26,7 @@ public class ReceptXMLRepozitorijum extends IOStrimer{
     private Maper maper;
 
     @Autowired
-    Operacije operacije;
+    private Operacije operacije;
 
     private String dokument = "recepti";
     private String prefiksDokumenta = "recept";

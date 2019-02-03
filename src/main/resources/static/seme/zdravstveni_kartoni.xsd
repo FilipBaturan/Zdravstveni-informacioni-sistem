@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/zdrastveni_kartoni"
-           xmlns:zko="http://zis.rs/zis/sema/zdrastveni_karton">
+           vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/zdrastveni_kartoni"
+           xmlns:zko="http://www.zis.rs/seme/zdravstveni_karton">
 
-    <xs:import namespace="http://zis.rs/zis/sema/zdrastveni_karton"
+    <xs:import namespace="http://www.zis.rs/seme/zdrastveni_karton"
                schemaLocation="zdravstveni_karton.xsd"/>
     <xs:element name="zdravstveni_kartoni">
         <xs:complexType>

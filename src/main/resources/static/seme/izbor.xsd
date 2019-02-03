@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.zis.rs/seme/izbor_promena_lekara" vc:minVersion="1.1"
+    targetNamespace="http://www.zis.rs/seme/izbor" vc:minVersion="1.1"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-    xmlns:izbor="http://www.zis.rs/seme/izbor_promena_lekara">
-    <xs:element name="izbor_promena_lekara">
+    xmlns:izbor="http://www.zis.rs/seme/izbor">
+    <xs:element name="izbor">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="naziv_ustanove" type="xs:string"/>

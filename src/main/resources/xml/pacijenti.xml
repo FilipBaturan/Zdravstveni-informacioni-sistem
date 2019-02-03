@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pa:pacijenti
+ xmlns:pacijent="http://www.zis.rs/seme/pacijent"
+ xmlns:pa="http://www.zis.rs/seme/pacijenti">
+    <pacijent:pacijent id="http://www.oxygenxml.com/">
+        <pacijent:korisnik pacijent:identifikator="http://www.oxygenxml.com/"/>
+        <pacijent:zdravstveni_karton pacijent:identifikator="http://www.oxygenxml.com/"/>
+        <pacijent:obavestenja>
+            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje0</pacijent:obavestenje>
+            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje1</pacijent:obavestenje>
+        </pacijent:obavestenja>
+    </pacijent:pacijent>
+    <pacijent:pacijent id="http://www.oxygenxml.com/">
+        <pacijent:korisnik pacijent:identifikator="http://www.oxygenxml.com/"/>
+        <pacijent:zdravstveni_karton pacijent:identifikator="http://www.oxygenxml.com/"/>
+        <pacijent:obavestenja>
+            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje2</pacijent:obavestenje>
+            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje3</pacijent:obavestenje>
+        </pacijent:obavestenja>
+    </pacijent:pacijent>
+</pa:pacijenti>

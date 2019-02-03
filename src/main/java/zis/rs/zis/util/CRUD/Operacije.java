@@ -25,18 +25,18 @@ import java.io.IOException;
 public class Operacije extends IOStrimer {
 
     @Autowired
-    KonfiguracijaKonekcija konekcija;
+    private KonfiguracijaKonekcija konekcija;
 
     @Autowired
-    Maper maper;
+    private Maper maper;
 
     @Autowired
-    Validator validator;
+    private Validator validator;
 
     @Autowired
-    Sekvencer sekvencer;
+    private Sekvencer sekvencer;
 
-    private static final Logger logger = LoggerFactory.getLogger(ReceptXMLRepozitorijum.class);
+    private static final Logger logger = LoggerFactory.getLogger(Operacije.class);
 
     public String dobaviSve(String dokument, String putanjaUpita) {
         ResursiBaze resursi = null;
@@ -149,6 +149,33 @@ public class Operacije extends IOStrimer {
                 throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
             }
             return prefiksDokumenta + " uspesno obrisan!";
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
+    public void obrisi(String dokument, String prefiks, String prefiksDokumenta, String putanja) {
+        ResursiBaze resursi = null;
+
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("brisanje")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), putanja,
+                    maper.dobaviPrefiks(dokument));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);

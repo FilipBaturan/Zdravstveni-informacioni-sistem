@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1" targetNamespace="http://zis.rs/zis/seme/pacijent"
-    xmlns:pacijent="http://zis.rs/zis/seme/pacijent">
+    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/pacijent"
+    xmlns:pacijent="http://www.zis.rs/seme/pacijent">
     <xs:element name="pacijent">
         <xs:complexType>
             <xs:sequence>
@@ -11,7 +11,7 @@
                         <xs:attribute ref="pacijent:identifikator" use="required"/>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="zdrastveni_karton">
+                <xs:element name="zdravstveni_karton">
                     <xs:complexType>
                         <xs:attribute ref="pacijent:identifikator" use="required"/>
                     </xs:complexType>
@@ -19,8 +19,18 @@
                 <xs:element name="obavestenja">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element maxOccurs="unbounded" minOccurs="0" name="obavestenje"
-                                type="xs:string"/>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="obavestenje">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="aktivan" type="xs:boolean"
+                                                use="required"/>
+                                            <xs:attribute name="datum" type="xs:dateTime"
+                                                use="required"/>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>

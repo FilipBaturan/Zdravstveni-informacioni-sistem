@@ -36,7 +36,7 @@ public class OpstiPregled extends Stanje {
         if (izvestaj == null) {
             throw new ValidacioniIzuzetak("Izvestaj nije prosledjen!");
         }
-        String rezultatIzvestaja = izvestajXMLRepozitorijum.sacuvaj(izvestaj);
+        String rezultatIzvestaja = izvestajXMLRepozitorijum.sacuvaj(akcija);
         return null;
     }
 

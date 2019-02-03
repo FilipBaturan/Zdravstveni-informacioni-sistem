@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/uputi"
-    xmlns="http://www.zis.rs/seme/uputi" xmlns:uput="http://www.zis.rs/seme/uput">
-    <xs:import namespace="http://www.zis.rs/seme/uput" schemaLocation="uput.xsd"/>
-    <xs:element name="uputi">
+    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/izbori"
+    xmlns="http://www.zis.rs/seme/izbori"
+    xmlns:izbor="http://www.zis.rs/seme/izbor">
+    <xs:import namespace="http://www.zis.rs/seme/izbor"
+        schemaLocation="izbor.xsd"/>
+    <xs:element name="izbori">
         <xs:complexType>
             <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="uput:uput"/>
+                <xs:element ref="izbor:izbor"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

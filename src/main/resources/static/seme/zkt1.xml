@@ -4,13 +4,12 @@
                         xmlns:xs="http://www.w3.org/2001/XMLSchema#"
                         id="rs/pacijenti/id1/zdrastveni_karton" jmbg="1205198684232" broj_zdr_knjizice="75234957123"
                         broj_kartona="AA000" lbo="78632412675" aktivan="true"
-                        about="http://www.zis.rs/pacijenti/id1/zdrastveni_karton">
-    <zko:osigurano_lice typeof="voc:OsiguranoLice"
-                        rel="voc:osiguranoLice" href="http://www.zis.rs/pacijenti/id1">
-        <zko:ime about="http://www.zis.rs/pacijenti/id1" property="voc:ime" datatype="xs:string">Stefan</zko:ime>
-        <zko:prezime about="http://www.zis.rs/pacijenti/id1" property="voc:prezime" datatype="xs:string">Stefanovic
+                        about="http://www.zis.rs/zdrastveni_kartoni/id1">
+    <zko:osigurano_lice>
+        <zko:ime about="http://www.zis.rs/zdrastveni_kartoni/id1" property="voc:ime" datatype="xs:string">Stefan</zko:ime>
+        <zko:prezime about="http://www.zis.rs/zdrastveni_kartoni/id1" property="voc:prezime" datatype="xs:string">Stefanovic
         </zko:prezime>
-        <zko:pol about="http://www.zis.rs/pacijenti/id1" property="voc:pol" datatype="xs:string">muski</zko:pol>
+        <zko:pol about="http://www.zis.rs/zdrastveni_kartoni/id1" property="voc:pol" datatype="xs:string">muski</zko:pol>
         <zko:nosilac_osiguranja>
             <zko:ime>Nemanja</zko:ime>
             <zko:prezime>Stefanovic</zko:prezime>
@@ -18,10 +17,10 @@
             <zko:osnova_osiguranja>50</zko:osnova_osiguranja>
         </zko:nosilac_osiguranja>
         <zko:bracno_stanje>neozenjen/neudata</zko:bracno_stanje>
-        <zko:datum_rodjenja about="http://www.zis.rs/pacijenti/id1" property="voc:datumRodjenja" datatype="xs:date">
+        <zko:datum_rodjenja about="http://www.zis.rs/zdrastveni_kartoni/id1" property="voc:datumRodjenja" datatype="xs:date">
             2006-05-04
         </zko:datum_rodjenja>
-        <zko:adresa about="http://www.zis.rs/pacijenti/id1"
+        <zko:adresa about="http://www.zis.rs/zdrastveni_kartoni/id1"
                     rel="voc:stanuje" href="http://www.zis.rs/adresa/sremska/23/15/zemun">
             <zko:ulica about="http://www.zis.rs/adresa/sremska/23/15/zemun" property="voc:ulica">Sremska</zko:ulica>
             <zko:broj about="http://www.zis.rs/adresa/sremska/23/15/zemun" property="voc:broj">23</zko:broj>

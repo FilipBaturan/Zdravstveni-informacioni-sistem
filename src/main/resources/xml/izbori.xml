@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<izbori:izbori
+        xmlns:izbor="http://www.zis.rs/seme/izbor"
+        xmlns:izbori="http://www.zis.rs/seme/izbori">
+    <izbor:izbor oznaka="ipl1" id="http://www.zis.rs/izbori/id1" aktivan="true">
+        <izbor:naziv_ustanove>naziv_ustanove0</izbor:naziv_ustanove>
+        <izbor:tip_obrasca>izbor</izbor:tip_obrasca>
+        <izbor:razlog_promene>ne_radi</izbor:razlog_promene>
+        <izbor:prosli_lekar izbor:identifikator="http://www.zis.rs/lekari/id2"/>
+        <izbor:lekar izbor:identifikator="http://www.oxygenxml.com/"/>
+        <izbor:osigurano_lice izbor:identifikator="http://www.zis.rs/lekari/id4"/>
+        <izbor:datum>2006-05-04</izbor:datum>
+    </izbor:izbor>
+    <izbor:izbor oznaka="ipl1" id="http://www.zis.rs/izbori/id2" aktivan="true">
+        <izbor:naziv_ustanove>naziv_ustanove0</izbor:naziv_ustanove>
+        <izbor:tip_obrasca>izbor</izbor:tip_obrasca>
+        <izbor:razlog_promene>ne_radi</izbor:razlog_promene>
+        <izbor:prosli_lekar izbor:identifikator="http://www.zis.rs/lekari/id6"/>
+        <izbor:lekar izbor:identifikator="http://www.oxygenxml.com/"/>
+        <izbor:osigurano_lice izbor:identifikator="http://www.zis.rs/lekari/id2"/>
+        <izbor:datum>2006-05-04</izbor:datum>
+    </izbor:izbor>
+</izbori:izbori>
+

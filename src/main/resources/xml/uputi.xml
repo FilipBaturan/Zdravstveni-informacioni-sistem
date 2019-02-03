@@ -1,7 +1,7 @@
 <uputi:uputi
  xmlns:uput="http://www.zis.rs/seme/uput"
  xmlns:uputi="http://www.zis.rs/seme/uputi">
-    <uput:uput oznaka="oz2" id="http://www.zis.rs/uput/id1" aktivan="true">
+    <uput:uput oznaka="oz2" id="http://www.zis.rs/uputi/id1" aktivan="true">
         <uput:zdrastvene_ustanove>
             <uput:primalac>c</uput:primalac>
             <uput:posaljilac>KBUB8ts</uput:posaljilac>
@@ -12,7 +12,7 @@
         <uput:datum>2019-08-06</uput:datum>
         <uput:specialista uput:identifikator="http://EbpkMBfh/"/>
     </uput:uput>
-    <uput:uput oznaka="oz2" id="http://www.zis.rs/uput/id2/" aktivan="true">
+    <uput:uput oznaka="oz2" id="http://www.zis.rs/uputi/id2" aktivan="true">
         <uput:zdrastvene_ustanove>
             <uput:primalac>c</uput:primalac>
             <uput:posaljilac>KBUB8ts</uput:posaljilac>
@@ -23,7 +23,7 @@
         <uput:datum>2019-08-06</uput:datum>
         <uput:specialista uput:identifikator="http://EbpkMBfh/"/>
     </uput:uput>
-    <uput:uput oznaka="oz2" id="http://www.zis.rs/uput/id3" aktivan="true">
+    <uput:uput oznaka="oz2" id="http://www.zis.rs/uputi/id3" aktivan="true">
         <uput:zdrastvene_ustanove>
             <uput:primalac>c</uput:primalac>
             <uput:posaljilac>KBUB8ts</uput:posaljilac>
