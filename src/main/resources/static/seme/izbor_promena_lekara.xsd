@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://zis.rs/zis/seme/Izbor_promena_lekara" vc:minVersion="1.1"
-           xmlns:ipl1="http://zis.rs/zis/seme/Izbor_promena_lekara"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning">
+    targetNamespace="http://www.zis.rs/seme/izbor_promena_lekara" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:izbor="http://www.zis.rs/seme/izbor_promena_lekara">
     <xs:element name="izbor_promena_lekara">
         <xs:complexType>
             <xs:sequence>
@@ -18,7 +18,7 @@
                 <xs:element default="ne_radi" name="razlog_promene">
                     <xs:complexType>
                         <xs:simpleContent>
-                            <xs:extension base="ipl1:razlog_promene_opcije">
+                            <xs:extension base="izbor:razlog_promene_opcije">
                                 <xs:anyAttribute processContents="lax"/>
                             </xs:extension>
                         </xs:simpleContent>
@@ -26,19 +26,19 @@
                 </xs:element>
                 <xs:element name="prosli_lekar">
                     <xs:complexType>
-                        <xs:attribute ref="ipl1:identifikator" use="required"/>
+                        <xs:attribute ref="izbor:identifikator" use="required"/>
                         <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="lekar">
                     <xs:complexType>
-                        <xs:attribute ref="ipl1:identifikator" use="required"/>
+                        <xs:attribute ref="izbor:identifikator" use="required"/>
                         <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="osigurano_lice">
                     <xs:complexType>
-                        <xs:attribute ref="ipl1:identifikator" use="required"/>
+                        <xs:attribute ref="izbor:identifikator" use="required"/>
                         <xs:anyAttribute processContents="lax"/>
                     </xs:complexType>
                 </xs:element>

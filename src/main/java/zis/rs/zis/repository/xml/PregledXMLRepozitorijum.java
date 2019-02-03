@@ -284,6 +284,9 @@ public class PregledXMLRepozitorijum extends IOStrimer {
         return string;
     }
 
+    /*
+        Pregled ne sme biti zakazan kod lekara u isto vreme kao i neki drugi njegov pregled
+     */
     private void proveriOgranicenjaPregleda(Document dokument, String prefiks) {
         String lekar = dokument.getElementsByTagName(prefiks + ":lekar")
                 .item(0).getAttributes().item(0).getNodeValue();
