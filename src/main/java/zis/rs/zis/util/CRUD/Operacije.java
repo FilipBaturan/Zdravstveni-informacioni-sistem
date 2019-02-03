@@ -80,11 +80,12 @@ public class Operacije extends IOStrimer {
         }
     }
 
-    public String pretragaPoId(String id, String dokument) {
+
+    public String pretragaPoId(String id, String dokument, String putanjaUpita) {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("pretragaPoIdRecepta")).getPath();
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit(putanjaUpita)).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija()
                     .getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
@@ -110,7 +111,8 @@ public class Operacije extends IOStrimer {
             String recepti = sb.toString();
             konekcija.oslobodiResurse(resursi);
             if (recepti.isEmpty()) {
-                throw new ValidacioniIzuzetak("Trazeni recept ne postoji u bazi!");
+                String ime = dokument.substring(0, dokument.length() - 1);
+                throw new ValidacioniIzuzetak("Trazeni " + ime + " ne postoji u bazi!");
             } else {
                 return recepti;
             }
@@ -121,9 +123,9 @@ public class Operacije extends IOStrimer {
         }
     }
 
-    public String obrisi(Akcija akcija, String dokument, String prefiksDokumenta) {
+    public String obrisi(Akcija akcija, String dokument, String prefiksDokumenta, String putanjaUpita) {
         String id = akcija.getKontekst();
-        String recept = pretragaPoId(id, dokument);
+        String recept = pretragaPoId(id, dokument, putanjaUpita);
         String prefiks = maper.konvertujUDokument(recept).getFirstChild().getNodeName().split(":")[0];
 
         String putanjaDoLeka = pronadjiRecept(id, dokument);
@@ -146,7 +148,7 @@ public class Operacije extends IOStrimer {
             if (mods == 0) {
                 throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
             }
-            return "Recept uspesno obrisan!";
+            return prefiksDokumenta + " uspesno obrisan!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
