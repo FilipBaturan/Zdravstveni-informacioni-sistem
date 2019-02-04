@@ -21,16 +21,24 @@ public class KorisnikServis {
 
     public String registruj(Akcija akcija) {
         String[] rezultati = korisnikXMLRepozitorijum.registruj(akcija);
-        String rezultat = this.preProcesiranje(rezultati[1], rezultati[0]);
-        rdfRepozitorijum.sacuvaj(rezultat);
+        rezultati = this.preProcesiranje(rezultati[1], rezultati[0]);
+        if (rezultati[1].equals(maper.dobaviGraf("zdravstveni_kartoni"))) {
+            rdfRepozitorijum.sacuvaj(rezultati[0], rezultati[1], true);
+        } else {
+            rdfRepozitorijum.sacuvaj(rezultati[0], rezultati[1], false);
+        }
         return "Uspesna registracija!";
     }
 
-    private String preProcesiranje(String glavni, String pomocni) {
+    private String[] preProcesiranje(String glavni, String pomocni) {
+        String graf = maper.dobaviGraf("zdravstveni_kartoni");
         glavni = glavni.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
-                + maper.dobaviPrefiks("xmlSema")).replaceFirst("<.*korisnik.*/>", pomocni);
-        final String PROTOKOL = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-        return PROTOKOL + glavni;
+                + maper.dobaviPrefiks("xmlSema"));
+        if (!glavni.contains("zdravstveni_karton")) {
+            glavni = glavni.replaceFirst("<.*korisnik.*/>", pomocni);
+            graf = maper.dobaviGraf("lekari");
+        }
+        return new String[]{"<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + glavni, graf};
 
     }
 }

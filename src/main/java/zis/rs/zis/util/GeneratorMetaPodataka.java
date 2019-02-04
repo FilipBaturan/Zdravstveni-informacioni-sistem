@@ -91,10 +91,6 @@ public class GeneratorMetaPodataka {
                     }
                 }
                 break;
-            case MEDICINSKA_SESTRA:
-                koren.setAttribute("about", id);
-                koren.setAttribute("typeof", "voc:MedicinskaSestra");
-                break;
         }
     }
 
@@ -141,7 +137,7 @@ public class GeneratorMetaPodataka {
                     break;
                 case "datum_rodjenja":
                     element.setAttribute("about", id);
-                    element.setAttribute("property", "voc:jmbg");
+                    element.setAttribute("property", "voc:datum_rodjenja");
                     element.setAttribute("datatype", "xs:date");
                     ++brojac;
                     break;
@@ -182,9 +178,9 @@ public class GeneratorMetaPodataka {
                                 break;
                             case "opstina":
                                 ++adresaBrojac;
-                                element.setAttribute("about", adresaURL);
-                                element.setAttribute("rel", "voc:opstina");
-                                element.setAttribute("href", opstinaURL);
+                                el.setAttribute("about", adresaURL);
+                                el.setAttribute("rel", "voc:opstina");
+                                el.setAttribute("href", opstinaURL);
                                 NodeList opstina = el.getChildNodes();
                                 Element e;
                                 int opstinaBrojac = 0;

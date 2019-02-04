@@ -37,6 +37,7 @@ public class Maper {
     private Map<String, String> xmlPutanje;
     private Map<String, String> uriPrefiks;
     private Map<String, String> transformacije;
+    private Map<String, String> grafovi;
 
     public Maper() {
         this.xmlBaza = new HashMap<>();
@@ -46,6 +47,7 @@ public class Maper {
         this.xmlPutanje = new HashMap<>();
         this.uriPrefiks = new HashMap<>();
         this.transformacije = new HashMap<>();
+        this.grafovi = new HashMap<>();
         this.inicijalizujMapu();
     }
 
@@ -173,8 +175,12 @@ public class Maper {
         this.uriPrefiks.put("recept", "http://www.zis.rs/recepti/id");
         this.uriPrefiks.put("uput", "http://www.zis.rs/uputi/id");
         this.uriPrefiks.put("izbor", "http://www.zis.rs/izbori/id");
+        this.uriPrefiks.put("vokabular", "http://www.zis.rs/rdf/voc#");
 
         this.transformacije.put("metapodaci", "classpath:xsl/grddl.xsl");
+
+        this.grafovi.put("lekari", "lekari");
+        this.grafovi.put("zdravstveni_kartoni", "zdravstveni_kartoni");
     }
 
     /**
@@ -381,5 +387,7 @@ public class Maper {
     public String dobaviTransformaciju(String naziv) {
         return this.transformacije.get(naziv);
     }
+
+    public String dobaviGraf(String naziv) { return this.grafovi.get(naziv); }
 
 }
