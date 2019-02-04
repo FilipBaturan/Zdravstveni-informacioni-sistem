@@ -10,7 +10,11 @@ public class LekarServis {
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
-    public String dobaviSve() { return lekarXMLRepozitorijum.dobaviSve();}
+    public String dobaviSve() {
+        return lekarXMLRepozitorijum.dobaviSve();
+    }
 
-    public String pretragaPoId(String id){ return lekarXMLRepozitorijum.pretragaPoId(id);}
+    public String pretragaPoId(String id) {
+        return lekarXMLRepozitorijum.pretragaPoId(id);
+    }
 }

@@ -7,11 +7,10 @@ import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
-import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Repository
-public class UputXMLRepozitorijum extends IOStrimer{
+public class UputXMLRepozitorijum extends IOStrimer {
 
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
@@ -28,7 +27,9 @@ public class UputXMLRepozitorijum extends IOStrimer{
     private String dokument = "uputi";
     private String prefiksDokumenta = "uput";
 
-    public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveUpute");}
+    public String dobaviSve() {
+        return operacije.dobaviSve(dokument, "dobaviSveUpute");
+    }
 
     public String pretragaPoId(String id) {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdUputa");
@@ -44,7 +45,7 @@ public class UputXMLRepozitorijum extends IOStrimer{
     }
 
     public String izmeni(Akcija akcija) {
-        proveriUput(maper.dobaviDokument(akcija, prefiksDokumenta) );
+        proveriUput(maper.dobaviDokument(akcija, prefiksDokumenta));
         return operacije.izmeni(akcija, dokument, prefiksDokumenta);
     }
 
@@ -60,8 +61,7 @@ public class UputXMLRepozitorijum extends IOStrimer{
                 korisnikId = element.getAttributes().item(0).getNodeValue();
             } else if (element.getLocalName().equals("lekar")) {
                 lekarId = element.getAttributes().item(0).getNodeValue();
-            }
-            else if (element.getLocalName().equals("specialista")) {
+            } else if (element.getLocalName().equals("specialista")) {
                 specijalistaId = element.getAttributes().item(0).getNodeValue();
                 break;
             }

@@ -3,7 +3,6 @@ package zis.rs.zis.repository.xml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
@@ -24,7 +23,9 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
     private String dokument = "izbori";
     private String prefiksDokumenta = "izbor";
 
-    public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveIzbore");}
+    public String dobaviSve() {
+        return operacije.dobaviSve(dokument, "dobaviSveIzbore");
+    }
 
     public String pretragaPoId(String id) {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdIzbora");
@@ -40,9 +41,10 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
     }
 
     public String izmeni(Akcija akcija) {
-        proveriIzbor(maper.dobaviDokument(akcija, prefiksDokumenta) );
+        proveriIzbor(maper.dobaviDokument(akcija, prefiksDokumenta));
         return operacije.izmeni(akcija, dokument, prefiksDokumenta);
     }
+
     private void proveriIzbor(Node sadrzaj) {
 //        String lekarId = "";
 //        String korisnikId = "";

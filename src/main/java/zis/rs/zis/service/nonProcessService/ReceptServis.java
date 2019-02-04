@@ -11,13 +11,23 @@ public class ReceptServis {
     @Autowired
     ReceptXMLRepozitorijum receptXMLRepozitorijum;
 
-    public String dobaviSve() { return receptXMLRepozitorijum.dobaviSve();}
+    public String dobaviSve() {
+        return receptXMLRepozitorijum.dobaviSve();
+    }
 
-    public String pretragaPoId(String id){ return receptXMLRepozitorijum.pretragaPoId(id);}
+    public String pretragaPoId(String id) {
+        return receptXMLRepozitorijum.pretragaPoId(id);
+    }
 
-    public String sacuvaj(Akcija akcija) { return receptXMLRepozitorijum.sacuvaj(akcija);}
+    public String sacuvaj(Akcija akcija) {
+        return receptXMLRepozitorijum.sacuvaj(akcija);
+    }
 
-    public String obrisi(Akcija akcija) { return  receptXMLRepozitorijum.obrisi(akcija);}
+    public String obrisi(Akcija akcija) {
+        return receptXMLRepozitorijum.obrisi(akcija);
+    }
 
-    public String izmeni(Akcija akcija) { return  receptXMLRepozitorijum.izmeni(akcija);}
+    public String izmeni(Akcija akcija) {
+        return receptXMLRepozitorijum.izmeni(akcija);
+    }
 }

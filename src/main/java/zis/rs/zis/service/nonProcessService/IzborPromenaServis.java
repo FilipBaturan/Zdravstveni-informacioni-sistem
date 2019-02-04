@@ -11,13 +11,23 @@ public class IzborPromenaServis {
     @Autowired
     IzborPromenaXMLRepozitorijum izborPromenaXMLRepozitorijum;
 
-    public String dobaviSve() { return izborPromenaXMLRepozitorijum.dobaviSve();}
+    public String dobaviSve() {
+        return izborPromenaXMLRepozitorijum.dobaviSve();
+    }
 
-    public String pretragaPoId(String id){ return izborPromenaXMLRepozitorijum.pretragaPoId(id);}
+    public String pretragaPoId(String id) {
+        return izborPromenaXMLRepozitorijum.pretragaPoId(id);
+    }
 
-    public String sacuvaj(Akcija akcija) { return izborPromenaXMLRepozitorijum.sacuvaj(akcija);}
+    public String sacuvaj(Akcija akcija) {
+        return izborPromenaXMLRepozitorijum.sacuvaj(akcija);
+    }
 
-    public String obrisi(Akcija akcija) { return  izborPromenaXMLRepozitorijum.obrisi(akcija);}
+    public String obrisi(Akcija akcija) {
+        return izborPromenaXMLRepozitorijum.obrisi(akcija);
+    }
 
-    public String izmeni(Akcija akcija) { return  izborPromenaXMLRepozitorijum.izmeni(akcija);}
+    public String izmeni(Akcija akcija) {
+        return izborPromenaXMLRepozitorijum.izmeni(akcija);
+    }
 }

@@ -219,7 +219,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             this.sacuvajPacijenta(maper.dobaviURI("zdravstveni_karton") + osobaId,
                     maper.dobaviURI("korisnik") + korisnikId);
         }
-        return new String[] {kor, osb};
+        return new String[]{kor, osb};
     }
 
     /**

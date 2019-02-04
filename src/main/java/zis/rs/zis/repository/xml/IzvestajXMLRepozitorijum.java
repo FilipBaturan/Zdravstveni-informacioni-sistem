@@ -25,22 +25,27 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     private String dokument = "izvestaji";
     private String prefiksDokumenta = "izvestaj";
 
-    public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveIzvestaje");}
+    public String dobaviSve() {
+        return operacije.dobaviSve(dokument, "dobaviSveIzvestaje");
+    }
 
-    public String pretragaPoId(String id) {return operacije.pretragaPoId(id, dokument, "pretragaPoIdIzvestaja");}
+    public String pretragaPoId(String id) {
+        return operacije.pretragaPoId(id, dokument, "pretragaPoIdIzvestaja");
+    }
 
     public String sacuvaj(Akcija akcija) {
         proveriIzvestaj(maper.dobaviDokument(akcija, "izvestaj"));
         return operacije.sacuvaj(akcija, dokument, prefiksDokumenta);
     }
 
-    public String obrisi(Akcija akcija) { return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdIzvestaja");}
-
-    public String izmeni(Akcija akcija) {
-        proveriIzvestaj(maper.dobaviDokument(akcija, "izvestaj") );
-        return operacije.izmeni(akcija, dokument, prefiksDokumenta);
+    public String obrisi(Akcija akcija) {
+        return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdIzvestaja");
     }
 
+    public String izmeni(Akcija akcija) {
+        proveriIzvestaj(maper.dobaviDokument(akcija, "izvestaj"));
+        return operacije.izmeni(akcija, dokument, prefiksDokumenta);
+    }
 
 
     private void proveriIzvestaj(Node sadrzaj) {
@@ -54,8 +59,11 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
                 break;
             }
         }
-        try{ lekarXMLRepozitorijum.pretragaPoId(lekarId); }
-        catch (ValidacioniIzuzetak izuzetak) { throw izuzetak; }
+        try {
+            lekarXMLRepozitorijum.pretragaPoId(lekarId);
+        } catch (ValidacioniIzuzetak izuzetak) {
+            throw izuzetak;
+        }
     }
 
 }

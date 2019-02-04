@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import zis.rs.zis.repository.xml.LekXMLRepozitorijum;
 import zis.rs.zis.service.nonProcessService.LekServis;
 import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.Validator;

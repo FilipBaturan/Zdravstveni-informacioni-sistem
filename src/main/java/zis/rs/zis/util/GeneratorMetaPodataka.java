@@ -100,7 +100,7 @@ public class GeneratorMetaPodataka {
 
     /**
      * @param elementi kojima je potrebno dodati meta podatke
-     * @param id zdravstvenog kartona
+     * @param id       zdravstvenog kartona
      */
     private void dodajMetaPodatkePacijentu(NodeList elementi, String id) {
         String[] urls = this.generisiURL(elementi);

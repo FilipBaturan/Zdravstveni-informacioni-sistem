@@ -1,14 +1,11 @@
 package zis.rs.zis.service.nonProcessService;
 
-import com.sun.activation.registries.MailcapParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zis.rs.zis.repository.rdf.RDFRepozitorijum;
 import zis.rs.zis.repository.xml.KorisnikXMLRepozitorijum;
 import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.akcije.Akcija;
-
-import javax.xml.transform.TransformerException;
 
 @Service
 public class KorisnikServis {
@@ -30,7 +27,7 @@ public class KorisnikServis {
     }
 
     private String preProcesiranje(String glavni, String pomocni) {
-        glavni = glavni.trim().replaceFirst(" ",  "  " + maper.dobaviPrefiks("vokabular")
+        glavni = glavni.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                 + maper.dobaviPrefiks("xmlSema")).replaceFirst("<.*korisnik.*/>", pomocni);
         final String PROTOKOL = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
         return PROTOKOL + glavni;

@@ -125,7 +125,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
-     }
+    }
 
     public String obrisi(Akcija akcija) {
 

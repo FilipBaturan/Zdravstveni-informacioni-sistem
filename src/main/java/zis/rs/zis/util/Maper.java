@@ -333,8 +333,7 @@ public class Maper {
     }
 
     /**
-     *
-     * @param akcija koja se prosledjuje
+     * @param akcija         koja se prosledjuje
      * @param nazivDokumenta koji treba da se dobavi
      * @return dokument u obliku cvora
      */
@@ -379,6 +378,8 @@ public class Maper {
         return this.uriPrefiks.get(naziv);
     }
 
-    public String dobaviTransformaciju(String naziv) { return this.transformacije.get(naziv); }
+    public String dobaviTransformaciju(String naziv) {
+        return this.transformacije.get(naziv);
+    }
 
 }

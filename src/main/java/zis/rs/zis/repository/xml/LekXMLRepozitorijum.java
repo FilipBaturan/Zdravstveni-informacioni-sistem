@@ -15,15 +15,21 @@ public class LekXMLRepozitorijum extends IOStrimer {
     private String dokument = "lekovi";
     private String prefiksDokumenta = "lek";
 
-    public String dobaviSve() {return operacije.dobaviSve(dokument, "dobaviSveLekove");}
+    public String dobaviSve() {
+        return operacije.dobaviSve(dokument, "dobaviSveLekove");
+    }
 
-    public String pretragaPoId(String id) {return operacije.pretragaPoId(id, dokument, "pretragaPoIdLeka");}
+    public String pretragaPoId(String id) {
+        return operacije.pretragaPoId(id, dokument, "pretragaPoIdLeka");
+    }
 
     public String sacuvaj(Akcija akcija) {
         return operacije.sacuvaj(akcija, dokument, prefiksDokumenta);
     }
 
-    public String obrisi(Akcija akcija) { return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdLeka");}
+    public String obrisi(Akcija akcija) {
+        return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdLeka");
+    }
 
     public String izmeni(Akcija akcija) {
         return operacije.izmeni(akcija, dokument, prefiksDokumenta);

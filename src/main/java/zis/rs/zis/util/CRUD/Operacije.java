@@ -13,7 +13,6 @@ import org.w3c.dom.NodeList;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
-import zis.rs.zis.repository.xml.ReceptXMLRepozitorijum;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -183,7 +182,7 @@ public class Operacije extends IOStrimer {
         }
     }
 
-    public String sacuvaj(Akcija akcija,String dokument, String prefiksDokumenta) {
+    public String sacuvaj(Akcija akcija, String dokument, String prefiksDokumenta) {
         String lek = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
 
         String prefiks = maper.konvertujUDokument(lek).getFirstChild().getNodeName().split(":")[0];
@@ -260,9 +259,6 @@ public class Operacije extends IOStrimer {
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
-
-
-
 
 
     /**

@@ -14,8 +14,8 @@ import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 import zis.rs.zis.domain.enums.TipKorisnika;
-import zis.rs.zis.util.*;
 import zis.rs.zis.util.CRUD.Operacije;
+import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -163,7 +163,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
 
     /**
      * @param dokument zdravstvenog kartona
-     * @param id zdravstvenog kartona
+     * @param id       zdravstvenog kartona
      */
     private void izmeniKorisnika(Document dokument, String id) {
         String jmbg = dokument.getFirstChild().getAttributes().getNamedItem("jmbg").getNodeValue();
@@ -176,7 +176,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
         Element element;
         for (int i = 0; i < elementi.getLength(); i++) {
             try {
-            element = (Element) elementi.item(i);
+                element = (Element) elementi.item(i);
                 switch (element.getTagName()) {
                     case "korisnik:jmbg":
                         element.setTextContent(jmbg);
@@ -253,7 +253,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
     }
 
     /**
-     * @param karton koji treba dodati u bazu
+     * @param karton  koji treba dodati u bazu
      * @param prefiks naziv prostora imena
      */
     private void dodajKarton(String karton, String prefiks) {
@@ -262,13 +262,13 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
             String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
             String sadrzajUpita;
             String dokument;
-                resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
-                        maper.dobaviDokument("zdravstveni_kartoni"));
-                sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                        prefiks, maper.dobaviPrefiks("zdravstveni_karton"),
-                        maper.dobaviPutanju("zdravstveni_kartoni"), karton,
-                        maper.dobaviPrefiks("zdravstveni_kartoni"));
-                dokument = maper.dobaviDokument("zdravstveni_kartoni");
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
+                    maper.dobaviDokument("zdravstveni_kartoni"));
+            sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks("zdravstveni_karton"),
+                    maper.dobaviPutanju("zdravstveni_kartoni"), karton,
+                    maper.dobaviPrefiks("zdravstveni_kartoni"));
+            dokument = maper.dobaviDokument("zdravstveni_kartoni");
 
             XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
                     .getService("XUpdateQueryService", "1.0");

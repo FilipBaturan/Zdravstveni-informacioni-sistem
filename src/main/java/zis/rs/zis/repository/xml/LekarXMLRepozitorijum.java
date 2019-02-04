@@ -1,15 +1,11 @@
 package zis.rs.zis.repository.xml;
 
-import org.exist.xmldb.EXistResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.util.ResourceUtils;
-import org.xmldb.api.base.*;
-import org.xmldb.api.modules.XQueryService;
-import zis.rs.zis.util.*;
 import zis.rs.zis.util.CRUD.Operacije;
-
-import java.io.IOException;
+import zis.rs.zis.util.IOStrimer;
+import zis.rs.zis.util.KonfiguracijaKonekcija;
+import zis.rs.zis.util.Maper;
 
 @Repository
 public class LekarXMLRepozitorijum extends IOStrimer {
@@ -34,3 +30,4 @@ public class LekarXMLRepozitorijum extends IOStrimer {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdLekara");
     }
 }
+
