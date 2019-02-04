@@ -36,7 +36,7 @@ public class Operacije extends IOStrimer {
     private Sekvencer sekvencer;
 
     @Autowired
-    GeneratorMetaPodataka generatorMetaPodataka;
+    private GeneratorMetaPodataka generatorMetaPodataka;
 
     private static final Logger logger = LoggerFactory.getLogger(Operacije.class);
 
