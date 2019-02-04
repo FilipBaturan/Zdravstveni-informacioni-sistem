@@ -104,8 +104,8 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
         if (doc == null) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         }
-        this.registruj(doc);
-        return new String[]{"Registracija uspesna!"};
+        return this.registruj(doc);
+        //return new String[]{"Registracija uspesna!"};
     }
 
     public String obrisi(String id) {
@@ -182,7 +182,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
     /**
      * @param dokument sa korisnikom i osobom koju treba registovati
      */
-    private void registruj(Document dokument) {
+    private String[] registruj(Document dokument) {
         Node sadrzaj = dokument.getElementsByTagName("sadrzaj").item(0);
 
         if (!sadrzaj.hasChildNodes()) {
@@ -219,6 +219,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             this.sacuvajPacijenta(maper.dobaviURI("zdravstveni_karton") + osobaId,
                     maper.dobaviURI("korisnik") + korisnikId);
         }
+        return new String[] {kor, osb};
     }
 
     /**

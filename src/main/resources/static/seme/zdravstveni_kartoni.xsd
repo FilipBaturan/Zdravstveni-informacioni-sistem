@@ -4,7 +4,7 @@
            vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/zdrastveni_kartoni"
            xmlns:zko="http://www.zis.rs/seme/zdravstveni_karton">
 
-    <xs:import namespace="http://www.zis.rs/seme/zdrastveni_karton"
+    <xs:import namespace="http://www.zis.rs/seme/zdravstveni_karton"
                schemaLocation="zdravstveni_karton.xsd"/>
     <xs:element name="zdravstveni_kartoni">
         <xs:complexType>

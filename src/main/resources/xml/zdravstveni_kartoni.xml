@@ -1,7 +1,5 @@
-<zd:zdravstveni_kartoni xmlns:zko="http://www.zis.rs/seme/zdrastveni_karton"
- xmlns:zd="http://www.zis.rs/seme/zdrastveni_kartoni">
-    <zko:zdravstveni_karton id="http://www.zis.rs/zdravstveni_kartoni/id1" jmbg="0000000000000" broj_zdr_knjizice="00000000000" 
-        broj_kartona="AA000" upozorenje="" lbo="00000000000" aktivan="true">
+<zd:zdravstveni_kartoni xmlns:zd="http://www.zis.rs/seme/zdravstveni_kartoni" xmlns:zko="http://www.zis.rs/seme/zdravstveni_karton">
+    <zko:zdravstveni_karton id="http://www.zis.rs/zdravstveni_kartoni/id1" jmbg="0000000000000" broj_zdr_knjizice="00000000000" broj_kartona="AA000" upozorenje="" lbo="00000000000" aktivan="true">
         <zko:osigurano_lice>
             <zko:ime>ime0</zko:ime>
             <zko:prezime>prezime0</zko:prezime>
@@ -28,8 +26,7 @@
         </zko:osigurano_lice>
         <zko:odabrani_lekar zko:identifikator="http://www.zis.rs/lekari/id1"/>
     </zko:zdravstveni_karton>
-    <zko:zdravstveni_karton id="http://www.zis.rs/zdravstveni_kartoni/id2" jmbg="0000000000000" broj_zdr_knjizice="00000000000" 
-        broj_kartona="AA000" lbo="00000000000" aktivan="true">
+    <zko:zdravstveni_karton id="http://www.zis.rs/zdravstveni_kartoni/id2" jmbg="0000000000000" broj_zdr_knjizice="00000000000" broj_kartona="AA000" lbo="00000000000" aktivan="true">
         <zko:osigurano_lice>
             <zko:ime>ime2</zko:ime>
             <zko:prezime>prezime2</zko:prezime>
@@ -55,5 +52,32 @@
             <zko:broj_telefona>0000000000</zko:broj_telefona>
         </zko:osigurano_lice>
         <zko:odabrani_lekar zko:identifikator="http://www.zis.rs/lekari/id2"/>
+    </zko:zdravstveni_karton>
+    <zko:zdravstveni_karton about="http://www.zis.rs/zdravstveni_kartoni/id12" aktivan="false" broj_kartona="AA100" broj_zdr_knjizice="00000500000" id="http://www.zis.rs/zdravstveni_kartoni/id12" jmbg="0000000100000" lbo="00000050000" typeof="voc:ZdrastveniKarton" upozorenje="">
+        <zko:osigurano_lice>
+            <zko:ime about="http://www.zis.rs/zdravstveni_kartoni/id12" datatype="xs:string" property="voc:ime">ime7</zko:ime>
+            <zko:prezime about="http://www.zis.rs/zdravstveni_kartoni/id12" datatype="xs:string" property="voc:prezime">prezime7</zko:prezime>
+            <zko:pol about="http://www.zis.rs/zdravstveni_kartoni/id12" datatype="xs:string" property="voc:pol">muski</zko:pol>
+            <zko:nosilac_osiguranja>
+                <zko:ime>ime1</zko:ime>
+                <zko:prezime>prezime1</zko:prezime>
+                <zko:srodstvo>srodstvo0</zko:srodstvo>
+                <zko:osnova_osiguranja>50</zko:osnova_osiguranja>
+            </zko:nosilac_osiguranja>
+            <zko:bracno_stanje>neozenjen/neudata</zko:bracno_stanje>
+            <zko:datum_rodjenja about="http://www.zis.rs/zdravstveni_kartoni/id12" datatype="xs:date" property="voc:jmbg">2006-05-04</zko:datum_rodjenja>
+            <zko:adresa about="http://www.zis.rs/adresa/ulica0/50/50/mesto0" href="http://www.zis.rs/opstina/naziv0/25500" rel="voc:opstina">
+                <zko:ulica about="http://www.zis.rs/adresa/ulica0/50/50/mesto0" datatype="xs:string" property="voc:ulica">ulica0</zko:ulica>
+                <zko:broj about="http://www.zis.rs/adresa/ulica0/50/50/mesto0" datatype="xs:integer" property="voc:broj">50</zko:broj>
+                <zko:broj_stana about="http://www.zis.rs/adresa/ulica0/50/50/mesto0" datatype="xs:integer" property="voc:brojStana">50</zko:broj_stana>
+                <zko:mesto about="http://www.zis.rs/adresa/ulica0/50/50/mesto0" datatype="xs:string" property="voc:mesto">mesto0</zko:mesto>
+                <zko:opstina>
+                    <zko:naziv about="http://www.zis.rs/opstina/naziv0/25500" datatype="xs:string" property="voc:nazivOpstine">naziv0</zko:naziv>
+                    <zko:postanski_broj about="http://www.zis.rs/opstina/naziv0/25500" datatype="xs:integer" property="voc:postanskiBroj">25500</zko:postanski_broj>
+                </zko:opstina>
+            </zko:adresa>
+            <zko:broj_telefona>0000000000</zko:broj_telefona>
+        </zko:osigurano_lice>
+        <zko:odabrani_lekar href="http://www.zis.rs/lekari/id2" rel="voc:odabraniLekar" zko:identifikator="http://www.zis.rs/lekari/id2"/>
     </zko:zdravstveni_karton>
 </zd:zdravstveni_kartoni>

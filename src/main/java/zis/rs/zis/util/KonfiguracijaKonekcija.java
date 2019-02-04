@@ -28,6 +28,7 @@ public class KonfiguracijaKonekcija {
     private String update;
     private String data;
 
+
     public ResursiBaze uspostaviKonekciju(String kolekcijaId, String dokumentId) throws ClassNotFoundException,
             IllegalAccessException, InstantiationException, XMLDBException {
         System.out.println("[INFO] Loading driver class: " + this.getDriver());
@@ -169,6 +170,18 @@ public class KonfiguracijaKonekcija {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public String getQueryEndpoint() {
+        return String.join("/", endpoint, dataset, query);
+    }
+
+    public String getUpdateEndpoint() {
+        return String.join("/", endpoint, dataset, update);
+    }
+
+    public String getDataEndpoint() {
+        return String.join("/", endpoint, dataset, data);
     }
 
     public String getUri() {

@@ -36,6 +36,7 @@ public class Maper {
     private Map<String, String> xmlPrefiksi;
     private Map<String, String> xmlPutanje;
     private Map<String, String> uriPrefiks;
+    private Map<String, String> transformacije;
 
     public Maper() {
         this.xmlBaza = new HashMap<>();
@@ -44,6 +45,7 @@ public class Maper {
         this.xmlPrefiksi = new HashMap<>();
         this.xmlPutanje = new HashMap<>();
         this.uriPrefiks = new HashMap<>();
+        this.transformacije = new HashMap<>();
         this.inicijalizujMapu();
     }
 
@@ -63,7 +65,7 @@ public class Maper {
         this.xmlBaza.put("izbori", "izbori.xml");
 
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
-        this.xmlUpiti.put("pretragaPoId", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
+        this.xmlUpiti.put("pretragaPoIdLekara", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
         this.xmlUpiti.put("dodavanje", "classpath:templates/xquery/azuriranje/dodavanje.xml");
         this.xmlUpiti.put("prebrojavanje", "classpath:templates/xquery/azuriranje/prebrojavanjeSvihEntiteta.xq");
         this.xmlUpiti.put("ogranicenjaKorisnika",
@@ -136,6 +138,8 @@ public class Maper {
         this.xmlPrefiksi.put("uputi", "xmlns:uputi =\"http://www.zis.rs/seme/uputi\"");
         this.xmlPrefiksi.put("izbor", "http://www.zis.rs/seme/izbor");
         this.xmlPrefiksi.put("izbori", "xmlns:izbori =\"http://www.zis.rs/seme/izbori\"");
+        this.xmlPrefiksi.put("vokabular", "xmlns:voc=\"http://www.zis.rs/rdf/voc#\"");
+        this.xmlPrefiksi.put("xmlSema", "  xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"  ");
 
         this.xmlPutanje.put("korisnici", "/ko:korisnici");
         this.xmlPutanje.put("lekari", "/lekari:lekari");
@@ -169,6 +173,8 @@ public class Maper {
         this.uriPrefiks.put("recept", "http://www.zis.rs/recepti/id");
         this.uriPrefiks.put("uput", "http://www.zis.rs/uputi/id");
         this.uriPrefiks.put("izbor", "http://www.zis.rs/izbori/id");
+
+        this.transformacije.put("metapodaci", "classpath:xsl/grddl.xsl");
     }
 
     /**
@@ -372,5 +378,7 @@ public class Maper {
     public String dobaviURI(String naziv) {
         return this.uriPrefiks.get(naziv);
     }
+
+    public String dobaviTransformaciju(String naziv) { return this.transformacije.get(naziv); }
 
 }

@@ -44,10 +44,13 @@ public class GeneratorMetaPodataka {
      */
     public void dodajMetaPodatkeOsobi(Document dokument, TipKorisnika tipKorisnika, String id) {
         NodeList elementi = dokument.getFirstChild().getChildNodes();
+        Element koren = ((Element) dokument.getFirstChild());
         Element element;
         int count = 0;
         switch (tipKorisnika) {
             case LEKAR:
+                koren.setAttribute("about", id);
+                koren.setAttribute("typeof", "voc:Lekar");
                 for (int i = 0; i < elementi.getLength() && count < 2; i++) {
                     element = (Element) elementi.item(i);
                     switch (element.getLocalName()) {
@@ -70,7 +73,6 @@ public class GeneratorMetaPodataka {
                 }
                 break;
             case PACIJENT:
-                Element koren = ((Element) dokument.getFirstChild());
                 koren.setAttribute("about", id);
                 koren.setAttribute("typeof", "voc:ZdrastveniKarton");
                 for (int i = 0; i < elementi.getLength() && count < 2; i++) {
@@ -88,6 +90,10 @@ public class GeneratorMetaPodataka {
                             break;
                     }
                 }
+                break;
+            case MEDICINSKA_SESTRA:
+                koren.setAttribute("about", id);
+                koren.setAttribute("typeof", "voc:MedicinskaSestra");
                 break;
         }
     }
