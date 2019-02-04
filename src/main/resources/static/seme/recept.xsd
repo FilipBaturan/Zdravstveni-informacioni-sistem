@@ -61,6 +61,7 @@
             <xs:attribute fixed="lr1" name="oznaka" type="xs:string" use="required"/>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:attribute name="aktivan" type="xs:boolean" use="required"/>
+            <xs:anyAttribute processContents="lax"/>
         </xs:complexType>
     </xs:element>
     <xs:attribute name="identifikator" type="xs:anyURI"/>

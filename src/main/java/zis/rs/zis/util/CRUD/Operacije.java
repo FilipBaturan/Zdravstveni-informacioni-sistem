@@ -185,10 +185,10 @@ public class Operacije extends IOStrimer {
         }
     }
 
-    public String sacuvaj(Akcija akcija, String dokument, String prefiksDokumenta) {
-        String lek = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
+    public String sacuvaj(Node cvor, String dokument, String prefiksDokumenta) {
+        String sadrzajEntiteta = validator.procesirajAkciju(cvor, maper.dobaviSemu(prefiksDokumenta));
 
-        String prefiks = maper.konvertujUDokument(lek).getFirstChild().getNodeName().split(":")[0];
+        String prefiks = maper.konvertujUDokument(sadrzajEntiteta).getFirstChild().getNodeName().split(":")[0];
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
@@ -199,10 +199,12 @@ public class Operacije extends IOStrimer {
 
             Long id = sekvencer.dobaviId();
 
-            String dodatId = this.umetniId(maper.konvertujUDokument(lek).getFirstChild(), id, prefiksDokumenta);
+            String noviId = maper.dobaviURI(prefiksDokumenta) + id.toString();
+            Document dodatId = this.umetniId(maper.konvertujUDokument(sadrzajEntiteta).getFirstChild(), id, prefiksDokumenta);
+            Document cvoroviSaMeta = dodajMetaPodatke(prefiks, dodatId, noviId );
 
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), maper.dobaviPutanju(dokument), dodatId,
+                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), maper.dobaviPutanju(dokument), maper.konvertujUString(cvoroviSaMeta),
                     maper.dobaviPrefiks(dokument));
             logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
@@ -213,7 +215,7 @@ public class Operacije extends IOStrimer {
             }
 
             konekcija.oslobodiResurse(resursi);
-            return "Uspesno sacuvan " + prefiksDokumenta + "!";
+            return maper.konvertujUString(cvoroviSaMeta);
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
@@ -232,7 +234,7 @@ public class Operacije extends IOStrimer {
         String prefiks = maper.konvertujUDokument(entitet).getFirstChild().getNodeName().split(":")[0];
 
         NodeList cvoroviEntiteta = maper.konvertujUDokument(entitet).getFirstChild().getChildNodes();
-        NodeList cvoroviSaMeta = dodajMetaPodatke(prefiks, cvoroviEntiteta, id);
+        NodeList cvoroviSaMeta = dodajMetaPodatkeIzmena(prefiks, cvoroviEntiteta, id);
         String sadrzajEnteita = null;
         try {
             sadrzajEnteita = maper.kreirajXmlOdCvorova(cvoroviSaMeta);
@@ -271,7 +273,7 @@ public class Operacije extends IOStrimer {
      * @param cvor kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
      * @return izmenjena reprezentacija recepta
      */
-    private String umetniId(Node cvor, Long id, String dokument) {
+    private Document umetniId(Node cvor, Long id, String dokument) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
         try {
             Document dok = fabrika.newDocumentBuilder().newDocument();
@@ -280,7 +282,7 @@ public class Operacije extends IOStrimer {
 
             ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI(dokument) + id);
 
-            return maper.konvertujUString(dok);
+            return dok;
         } catch (ParserConfigurationException e) {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (ValidacioniIzuzetak e) {
@@ -331,11 +333,8 @@ public class Operacije extends IOStrimer {
     }
 
 
-    private NodeList dodajMetaPodatke(String entitet, NodeList doktument, String id) {
+    private NodeList dodajMetaPodatkeIzmena(String entitet, NodeList doktument, String id) {
         switch (entitet) {
-            case "pregled":
-                generatorMetaPodataka.dodajMetaPodatkePregledu(doktument, id);
-                break;
             case "izvestaj":
                 generatorMetaPodataka.dodajMetaPodatkeIzvestaju(doktument, id);
                 break;
@@ -347,6 +346,23 @@ public class Operacije extends IOStrimer {
                 break;
             case "lek":
                 generatorMetaPodataka.dodajMetaPodatkeLeku(doktument, id);
+        }
+        return doktument;
+    }
+
+    private Document dodajMetaPodatke(String entitet, Document doktument, String id) {
+        switch (entitet) {
+            case "izvestaj":
+                generatorMetaPodataka.dodajMetaPodatkeIzvestaju(doktument.getFirstChild().getChildNodes(), id);
+                break;
+            case "uput":
+                generatorMetaPodataka.dodajMetaPodatkeUputu(doktument.getFirstChild().getChildNodes(), id);
+                break;
+            case "recept":
+                generatorMetaPodataka.dodajMetaPodatkeReceptu(doktument.getFirstChild().getChildNodes(), id);
+                break;
+            case "lek":
+                generatorMetaPodataka.dodajMetaPodatkeLeku(doktument.getFirstChild().getChildNodes(), id);
         }
         return doktument;
     }

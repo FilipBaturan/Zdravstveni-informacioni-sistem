@@ -182,6 +182,11 @@ public class Maper {
 
         this.grafovi.put("lekari", "lekari");
         this.grafovi.put("zdravstveni_kartoni", "zdravstveni_kartoni");
+        this.grafovi.put("uputi", "uputi");
+        this.grafovi.put("izvestaji", "izvestaji");
+        this.grafovi.put("recepti", "recepti");
+        this.grafovi.put("lekovi", "lekovi");
+        this.grafovi.put("izbori", "izbori");
     }
 
     /**

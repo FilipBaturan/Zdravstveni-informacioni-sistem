@@ -1,7 +1,9 @@
 package zis.rs.zis.repository.xml;
 
+import org.apache.xerces.dom.ElementNSImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
@@ -41,7 +43,7 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
 
     public String sacuvaj(Akcija akcija) {
         proveriRecept(maper.dobaviDokument(akcija, "recept"));
-        return operacije.sacuvaj(akcija, dokument, prefiksDokumenta);
+        return operacije.sacuvaj(dobaviDokument(akcija, "recept"), dokument, prefiksDokumenta);
     }
 
     public String obrisi(Akcija akcija) {
@@ -78,6 +80,19 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
         } catch (ValidacioniIzuzetak izuzetak) {
             throw izuzetak;
         }
+    }
+
+    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
+        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
+        NodeList lista = dok.getFirstChild().getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals(nazivDokumenta)) {
+                return element;
+            }
+        }
+        return null;
     }
 
 }
