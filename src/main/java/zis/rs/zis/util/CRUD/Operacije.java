@@ -35,6 +35,9 @@ public class Operacije extends IOStrimer {
     @Autowired
     private Sekvencer sekvencer;
 
+    @Autowired
+    GeneratorMetaPodataka generatorMetaPodataka;
+
     private static final Logger logger = LoggerFactory.getLogger(Operacije.class);
 
     public String dobaviSve(String dokument, String putanjaUpita) {
@@ -220,21 +223,24 @@ public class Operacije extends IOStrimer {
 
     public String izmeni(Akcija akcija, String dokument, String prefiksDokumenta) {
 
-        String lek = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
-        Node cvor = maper.konvertujUDokument(lek).getFirstChild();
+        String entitet = validator.procesirajAkciju(akcija, maper.dobaviSemu(prefiksDokumenta));
+        Node cvor = maper.konvertujUDokument(entitet).getFirstChild();
         Element el = (Element) cvor;
         String id = el.getAttribute("id");
 
 
-        String prefiks = maper.konvertujUDokument(lek).getFirstChild().getNodeName().split(":")[0];
-        NodeList cvoroviLeka = maper.konvertujUDokument(lek).getFirstChild().getChildNodes();
+        String prefiks = maper.konvertujUDokument(entitet).getFirstChild().getNodeName().split(":")[0];
 
-        String sadrzajLeka = null;
+        NodeList cvoroviEntiteta = maper.konvertujUDokument(entitet).getFirstChild().getChildNodes();
+        NodeList cvoroviSaMeta = dodajMetaPodatke(prefiks, cvoroviEntiteta, id);
+        String sadrzajEnteita = null;
         try {
-            sadrzajLeka = maper.kreirajXmlOdCvorova(cvoroviLeka);
+            sadrzajEnteita = maper.kreirajXmlOdCvorova(cvoroviSaMeta);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
@@ -244,7 +250,7 @@ public class Operacije extends IOStrimer {
             xupdateService.setProperty("indent", "yes");
 
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
-                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), pronadjiRecept(id, dokument), sadrzajLeka,
+                    prefiks, maper.dobaviPrefiks(prefiksDokumenta), pronadjiRecept(id, dokument), sadrzajEnteita,
                     maper.dobaviPrefiks(dokument));
             logger.info(sadrzajUpita);
             long mods = xupdateService.updateResource(maper.dobaviDokument(dokument), sadrzajUpita);
@@ -262,14 +268,14 @@ public class Operacije extends IOStrimer {
 
 
     /**
-     * @param recept kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
+     * @param cvor kojeg treba izmeniti, id koji treba ubaciti i prefiks namespace
      * @return izmenjena reprezentacija recepta
      */
-    private String umetniId(Node recept, Long id, String dokument) {
+    private String umetniId(Node cvor, Long id, String dokument) {
         DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
         try {
             Document dok = fabrika.newDocumentBuilder().newDocument();
-            Node importovan = dok.importNode(recept, true);
+            Node importovan = dok.importNode(cvor, true);
             dok.appendChild(importovan);
 
             ((Element) dok.getFirstChild()).setAttribute("id", maper.dobaviURI(dokument) + id);
@@ -283,8 +289,8 @@ public class Operacije extends IOStrimer {
     }
 
     /**
-     * @param id trazenog recepta
-     * @return xpath putanju do pronadjenog recepta
+     * @param id trazenog entiteta
+     * @return xpath putanju do pronadjenog entiteta
      */
     private String pronadjiRecept(String id, String dokument) {
         ResursiBaze resursi = null;
@@ -322,5 +328,26 @@ public class Operacije extends IOStrimer {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
+    }
+
+
+    private NodeList dodajMetaPodatke(String entitet, NodeList doktument, String id) {
+        switch (entitet) {
+            case "pregled":
+                generatorMetaPodataka.dodajMetaPodatkePregledu(doktument, id);
+                break;
+            case "izvestaj":
+                generatorMetaPodataka.dodajMetaPodatkeIzvestaju(doktument, id);
+                break;
+            case "uput":
+                generatorMetaPodataka.dodajMetaPodatkeUputu(doktument, id);
+                break;
+            case "recept":
+                generatorMetaPodataka.dodajMetaPodatkeReceptu(doktument, id);
+                break;
+            case "lek":
+                generatorMetaPodataka.dodajMetaPodatkeLeku(doktument, id);
+        }
+        return doktument;
     }
 }
