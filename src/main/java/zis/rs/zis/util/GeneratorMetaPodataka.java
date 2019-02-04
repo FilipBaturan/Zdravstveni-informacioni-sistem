@@ -211,40 +211,6 @@ public class GeneratorMetaPodataka {
         }
     }
 
-    /**
-     * @param elementi nad kojima se dodaju metapodaci pregledu
-     */
-    public NodeList dodajMetaPodatkePregledu(NodeList elementi, String id)
-    {
-        Element element;
-        int brojac = 0;
-        for (int i = 0; i < elementi.getLength() && brojac < 3; i++) {
-            if ( !elementi.item(i).getTextContent().equals("\n")) {
-                element = (Element) elementi.item(i);
-                switch (element.getTagName().split(":")[1]) {
-                    case "datum":
-                        element.setAttribute("about", id);
-                        element.setAttribute("property", "voc:datum");
-                        element.setAttribute("datatype", "xs:date");
-                        ++brojac;
-                        break;
-                    case "pacijent":
-                        String liceId = element.getAttributes().item(0).getNodeValue();
-                        element.setAttribute("rel", "voc:osiguranoLice");
-                        element.setAttribute("href", liceId);
-                        ++brojac;
-                        break;
-                    case "lekar":
-                        String lekarId = element.getAttributes().item(0).getNodeValue();
-                        element.setAttribute("rel", "voc:lekar");
-                        element.setAttribute("href", lekarId);
-                        ++brojac;
-                        break;
-                }
-            }
-        }
-        return elementi;
-    }
 
     /**
      * @param elementi nad kojem se dodaju metapodaci leku
@@ -315,7 +281,8 @@ public class GeneratorMetaPodataka {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "datum":
-                        element.setAttribute("about", id);
+                        Element roditelj = (Element) element.getParentNode();
+                        roditelj.setAttribute("about", id);
                         element.setAttribute("property", "voc:datum");
                         element.setAttribute("datatype", "xs:date");
                         ++brojac;
@@ -334,7 +301,7 @@ public class GeneratorMetaPodataka {
                         break;
                     case "specialista":
                         String specId = element.getAttributes().item(0).getNodeValue();
-                        element.setAttribute("rel", "voc:lekar");
+                        element.setAttribute("rel", "voc:specijalista");
                         element.setAttribute("href", specId);
                         ++brojac;
                         break;
@@ -353,7 +320,8 @@ public class GeneratorMetaPodataka {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "datum":
-                        element.setAttribute("about", id);
+                        Element roditelj = (Element) element.getParentNode();
+                        roditelj.setAttribute("about", id);
                         element.setAttribute("property", "voc:datum");
                         element.setAttribute("datatype", "xs:date");
                         ++brojac;
