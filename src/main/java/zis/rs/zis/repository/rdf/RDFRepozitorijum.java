@@ -54,25 +54,19 @@ public class RDFRepozitorijum {
         Document dok = maper.konvertujUDokument(karton);
         String id = dok.getFirstChild().getAttributes().getNamedItem("id").getNodeValue();
         String jmbg = dok.getFirstChild().getAttributes().getNamedItem("jmbg").getNodeValue();
-        String voc = maper.dobaviURI("vokabular"); //"http://somewhere/else#";
+        String lbo = dok.getFirstChild().getAttributes().getNamedItem("lbo").getNodeValue();
+        String br_knjizice = dok.getFirstChild().getAttributes().getNamedItem("broj_zdr_knjizice").getNodeValue();
+        String br_kartona = dok.getFirstChild().getAttributes().getNamedItem("broj_kartona").getNodeValue();
+        String voc = maper.dobaviURI("vokabular");
         Resource koren =  model.getResource(id);
 
-        //String nsB = "http://nowhere/else#";
-        //Resource root = model.createResource( voc + "root" );
         Property jm = model.createProperty( voc +  "jmbg");
+        Property lb = model.createProperty( voc +  "lbo");
+        Property br_kn = model.createProperty( voc +  "broj_zdr_knjizice");
+        Property br_kr = model.createProperty( voc +  "broj_kartona");
         koren.addProperty(jm, jmbg);
-//        Property lbo = model.createProperty( nsB + "Q" );
-//        Resource x = model.createResource( nsA + "x" );
-//        Resource y = model.createResource( nsA + "y" );
-//        Resource z = model.createResource( nsA + "z" );
-//        model.add( root, P, x ).add( root, P, y ).add( y, Q, z );
-//        System.out.println( "# -- no special prefixes defined" );
-//        model.write( System.out );
-//        System.out.println( "# -- nsA defined" );
-//        model.setNsPrefix( "nsA", nsA );
-//        model.write( System.out );
-//        System.out.println( "# -- nsA and cat defined" );
-//        model.setNsPrefix( "cat", nsB );
-        model.write( System.out );
+        koren.addProperty(lb, lbo);
+        koren.addProperty(br_kn, br_knjizice);
+        koren.addProperty(br_kr, br_kartona);
     }
 }
