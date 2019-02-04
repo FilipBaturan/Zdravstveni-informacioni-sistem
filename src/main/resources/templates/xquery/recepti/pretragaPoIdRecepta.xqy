@@ -12,6 +12,9 @@ declare namespace korisnik = "http://www.zis.rs/seme/korisnik";
 declare namespace lekovi = "http://www.zis.rs/seme/lekovi";
 declare namespace lek = "http://www.zis.rs/seme/lek";
 
+declare namespace zd= "http://www.zis.rs/seme/zdravstveni_kartoni";
+declare namespace zko="http://www.zis.rs/seme/zdravstveni_karton";
+
 declare function local:dobavi-lek ($id as xs:anyURI) as element()* {
     for $lek in fn:doc("/db/rs/zis/lekovi.xml")/lekovi:lekovi/lek:lek
     where $lek/@aktivan = "true" and $lek/@id = $id
@@ -46,9 +49,12 @@ declare function local:dobavi-lekara ($id as xs:anyURI) as element()* {
 for $recept in fn:doc("/db/rs/zis/recepti.xml")/recepti:recepti/recept:recept
 let $lekar := local:dobavi-lekara($recept/recept:lekar/@recept:identifikator)
 let $lek := local:dobavi-lek($recept/recept:propisani_lek/@recept:identifikator)
+let $pacijent := for $pc in fn:doc("/db/rs/zis/zdravstveni_kartoni.xml")/zd:zdravstveni_kartoni/zko:zdravstveni_karton
+where $recept/recept:osigurano_lice/@recept:identifikator = $pc/@id return $pc
 where $recept/@aktivan = "true" and $recept/@id = "%1$s"
 return <recept:recept xmlns:recept="http://www.zis.rs/seme/recept" id="{$recept/@id}">
     {$recept/recept:naziv_zdravstvene_ustanove}
+    <recept:osigurano_lice>{$pacijent}</recept:osigurano_lice>
     {$recept/recept:osnova_oslobadjenja_participacije}
     {$recept/recept:datum}
     {$recept/recept:dijagnoza}

@@ -76,7 +76,6 @@ public class Maper {
                 "classpath:templates/xquery/pregledi/proveraJedinstvenihPoljaPregleda.xq");
         this.xmlUpiti.put("dobavljanjePutanjeStanja",
                 "classpath:templates/xquery/azuriranje/dobavljanjePutanjeStanjaPacijenta.xq");
-        this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
         this.xmlUpiti.put("ogranicenjaKartona",
                 "classpath:templates/xquery/zdravstveni_kartoni/proveraJedinstvenostiPoljaKartona.xq");
         this.xmlUpiti.put("dobavljanjeKartonaPrekoKorisnika",
@@ -90,11 +89,12 @@ public class Maper {
                 "classpath:templates/xquery/korisnici/dobavljanjeKorisnikaPrekoKartona.xq");
         this.xmlUpiti.put("dobaviSveLekove", "classpath:templates/xquery/lekovi/dobavljanjeSvihLekova.xqy");
         this.xmlUpiti.put("pretragaPoIdLeka", "classpath:templates/xquery/lekovi/pretragaPoIdLeka.xqy");
+        this.xmlUpiti.put("pretragaPoIdIzvestaja", "classpath:templates/xquery/izvestaji/pretragaPoIdIzvestaja.xqy");
+        this.xmlUpiti.put("dobaviSveIzvestaje", "classpath:templates/xquery/izvestaji/dobavljanjeSvihIzvestaja.xqy");
         this.xmlUpiti.put("dobaviSveRecepte", "classpath:templates/xquery/recepti/dobavljanjeSvihRecepata.xqy");
         this.xmlUpiti.put("pretragaPoIdRecepta", "classpath:templates/xquery/recepti/pretragaPoIdRecepta.xqy");
         this.xmlUpiti.put("dobaviSveUpute", "classpath:templates/xquery/uputi/dobavljanjeSvihUputa.xqy");
         this.xmlUpiti.put("pretragaPoIdUputa", "classpath:templates/xquery/uputi/pretragaPoIdUputa.xqy");
-        this.xmlUpiti.put("dobaviSveIzbore", "classpath:templates/xquery/izbori/dobavljanjeSvihIzbora.xqy");
         this.xmlUpiti.put("pretragaPoIdIzbora", "classpath:templates/xquery/izbori/pretragaPoIdIzbora.xqy");
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
