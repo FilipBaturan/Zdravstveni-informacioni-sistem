@@ -1,9 +1,7 @@
 package zis.rs.zis.repository.xml;
 
-import org.apache.xerces.dom.ElementNSImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
@@ -20,6 +18,7 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
+    @Autowired
     private ZdravstveniKartonXMLRepozitorijum kartonXMLRepozitorijum;
 
     @Autowired
@@ -48,16 +47,20 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
 
     public void proveriIzvestaj(Node sadrzaj) {
         String lekarId = "";
+        String korisnikId = "";
         NodeList lista = sadrzaj.getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
             element = lista.item(i);
+            if (element.getLocalName().equals("osigurano_lice")) {
+                korisnikId = element.getAttributes().item(0).getNodeValue();
+            }
             if (element.getLocalName().equals("lekar")) {
                 lekarId = element.getAttributes().item(0).getNodeValue();
                 break;
             }
         }
         lekarXMLRepozitorijum.pretragaPoId(lekarId);
-        kartonXMLRepozitorijum.pretragaPoId("");
+        kartonXMLRepozitorijum.pretragaPoId(korisnikId);
     }
 }
