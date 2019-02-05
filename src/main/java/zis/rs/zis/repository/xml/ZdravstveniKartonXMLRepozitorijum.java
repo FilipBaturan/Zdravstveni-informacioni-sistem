@@ -118,6 +118,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
                 "Trazeni zdravstveni karton ne postoji!");
         String prefiks = putanja.split("/")[2].split(":")[0];
         String prePrefiks = putanja.split("/")[1].split(":")[0];
+        String izmena = null;
         try {
             DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
             fabrika.setNamespaceAware(true);
@@ -130,7 +131,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
 
             this.fizickoBrisanje(prefiks, prePrefiks, putanja);
             ogranicenjaRepozitorijum.proveriOgranicenjaPacijenta(dok);
-            String izmena = maper.konvertujUString(dok);
+            izmena = maper.konvertujUString(dok);
 
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
                     maper.dobaviDokument("zdravstveni_kartoni"));
@@ -159,10 +160,10 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
             throw new TransformacioniIzuzetak("Greska prilikom obrade podataka");
         } catch (ValidacioniIzuzetak e) {
             this.dodajKarton(rezerva, prefiks);
-            return e.getMessage();
+            throw new ValidacioniIzuzetak(e.getMessage());
         }
         this.izmeniKorisnika(dok, id);
-        return "Zdravstveni karton uspesno izmenjen!";
+        return izmena;
     }
 
 

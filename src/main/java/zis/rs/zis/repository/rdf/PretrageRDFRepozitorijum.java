@@ -19,15 +19,22 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
 
     @Autowired Maper maper;
 
+    @Autowired
+    SPARQLMaper sparqlMaper;
+
     public PretrageRDFRepozitorijum() {
     }
 
     public String opstiUpit(UpitPretrage upitPretrage)
     {
+        sparqlMaper.selectData()
+
+
+
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjeLekovaZaDijagnozu")).getPath();
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("pretragaMetaPodataka")).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija()
                     .getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
