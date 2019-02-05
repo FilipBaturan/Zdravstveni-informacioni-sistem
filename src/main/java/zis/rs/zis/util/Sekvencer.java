@@ -29,7 +29,7 @@ public class Sekvencer extends IOStrimer {
 
     @PostConstruct
     public void init(){
-        this.inicijalizacija();
+        //this.inicijalizacija();
     }
 
     private void inicijalizacija() {

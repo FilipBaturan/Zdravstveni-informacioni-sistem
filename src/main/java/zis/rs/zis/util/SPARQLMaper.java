@@ -20,7 +20,7 @@ public class SPARQLMaper {
 
 
     /* Simple SPARQL query on a named graph */
-    private static final String SELECT_NAMED_GRAPH_TEMPLATE = "SELECT * FROM <%1$s> WHERE { %2$s }";
+    private static final String SELECT_NAMED_GRAPH_TEMPLATE = "SELECT * FROM <%1$s> WHERE { %2$s } ";
 
 
     /* Plain text RDF serialization format */

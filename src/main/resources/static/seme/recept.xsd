@@ -44,7 +44,18 @@
                         </xs:restriction>
                     </xs:simpleType>
                 </xs:element>
-                <xs:element name="opis" type="xs:string"/>
+                <xs:element name="opis">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" minOccurs="0" name="link">
+                                <xs:complexType>
+                                    <xs:attribute name="identifikator" type="xs:anyURI"/>
+                                    <xs:anyAttribute processContents="lax"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element name="propisani_lek">
                     <xs:complexType>
                         <xs:attribute ref="recept:identifikator" use="required"/>
