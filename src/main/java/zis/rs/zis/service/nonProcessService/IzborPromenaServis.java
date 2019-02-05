@@ -9,7 +9,7 @@ import zis.rs.zis.util.akcije.Akcija;
 public class IzborPromenaServis {
 
     @Autowired
-    IzborPromenaXMLRepozitorijum izborPromenaXMLRepozitorijum;
+    private IzborPromenaXMLRepozitorijum izborPromenaXMLRepozitorijum;
 
     public String dobaviSve() {
         return izborPromenaXMLRepozitorijum.dobaviSve();

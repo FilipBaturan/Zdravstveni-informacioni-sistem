@@ -25,6 +25,17 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
 
 
     /**
+     * GET /kartoni
+     *
+     * @return sve izbore iz baze
+     */
+    @GetMapping(produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> dobaviSve() {
+        logger.info("Traze se svi izbori karonga: {}.", Calendar.getInstance().getTime());
+        return new ResponseEntity<>(zdravstveniKartonServis.dobaviSve(), HttpStatus.OK);
+    }
+
+    /**
      * GET /kartoni/{id}
      *
      * @param id trazenog lekara

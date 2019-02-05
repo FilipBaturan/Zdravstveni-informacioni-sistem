@@ -21,13 +21,15 @@ public class IzborPromenaKontroler {
     private static final Logger logger = LoggerFactory.getLogger(zis.rs.zis.controller.IzborPromenaKontroler.class);
 
     @Autowired
+    private Maper maper;
+
+
+    @Autowired
     private IzborPromenaServis izborPromenaServis;
 
     @Autowired
     private Validator validator;
 
-    @Autowired
-    private Maper maper;
 
     /**
      * GET /izbori

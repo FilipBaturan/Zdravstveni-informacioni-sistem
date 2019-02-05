@@ -54,18 +54,6 @@ public class ReceptKontroler {
         return new ResponseEntity<>(receptServis.pretragaPoId(maper.dobaviURI("recept") + id), HttpStatus.OK);
     }
 
-    /**
-     * POST recept
-     *
-     * @param akcija koja se izvrsava
-     * @return rezultat akcije
-     */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se dodavanje recepta {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(receptServis.sacuvaj(akcija), HttpStatus.OK);
-    }
-
     @PostMapping(value = "/obrisi", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> obrisi(@RequestBody Akcija akcija) {
         logger.info("Vrsi se brisanje recepta {}.", Calendar.getInstance().getTime());

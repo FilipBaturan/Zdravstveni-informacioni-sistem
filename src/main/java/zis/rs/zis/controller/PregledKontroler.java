@@ -46,34 +46,4 @@ public class PregledKontroler extends ValidatorKontoler {
         return new ResponseEntity<>(pregledXMLRepozitorijum.pretragaPoId(maper.dobaviURI("pregled") + id),
                 HttpStatus.OK);
     }
-
-
-//    /**
-//     * POST /pregledi
-//     *
-//     * @param akcija koja se izvrsava
-//     * @return rezultat akcije
-//     */
-//    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-//    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-//        logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
-//        this.validirajAkciju(akcija);
-//        return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
-//    }
-
-    /**
-     * POST /pregledi
-     *
-     * @param akcija koja se izvrsava
-     * @return rezultat akcije
-     */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
-        this.validirajAkciju(akcija);
-        //return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
-        return new ResponseEntity<>(izvestajXMLRepozitorijum.izmeni(akcija), HttpStatus.OK);
-    }
-
-
 }

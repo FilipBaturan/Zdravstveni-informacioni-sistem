@@ -105,7 +105,6 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         }
         return this.registruj(doc);
-        //return new String[]{"Registracija uspesna!"};
     }
 
     public String obrisi(String id) {

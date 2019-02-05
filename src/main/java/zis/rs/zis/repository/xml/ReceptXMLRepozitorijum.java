@@ -9,7 +9,6 @@ import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
-import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Repository
@@ -41,11 +40,6 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdRecepta");
     }
 
-    public String sacuvaj(Akcija akcija) {
-        proveriRecept(maper.dobaviDokument(akcija, "recept"));
-        return operacije.sacuvaj(dobaviDokument(akcija, "recept"), dokument, prefiksDokumenta);
-    }
-
     public String obrisi(Akcija akcija) {
         return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdRecepta");
     }
@@ -56,7 +50,7 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
     }
 
 
-    private void proveriRecept(Node sadrzaj) {
+    public void proveriRecept(Node sadrzaj) {
         String lekarId = "";
         String korisnikId = "";
         String lekId = "";
@@ -73,26 +67,9 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
                 break;
             }
         }
-        try {
-            lekarXMLRepozitorijum.pretragaPoId(lekarId);
-            lekXMLRepozitorijum.pretragaPoId(lekId);
-            //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
-        } catch (ValidacioniIzuzetak izuzetak) {
-            throw izuzetak;
-        }
-    }
+        lekarXMLRepozitorijum.pretragaPoId(lekarId);
+        lekXMLRepozitorijum.pretragaPoId(lekId);
+        //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
 
-    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
-        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        NodeList lista = dok.getFirstChild().getChildNodes();
-        Node element;
-        for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
-            }
-        }
-        return null;
     }
-
 }
