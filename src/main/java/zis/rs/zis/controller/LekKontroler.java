@@ -82,5 +82,12 @@ public class LekKontroler {
         return new ResponseEntity<>(lekServis.izmeni(akcija), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/{dijagnoza}/{pacijentId}",  produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> dijagnozaPacijenta(@PathVariable String dijagnoza, @PathVariable String pacijentId) {
+        logger.info("Vrsi se dobavljanje leka po dijagnozi{}.", Calendar.getInstance().getTime());
+        return new ResponseEntity<>(lekServis.dobaviLekZaDijagnozu(dijagnoza,
+                maper.dobaviURI("zdravstveni_karton") + pacijentId), HttpStatus.OK);
+    }
+
 
 }

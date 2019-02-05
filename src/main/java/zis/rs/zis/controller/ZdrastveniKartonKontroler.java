@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import zis.rs.zis.domain.DTO;
 import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.service.nonProcessService.ZdravstveniKartonServis;
 import zis.rs.zis.util.ValidacioniIzuzetak;
@@ -46,6 +47,19 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
         logger.info("Traze se zdravstveni karton sa id={}: {}.", id, Calendar.getInstance().getTime());
         return new ResponseEntity<>(zdravstveniKartonServis.
                 pretragaPoId(maper.dobaviURI("zdravstveni_karton") + id), HttpStatus.OK);
+    }
+
+    /**
+     * GET /kartoni/pretraga{tekst}
+     *
+     * @param tekst koji karton treba da sadrzi
+     * @return karton sa trazenim tekstom
+     */
+    @GetMapping(path = "pretraga/{tekst}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<DTO> opstaPretraga(@PathVariable String tekst) {
+        logger.info("Traze se zdravstveni karton sa tekstom ={}: {}.", tekst, Calendar.getInstance().getTime());
+        return new ResponseEntity<>(new DTO(zdravstveniKartonServis.
+                opstaPretraga(tekst)), HttpStatus.OK);
     }
 
     /**

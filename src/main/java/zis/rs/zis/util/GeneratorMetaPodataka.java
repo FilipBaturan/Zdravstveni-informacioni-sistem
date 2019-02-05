@@ -246,7 +246,8 @@ public class GeneratorMetaPodataka {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "datum":
-                        element.setAttribute("about", id);
+                        Element roditelj = (Element) element.getParentNode();
+                        roditelj.setAttribute("about", id);
                         element.setAttribute("property", "voc:datum");
                         element.setAttribute("datatype", "xs:date");
                         ++brojac;

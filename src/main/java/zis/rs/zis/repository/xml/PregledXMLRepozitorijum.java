@@ -52,6 +52,9 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
+    @Autowired
+    private ZdravstveniKartonXMLRepozitorijum zdravstveniKartonXMLRepozitorijum;
+
     public String pretragaPoId(String id) {
         ResursiBaze resursi = null;
         try {
@@ -95,7 +98,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
 
     public String sacuvaj(Akcija akcija) {
         String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
-
+        proveriPregled(maper.dobaviDokument(akcija, "pregled"));
         proveriLekara(maper.konvertujUDokument(akcija));
 
         String prefiks = maper.konvertujUDokument(pregled).getFirstChild().getNodeName().split(":")[0];
@@ -125,6 +128,24 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
+    }
+
+    private void proveriPregled(Node pregled) {
+        String lekarId = "";
+        String korisnikId = "";
+        NodeList lista = pregled.getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals("pacijent")) {
+                korisnikId = element.getAttributes().item(0).getNodeValue();
+            } else if (element.getLocalName().equals("lekar")) {
+                lekarId = element.getAttributes().item(0).getNodeValue();
+            }
+        }
+
+        lekarXMLRepozitorijum.pretragaPoId(lekarId);
+        zdravstveniKartonXMLRepozitorijum.pretragaPoId(korisnikId);
     }
 
     public String obrisi(Akcija akcija) {
@@ -165,6 +186,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     public String izmeni(Akcija akcija) {
 
         String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
+        proveriPregled(maper.dobaviDokument(akcija, "pregled"));
         Node cvor = maper.konvertujUDokument(pregled).getFirstChild();
         Element el = (Element) cvor;
         String id = el.getAttribute("id");

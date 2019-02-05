@@ -366,4 +366,48 @@ public class Operacije extends IOStrimer {
         }
         return doktument;
     }
+
+    public String dobaviLekZaDijagnozu(String dijagnoza, String pacijentId) {
+
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjeLekovaZaDijagnozu")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
+                    .getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), dijagnoza, pacijentId);
+            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
+            ResourceSet result = upitServis.execute(compiledXquery);
+            ResourceIterator i = result.getIterator();
+            Resource res = null;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i.hasMoreResources()) {
+
+                try {
+                    res = i.nextResource();
+                    sb.append(res.getContent().toString());
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+
+                }
+            }
+            String recepti = sb.toString();
+            konekcija.oslobodiResurse(resursi);
+            if (recepti.isEmpty()) {
+                throw new ValidacioniIzuzetak("Ne postoji lek sa dijagnozom: " + dijagnoza
+                        + "na koga pacijent sa id: " + pacijentId + " nije alergican");
+            } else {
+                return recepti;
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
 }

@@ -39,6 +39,10 @@ public class LekXMLRepozitorijum extends IOStrimer {
         return operacije.izmeni(akcija, dokument, prefiksDokumenta);
     }
 
+    public String dobaviLekZaDijagnozu(String dijagnoza, String pacijentId) {
+        return operacije.dobaviLekZaDijagnozu(dijagnoza, pacijentId);
+    }
+
 
     private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
         Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();

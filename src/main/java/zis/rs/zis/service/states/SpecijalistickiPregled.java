@@ -62,7 +62,7 @@ public class SpecijalistickiPregled extends Stanje {
 
     private Node dobaviDokumentIzListe(Akcija akcija) {
         Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        NodeList lista = dok.getFirstChild().getChildNodes();
+        NodeList lista = dok.getChildNodes();
         Node element;
         try {
             for (int i = 0; i < lista.getLength(); i++) {
