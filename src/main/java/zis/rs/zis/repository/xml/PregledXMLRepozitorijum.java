@@ -186,6 +186,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
     public String izmeni(Akcija akcija) {
 
         String pregled = validator.procesirajAkciju(akcija, maper.dobaviSemu("pregled"));
+        proveriPregled(maper.dobaviDokument(akcija, "pregled"));
         Node cvor = maper.konvertujUDokument(pregled).getFirstChild();
         Element el = (Element) cvor;
         String id = el.getAttribute("id");

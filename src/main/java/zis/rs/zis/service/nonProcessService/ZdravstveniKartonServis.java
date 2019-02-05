@@ -22,4 +22,8 @@ public class ZdravstveniKartonServis {
     public String izmena(Akcija akcija) {
         return repozitorijum.izmeniKarton(akcija);
     }
+
+    public String opstaPretraga(String tekst) {
+        return repozitorijum.opstaPretraga(tekst);
+    }
 }
