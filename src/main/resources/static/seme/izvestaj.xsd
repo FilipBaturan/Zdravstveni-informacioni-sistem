@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
-           vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/izvestaj"
-           xmlns:izvestaj="http://www.zis.rs/seme/izvestaj">
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified"
+    vc:minVersion="1.1" targetNamespace="http://www.zis.rs/seme/izvestaj"
+    xmlns:izvestaj="http://www.zis.rs/seme/izvestaj">
     <xs:element name="izvestaj">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="dijagnoza">
                     <xs:complexType>
                         <xs:simpleContent>
-                            <xs:extension base="xs:string"></xs:extension>
+                            <xs:extension base="xs:string"/>
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
@@ -19,6 +19,7 @@
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="link">
                                 <xs:complexType>
                                     <xs:attribute ref="izvestaj:identifikator"/>
+                                    <xs:anyAttribute processContents="lax"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>
@@ -30,6 +31,7 @@
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="link">
                                 <xs:complexType>
                                     <xs:attribute ref="izvestaj:identifikator"/>
+                                    <xs:anyAttribute processContents="lax"/>
                                 </xs:complexType>
                             </xs:element>
                         </xs:sequence>

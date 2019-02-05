@@ -6,8 +6,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.domain.enums.TipKorisnika;
 
-import javax.print.Doc;
-
 @Component
 public class GeneratorMetaPodataka {
 
@@ -215,12 +213,11 @@ public class GeneratorMetaPodataka {
     /**
      * @param elementi nad kojem se dodaju metapodaci leku
      */
-    public NodeList dodajMetaPodatkeLeku(NodeList elementi, String id)
-    {
+    public NodeList dodajMetaPodatkeLeku(NodeList elementi, String id) {
         Element element;
         int count = 0;
         for (int i = 0; i < elementi.getLength() && count < 1; i++) {
-            if ( !elementi.item(i).getTextContent().equals("\n")) {
+            if (!elementi.item(i).getTextContent().equals("\n")) {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "naziv":
@@ -237,12 +234,11 @@ public class GeneratorMetaPodataka {
     /**
      * @param elementi nad kojem se dodaju metapodaci izvestaju
      */
-    public NodeList dodajMetaPodatkeIzvestaju(NodeList elementi, String id)
-    {
+    public NodeList dodajMetaPodatkeIzvestaju(NodeList elementi, String id) {
         Element element;
         int brojac = 0;
         for (int i = 0; i < elementi.getLength() && brojac < 3; i++) {
-            if ( !elementi.item(i).getTextContent().equals("\n")) {
+            if (!elementi.item(i).getTextContent().equals("\n")) {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "datum":
@@ -264,6 +260,38 @@ public class GeneratorMetaPodataka {
                         element.setAttribute("href", lekarId);
                         ++brojac;
                         break;
+                    case "anamneza":
+                        NodeList linkovi = element.getChildNodes();
+                        Element link;
+                        String dokId;
+                        for (int j = 0; j < linkovi.getLength(); j++) {
+                            try {
+                                if (!linkovi.item(j).getTextContent().equals("\n")) {
+                                    link = (Element) linkovi.item(j);
+                                    dokId = link.getAttributes().item(0).getNodeValue();
+                                    link.setAttribute("rel", "voc:referencaNaDokument");
+                                    link.setAttribute("href", dokId);
+                                }
+                            } catch (ClassCastException e) {
+                            }
+                        }
+                        break;
+                    case "terapija":
+                        NodeList lnk = element.getChildNodes();
+                        Element lk;
+                        String dId;
+                        for (int j = 0; j < lnk.getLength(); j++) {
+                            try {
+                                if (!lnk.item(j).getTextContent().equals("\n")) {
+                                    lk = (Element) lnk.item(j);
+                                    dId = lk.getAttributes().item(0).getNodeValue();
+                                    lk.setAttribute("rel", "voc:referencaNaDokument");
+                                    lk.setAttribute("href", dId);
+                                }
+                            } catch (ClassCastException e) {
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -273,12 +301,11 @@ public class GeneratorMetaPodataka {
     /**
      * @param elementi nad kojima se dodaju metapodaci uputu
      */
-    public NodeList dodajMetaPodatkeUputu(NodeList elementi, String id)
-    {
+    public NodeList dodajMetaPodatkeUputu(NodeList elementi, String id) {
         Element element;
         int brojac = 0;
         for (int i = 0; i < elementi.getLength() && brojac < 4; i++) {
-            if ( !elementi.item(i).getTextContent().equals("\n")) {
+            if (!elementi.item(i).getTextContent().equals("\n")) {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "datum":
@@ -312,12 +339,11 @@ public class GeneratorMetaPodataka {
         return elementi;
     }
 
-    public NodeList dodajMetaPodatkeReceptu(NodeList elementi, String id)
-    {
+    public NodeList dodajMetaPodatkeReceptu(NodeList elementi, String id) {
         Element element;
         int brojac = 0;
         for (int i = 0; i < elementi.getLength() && brojac < 4; i++) {
-            if ( !elementi.item(i).getTextContent().equals("\n")) {
+            if (!elementi.item(i).getTextContent().equals("\n")) {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
                     case "datum":

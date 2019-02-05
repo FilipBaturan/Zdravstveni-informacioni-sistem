@@ -233,4 +233,11 @@
         <rdfs:comment xml:lang="sr">Predstavlja razlog promene odabranog lekara</rdfs:comment>
     </rdf:Property>
     
+    <rdf:Property rdf:ID="referencaNaDokument">
+        <rdfs:label xml:lang="sr">Referenca na dokument</rdfs:label>
+        <rdfs:domain rdf:resource="#Document"/>
+        <rdfs:range rdf:resource="#Document"/>
+        <rdfs:comment xml:lang="sr">Predstavlja referencu na neki povezan dokument</rdfs:comment>
+    </rdf:Property>
+    
 </rdf:RDF>
