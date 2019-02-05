@@ -41,4 +41,8 @@ public class ZdravstveniKartonServis {
         throw new TransformacioniIzuzetak("Greska prilikom obrade podataka.");
 
     }
+
+    public String opstaPretraga(String tekst) {
+        return repozitorijum.opstaPretraga(tekst);
+    }
 }

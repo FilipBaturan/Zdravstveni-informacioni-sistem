@@ -339,4 +339,48 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
+
+    public String opstaPretraga(String text)
+    {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("opstaPretragaKartona")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
+                    .getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), text);
+            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
+            ResourceSet result = upitServis.execute(compiledXquery);
+            ResourceIterator i = result.getIterator();
+            Resource res = null;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i.hasMoreResources()) {
+
+                try {
+                    res = i.nextResource();
+                    sb.append(res.getContent().toString());
+                    sb.append("-");
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+
+                }
+            }
+            String recepti = sb.toString();
+            konekcija.oslobodiResurse(resursi);
+            if (recepti.isEmpty()) {
+                throw new ValidacioniIzuzetak("Ne postoji zdravstveni karton sa tekstom: " + text);
+            } else {
+                return recepti;
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
 }
