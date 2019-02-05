@@ -31,6 +31,9 @@ public class RDFRepozitorijum {
     @Autowired
     private Maper maper;
 
+    @Autowired
+    private SPARQLMaper sparqlMaper;
+
     public void sacuvaj(String sadrzaj, String graf, boolean postProcesiranje) {
 
         ByteArrayInputStream rdf = ekstraktor.ekstraktujMetaPodatke(new ByteArrayInputStream(sadrzaj.getBytes()),
@@ -42,7 +45,7 @@ public class RDFRepozitorijum {
             this.postProcesiranje(model, sadrzaj);
         }
         model.write(output, SPARQLMaper.NTRIPLES);
-        String sparqlUpit = SPARQLMaper.insertData(konekcija.getDataEndpoint() + "/" + graf,
+        String sparqlUpit = sparqlMaper.insertData(konekcija.getDataEndpoint() + "/" + graf,
                 new String(output.toByteArray()));
         System.out.println(sparqlUpit);
         UpdateRequest update = UpdateFactory.create(sparqlUpit);
@@ -61,8 +64,8 @@ public class RDFRepozitorijum {
             this.postProcesiranje(model, sadrzaj);
         }
         model.write(output, SPARQLMaper.NTRIPLES);
-        String sparqlUpit = SPARQLMaper.replaceData(konekcija.getDataEndpoint() + "/" + graf,
-                new String(output.toByteArray()));
+        String sparqlUpit = sparqlMaper.replaceData(konekcija.getDataEndpoint() + "/" + graf,
+                dobaviId(sadrzaj),new String(output.toByteArray()));
         System.out.println(sparqlUpit);
         UpdateRequest update = UpdateFactory.create(sparqlUpit);
         UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, konekcija.getUpdateEndpoint());
@@ -87,5 +90,10 @@ public class RDFRepozitorijum {
         koren.addProperty(lb, lbo);
         koren.addProperty(br_kn, br_knjizice);
         koren.addProperty(br_kr, br_kartona);
+    }
+
+    private String dobaviId(String sadrzaj) {
+        Document dok = maper.konvertujUDokument(sadrzaj);
+        return dok.getFirstChild().getAttributes().getNamedItem("id").getNodeValue();
     }
 }

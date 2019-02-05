@@ -6,13 +6,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
+import zis.rs.zis.repository.rdf.RDFRepozitorijum;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -37,6 +35,9 @@ public class Operacije extends IOStrimer {
 
     @Autowired
     private GeneratorMetaPodataka generatorMetaPodataka;
+
+    @Autowired
+    private RDFRepozitorijum rdfRepozitorijum;
 
     private static final Logger logger = LoggerFactory.getLogger(Operacije.class);
 
@@ -201,7 +202,7 @@ public class Operacije extends IOStrimer {
 
             String noviId = maper.dobaviURI(prefiksDokumenta) + id.toString();
             Document dodatId = this.umetniId(maper.konvertujUDokument(sadrzajEntiteta).getFirstChild(), id, prefiksDokumenta);
-            Document cvoroviSaMeta = dodajMetaPodatke(prefiks, dodatId, noviId );
+            Document cvoroviSaMeta = dodajMetaPodatke(prefiks, dodatId, noviId);
 
             String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
                     prefiks, maper.dobaviPrefiks(prefiksDokumenta), maper.dobaviPutanju(dokument), maper.konvertujUString(cvoroviSaMeta),
@@ -235,16 +236,10 @@ public class Operacije extends IOStrimer {
 
         NodeList cvoroviEntiteta = maper.konvertujUDokument(entitet).getFirstChild().getChildNodes();
         NodeList cvoroviSaMeta = dodajMetaPodatkeIzmena(prefiks, cvoroviEntiteta, id);
-        String sadrzajEnteita = null;
-        try {
-            sadrzajEnteita = maper.kreirajXmlOdCvorova(cvoroviSaMeta);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
+        String sadrzajEnteita;
         ResursiBaze resursi = null;
         try {
+            sadrzajEnteita = maper.kreirajXmlOdCvorova(cvoroviSaMeta);
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument(dokument));
             String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("izmena")).getPath();
             XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
@@ -260,9 +255,21 @@ public class Operacije extends IOStrimer {
 
             konekcija.oslobodiResurse(resursi);
             String ime = dokument.substring(0, dokument.length() - 1);
+
+            String rezultat = "<" + el.getTagName() + " id=\"" + id + "\" about=\"" + id + "\" "
+                    + "xmlns:" + prefiks + "=\"" + maper.dobaviPrefiks(prefiksDokumenta) + "\">" +
+                    sadrzajEnteita
+                    + "</" + el.getNodeName() +">";
+
+            //String rezultat = maper.konvertujUString(el);
+            //String rezultat = operacije.sacuvaj(sadrzajEnteita, "izvestaji", "izvestaj");
+            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                    rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
+                            + maper.dobaviPrefiks("xmlSema"));
+            rdfRepozitorijum.izmeni(noviRezultat, maper.dobaviGraf(dokument), false);
+
             return "Uspesno izmenjen " + ime + "!";
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
+        } catch (Exception e) {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
