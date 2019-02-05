@@ -368,6 +368,7 @@ public class Operacije extends IOStrimer {
     }
 
     public String dobaviLekZaDijagnozu(String dijagnoza, String pacijentId) {
+        
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
