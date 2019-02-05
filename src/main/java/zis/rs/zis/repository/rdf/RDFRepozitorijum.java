@@ -50,6 +50,25 @@ public class RDFRepozitorijum {
         processor.execute();
     }
 
+    public void izmeni(String sadrzaj, String graf, boolean postProcesiranje) {
+
+        ByteArrayInputStream rdf = ekstraktor.ekstraktujMetaPodatke(new ByteArrayInputStream(sadrzaj.getBytes()),
+                new ByteArrayOutputStream());
+        Model model = ModelFactory.createDefaultModel();
+        model.read(rdf, null);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        if (postProcesiranje) {
+            this.postProcesiranje(model, sadrzaj);
+        }
+        model.write(output, SPARQLMaper.NTRIPLES);
+        String sparqlUpit = SPARQLMaper.replaceData(konekcija.getDataEndpoint() + "/" + graf,
+                new String(output.toByteArray()));
+        System.out.println(sparqlUpit);
+        UpdateRequest update = UpdateFactory.create(sparqlUpit);
+        UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, konekcija.getUpdateEndpoint());
+        processor.execute();
+    }
+
     private void postProcesiranje(Model model, String karton) {
         Document dok = maper.konvertujUDokument(karton);
         String id = dok.getFirstChild().getAttributes().getNamedItem("id").getNodeValue();

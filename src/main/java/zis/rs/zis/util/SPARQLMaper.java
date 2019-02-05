@@ -22,6 +22,7 @@ public class SPARQLMaper {
     /* Simple SPARQL query on a named graph */
     private static final String SELECT_NAMED_GRAPH_TEMPLATE = "SELECT * FROM <%1$s> WHERE { %2$s }";
 
+    private static final String REPLACE_NAMED_GRAPH_TEMPLATE = "CLEAR GRAPH <%1$s>;" + UPDATE_TEMPLATE_NAMED_GRAPH;
 
     /* Plain text RDF serialization format */
     public static final String NTRIPLES = "N-TRIPLES";
@@ -44,6 +45,10 @@ public class SPARQLMaper {
 
     public static String insertData(String graphURI, String ntriples) {
         return String.format(UPDATE_TEMPLATE_NAMED_GRAPH, graphURI, ntriples);
+    }
+
+    public static String replaceData(String graphURI, String ntriples) {
+        return String.format(REPLACE_NAMED_GRAPH_TEMPLATE, graphURI, ntriples);
     }
 
     public static String selectData(String graphURI, String sparqlCondition) {

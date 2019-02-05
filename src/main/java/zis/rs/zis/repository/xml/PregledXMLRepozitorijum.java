@@ -124,7 +124,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
             konekcija.oslobodiResurse(resursi);
             return "Uspesno zakazan pregled!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
+                XMLDBException | IOException | NullPointerException e) {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
@@ -136,14 +136,16 @@ public class PregledXMLRepozitorijum extends IOStrimer {
         NodeList lista = pregled.getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("pacijent")) {
-                korisnikId = element.getAttributes().item(0).getNodeValue();
-            } else if (element.getLocalName().equals("lekar")) {
-                lekarId = element.getAttributes().item(0).getNodeValue();
+            try {
+                element = lista.item(i);
+                if (element.getLocalName().equals("pacijent")) {
+                    korisnikId = element.getAttributes().item(0).getNodeValue();
+                } else if (element.getLocalName().equals("lekar")) {
+                    lekarId = element.getAttributes().item(0).getNodeValue();
+                }
+            } catch (NullPointerException e) {
             }
         }
-
         lekarXMLRepozitorijum.pretragaPoId(lekarId);
         zdravstveniKartonXMLRepozitorijum.pretragaPoId(korisnikId);
     }
