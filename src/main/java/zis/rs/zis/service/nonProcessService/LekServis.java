@@ -31,4 +31,8 @@ public class LekServis {
     public String izmeni(Akcija akcija) {
         return lekXMLRepozitorijum.izmeni(akcija);
     }
+
+    public String dobaviLekZaDijagnozu(String dijagnoza, String pacijentId) {
+        return lekXMLRepozitorijum.dobaviLekZaDijagnozu(dijagnoza, pacijentId);
+    }
 }
