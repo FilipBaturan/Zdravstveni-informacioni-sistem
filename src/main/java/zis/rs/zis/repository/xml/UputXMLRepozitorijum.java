@@ -37,10 +37,6 @@ public class UputXMLRepozitorijum extends IOStrimer {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdUputa");
     }
 
-    public String sacuvaj(Akcija akcija) {
-        return "smece";
-    }
-
     public String obrisi(Akcija akcija) {
         return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdUputa");
     }
@@ -50,7 +46,7 @@ public class UputXMLRepozitorijum extends IOStrimer {
         return operacije.izmeni(akcija, dokument, prefiksDokumenta);
     }
 
-    private void proveriUput(Node sadrzaj) {
+    public void proveriUput(Node sadrzaj) {
         String lekarId = "";
         String korisnikId = "";
         String specijalistaId = "";
@@ -70,21 +66,7 @@ public class UputXMLRepozitorijum extends IOStrimer {
 
         lekarXMLRepozitorijum.pretragaPoId(lekarId);
         lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
-        korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
+        //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
 
     }
-
-    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
-        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        NodeList lista = dok.getFirstChild().getChildNodes();
-        Node element;
-        for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
-            }
-        }
-        return null;
-    }
-
 }

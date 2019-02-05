@@ -8,8 +8,8 @@
                schemaLocation="stanje_pregleda.xsd"/>
     <xs:element name="stanja_pregleda">
         <xs:complexType>
-            <xs:sequence maxOccurs="unbounded" minOccurs="0">
-                <xs:element ref="stp:stanje_pregleda"/>
+            <xs:sequence >
+                <xs:element  maxOccurs="unbounded" minOccurs="0" ref="stp:stanje_pregleda"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

@@ -2,28 +2,28 @@ package zis.rs.zis.service.nonProcessService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zis.rs.zis.repository.xml.ReceptXMLRepozitorijum;
+import zis.rs.zis.repository.xml.IzvestajXMLRepozitorijum;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Service
-public class ReceptServis {
+public class IzvestajServis {
 
     @Autowired
-    private ReceptXMLRepozitorijum receptXMLRepozitorijum;
+    private IzvestajXMLRepozitorijum izvestajXMLRepozitorijum;
 
     public String dobaviSve() {
-        return receptXMLRepozitorijum.dobaviSve();
+        return izvestajXMLRepozitorijum.dobaviSve();
     }
 
     public String pretragaPoId(String id) {
-        return receptXMLRepozitorijum.pretragaPoId(id);
+        return izvestajXMLRepozitorijum.pretragaPoId(id);
     }
 
     public String obrisi(Akcija akcija) {
-        return receptXMLRepozitorijum.obrisi(akcija);
+        return izvestajXMLRepozitorijum.obrisi(akcija);
     }
 
     public String izmeni(Akcija akcija) {
-        return receptXMLRepozitorijum.izmeni(akcija);
+        return izvestajXMLRepozitorijum.izmeni(akcija);
     }
 }

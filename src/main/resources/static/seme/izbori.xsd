@@ -8,8 +8,8 @@
         schemaLocation="izbor.xsd"/>
     <xs:element name="izbori">
         <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="izbor:izbor"/>
+            <xs:sequence >
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="izbor:izbor"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

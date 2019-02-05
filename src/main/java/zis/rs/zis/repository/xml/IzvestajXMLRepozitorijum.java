@@ -9,7 +9,6 @@ import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
-import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Repository
@@ -21,8 +20,10 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
 
+    private ZdravstveniKartonXMLRepozitorijum kartonXMLRepozitorijum;
+
     @Autowired
-    Operacije operacije;
+    private Operacije operacije;
 
     private String dokument = "izvestaji";
     private String prefiksDokumenta = "izvestaj";
@@ -35,11 +36,6 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdIzvestaja");
     }
 
-    public String sacuvaj(Akcija akcija) {
-        proveriIzvestaj(maper.dobaviDokument(akcija, "izvestaj"));
-        return operacije.sacuvaj(dobaviDokument(akcija, "izvestaj"), dokument, prefiksDokumenta);
-    }
-
     public String obrisi(Akcija akcija) {
         return operacije.obrisi(akcija, dokument, prefiksDokumenta, "pretragaPoIdIzvestaja");
     }
@@ -50,7 +46,7 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
     }
 
 
-    private void proveriIzvestaj(Node sadrzaj) {
+    public void proveriIzvestaj(Node sadrzaj) {
         String lekarId = "";
         NodeList lista = sadrzaj.getChildNodes();
         Node element;
@@ -61,24 +57,7 @@ public class IzvestajXMLRepozitorijum extends IOStrimer {
                 break;
             }
         }
-        try {
-            lekarXMLRepozitorijum.pretragaPoId(lekarId);
-        } catch (ValidacioniIzuzetak izuzetak) {
-            throw izuzetak;
-        }
+        lekarXMLRepozitorijum.pretragaPoId(lekarId);
+        kartonXMLRepozitorijum.pretragaPoId("");
     }
-
-    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
-        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        NodeList lista = dok.getFirstChild().getChildNodes();
-        Node element;
-        for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
-            }
-        }
-        return null;
-    }
-
 }

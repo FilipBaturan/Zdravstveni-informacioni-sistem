@@ -7,9 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.repository.rdf.RDFRepozitorijum;
-import zis.rs.zis.repository.xml.IzvestajXMLRepozitorijum;
-import zis.rs.zis.repository.xml.LekarXMLRepozitorijum;
-import zis.rs.zis.repository.xml.ZdravstveniKartonXMLRepozitorijum;
+import zis.rs.zis.repository.xml.*;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.ValidacioniIzuzetak;
@@ -25,19 +23,19 @@ public class OpstiPregled extends Stanje {
     private IzvestajXMLRepozitorijum izvestajXMLRepozitorijum;
 
     @Autowired
+    private UputXMLRepozitorijum uputXMLRepozitorijum;
+
+    @Autowired
+    private ReceptXMLRepozitorijum receptXMLRepozitorijum;
+
+    @Autowired
     private Maper maper;
 
     @Autowired
     private RDFRepozitorijum rdfRepozitorijum;
 
     @Autowired
-    private LekarXMLRepozitorijum lekarXMLRepozitorijum;
-
-    @Autowired
-    private ZdravstveniKartonXMLRepozitorijum korisnikXMLRepozitorijum;
-
-    @Autowired
-    Operacije operacije;
+    private Operacije operacije;
 
     @Override
     public String obradiZahtev(Akcija akcija) {
@@ -52,59 +50,66 @@ public class OpstiPregled extends Stanje {
      * @return rezultat akcije
      */
     public String kreiranjeDokumentacije(Akcija akcija) {
-        Node izvestaj = dobaviDokument(akcija, "izvestaj");
+        Node izvestaj = dobaviDokumentIzListe(akcija, "izvestaj");
         if (izvestaj == null) {
             throw new ValidacioniIzuzetak("Izvestaj nije prosledjen!");
         }
+        Node uput = dobaviDokumentIzListe(akcija, "uput");
+        Node recept = dobaviDokumentIzListe(akcija, "recept");
+        String rezultat;
+        String graf;
+        if (uput != null && recept != null) {
+            throw new ValidacioniIzuzetak("Prosledjeni i uput i izvestaj!");
+        } else if (uput != null) {
+            uputXMLRepozitorijum.proveriUput(uput);
+            rezultat = operacije.sacuvaj(uput, "uputi", "uput");
+            graf = "uputi";
+            if (rezultat.equals(""))
+                return "Greska prilikom snimanja uputa";
+            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+                    rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
+                            + maper.dobaviPrefiks("xmlSema"));
+            rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf(graf), false);
+        } else if (recept != null) {
+            receptXMLRepozitorijum.proveriRecept(recept);
+            rezultat = operacije.sacuvaj(recept, "recepti", "recept");
+            graf = "recepti";
+            if (rezultat.equals(""))
+                return "Greska prilikom snimanja recepta";
+            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+                    rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
+                            + maper.dobaviPrefiks("xmlSema"));
+            rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf(graf), false);
+        }
 
-        proveriUput(maper.dobaviDokument(akcija, "uput"));
-        String rezultat = operacije.sacuvaj(dobaviDokument(akcija, "uput"), "uputi", "uput");
-
-        String noviRez = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+        izvestajXMLRepozitorijum.proveriIzvestaj(izvestaj);
+        rezultat = operacije.sacuvaj(izvestaj, "izvestaji", "izvestaj");
+        graf = "izvestaji";
+        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
                 rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                         + maper.dobaviPrefiks("xmlSema"));
+        rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf(graf), false);
 
-        rdfRepozitorijum.sacuvaj(noviRez, maper.dobaviGraf("izvestaji"), false);
         if (!rezultat.equals(""))
-            return "Uspesno sacuvan uput";
+            return "Izvestaj uspesno sacuvan";
         else
-            return "Greska prilikom sacuvavanja uputa";
+            return "Greska prilikom snimanja izvestaja";
     }
 
-    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
+    private Node dobaviDokumentIzListe(Akcija akcija, String nazivDokumenta) {
         Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
         NodeList lista = dok.getFirstChild().getChildNodes();
         Node element;
-        for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
+        try {
+            for (int i = 0; i < lista.getLength(); i++) {
+                element = lista.item(i);
+                if (element.getLocalName().equals(nazivDokumenta)) {
+                    return element;
+                }
             }
+        } catch (NullPointerException e) {
+            return null;
         }
         return null;
-    }
-
-    private void proveriUput(Node sadrzaj) {
-        String lekarId = "";
-        String korisnikId = "";
-        String specijalistaId = "";
-        NodeList lista = sadrzaj.getChildNodes();
-        Node element;
-        for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("osigurano_lice")) {
-                korisnikId = element.getAttributes().item(0).getNodeValue();
-            } else if (element.getLocalName().equals("lekar")) {
-                lekarId = element.getAttributes().item(0).getNodeValue();
-            } else if (element.getLocalName().equals("specialista")) {
-                specijalistaId = element.getAttributes().item(0).getNodeValue();
-                break;
-            }
-        }
-
-        lekarXMLRepozitorijum.pretragaPoId(lekarId);
-        lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
-        korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
-
     }
 }

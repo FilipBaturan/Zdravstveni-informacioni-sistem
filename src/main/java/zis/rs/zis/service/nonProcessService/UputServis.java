@@ -27,19 +27,6 @@ public class UputServis {
         return uputXMLRepozitorijum.pretragaPoId(id);
     }
 
-    public String sacuvaj(Akcija akcija) {
-        String rezultat =  uputXMLRepozitorijum.sacuvaj(akcija);
-        String noviRez = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
-                rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
-                + maper.dobaviPrefiks("xmlSema"));
-
-        rdfRepozitorijum.sacuvaj(noviRez, maper.dobaviGraf("uputi"), false);
-        if (!rezultat.equals(""))
-            return "Uspesno sacuvan uput";
-        else
-            return "Greska prilikom sacuvavanja uputa";
-    }
-
     public String obrisi(Akcija akcija) {
         return uputXMLRepozitorijum.obrisi(akcija);
     }

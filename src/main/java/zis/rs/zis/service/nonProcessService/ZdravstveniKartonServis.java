@@ -11,6 +11,10 @@ public class ZdravstveniKartonServis {
     @Autowired
     private ZdravstveniKartonXMLRepozitorijum repozitorijum;
 
+    public String dobaviSve() {
+        return repozitorijum.dobaviSve();
+    }
+
     public String pretragaPoId(String id) {
         return repozitorijum.pretragaPoId(id);
     }

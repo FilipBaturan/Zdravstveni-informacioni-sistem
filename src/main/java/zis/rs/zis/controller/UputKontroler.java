@@ -54,18 +54,6 @@ public class UputKontroler {
         return new ResponseEntity<>(uputServis.pretragaPoId(maper.dobaviURI("uput") + id), HttpStatus.OK);
     }
 
-    /**
-     * POST uput
-     *
-     * @param akcija koja se izvrsava
-     * @return rezultat akcije
-     */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se dodavanje uputa {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(uputServis.sacuvaj(akcija), HttpStatus.OK);
-    }
-
     @PostMapping(value = "/obrisi", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> obrisi(@RequestBody Akcija akcija) {
         logger.info("Vrsi se brisanje uputa {}.", Calendar.getInstance().getTime());

@@ -7,7 +7,7 @@
     <xs:element name="izvestaji">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="izvestaj:izvestaj"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" ref="izvestaj:izvestaj"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
