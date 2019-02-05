@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <lekovi:lekovi
         xmlns:lekovi="http://www.zis.rs/seme/lekovi"
-        xmlns:lek="http://www.zis.rs/seme/lek"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://zis.rs/zis/seme/lekovi">
+        xmlns:lek="http://www.zis.rs/seme/lek">
     <lek:lek id="http://www.zis.rs/lekovi/id1" aktivan="true">
         <lek:naziv>ACIKLOVIR</lek:naziv>
         <lek:sifra>1328230</lek:sifra>

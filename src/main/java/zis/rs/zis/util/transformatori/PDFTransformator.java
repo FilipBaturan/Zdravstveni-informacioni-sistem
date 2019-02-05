@@ -21,14 +21,6 @@ public class PDFTransformator {
 
     private static TransformerFactory transformerFactory;
 
-    public static final String INPUT_FILE = "src/main/resources/xml/recepti.xml";
-
-    public static final String XSL_FILE = "src/main/resources/xsl/recepti.xsl";
-
-    public static final String HTML_FILE = "src/main/resources/generated/recepti.html";
-
-    public static final String OUTPUT_FILE = "src/main/resources/generated/recepti.pdf";
-
     static {
 
         /* Inicijalizacija DOM fabrike */
@@ -49,7 +41,7 @@ public class PDFTransformator {
      * @throws IOException
      * @throws DocumentException
      */
-    public void generatePDF(String filePath) throws IOException, DocumentException {
+    public static void generatePDF(String filePath, String htmlFile) throws IOException, DocumentException {
 
         // Step 1
         Document document = new Document();
@@ -61,14 +53,14 @@ public class PDFTransformator {
         document.open();
 
         // Step 4
-        XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream(HTML_FILE));
+        XMLWorkerHelper.getInstance().parseXHtml(writer, document, new FileInputStream(htmlFile));
 
         // Step 5
         document.close();
 
     }
 
-    public org.w3c.dom.Document buildDocument(String filePath) {
+    public static org.w3c.dom.Document buildDocument(String filePath) {
 
         org.w3c.dom.Document document = null;
         try {
@@ -89,7 +81,7 @@ public class PDFTransformator {
         return document;
     }
 
-    public void generateHTML(String xmlPath, String xslPath) throws FileNotFoundException {
+    public static void generateHTML(String xmlPath, String xslPath, String htmlFile) throws FileNotFoundException {
 
         try {
 
@@ -104,7 +96,7 @@ public class PDFTransformator {
 
             // Transform DOM to HTML
             DOMSource source = new DOMSource(buildDocument(xmlPath));
-            StreamResult result = new StreamResult(new FileOutputStream(HTML_FILE));
+            StreamResult result = new StreamResult(new FileOutputStream(htmlFile));
             transformer.transform(source, result);
 
         } catch (TransformerConfigurationException e) {
@@ -115,27 +107,6 @@ public class PDFTransformator {
             e.printStackTrace();
         }
 
-    }
-
-    public static void main(String[] args) throws IOException, DocumentException {
-
-        System.out.println("[INFO] " + PDFTransformator.class.getSimpleName());
-
-        // Creates parent directory if necessary
-        File pdfFile = new File(OUTPUT_FILE);
-
-        if (!pdfFile.getParentFile().exists()) {
-            System.out.println("[INFO] A new directory is created: " + pdfFile.getParentFile().getAbsolutePath() + ".");
-            pdfFile.getParentFile().mkdir();
-        }
-
-        PDFTransformator pdfTransformer = new PDFTransformator();
-
-        pdfTransformer.generateHTML(INPUT_FILE, XSL_FILE);
-        pdfTransformer.generatePDF(OUTPUT_FILE);
-
-        System.out.println("[INFO] File \"" + OUTPUT_FILE + "\" generated successfully.");
-        System.out.println("[INFO] End.");
     }
 
 }
