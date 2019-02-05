@@ -49,7 +49,8 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
     private Validator validator;
 
     public String dobaviSve() {
-        return operacije.dobaviSve("zdravstveni_kartoni", "dobaviSveRecepte");
+        return operacije.dobaviSve("zdravstveni_kartoni",
+                "dobavljanjeSvihKartona");
     }
 
     public String pretragaPoId(String id) {
