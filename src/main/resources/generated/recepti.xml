@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="src/main/resources/xsl/recepti.xsl"?>
+<recepti:recepti
+ xmlns:recept="http://www.zis.rs/seme/recept"
+ xmlns:recepti="http://www.zis.rs/seme/recepti"
+>
+<recept:recept xmlns:recept="http://www.zis.rs/seme/recept" id="http://www.zis.rs/recepti/id1"><recept:osigurano_lice><zko:zdravstveni_karton xmlns:zko="http://www.zis.rs/seme/zdravstveni_karton" id="http://www.zis.rs/zdravstveni_kartoni/id1" jmbg="0000000000000" broj_zdr_knjizice="00000000000" broj_kartona="AA000" upozorenje="" lbo="00000000000" aktivan="true">
+        <zko:osigurano_lice>
+            <zko:ime>ime0</zko:ime>
+            <zko:prezime>prezime0</zko:prezime>
+            <zko:pol>muski</zko:pol>
+            <zko:nosilac_osiguranja>
+                <zko:ime>ime1</zko:ime>
+                <zko:prezime>prezime1</zko:prezime>
+                <zko:srodstvo>srodstvo0</zko:srodstvo>
+                <zko:osnova_osiguranja>50</zko:osnova_osiguranja>
+            </zko:nosilac_osiguranja>
+            <zko:bracno_stanje>neozenjen/neudata</zko:bracno_stanje>
+            <zko:datum_rodjenja>2006-05-04</zko:datum_rodjenja>
+            <zko:adresa>
+                <zko:ulica>ulica0</zko:ulica>
+                <zko:broj>50</zko:broj>
+                <zko:broj_stana>50</zko:broj_stana>
+                <zko:mesto>mesto0</zko:mesto>
+                <zko:opstina>
+                    <zko:naziv>naziv0</zko:naziv>
+                    <zko:postanski_broj>25500</zko:postanski_broj>
+                </zko:opstina>
+            </zko:adresa>
+            <zko:broj_telefona>0000000000</zko:broj_telefona>
+        </zko:osigurano_lice>
+        <zko:odabrani_lekar zko:identifikator="http://www.zis.rs/lekari/id1"/>
+    </zko:zdravstveni_karton></recept:osigurano_lice><recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije><recept:datum>2019-06-21Z</recept:datum><recept:dijagnoza>6248</recept:dijagnoza><recept:opis>B1</recept:opis><recept:propisani_lek/><recept:lekar><lkr:lekar xmlns:voc="http://www.zis.rs/rdf/voc#" xmlns:lkr="http://www.zis.rs/seme/lekar" id="http://www.zis.rs/lekari/id2"><korisnik:korisnik xmlns:korisnik="http://www.zis.rs/seme/korisnik" id="http://www.zis.rs/korisnici/id1"><korisnik:ime property="voc:ime" datatype="xs:string">Nebojsa</korisnik:ime><korisnik:prezime property="voc:prezime" datatype="xs:string">Jovanovic</korisnik:prezime><korisnik:jmbg property="voc:jmbg" datatype="xs:string">1407986856324</korisnik:jmbg><korisnik:korisnicko_ime>nebojsa</korisnik:korisnicko_ime></korisnik:korisnik><lkr:tip property="voc:tipLekara" datatype="xs:string">opsta_praksa</lkr:tip><lkr:oblast_zastite property="voc:oblastZastite" datatype="xs:string">odrasli</lkr:oblast_zastite><lkr:broj_pacijenata>0</lkr:broj_pacijenata></lkr:lekar></recept:lekar></recept:recept>
+</recepti:recepti>
