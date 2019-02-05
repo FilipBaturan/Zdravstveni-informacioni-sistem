@@ -21,7 +21,7 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
     private LekXMLRepozitorijum lekXMLRepozitorijum;
 
     @Autowired
-    private KorisnikXMLRepozitorijum korisnikXMLRepozitorijum;
+    private ZdravstveniKartonXMLRepozitorijum korisnikXMLRepozitorijum;
 
     @Autowired
     private Maper maper;
@@ -69,7 +69,7 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
         }
         lekarXMLRepozitorijum.pretragaPoId(lekarId);
         lekXMLRepozitorijum.pretragaPoId(lekId);
-        //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
+        korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
 
     }
 }

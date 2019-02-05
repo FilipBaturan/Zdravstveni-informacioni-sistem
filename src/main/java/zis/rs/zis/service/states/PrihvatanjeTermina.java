@@ -39,7 +39,7 @@ public class PrihvatanjeTermina extends Stanje {
      * @return rezultat akcije
      */
     public String odbijanjeTermina(Akcija akcija) {
-        return pregledXMLRepozitorijum.obrisi(akcija);
+        return "Odbijen pregled!";
     }
 
     /**
