@@ -1,9 +1,7 @@
 package zis.rs.zis.repository.xml;
 
-import org.apache.xerces.dom.ElementNSImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
@@ -16,6 +14,9 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
 
     @Autowired
     private LekarXMLRepozitorijum lekarXMLRepozitorijum;
+
+    @Autowired
+    private ZdravstveniKartonXMLRepozitorijum kartonXMLRepozitorijum;
 
     @Autowired
     private Maper maper;
@@ -36,7 +37,7 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
 
     public String sacuvaj(Akcija akcija) {
         proveriIzbor(maper.dobaviDokument(akcija, prefiksDokumenta));
-        return operacije.sacuvaj(dobaviDokument(akcija, "izbor"), dokument, prefiksDokumenta);
+        return operacije.sacuvaj(maper.dobaviDokument(akcija, "izbor"), dokument, prefiksDokumenta);
     }
 
     public String obrisi(Akcija akcija) {
@@ -49,42 +50,32 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
     }
 
     private void proveriIzbor(Node sadrzaj) {
-//        String lekarId = "";
-//        String korisnikId = "";
-//        String specijalistaId = "";
-//        NodeList lista = sadrzaj.getChildNodes();
-//        Node element;
-//        for (int i = 0; i < lista.getLength(); i++) {
-//            element = lista.item(i);
-//            if (element.getLocalName().equals("osigurano_lice")) {
-//                korisnikId = element.getAttributes().item(0).getNodeValue();
-//            } else if (element.getLocalName().equals("lekar")) {
-//                lekarId = element.getAttributes().item(0).getNodeValue();
-//            }
-//            else if (element.getLocalName().equals("specialista")) {
-//                specijalistaId = element.getAttributes().item(0).getNodeValue();
-//                break;
-//            }
-//        }
-//
-//        lekarXMLRepozitorijum.pretragaPoId(lekarId);
-//        lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
-        //korisnikXMLRepozitorijum.pretragaPoId(korisnikId);
-
-    }
-
-    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
-        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        NodeList lista = dok.getFirstChild().getChildNodes();
+        String lekarId = "";
+        String korisnikId = "";
+        String specijalistaId = "";
+        NodeList lista = sadrzaj.getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
+            try {
+                element = lista.item(i);
+                switch (element.getLocalName()) {
+                    case "osigurano_lice":
+                        korisnikId = element.getAttributes().item(0).getNodeValue();
+                        break;
+                    case "lekar":
+                        lekarId = element.getAttributes().item(0).getNodeValue();
+                        break;
+                    case "prosli_lekar":
+                        specijalistaId = element.getAttributes().item(0).getNodeValue();
+                        break;
+                }
+            } catch (Exception e) {
             }
         }
-        return null;
+
+        lekarXMLRepozitorijum.pretragaPoId(lekarId);
+        lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
+        kartonXMLRepozitorijum.pretragaPoId(korisnikId);
+
     }
-
-
 }

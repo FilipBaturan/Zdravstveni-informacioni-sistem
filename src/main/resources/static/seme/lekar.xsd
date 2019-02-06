@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-           targetNamespace="http://www.zis.rs/seme/lekar" vc:minVersion="1.1"
-           xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
-           xmlns:lekar="http://www.zis.rs/seme/lekar">
+    targetNamespace="http://www.zis.rs/seme/lekar" vc:minVersion="1.1"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    xmlns:lekar="http://www.zis.rs/seme/lekar">
     <xs:element name="lekar">
         <xs:complexType>
             <xs:sequence>
@@ -29,15 +29,6 @@
                         </xs:simpleContent>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="broj_pacijenata">
-                    <xs:complexType>
-                        <xs:simpleContent>
-                            <xs:extension base="lekar:broj_pacijenata">
-                                <xs:anyAttribute processContents="lax"/>
-                            </xs:extension>
-                        </xs:simpleContent>
-                    </xs:complexType>
-                </xs:element>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required"/>
             <xs:anyAttribute processContents="lax"/>
@@ -58,12 +49,6 @@
             <xs:enumeration value="deca"/>
             <xs:enumeration value="odrasli"/>
             <xs:enumeration value="zene"/>
-        </xs:restriction>
-    </xs:simpleType>
-    <xs:simpleType name="broj_pacijenata">
-        <xs:restriction base="xs:int">
-            <xs:minInclusive value="0"/>
-            <xs:maxInclusive value="50"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:attribute name="identifikator" type="xs:anyURI"/>

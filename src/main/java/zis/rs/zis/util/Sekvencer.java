@@ -21,7 +21,7 @@ public class Sekvencer extends IOStrimer {
     private KonfiguracijaKonekcija konekcija;
 
     @Autowired
-    Maper maper;
+    private Maper maper;
 
     public Sekvencer() {
         this.brojac = 10L;

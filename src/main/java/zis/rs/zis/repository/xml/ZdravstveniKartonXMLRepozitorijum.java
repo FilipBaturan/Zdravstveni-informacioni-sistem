@@ -118,7 +118,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
                 "Trazeni zdravstveni karton ne postoji!");
         String prefiks = putanja.split("/")[2].split(":")[0];
         String prePrefiks = putanja.split("/")[1].split(":")[0];
-        String izmena = null;
+        String izmena;
         try {
             DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
             fabrika.setNamespaceAware(true);
@@ -166,6 +166,117 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
         return izmena;
     }
 
+
+    public void izmeniOdabranogLekara(String karton, String lekar) {
+        ResursiBaze resursi = null;
+        //String rezerva = this.pretragaPoId();
+        String putanja = ogranicenjaRepozitorijum.pronalazenjePutanje(karton, "zdravstveni_kartoni",
+                "Trazeni zdravstveni karton ne postoji!");
+        String prefiks = putanja.split("/")[2].split(":")[0];
+        String prePrefiks = putanja.split("/")[1].split(":")[0];
+        String rezerva = this.pretragaPoId(karton);
+        String izmena;
+        try {
+//            DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
+//            fabrika.setNamespaceAware(true);
+//            Node karton = dok.getFirstChild().getLastChild().getFirstChild();
+//            dok = fabrika.newDocumentBuilder().newDocument();
+//            Node importovan = dok.importNode(karton, true);
+//            dok.appendChild(importovan);
+
+            //generatorMetaPodataka.dodajMetaPodatkeOsobi(dok, TipKorisnika.PACIJENT, id);
+
+            this.fizickoBrisanje(prefiks, prePrefiks, putanja);
+            Document dok = maper.konvertujUDokument(rezerva);
+            NodeList elementi = dok.getFirstChild().getChildNodes();
+            Element element;
+            for (int i = 0; i < elementi.getLength(); i++) {
+                try {
+                    element = (Element) elementi.item(i);
+                    if ("odabrani_lekar".equals(element.getTagName().split(":")[1])) {
+                        element.setAttribute(prefiks + ":identifikator", lekar);
+                        element.setAttribute("href", lekar);
+                        break;
+                    }
+                } catch (Exception e){
+                }
+            }
+
+//            Element lk = (Element) dok.getFirstChild().getChildNodes().item(8);
+//            lk.setAttribute("id", lekar);
+//            lk.setAttribute("about", lekar);
+            izmena = maper.konvertujUString(dok);
+
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
+                    maper.dobaviDokument("zdravstveni_kartoni"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks("zdravstveni_karton"),
+                    maper.dobaviPutanju("zdravstveni_kartoni"), izmena,
+                    maper.dobaviPrefiks("zdravstveni_kartoni"));
+            logger.info(sadrzajUpita);
+            long mods = xupdateService.updateResource(maper.dobaviDokument("zdravstveni_kartoni"), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
+
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        } catch (ValidacioniIzuzetak e) {
+            this.dodajKarton(rezerva, prefiks);
+            throw new ValidacioniIzuzetak(e.getMessage());
+        }
+    }
+
+    public String opstaPretraga(String text) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("opstaPretragaKartona")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
+                    .getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), text);
+            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
+            ResourceSet result = upitServis.execute(compiledXquery);
+            ResourceIterator i = result.getIterator();
+            Resource res = null;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i.hasMoreResources()) {
+
+                try {
+                    res = i.nextResource();
+                    sb.append(res.getContent().toString());
+                    sb.append("-");
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+
+                }
+            }
+            String recepti = sb.toString();
+            konekcija.oslobodiResurse(resursi);
+            if (recepti.isEmpty()) {
+                throw new ValidacioniIzuzetak("Ne postoji zdravstveni karton sa tekstom: " + text);
+            } else {
+                return recepti;
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
 
     /**
      * @param dokument zdravstvenog kartona
@@ -340,47 +451,6 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
         }
     }
 
-    public String opstaPretraga(String text)
-    {
-        ResursiBaze resursi = null;
-        try {
-            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("opstaPretragaKartona")).getPath();
-            XQueryService upitServis = (XQueryService) resursi.getKolekcija()
-                    .getService("XQueryService", "1.0");
-            upitServis.setProperty("indent", "yes");
-            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), text);
-            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
-            ResourceSet result = upitServis.execute(compiledXquery);
-            ResourceIterator i = result.getIterator();
-            Resource res = null;
 
-            StringBuilder sb = new StringBuilder();
-
-            while (i.hasMoreResources()) {
-
-                try {
-                    res = i.nextResource();
-                    sb.append(res.getContent().toString());
-                    sb.append("-");
-                } finally {
-                    if (res != null)
-                        ((EXistResource) res).freeResources();
-
-                }
-            }
-            String recepti = sb.toString();
-            konekcija.oslobodiResurse(resursi);
-            if (recepti.isEmpty()) {
-                throw new ValidacioniIzuzetak("Ne postoji zdravstveni karton sa tekstom: " + text);
-            } else {
-                return recepti;
-            }
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
-                XMLDBException | IOException e) {
-            konekcija.oslobodiResurse(resursi);
-            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        }
-    }
 
 }

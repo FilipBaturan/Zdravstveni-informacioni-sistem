@@ -9,6 +9,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.domain.enums.*;
 import zis.rs.zis.repository.xml.StanjaPregledaXMLRepozitorijum;
+import zis.rs.zis.service.nonProcessService.IzborPromenaServis;
 import zis.rs.zis.service.states.Proces;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
@@ -155,6 +156,14 @@ public class PoslovniProces extends IOStrimer {
             stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(),
                     maper.dobaviPacijentaIzDokumentacije(akcija));
             proces.getProcesi().remove(maper.dobaviPacijentaIzDokumentacije(akcija));
+        }
+    }
+
+    @Before("execution(* zis.rs.zis.service.nonProcessService.IzborPromenaServis.sacuvaj(..)) && args(akcija,..)")
+    public void preIzmeneLekara(Akcija akcija) {
+        String pacijent = maper.dobaviPacijentaIzPromeneLekara(akcija);
+        if (proces.getProcesi().containsKey(pacijent)) {
+            throw new ValidacioniIzuzetak("Onemogucena promena lekara u toku pregleda.");
         }
     }
 }

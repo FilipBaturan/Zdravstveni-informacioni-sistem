@@ -45,12 +45,12 @@ public class RDFRepozitorijum {
             this.postProcesiranje(model, sadrzaj);
         }
         model.write(output, SPARQLMaper.NTRIPLES);
-        String sparqlUpit = sparqlMaper.insertData(konekcija.getDataEndpoint() + "/" + graf,
+        String sparqlUpit = sparqlMaper.unesiPodatke(konekcija.getDataEndpoint() + "/" + graf,
                 new String(output.toByteArray()));
         System.out.println(sparqlUpit);
-        UpdateRequest update = UpdateFactory.create(sparqlUpit);
-        UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, konekcija.getUpdateEndpoint());
-        processor.execute();
+        UpdateRequest izmena = UpdateFactory.create(sparqlUpit);
+        UpdateProcessor procesor = UpdateExecutionFactory.createRemote(izmena, konekcija.getUpdateEndpoint());
+        procesor.execute();
     }
 
     public void izmeni(String sadrzaj, String graf, boolean postProcesiranje) {
@@ -64,12 +64,21 @@ public class RDFRepozitorijum {
             this.postProcesiranje(model, sadrzaj);
         }
         model.write(output, SPARQLMaper.NTRIPLES);
-        String sparqlUpit = sparqlMaper.replaceData(konekcija.getDataEndpoint() + "/" + graf,
+        String sparqlUpit = sparqlMaper.zameniPodatke(konekcija.getDataEndpoint() + "/" + graf,
                 dobaviId(sadrzaj),new String(output.toByteArray()));
         System.out.println(sparqlUpit);
-        UpdateRequest update = UpdateFactory.create(sparqlUpit);
-        UpdateProcessor processor = UpdateExecutionFactory.createRemote(update, konekcija.getUpdateEndpoint());
-        processor.execute();
+        UpdateRequest izmena = UpdateFactory.create(sparqlUpit);
+        UpdateProcessor procesor = UpdateExecutionFactory.createRemote(izmena, konekcija.getUpdateEndpoint());
+        procesor.execute();
+    }
+
+    public void izmeniPoljeUKartonu(String karton , String polje, String vrednost) {
+        String sparqlUpit = sparqlMaper.zameniPolje(konekcija.getDataEndpoint() + "/" +
+                maper.dobaviGraf("zdravstveni_kartoni"), karton, polje , vrednost);
+        System.out.println(sparqlUpit);
+        UpdateRequest izmena = UpdateFactory.create(sparqlUpit);
+        UpdateProcessor procesor = UpdateExecutionFactory.createRemote(izmena, konekcija.getUpdateEndpoint());
+        procesor.execute();
     }
 
     private void postProcesiranje(Model model, String karton) {

@@ -350,6 +350,18 @@ public class Maper {
         throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
     }
 
+    public String dobaviPacijentaIzPromeneLekara(Akcija akcija) {
+        NodeList lista = konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes();
+        Node element;
+        for (int i = 0; i < lista.getLength(); i++) {
+            element = lista.item(i);
+            if (element.getLocalName().equals("osigurano_lice")) {
+                return element.getAttributes().item(0).getNodeValue();
+            }
+        }
+        throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
+    }
+
     /**
      * @param akcija         koja se prosledjuje
      * @param nazivDokumenta koji treba da se dobavi

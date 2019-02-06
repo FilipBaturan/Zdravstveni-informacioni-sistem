@@ -436,9 +436,8 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             ((Element) dok.getFirstChild()).setAttribute("id", id);
             ((Element) dok.getFirstChild().getFirstChild())
                     .setAttribute(prefiks + ":identifikator", maper.dobaviURI("korisnik") + korisnikId);
-            if (tipKorisnika == TipKorisnika.LEKAR) {
-                dok.getFirstChild().getChildNodes().item(3).setTextContent("0");
-            } else if (tipKorisnika == TipKorisnika.PACIJENT) {
+
+            if (tipKorisnika == TipKorisnika.PACIJENT) {
                 ((Element) dok.getFirstChild()).setAttribute("aktivan", "true");
                 ogranicenjaRepozitorijum.proveriOgranicenjaPacijenta(dok);
             }

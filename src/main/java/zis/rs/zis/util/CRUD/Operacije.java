@@ -368,6 +368,8 @@ public class Operacije extends IOStrimer {
                 break;
             case "lek":
                 generatorMetaPodataka.dodajMetaPodatkeLeku(doktument.getFirstChild().getChildNodes(), id);
+            case "izbor":
+                generatorMetaPodataka.dodajMetaPodatkeIzboru(doktument.getFirstChild().getChildNodes(), id);
         }
         return doktument;
     }

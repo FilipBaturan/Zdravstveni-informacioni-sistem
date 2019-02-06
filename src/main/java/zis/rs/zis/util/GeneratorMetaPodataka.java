@@ -377,6 +377,52 @@ public class GeneratorMetaPodataka {
         return elementi;
     }
 
+    public NodeList dodajMetaPodatkeIzboru(NodeList elementi, String id) {
+        Element element;
+        int brojac = 0;
+        for (int i = 0; i < elementi.getLength() && brojac < 5; i++) {
+            if (!elementi.item(i).getTextContent().equals("\n")) {
+                element = (Element) elementi.item(i);
+                switch (element.getTagName().split(":")[1]) {
+                    case "datum":
+                        Element roditelj = (Element) element.getParentNode();
+                        if (roditelj.hasAttribute("xmlns:akc")) {
+                            roditelj.removeAttribute("xmlns:akc");
+                        }
+                        roditelj.setAttribute("about", id);
+                        element.setAttribute("property", "voc:datum");
+                        element.setAttribute("datatype", "xs:date");
+                        ++brojac;
+                        break;
+                    case "osigurano_lice":
+                        String liceId = element.getAttributes().item(0).getNodeValue();
+                        element.setAttribute("rel", "voc:osiguranoLice");
+                        element.setAttribute("href", liceId);
+                        ++brojac;
+                        break;
+                    case "lekar":
+                        String lekarId = element.getAttributes().item(0).getNodeValue();
+                        element.setAttribute("rel", "voc:lekar");
+                        element.setAttribute("href", lekarId);
+                        ++brojac;
+                        break;
+                    case "prosli_lekar":
+                        String lkId = element.getAttributes().item(0).getNodeValue();
+                        element.setAttribute("rel", "voc:prosliLekar");
+                        element.setAttribute("href", lkId);
+                        ++brojac;
+                        break;
+                    case "razlog_promene":
+                        element.setAttribute("property", "voc:razlogPromene");
+                        element.setAttribute("datatype", "xs:string");
+                        ++brojac;
+                        break;
+                }
+            }
+        }
+        return elementi;
+    }
+
 
     /**
      * @param elementi lista elemenata kojoj je potrebno izgenerisati

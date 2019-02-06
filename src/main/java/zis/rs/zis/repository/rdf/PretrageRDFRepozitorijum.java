@@ -4,7 +4,6 @@ import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.RDFNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import zis.rs.zis.domain.DTO;
 import zis.rs.zis.domain.ParametarPretrage;
 import zis.rs.zis.domain.UpitPretrage;
 import zis.rs.zis.util.*;
@@ -30,7 +29,7 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
 
         String uslovi = konstruisiUpit(upitPretrage);
 
-        String sparqlUpit = sparqlMaper.selectFilter(uslovi);
+        String sparqlUpit = sparqlMaper.selektujFilter(uslovi);
 
         // Create a QueryExecution that will access a SPARQL service over HTTP
         QueryExecution upit = QueryExecutionFactory.sparqlService(konekcija.getQueryEndpoint(), sparqlUpit);
