@@ -261,8 +261,6 @@ public class Operacije extends IOStrimer {
                     sadrzajEnteita
                     + "</" + el.getNodeName() +">";
 
-            //String rezultat = maper.konvertujUString(el);
-            //String rezultat = operacije.sacuvaj(sadrzajEnteita, "izvestaji", "izvestaj");
             String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                             + maper.dobaviPrefiks("xmlSema"));

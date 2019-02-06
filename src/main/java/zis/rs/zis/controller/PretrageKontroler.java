@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class PretrageKontroler {
 
     @Autowired
-    PretrageServis pretrageServis;
+    private PretrageServis pretrageServis;
 
 
     @PostMapping(path = "/opstiUpit", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -31,8 +31,8 @@ public class PretrageKontroler {
     }
 
     @GetMapping(path = "/rdf/{dokument}", produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<DTO> izvozMetaPodatakaRDF(@PathVariable String dokument, @PathVariable String format) {
-        return new ResponseEntity<>(new DTO(pretrageServis.izveziMetapodatke(dokument, "rdf") ), HttpStatus.OK);
+    public ResponseEntity<String> izvozMetaPodatakaRDF(@PathVariable String dokument) {
+        return new ResponseEntity<>(pretrageServis.izveziMetapodatke(dokument, "rdf"), HttpStatus.OK);
     }
 
 }

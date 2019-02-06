@@ -10,7 +10,7 @@ import zis.rs.zis.repository.rdf.RDFRepozitorijum;
 public class PretrageServis {
 
     @Autowired
-    PretrageRDFRepozitorijum pretrageRDFRepozitorijum;
+    private PretrageRDFRepozitorijum pretrageRDFRepozitorijum;
 
     @Autowired
     RDFRepozitorijum rdfRepozitorijum;

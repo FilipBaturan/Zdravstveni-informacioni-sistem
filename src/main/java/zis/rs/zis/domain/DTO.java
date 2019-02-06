@@ -1,6 +1,7 @@
 package zis.rs.zis.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DTO {
 
@@ -14,9 +15,7 @@ public class DTO {
     public DTO(String tekst)
     {
         this.listaId = new ArrayList<>();
-        for (String id: tekst.split("-")) {
-            this.listaId.add(id);
-        }
+        this.listaId.addAll(Arrays.asList(tekst.split("-")));
     }
 
     public ArrayList<String> getText() {

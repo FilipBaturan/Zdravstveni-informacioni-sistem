@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="s"/>
+    <variable name="p"/>
+    <variable name="o"/>
+  </head>
+  <results>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/uputi/id11</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#specijalista</uri>
+      </binding>
+      <binding name="o">
+        <uri>http://www.zis.rs/lekari/id6</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/uputi/id11</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#datum</uri>
+      </binding>
+      <binding name="o">
+        <literal datatype="http://www.w3.org/2001/XMLSchema#date">2019-08-06</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/uputi/id11</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#lekar</uri>
+      </binding>
+      <binding name="o">
+        <uri>http://www.zis.rs/lekari/id4</uri>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/uputi/id11</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#osiguranoLice</uri>
+      </binding>
+      <binding name="o">
+        <uri>http://www.zis.rs/zdravstveni_kartoni/id1</uri>
+      </binding>
+    </result>
+  </results>
+</sparql>

@@ -1,0 +1,29 @@
+{
+  "head": {
+    "vars": [ "s" , "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "s": { "type": "uri" , "value": "http://www.zis.rs/uputi/id11" } ,
+        "p": { "type": "uri" , "value": "http://www.zis.rs/rdf/voc#specijalista" } ,
+        "o": { "type": "uri" , "value": "http://www.zis.rs/lekari/id6" }
+      } ,
+      {
+        "s": { "type": "uri" , "value": "http://www.zis.rs/uputi/id11" } ,
+        "p": { "type": "uri" , "value": "http://www.zis.rs/rdf/voc#datum" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/2001/XMLSchema#date" , "value": "2019-08-06" }
+      } ,
+      {
+        "s": { "type": "uri" , "value": "http://www.zis.rs/uputi/id11" } ,
+        "p": { "type": "uri" , "value": "http://www.zis.rs/rdf/voc#lekar" } ,
+        "o": { "type": "uri" , "value": "http://www.zis.rs/lekari/id4" }
+      } ,
+      {
+        "s": { "type": "uri" , "value": "http://www.zis.rs/uputi/id11" } ,
+        "p": { "type": "uri" , "value": "http://www.zis.rs/rdf/voc#osiguranoLice" } ,
+        "o": { "type": "uri" , "value": "http://www.zis.rs/zdravstveni_kartoni/id1" }
+      }
+    ]
+  }
+}

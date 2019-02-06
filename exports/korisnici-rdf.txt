@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<sparql xmlns="http://www.w3.org/2005/sparql-results#">
+  <head>
+    <variable name="s"/>
+    <variable name="p"/>
+    <variable name="o"/>
+  </head>
+  <results>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/lekari/id5</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#ime</uri>
+      </binding>
+      <binding name="o">
+        <literal>ime0</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/lekari/id5</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#prezime</uri>
+      </binding>
+      <binding name="o">
+        <literal>prezime0</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/lekari/id5</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#jmbg</uri>
+      </binding>
+      <binding name="o">
+        <literal>0000000000000</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/lekari/id7</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#ime</uri>
+      </binding>
+      <binding name="o">
+        <literal>ime1</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/lekari/id7</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#prezime</uri>
+      </binding>
+      <binding name="o">
+        <literal>prezime1</literal>
+      </binding>
+    </result>
+    <result>
+      <binding name="s">
+        <uri>http://www.zis.rs/lekari/id7</uri>
+      </binding>
+      <binding name="p">
+        <uri>http://www.zis.rs/rdf/voc#jmbg</uri>
+      </binding>
+      <binding name="o">
+        <literal>0000000000000</literal>
+      </binding>
+    </result>
+  </results>
+</sparql>

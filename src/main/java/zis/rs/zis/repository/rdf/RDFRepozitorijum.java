@@ -1,14 +1,16 @@
 package zis.rs.zis.repository.rdf;
 
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.ModelFactory;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.Resource;
+import jdk.internal.util.xml.XMLStreamException;
+import jdk.internal.util.xml.impl.XMLWriter;
+import org.apache.jena.query.*;
+import org.apache.jena.rdf.model.*;
+import org.apache.jena.riot.system.StreamRDF;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
 import org.apache.jena.util.FileManager;
+import org.exist.util.UTF8;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
@@ -17,9 +19,9 @@ import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.MetaPodaciEkstraktor;
 import zis.rs.zis.util.SPARQLMaper;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.StringWriter;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.Iterator;
 
 @Repository
 public class RDFRepozitorijum {
@@ -103,13 +105,44 @@ public class RDFRepozitorijum {
     public String izveziMetapodatke(String dokument, String format)
     {
         String end = konekcija.getDataEndpoint();
-        String sadrzaj = sparqlMaper.selectData(end + "/uputi", "?s ?p ?o");
-        ByteArrayInputStream rdf = ekstraktor.ekstraktujMetaPodatke(new ByteArrayInputStream(sadrzaj.getBytes()),
-                new ByteArrayOutputStream());
+        String uslovi = "?s ?p ?o";
+        String sparqlUpit = sparqlMaper.selectData(end + "/" + dokument, uslovi);
 
-        StringWriter out = new StringWriter();
-        Model model = FileManager.get().loadModel("asd");
-        model.write(out, "RDF/XML");
-        return out.toString();
+        QueryExecution upit = QueryExecutionFactory.sparqlService(konekcija.getQueryEndpoint(), sparqlUpit);
+
+        ResultSet rezultati = upit.execSelect();
+
+        try {
+            String put = "./exports/" + dokument + "-" + format + ".txt";
+            File file = new File(put);
+            file.getParentFile().mkdirs();
+            FileOutputStream out =
+                    new FileOutputStream(file);
+
+            PrintWriter pw = new PrintWriter(new FileWriter(put));
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+
+            String povratnaVrednost;
+            if(format.equals("json"))
+            {
+                ResultSetFormatter.outputAsJSON(baos, rezultati);
+                povratnaVrednost = baos.toString();
+            }
+            else
+            {
+                ResultSetFormatter.outputAsXML(baos, rezultati);
+                povratnaVrednost = baos.toString();
+            }
+            pw.write(povratnaVrednost);
+
+            out.close();
+            pw.close();
+            return povratnaVrednost;
+
+        } catch (IOException e) {
+            return "Greska prilikom prezimanja metapodataka";
+        }
     }
 }
