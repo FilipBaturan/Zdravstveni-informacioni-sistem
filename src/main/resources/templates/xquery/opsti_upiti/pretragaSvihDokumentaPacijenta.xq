@@ -1,3 +1,4 @@
+xquery version "3.1";
 
 declare namespace uputi = "http://www.zis.rs/seme/uputi";
 declare namespace uput = "http://www.zis.rs/seme/uput";
@@ -29,4 +30,8 @@ let $izbori := for $izbor in fn:doc("/db/rs/zis/izbori.xml")/izbori:izbori/izbor
 where $izbor/izbor:osigurano_lice/@izbor:identifikator = $ol
 return $izbor
 
-return ($recepti,$uputi, $izvestaji,$izbori)
+return
+    <dokumenti> {
+        ($recepti,$uputi, $izvestaji,$izbori)
+    }
+    </dokumenti>

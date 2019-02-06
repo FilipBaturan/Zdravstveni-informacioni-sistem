@@ -28,6 +28,8 @@ public class ZdravstveniKartonServis {
         return repozitorijum.pretragaPoId(id);
     }
 
+    public String dobaviDokumente(String id) { return repozitorijum.dobaviDokumente(id); }
+
     public String izmena(Akcija akcija) {
         String rezultat = repozitorijum.izmeniKarton(akcija);
         if (rezultat != null) {
@@ -44,4 +46,6 @@ public class ZdravstveniKartonServis {
     public String opstaPretraga(String tekst) {
         return repozitorijum.opstaPretraga(tekst);
     }
+
+
 }

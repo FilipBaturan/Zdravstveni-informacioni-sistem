@@ -57,6 +57,10 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
         return operacije.pretragaPoId(id, "zdravstveni_kartoni", "pretragaPoIdKartona");
     }
 
+    public String dobaviDokumente(String id) {
+        return operacije.pretragaPoId(id, "zdravstveni_kartoni", "dobavljanjeDokumenata");
+    }
+
     public void obrisi(String id) {
         String putanja = ogranicenjaRepozitorijum.pronalazenjePutanje(id, "zdravstveni_kartoni",
                 "Trazeni zdravstveni karton ne postoji!");
@@ -169,7 +173,6 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
 
     public void izmeniOdabranogLekara(String karton, String lekar) {
         ResursiBaze resursi = null;
-        //String rezerva = this.pretragaPoId();
         String putanja = ogranicenjaRepozitorijum.pronalazenjePutanje(karton, "zdravstveni_kartoni",
                 "Trazeni zdravstveni karton ne postoji!");
         String prefiks = putanja.split("/")[2].split(":")[0];

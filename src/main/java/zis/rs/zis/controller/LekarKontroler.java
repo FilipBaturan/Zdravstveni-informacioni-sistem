@@ -49,7 +49,7 @@ public class LekarKontroler extends ValidatorKontoler {
     /**
      * GET /lekari/brp
      *
-     * @return lekar sa trazenim id-jem
+     * @return lekari sa svojim brojem pacijenata
      */
     @GetMapping(path = "/brp", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> dobaviSaBrojemPacijenata() {

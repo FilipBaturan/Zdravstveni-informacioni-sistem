@@ -51,7 +51,7 @@ public class ReceptKontroler extends ValidatorKontoler {
     }
 
     /**
-     * POST /uputi
+     * POST /recepti
      *
      * @param akcija koja se izvrsava
      * @return rezultat akcije

@@ -40,13 +40,26 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
      * GET /kartoni/{id}
      *
      * @param id trazenog lekara
-     * @return lekar sa trazenim id-jem
+     * @return karton sa trazenim id-jem
      */
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> pretragaPoId(@PathVariable String id) {
         logger.info("Traze se zdravstveni karton sa id={}: {}.", id, Calendar.getInstance().getTime());
         return new ResponseEntity<>(zdravstveniKartonServis.
                 pretragaPoId(maper.dobaviURI("zdravstveni_karton") + id), HttpStatus.OK);
+    }
+
+    /**
+     * GET /kartoni/dokumenti/{id}
+     *
+     * @param id trazenog lekara
+     * @return karton sa trazenim id-jem
+     */
+    @GetMapping(path = "/dokumenti/{id}", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> dobavljenjeDokumenata(@PathVariable String id) {
+        logger.info("Traze se zdravstveni karton sa id={}: {}.", id, Calendar.getInstance().getTime());
+        return new ResponseEntity<>(zdravstveniKartonServis.
+                dobaviDokumente(maper.dobaviURI("zdravstveni_karton") + id), HttpStatus.OK);
     }
 
     /**
