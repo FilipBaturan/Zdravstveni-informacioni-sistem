@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class PretrageKontroler {
 
     @Autowired
-    PretrageServis pretrageServis;
+    private PretrageServis pretrageServis;
 
 
     @PostMapping(path = "/opstiUpit", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

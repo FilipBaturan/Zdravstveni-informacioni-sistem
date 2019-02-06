@@ -64,12 +64,8 @@ public class Sekvencer extends IOStrimer {
         } catch (XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
 
@@ -80,31 +76,4 @@ public class Sekvencer extends IOStrimer {
         }
         return ++brojac;
     }
-
-//    private long dobaviBrojSvihEntiteta() {
-//        ResursiBaze resursi = null;
-//        try {
-//            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("korisnici"));
-//            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("prebrojavanje")).getPath();
-//            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
-//            upitServis.setProperty("indent", "yes");
-//            String sadrzajUpita = this.ucitajSadrzajFajla(putanjaDoUpita);
-//            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
-//            ResourceSet result = upitServis.execute(compiledXquery);
-//            ResourceIterator i = result.getIterator();
-//            Resource res = null;
-//
-//            StringBuilder sb = new StringBuilder();
-//
-//            while (i.hasMoreResources()) {
-//        } catch (XMLDBException e) {
-//            e.printStackTrace();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//    }
 }

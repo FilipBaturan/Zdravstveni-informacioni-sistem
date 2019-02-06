@@ -46,6 +46,8 @@ public class SPARQLMaper {
     /* An XML serialization format for RDF data */
     public static final String RDF_XML = "RDF/XML";
 
+    public static final String JSON = "JSON";
+
     public String dropAll() {
         return DROP_ALL;
     }
