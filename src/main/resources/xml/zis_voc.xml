@@ -208,7 +208,7 @@
     <rdf:Property rdf:ID="oblastZastite">
         <rdfs:label xml:lang="sr">Oblast zastite</rdfs:label>
         <rdfs:domain rdf:resource="#Lekar"/>
-        <rdfs:range rdf:resource="xs:#date"/>
+        <rdfs:range rdf:resource="xs:#string"/>
         <rdfs:comment xml:lang="sr">Predstavlja oblast zastite lekara</rdfs:comment>
     </rdf:Property>
     
