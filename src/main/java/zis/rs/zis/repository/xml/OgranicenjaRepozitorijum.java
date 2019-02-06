@@ -136,6 +136,43 @@ public class OgranicenjaRepozitorijum extends IOStrimer {
         }
     }
 
+    public void proveriOgranicenjaIzboraLekara(String karton, String prosliLekar, String lekar) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("izbori"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("ogranicenjaIzbora")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), karton,
+                    prosliLekar, lekar);
+            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
+            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
+            ResourceIterator i = rezultat.getIterator();
+            Resource res = null;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i.hasMoreResources()) {
+                try {
+                    res = i.nextResource();
+                    sb.append(res.getContent().toString());
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+                }
+            }
+            String greska = sb.toString();
+            konekcija.oslobodiResurse(resursi);
+            if (!greska.isEmpty()) {
+                throw new ValidacioniIzuzetak(greska);
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | XMLDBException |
+                IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
     /**
      * @param id trazenog korisnika
      * @return xpath putanju do pronadjenog korisnika

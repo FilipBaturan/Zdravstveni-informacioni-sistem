@@ -49,7 +49,7 @@ public class SpecijalistickiPregled extends Stanje {
         }
         izvestajXMLRepozitorijum.proveriIzvestaj(izvestaj);
         String rezultat = operacije.sacuvaj(izvestaj, "izvestaji", "izvestaj");
-        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                         + maper.dobaviPrefiks("xmlSema"));
         rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf("izvestaji"), false);

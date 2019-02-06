@@ -6,7 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
-import org.w3c.dom.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
@@ -259,7 +262,7 @@ public class Operacije extends IOStrimer {
             String rezultat = "<" + el.getTagName() + " id=\"" + id + "\" about=\"" + id + "\" "
                     + "xmlns:" + prefiks + "=\"" + maper.dobaviPrefiks(prefiksDokumenta) + "\">" +
                     sadrzajEnteita
-                    + "</" + el.getNodeName() +">";
+                    + "</" + el.getNodeName() + ">";
 
             String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")

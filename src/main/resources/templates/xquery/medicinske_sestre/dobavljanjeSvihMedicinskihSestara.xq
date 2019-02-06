@@ -10,6 +10,7 @@ declare namespace korisnik = "http://www.zis.rs/seme/korisnik";
     for $medicinska_sestra in fn:doc("/db/rs/zis/medicinske_sestre.xml")/medicinske_sestre:medicinske_sestre/medicinska_sestra:medicinska_sestra
     for $korisnik in fn:doc("/db/rs/zis/korisnici.xml")/korisnici:korisnici/korisnik:korisnik
     where $korisnik/@id = $medicinska_sestra/medicinska_sestra:korisnik/@medicinska_sestra:identifikator
+            and $korisnik/@aktivan = "true"
     return <medicinska_sestra:medicinska_sestra xmlns:medicinska_sestra="http://www.zis.rs/seme/medicinska_sestra" id="{$medicinska_sestra/@id}">
         <korisnik:korisnik xmlns:korisnik="http://www.zis.rs/seme/korisnik" id="{$korisnik/@id}">
             {$korisnik/korisnik:ime}

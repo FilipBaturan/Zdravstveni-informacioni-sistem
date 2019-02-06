@@ -10,8 +10,6 @@ import zis.rs.zis.domain.DTO;
 import zis.rs.zis.domain.UpitPretrage;
 import zis.rs.zis.service.nonProcessService.PretrageServis;
 
-import java.util.Calendar;
-
 @RestController
 @RequestMapping("/pretrage")
 public class PretrageKontroler {
@@ -20,14 +18,14 @@ public class PretrageKontroler {
     private PretrageServis pretrageServis;
 
 
-    @PostMapping(path = "/opstiUpit", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/opstiUpit", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DTO> pretragaPoId(@RequestBody UpitPretrage upit) {
-        return new ResponseEntity<>(new DTO(pretrageServis.opstiUpit(upit) ), HttpStatus.OK);
+        return new ResponseEntity<>(new DTO(pretrageServis.opstiUpit(upit)), HttpStatus.OK);
     }
 
     @GetMapping(path = "/json/{dokument}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<DTO> izvozMetaPodatakaJson(@PathVariable String dokument) {
-        return new ResponseEntity<>(new DTO(pretrageServis.izveziMetapodatke(dokument, "json") ), HttpStatus.OK);
+        return new ResponseEntity<>(new DTO(pretrageServis.izveziMetapodatke(dokument, "json")), HttpStatus.OK);
     }
 
     @GetMapping(path = "/rdf/{dokument}", produces = MediaType.APPLICATION_XML_VALUE)

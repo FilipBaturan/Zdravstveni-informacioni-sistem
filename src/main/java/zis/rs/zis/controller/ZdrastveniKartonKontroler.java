@@ -70,8 +70,8 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
      */
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se azuriranje zdravstvenog kartona {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
+        logger.info("Vrsi se azuriranje zdravstvenog kartona {}.", Calendar.getInstance().getTime());
         if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())) {
             return new ResponseEntity<>(zdravstveniKartonServis.izmena(akcija), HttpStatus.OK);
         }

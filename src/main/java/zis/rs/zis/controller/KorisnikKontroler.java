@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.repository.xml.KorisnikXMLRepozitorijum;
 import zis.rs.zis.service.nonProcessService.KorisnikServis;
-import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
@@ -26,9 +25,6 @@ import java.util.Calendar;
 public class KorisnikKontroler extends ValidatorKontoler {
 
     private static final Logger logger = LoggerFactory.getLogger(KorisnikKontroler.class);
-
-    @Autowired
-    private Validator validator;
 
     @Autowired
     private KorisnikServis korisnikServis;
@@ -45,11 +41,9 @@ public class KorisnikKontroler extends ValidatorKontoler {
      */
     @PostMapping(path = "registracija", consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> registracija(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se registracija korisnika {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
+        logger.info("Vrsi se registracija korisnika {}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(korisnikServis.registruj(akcija), HttpStatus.OK);
-        // ODRADI CUVANJE U FUSEKI BAZU
-        //return new ResponseEntity<>(korisnikRepozertorijum.registruj(akcija)[0], HttpStatus.OK);
     }
 
     /**

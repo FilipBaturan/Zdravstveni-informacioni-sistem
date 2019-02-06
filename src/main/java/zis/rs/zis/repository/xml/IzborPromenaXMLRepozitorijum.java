@@ -19,6 +19,9 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
     private ZdravstveniKartonXMLRepozitorijum kartonXMLRepozitorijum;
 
     @Autowired
+    private OgranicenjaRepozitorijum ogranicenjaRepozitorijum;
+
+    @Autowired
     private Maper maper;
 
     @Autowired
@@ -51,8 +54,8 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
 
     private void proveriIzbor(Node sadrzaj) {
         String lekarId = "";
-        String korisnikId = "";
-        String specijalistaId = "";
+        String kartonId = "";
+        String prosliLekar = "";
         NodeList lista = sadrzaj.getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
@@ -60,22 +63,23 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
                 element = lista.item(i);
                 switch (element.getLocalName()) {
                     case "osigurano_lice":
-                        korisnikId = element.getAttributes().item(0).getNodeValue();
+                        kartonId = element.getAttributes().item(0).getNodeValue();
                         break;
                     case "lekar":
                         lekarId = element.getAttributes().item(0).getNodeValue();
                         break;
                     case "prosli_lekar":
-                        specijalistaId = element.getAttributes().item(0).getNodeValue();
+                        prosliLekar = element.getAttributes().item(0).getNodeValue();
                         break;
                 }
             } catch (Exception e) {
             }
         }
-
         lekarXMLRepozitorijum.pretragaPoId(lekarId);
-        lekarXMLRepozitorijum.pretragaPoId(specijalistaId);
-        kartonXMLRepozitorijum.pretragaPoId(korisnikId);
+        lekarXMLRepozitorijum.pretragaPoId(prosliLekar);
+        kartonXMLRepozitorijum.pretragaPoId(kartonId);
+        ogranicenjaRepozitorijum.proveriOgranicenjaIzboraLekara(kartonId, prosliLekar, lekarId);
 
     }
+
 }

@@ -5,9 +5,4 @@ declare namespace lek = "http://www.zis.rs/seme/lek";
 
 for $lek in fn:doc("/db/rs/zis/lekovi.xml")/lekovi:lekovi/lek:lek
 where $lek/@aktivan = "true" and $lek/@id = "%1$s"
-return <lek:lek xmlns:lek="http://www.zis.rs/seme/lek" id="{$lek/@id}">
-    {$lek/lek:naziv}
-    {$lek/lek:sifra}
-    {$lek/lek:dijagnoza}
-    {$lek/lek:namena}
-</lek:lek>
+return $lek

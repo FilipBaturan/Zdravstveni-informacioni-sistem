@@ -304,7 +304,7 @@ public class GeneratorMetaPodataka {
     public NodeList dodajMetaPodatkeUputu(NodeList elementi, String id) {
         Element element;
         int brojac = 0;
-        for (int i = 0; i < elementi.getLength() && brojac < 4; i++) {
+        for (int i = 0; i < elementi.getLength() && brojac < 5; i++) {
             if (!elementi.item(i).getTextContent().equals("\n")) {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
@@ -333,6 +333,22 @@ public class GeneratorMetaPodataka {
                         element.setAttribute("href", specId);
                         ++brojac;
                         break;
+                    case "misljenje":
+                        NodeList linkovi = element.getChildNodes();
+                        Element link;
+                        String dokId;
+                        for (int j = 0; j < linkovi.getLength(); j++) {
+                            try {
+                                if (!linkovi.item(j).getTextContent().equals("\n")) {
+                                    link = (Element) linkovi.item(j);
+                                    dokId = link.getAttributes().item(0).getNodeValue();
+                                    link.setAttribute("rel", "voc:referencaNaDokument");
+                                    link.setAttribute("href", dokId);
+                                }
+                            } catch (ClassCastException e) {
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -342,7 +358,7 @@ public class GeneratorMetaPodataka {
     public NodeList dodajMetaPodatkeReceptu(NodeList elementi, String id) {
         Element element;
         int brojac = 0;
-        for (int i = 0; i < elementi.getLength() && brojac < 4; i++) {
+        for (int i = 0; i < elementi.getLength() && brojac < 5; i++) {
             if (!elementi.item(i).getTextContent().equals("\n")) {
                 element = (Element) elementi.item(i);
                 switch (element.getTagName().split(":")[1]) {
@@ -370,6 +386,22 @@ public class GeneratorMetaPodataka {
                         element.setAttribute("rel", "voc:lek");
                         element.setAttribute("href", lekId);
                         ++brojac;
+                        break;
+                    case "opis":
+                        NodeList linkovi = element.getChildNodes();
+                        Element link;
+                        String dokId;
+                        for (int j = 0; j < linkovi.getLength(); j++) {
+                            try {
+                                if (!linkovi.item(j).getTextContent().equals("\n")) {
+                                    link = (Element) linkovi.item(j);
+                                    dokId = link.getAttributes().item(0).getNodeValue();
+                                    link.setAttribute("rel", "voc:referencaNaDokument");
+                                    link.setAttribute("href", dokId);
+                                }
+                            } catch (ClassCastException e) {
+                            }
+                        }
                         break;
                 }
             }

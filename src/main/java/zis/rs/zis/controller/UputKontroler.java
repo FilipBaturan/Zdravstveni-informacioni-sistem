@@ -7,8 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.service.nonProcessService.UputServis;
-import zis.rs.zis.util.Maper;
+import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -16,11 +17,9 @@ import java.util.Calendar;
 
 @RestController
 @RequestMapping("/uputi")
-public class UputKontroler {
+public class UputKontroler extends ValidatorKontoler {
 
     private static final Logger logger = LoggerFactory.getLogger(UputKontroler.class);
-
-    private static final String URI_PREFIX = "/uputi";
 
     @Autowired
     private UputServis uputServis;
@@ -28,11 +27,8 @@ public class UputKontroler {
     @Autowired
     private Validator validator;
 
-    @Autowired
-    private Maper maper;
-
     /**
-     * GET /rs/uputi
+     * GET /uputi
      *
      * @return sve upute iz baze
      */
@@ -54,16 +50,23 @@ public class UputKontroler {
         return new ResponseEntity<>(uputServis.pretragaPoId(maper.dobaviURI("uput") + id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/obrisi", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    /**
+     * POST /uputi
+     *
+     * @param akcija koja se izvrsava
+     * @return rezultat akcije
+     */
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> obrisi(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se brisanje uputa {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(uputServis.obrisi(akcija), HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/izmeni", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> izmeni(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se izmena uputa {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(uputServis.izmeni(akcija), HttpStatus.OK);
+        this.validirajAkciju(akcija);
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
+            logger.info("Vrsi se brisanje uputa {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(uputServis.obrisi(akcija), HttpStatus.OK);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())) {
+            logger.info("Vrsi se izmena uputa {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(uputServis.izmeni(akcija), HttpStatus.OK);
+        }
+        throw new ValidacioniIzuzetak("Pogresno prosledjena akcija");
     }
 
 }

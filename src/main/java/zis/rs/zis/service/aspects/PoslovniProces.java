@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.domain.enums.*;
-import zis.rs.zis.repository.xml.StanjaPregledaXMLRepozitorijum;
-import zis.rs.zis.service.nonProcessService.IzborPromenaServis;
+import zis.rs.zis.service.nonProcessService.StanjaPregledaServis;
 import zis.rs.zis.service.states.Proces;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
@@ -21,7 +20,7 @@ import zis.rs.zis.util.akcije.Akcija;
 public class PoslovniProces extends IOStrimer {
 
     @Autowired
-    private StanjaPregledaXMLRepozitorijum stanjaRepozitorijum;
+    private StanjaPregledaServis servis;
 
     @Autowired
     private Maper maper;
@@ -67,9 +66,9 @@ public class PoslovniProces extends IOStrimer {
     public void nakonKreiranjaPregleda(Akcija akcija) {
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
         if (proces.getProcesi().containsKey(pacijent)) {
-            stanjaRepozitorijum.izmeniProces(Stanja.CEKANJE.toString(), pacijent);
+            servis.izmeniProces(Stanja.CEKANJE.toString(), pacijent);
         } else {
-            stanjaRepozitorijum.dodajNoviProces(akcija);
+            servis.dodajNoviProces(akcija);
         }
         proces.getProcesi().put(pacijent, proces.getPrihvatanjeTermina());
     }
@@ -77,14 +76,14 @@ public class PoslovniProces extends IOStrimer {
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.izmenaTermina(..)) && args(akcija,..)")
     public void nakonIzmeneTermina(Akcija akcija) {
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
-        stanjaRepozitorijum.izmeniProces(Stanja.IZMENJEN_TERMIN.toString(), pacijent);
+        servis.izmeniProces(Stanja.IZMENJEN_TERMIN.toString(), pacijent);
         proces.getProcesi().put(pacijent, proces.getIzmenjenTermin());
     }
 
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.odbijanjeTermina(..)) && args(akcija,..)")
     public void nakonOdbijanjaTermina(Akcija akcija) {
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
-        stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(), pacijent);
+        servis.izmeniProces(Stanja.KRAJ.toString(), pacijent);
         proces.getProcesi().remove(pacijent);
     }
 
@@ -93,10 +92,10 @@ public class PoslovniProces extends IOStrimer {
         String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
         if (tipLekara.equals(TipLekara.OPSTA_PRAKSA.toString())) {
-            stanjaRepozitorijum.izmeniProces(Stanja.OPSTI_PREGLED.toString(), pacijent);
+            servis.izmeniProces(Stanja.OPSTI_PREGLED.toString(), pacijent);
             proces.getProcesi().put(pacijent, proces.getOpstiPregled());
         } else {
-            stanjaRepozitorijum.izmeniProces(Stanja.SPECIJALISTICKI_PREGLED.toString(), pacijent);
+            servis.izmeniProces(Stanja.SPECIJALISTICKI_PREGLED.toString(), pacijent);
             proces.getProcesi().put(pacijent, proces.getSpecijalistickiPregled());
         }
     }
@@ -104,7 +103,7 @@ public class PoslovniProces extends IOStrimer {
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.odbijanjeTermina(..)) && args(akcija,..)")
     public void nakonOdbijanjaIzmenjenogTermina(Akcija akcija) {
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
-        stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(), pacijent);
+        servis.izmeniProces(Stanja.KRAJ.toString(), pacijent);
         proces.getProcesi().remove(pacijent);
     }
 
@@ -113,10 +112,10 @@ public class PoslovniProces extends IOStrimer {
         String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
         if (tipLekara.equals(TipLekara.OPSTA_PRAKSA.toString())) {
-            stanjaRepozitorijum.izmeniProces(Stanja.OPSTI_PREGLED.toString(), pacijent);
+            servis.izmeniProces(Stanja.OPSTI_PREGLED.toString(), pacijent);
             proces.getProcesi().put(pacijent, proces.getOpstiPregled());
         } else {
-            stanjaRepozitorijum.izmeniProces(Stanja.SPECIJALISTICKI_PREGLED.toString(), pacijent);
+            servis.izmeniProces(Stanja.SPECIJALISTICKI_PREGLED.toString(), pacijent);
             proces.getProcesi().put(pacijent, proces.getSpecijalistickiPregled());
         }
     }
@@ -124,7 +123,7 @@ public class PoslovniProces extends IOStrimer {
     @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.SpecijalistickiPregled.kreiranjeIzvestaja(..)) && args(akcija,..)")
     public void nakonSpecijalistickogPregleda(Akcija akcija) {
         String pacijent = maper.dobaviPacijentaIzIzvestaja(akcija);
-        stanjaRepozitorijum.izmeniProces(Stanja.ZAKAZIVANJE_TERMINA.toString(), pacijent);
+        servis.izmeniProces(Stanja.ZAKAZIVANJE_TERMINA.toString(), pacijent);
         proces.getProcesi().put(pacijent, proces.getZakazivanjePregleda());
     }
 
@@ -149,11 +148,11 @@ public class PoslovniProces extends IOStrimer {
         }
 
         if (izvestaj && uput) {
-            stanjaRepozitorijum.izmeniProces(Stanja.ZAKAZIVANJE_TERMINA.toString(),
+            servis.izmeniProces(Stanja.ZAKAZIVANJE_TERMINA.toString(),
                     maper.dobaviPacijentaIzDokumentacije(akcija));
             proces.getProcesi().put(maper.dobaviPacijentaIzDokumentacije(akcija), proces.getZakazivanjePregleda());
         } else {
-            stanjaRepozitorijum.izmeniProces(Stanja.KRAJ.toString(),
+            servis.izmeniProces(Stanja.KRAJ.toString(),
                     maper.dobaviPacijentaIzDokumentacije(akcija));
             proces.getProcesi().remove(maper.dobaviPacijentaIzDokumentacije(akcija));
         }

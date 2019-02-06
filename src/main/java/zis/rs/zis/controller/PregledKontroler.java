@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import zis.rs.zis.repository.xml.IzvestajXMLRepozitorijum;
 import zis.rs.zis.repository.xml.PregledXMLRepozitorijum;
-import zis.rs.zis.service.states.Proces;
-import zis.rs.zis.util.Maper;
-import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
 
@@ -23,16 +23,10 @@ public class PregledKontroler extends ValidatorKontoler {
     private static final Logger logger = LoggerFactory.getLogger(LekarKontroler.class);
 
     @Autowired
-    private Maper maper;
-
-    @Autowired
     private PregledXMLRepozitorijum pregledXMLRepozitorijum;
 
     @Autowired
     private IzvestajXMLRepozitorijum izvestajXMLRepozitorijum;
-
-    @Autowired
-    private Proces proces;
 
     /**
      * GET /pregledi/{id}

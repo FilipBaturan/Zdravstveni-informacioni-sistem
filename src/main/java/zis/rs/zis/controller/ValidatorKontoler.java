@@ -25,7 +25,7 @@ public class ValidatorKontoler {
     @Autowired
     protected Maper maper;
 
-    protected void validirajAkciju(Akcija akcija) {
+    void validirajAkciju(Akcija akcija) {
         try {
             Marshaller marshaller = JAXBContext.newInstance(zis.rs.zis.util.akcije.ObjectFactory.class)
                     .createMarshaller();

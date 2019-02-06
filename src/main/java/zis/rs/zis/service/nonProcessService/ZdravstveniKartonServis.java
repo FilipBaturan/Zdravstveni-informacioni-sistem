@@ -6,7 +6,6 @@ import zis.rs.zis.repository.rdf.RDFRepozitorijum;
 import zis.rs.zis.repository.xml.ZdravstveniKartonXMLRepozitorijum;
 import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.TransformacioniIzuzetak;
-import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Service
@@ -32,7 +31,7 @@ public class ZdravstveniKartonServis {
     public String izmena(Akcija akcija) {
         String rezultat = repozitorijum.izmeniKarton(akcija);
         if (rezultat != null) {
-            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                             + maper.dobaviPrefiks("xmlSema"));
             rdfRepozitorijum.izmeni(noviRezultat, maper.dobaviGraf("zdravstveni_kartoni"), true);

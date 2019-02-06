@@ -7,8 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.service.nonProcessService.ReceptServis;
-import zis.rs.zis.util.Maper;
+import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -16,11 +17,9 @@ import java.util.Calendar;
 
 @RestController
 @RequestMapping("/recepti")
-public class ReceptKontroler {
+public class ReceptKontroler extends ValidatorKontoler {
 
     private static final Logger logger = LoggerFactory.getLogger(ReceptKontroler.class);
-
-    private static final String URI_PREFIX = "/recepti";
 
     @Autowired
     private ReceptServis receptServis;
@@ -28,11 +27,8 @@ public class ReceptKontroler {
     @Autowired
     private Validator validator;
 
-    @Autowired
-    private Maper maper;
-
     /**
-     * GET /rs/recepti
+     * GET /recepti
      *
      * @return sve recepte iz baze
      */
@@ -54,16 +50,22 @@ public class ReceptKontroler {
         return new ResponseEntity<>(receptServis.pretragaPoId(maper.dobaviURI("recept") + id), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/obrisi", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    /**
+     * POST /uputi
+     *
+     * @param akcija koja se izvrsava
+     * @return rezultat akcije
+     */
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> obrisi(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se brisanje recepta {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(receptServis.obrisi(akcija), HttpStatus.OK);
+        this.validirajAkciju(akcija);
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
+            logger.info("Vrsi se brisanje recepta {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(receptServis.obrisi(akcija), HttpStatus.OK);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())) {
+            logger.info("Vrsi se izmena recepta {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(receptServis.izmeni(akcija), HttpStatus.OK);
+        }
+        throw new ValidacioniIzuzetak("Pogresno prosledjena akcija");
     }
-
-    @PostMapping(value = "/izmeni", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> izmeni(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se izmena recepta {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(receptServis.izmeni(akcija), HttpStatus.OK);
-    }
-
 }

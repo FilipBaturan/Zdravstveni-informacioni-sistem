@@ -18,13 +18,11 @@ public class PretrageServis {
     public PretrageServis() {
     }
 
-    public String opstiUpit(UpitPretrage upitPretrage)
-    {
+    public String opstiUpit(UpitPretrage upitPretrage) {
         return pretrageRDFRepozitorijum.opstiUpit(upitPretrage);
     }
 
-    public String izveziMetapodatke(String dokument, String format)
-    {
+    public String izveziMetapodatke(String dokument, String format) {
         return rdfRepozitorijum.izveziMetapodatke(dokument, format);
     }
 }

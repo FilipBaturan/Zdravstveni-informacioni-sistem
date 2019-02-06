@@ -69,7 +69,8 @@ public class Maper {
         this.xmlUpiti.put("dobaviSveLekare", "classpath:templates/xquery/lekari/dobavljanjeSvihLekara.xqy");
         this.xmlUpiti.put("pretragaPoIdLekara", "classpath:templates/xquery/lekari/pretragaPoIdLekara.xqy");
         this.xmlUpiti.put("dodavanje", "classpath:templates/xquery/azuriranje/dodavanje.xml");
-        this.xmlUpiti.put("prebrojavanje", "classpath:templates/xquery/azuriranje/prebrojavanjeSvihEntiteta.xq");
+        this.xmlUpiti.put("prebrojavanje",
+                "classpath:templates/xquery/sekvencer/dobavljaneBrojaSvihEntiteta.xqy");
         this.xmlUpiti.put("ogranicenjaKorisnika",
                 "classpath:templates/xquery/korisnici/proveraJedinstvenihPoljaKorisnika.xq");
         this.xmlUpiti.put("izmena", "classpath:templates/xquery/azuriranje/izmena.xml");
@@ -103,10 +104,13 @@ public class Maper {
         this.xmlUpiti.put("dobaviSveIzbore", "classpath:templates/xquery/izbori/dobavljanjeSvihIzbora.xqy");
         this.xmlUpiti.put("dobavljanjeSvihKartona",
                 "classpath:templates/xquery/zdravstveni_kartoni/dobavljanjeSvihKartona.xq");
-        this.xmlUpiti.put("dobavljanjeSvega", "classpath:templates/xquery/sekvencer/dobavljaneBrojaSvihEntiteta.xqy");
         this.xmlUpiti.put("dobavljanjeLekovaZaDijagnozu", "classpath:templates/xquery/lekovi/dobaviLekoveZaDijagnozu.xqy");
         this.xmlUpiti.put("opstaPretragaKartona", "classpath:templates/xquery/zdravstveni_kartoni/pretragaPoSadrzajuKartona.xqy");
-
+        this.xmlUpiti.put("dobavljanjeStanjaPregleda",
+                "classpath:templates/xquery/azuriranje/dobavljanjeStanjaPregleda.xq");
+        this.xmlUpiti.put("prebrojavanjePacijenata",
+                "classpath:templates/xquery/lekari/prebrojavanjePacijenata.xq");
+        this.xmlUpiti.put("ogranicenjaIzbora", "classpath:templates/xquery/izbori/proveraOgranicenjaIzbora.xq");
 
         this.xmlSeme.put("akcija", "classpath:static/seme/akcija.xsd");
         this.xmlSeme.put("korisnik", "classpath:static/seme/korisnik.xsd");
@@ -412,6 +416,8 @@ public class Maper {
         return this.transformacije.get(naziv);
     }
 
-    public String dobaviGraf(String naziv) { return this.grafovi.get(naziv); }
+    public String dobaviGraf(String naziv) {
+        return this.grafovi.get(naziv);
+    }
 
 }

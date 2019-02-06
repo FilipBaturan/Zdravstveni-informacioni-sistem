@@ -25,7 +25,8 @@
                         <xs:sequence>
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="link">
                                 <xs:complexType>
-                                    <xs:attribute name="identifikator" type="xs:anyURI"/>
+                                    <xs:attribute name="identifikator" type="xs:anyURI"
+                                        use="required"/>
                                     <xs:anyAttribute processContents="lax"/>
                                 </xs:complexType>
                             </xs:element>

@@ -38,7 +38,7 @@ public class IzborPromenaServis {
 
     public String sacuvaj(Akcija akcija) {
         String rezultat = izborPromenaXMLRepozitorijum.sacuvaj(akcija);
-        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                         + maper.dobaviPrefiks("xmlSema"));
         rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf("izbori"), false);
@@ -71,7 +71,7 @@ public class IzborPromenaServis {
                         kartonId = element.getAttributes().item(0).getNodeValue();
                         break;
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
 
             }
 

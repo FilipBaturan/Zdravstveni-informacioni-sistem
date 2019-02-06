@@ -6,10 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
-import org.xmldb.api.modules.XUpdateQueryService;
 
 import javax.annotation.PostConstruct;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Component
@@ -28,7 +26,7 @@ public class Sekvencer extends IOStrimer {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         this.inicijalizacija();
     }
 
@@ -36,7 +34,7 @@ public class Sekvencer extends IOStrimer {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
-            String putanjaDoUpita = ResourceUtils.getFile("classpath:templates/xquery/sekvencer/dobavljaneBrojaSvihEntiteta.xqy").getPath();
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("prebrojavanje")).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
             String sadrzajUpita = this.ucitajSadrzajFajla(putanjaDoUpita);
@@ -70,8 +68,7 @@ public class Sekvencer extends IOStrimer {
     }
 
     public long dobaviId() {
-        if(brojac == -1)
-        {
+        if (brojac == -1) {
             this.inicijalizacija();
         }
         return ++brojac;

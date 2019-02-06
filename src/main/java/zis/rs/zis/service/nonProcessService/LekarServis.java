@@ -17,4 +17,8 @@ public class LekarServis {
     public String pretragaPoId(String id) {
         return lekarXMLRepozitorijum.pretragaPoId(id);
     }
+
+    public String prebrojavanjePacijenata() {
+        return lekarXMLRepozitorijum.prebrojavanjePacijenata();
+    }
 }

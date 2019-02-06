@@ -7,13 +7,11 @@ public class DTO {
 
     private ArrayList<String> listaId;
 
-    public DTO()
-    {
+    public DTO() {
         this.listaId = new ArrayList<>();
     }
 
-    public DTO(String tekst)
-    {
+    public DTO(String tekst) {
         this.listaId = new ArrayList<>();
         this.listaId.addAll(Arrays.asList(tekst.split("-")));
     }

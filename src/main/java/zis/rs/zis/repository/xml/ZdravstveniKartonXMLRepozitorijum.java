@@ -177,15 +177,6 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
         String rezerva = this.pretragaPoId(karton);
         String izmena;
         try {
-//            DocumentBuilderFactory fabrika = DocumentBuilderFactory.newInstance();
-//            fabrika.setNamespaceAware(true);
-//            Node karton = dok.getFirstChild().getLastChild().getFirstChild();
-//            dok = fabrika.newDocumentBuilder().newDocument();
-//            Node importovan = dok.importNode(karton, true);
-//            dok.appendChild(importovan);
-
-            //generatorMetaPodataka.dodajMetaPodatkeOsobi(dok, TipKorisnika.PACIJENT, id);
-
             this.fizickoBrisanje(prefiks, prePrefiks, putanja);
             Document dok = maper.konvertujUDokument(rezerva);
             NodeList elementi = dok.getFirstChild().getChildNodes();
@@ -198,13 +189,9 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
                         element.setAttribute("href", lekar);
                         break;
                     }
-                } catch (Exception e){
+                } catch (Exception e) {
                 }
             }
-
-//            Element lk = (Element) dok.getFirstChild().getChildNodes().item(8);
-//            lk.setAttribute("id", lekar);
-//            lk.setAttribute("about", lekar);
             izmena = maper.konvertujUString(dok);
 
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
@@ -450,7 +437,6 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
     }
-
 
 
 }

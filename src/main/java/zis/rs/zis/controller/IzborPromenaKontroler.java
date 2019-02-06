@@ -7,29 +7,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.service.nonProcessService.IzborPromenaServis;
-import zis.rs.zis.util.Maper;
-import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
 
 @RestController
 @RequestMapping("/izbori")
-public class IzborPromenaKontroler {
+public class IzborPromenaKontroler extends ValidatorKontoler {
 
-    private static final Logger logger = LoggerFactory.getLogger(zis.rs.zis.controller.IzborPromenaKontroler.class);
-
-    @Autowired
-    private Maper maper;
-
+    private static final Logger logger = LoggerFactory.getLogger(IzborPromenaKontroler.class);
 
     @Autowired
     private IzborPromenaServis izborPromenaServis;
-
-    @Autowired
-    private Validator validator;
-
 
     /**
      * GET /izbori
@@ -62,21 +53,18 @@ public class IzborPromenaKontroler {
      */
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se azuriranje izbora lekara {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(izborPromenaServis.sacuvaj(akcija), HttpStatus.OK);
-    }
+        this.validirajAkciju(akcija);
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
+            logger.info("Vrsi se brisanje izboraLekara {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(izborPromenaServis.obrisi(akcija), HttpStatus.OK);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())) {
+            logger.info("Vrsi se izmena izboraLekara {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(izborPromenaServis.izmeni(akcija), HttpStatus.OK);
+        } else {
+            logger.info("Vrsi se dodavanje izbora lekara {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(izborPromenaServis.sacuvaj(akcija), HttpStatus.OK);
+        }
 
-    @PostMapping(value = "/obrisi", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> obrisi(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se brisanje izboraLekara {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(izborPromenaServis.obrisi(akcija), HttpStatus.OK);
     }
-
-    @PostMapping(value = "/izmeni", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> izmeni(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se izmena izboraLekara {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(izborPromenaServis.izmeni(akcija), HttpStatus.OK);
-    }
-
 }
 

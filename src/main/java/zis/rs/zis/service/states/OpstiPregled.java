@@ -7,7 +7,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.repository.rdf.RDFRepozitorijum;
-import zis.rs.zis.repository.xml.*;
+import zis.rs.zis.repository.xml.IzvestajXMLRepozitorijum;
+import zis.rs.zis.repository.xml.ReceptXMLRepozitorijum;
+import zis.rs.zis.repository.xml.UputXMLRepozitorijum;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.ValidacioniIzuzetak;
@@ -66,7 +68,7 @@ public class OpstiPregled extends Stanje {
             graf = "uputi";
             if (rezultat.equals(""))
                 return "Greska prilikom snimanja uputa";
-            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                             + maper.dobaviPrefiks("xmlSema"));
             rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf(graf), false);
@@ -76,7 +78,7 @@ public class OpstiPregled extends Stanje {
             graf = "recepti";
             if (rezultat.equals(""))
                 return "Greska prilikom snimanja recepta";
-            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+            String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                             + maper.dobaviPrefiks("xmlSema"));
             rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf(graf), false);
@@ -85,7 +87,7 @@ public class OpstiPregled extends Stanje {
         izvestajXMLRepozitorijum.proveriIzvestaj(izvestaj);
         rezultat = operacije.sacuvaj(izvestaj, "izvestaji", "izvestaj");
         graf = "izvestaji";
-        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"  +
+        String noviRezultat = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                 rezultat.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")
                         + maper.dobaviPrefiks("xmlSema"));
         rdfRepozitorijum.sacuvaj(noviRezultat, maper.dobaviGraf(graf), false);

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import zis.rs.zis.service.states.Proces;
-import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.akcije.Akcija;
 
 import java.util.Calendar;
@@ -21,9 +20,6 @@ import java.util.Calendar;
 public class ProcesKontroler extends ValidatorKontoler {
 
     private static final Logger logger = LoggerFactory.getLogger(ProcesKontroler.class);
-
-    @Autowired
-    private Maper maper;
 
     @Autowired
     private Proces proces;
@@ -36,8 +32,8 @@ public class ProcesKontroler extends ValidatorKontoler {
      */
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> proces(@RequestBody Akcija akcija) {
-        logger.info("Obradjuje se proces {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
+        logger.info("Obradjuje se proces {}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(proces.obradiZahtev(akcija), HttpStatus.OK);
     }
 }

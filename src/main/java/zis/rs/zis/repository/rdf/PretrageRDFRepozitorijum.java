@@ -1,6 +1,9 @@
 package zis.rs.zis.repository.rdf;
 
-import org.apache.jena.query.*;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
 import org.apache.jena.rdf.model.RDFNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -89,7 +92,7 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
             sb.append(parametar.getImeAtributa());
             sb.append(" \"");
             if (parametar.getImeAtributa().equals("datum") ||
-                parametar.getImeAtributa().equals("datumRodjenja")) {
+                    parametar.getImeAtributa().equals("datumRodjenja")) {
                 sb.append(parametar.getVrednost());
                 sb.append("\"^^xsd:date");
             } else {

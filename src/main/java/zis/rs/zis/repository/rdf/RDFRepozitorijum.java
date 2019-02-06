@@ -1,16 +1,17 @@
 package zis.rs.zis.repository.rdf;
 
-import jdk.internal.util.xml.XMLStreamException;
-import jdk.internal.util.xml.impl.XMLWriter;
-import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.*;
-import org.apache.jena.riot.system.StreamRDF;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.query.ResultSetFormatter;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
-import org.apache.jena.util.FileManager;
-import org.exist.util.UTF8;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
@@ -20,8 +21,6 @@ import zis.rs.zis.util.MetaPodaciEkstraktor;
 import zis.rs.zis.util.SPARQLMaper;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.util.Iterator;
 
 @Repository
 public class RDFRepozitorijum {
@@ -69,16 +68,16 @@ public class RDFRepozitorijum {
         }
         model.write(output, SPARQLMaper.NTRIPLES);
         String sparqlUpit = sparqlMaper.zameniPodatke(konekcija.getDataEndpoint() + "/" + graf,
-                dobaviId(sadrzaj),new String(output.toByteArray()));
+                dobaviId(sadrzaj), new String(output.toByteArray()));
         System.out.println(sparqlUpit);
         UpdateRequest izmena = UpdateFactory.create(sparqlUpit);
         UpdateProcessor procesor = UpdateExecutionFactory.createRemote(izmena, konekcija.getUpdateEndpoint());
         procesor.execute();
     }
 
-    public void izmeniPoljeUKartonu(String karton , String polje, String vrednost) {
+    public void izmeniPoljeUKartonu(String karton, String polje, String vrednost) {
         String sparqlUpit = sparqlMaper.zameniPolje(konekcija.getDataEndpoint() + "/" +
-                maper.dobaviGraf("zdravstveni_kartoni"), karton, polje , vrednost);
+                maper.dobaviGraf("zdravstveni_kartoni"), karton, polje, vrednost);
         System.out.println(sparqlUpit);
         UpdateRequest izmena = UpdateFactory.create(sparqlUpit);
         UpdateProcessor procesor = UpdateExecutionFactory.createRemote(izmena, konekcija.getUpdateEndpoint());
@@ -93,12 +92,12 @@ public class RDFRepozitorijum {
         String br_knjizice = dok.getFirstChild().getAttributes().getNamedItem("broj_zdr_knjizice").getNodeValue();
         String br_kartona = dok.getFirstChild().getAttributes().getNamedItem("broj_kartona").getNodeValue();
         String voc = maper.dobaviURI("vokabular");
-        Resource koren =  model.getResource(id);
+        Resource koren = model.getResource(id);
 
-        Property jm = model.createProperty( voc +  "jmbg");
-        Property lb = model.createProperty( voc +  "lbo");
-        Property br_kn = model.createProperty( voc +  "broj_zdr_knjizice");
-        Property br_kr = model.createProperty( voc +  "broj_kartona");
+        Property jm = model.createProperty(voc + "jmbg");
+        Property lb = model.createProperty(voc + "lbo");
+        Property br_kn = model.createProperty(voc + "broj_zdr_knjizice");
+        Property br_kr = model.createProperty(voc + "broj_kartona");
         koren.addProperty(jm, jmbg);
         koren.addProperty(lb, lbo);
         koren.addProperty(br_kn, br_knjizice);
@@ -111,11 +110,10 @@ public class RDFRepozitorijum {
     }
 
 
-    public String izveziMetapodatke(String dokument, String format)
-    {
+    public String izveziMetapodatke(String dokument, String format) {
         String end = konekcija.getDataEndpoint();
         String uslovi = "?s ?p ?o";
-        String sparqlUpit = sparqlMaper.selectData(end + "/" + dokument, uslovi);
+        String sparqlUpit = sparqlMaper.selektujPodatke(end + "/" + dokument, uslovi);
 
         QueryExecution upit = QueryExecutionFactory.sparqlService(konekcija.getQueryEndpoint(), sparqlUpit);
 
@@ -134,13 +132,10 @@ public class RDFRepozitorijum {
 
 
             String povratnaVrednost;
-            if(format.equals("json"))
-            {
+            if (format.equals("json")) {
                 ResultSetFormatter.outputAsJSON(baos, rezultati);
                 povratnaVrednost = baos.toString();
-            }
-            else
-            {
+            } else {
                 ResultSetFormatter.outputAsXML(baos, rezultati);
                 povratnaVrednost = baos.toString();
             }

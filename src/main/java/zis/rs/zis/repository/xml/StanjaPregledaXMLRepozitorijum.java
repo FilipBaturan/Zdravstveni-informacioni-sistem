@@ -18,6 +18,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
@@ -29,6 +31,42 @@ public class StanjaPregledaXMLRepozitorijum extends IOStrimer {
 
     @Autowired
     private Maper maper;
+
+    public List<String> dobaviProcese() {
+        ResursiBaze resursi = null;
+        ArrayList<String> rezultat = new ArrayList<>();
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
+                    maper.dobaviDokument("stanja_pregleda"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjeStanjaPregleda")).getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = this.ucitajSadrzajFajla(putanjaDoUpita);
+            CompiledExpression compiledXquery = upitServis.compile(sadrzajUpita);
+            ResourceSet result = upitServis.execute(compiledXquery);
+            ResourceIterator i = result.getIterator();
+            Resource res = null;
+
+            while (i.hasMoreResources()) {
+
+                try {
+                    res = i.nextResource();
+                    rezultat.add((res.getContent().toString()));
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+
+                }
+            }
+            konekcija.oslobodiResurse(resursi);
+            return rezultat;
+        } catch (XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        } catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
 
     public void dodajNoviProces(Akcija akcija) {
         ResursiBaze resursi = null;

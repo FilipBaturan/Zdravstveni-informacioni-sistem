@@ -29,5 +29,9 @@ public class LekarXMLRepozitorijum extends IOStrimer {
     public String pretragaPoId(String id) {
         return operacije.pretragaPoId(id, dokument, "pretragaPoIdLekara");
     }
+
+    public String prebrojavanjePacijenata() {
+        return operacije.pretragaPoId("", dokument, "prebrojavanjePacijenata");
+    }
 }
 

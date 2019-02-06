@@ -36,11 +36,11 @@ public class IzvestajKontroler extends ValidatorKontoler {
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         logger.info("Vrsi se azuriranje pregleda {}.", Calendar.getInstance().getTime());
         this.validirajAkciju(akcija);
-        if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())){
+        if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())) {
             return new ResponseEntity<>(izvestajServis.izmeni(akcija), HttpStatus.OK);
         } else if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
             return new ResponseEntity<>(izvestajServis.obrisi(akcija), HttpStatus.OK);
         }
-        throw new ValidacioniIzuzetak("Nevalidno prosledjena akcija");
+        throw new ValidacioniIzuzetak("Nevalidno prosledjena akcija!");
     }
 }

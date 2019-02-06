@@ -17,7 +17,7 @@ public class TransformacijeKontroler {
     private TransformacijeServis transformacijeServis;
 
     @GetMapping("/recept/{id}")
-    public ResponseEntity<String> transformisiRecept(@PathVariable Long id){
+    public ResponseEntity<String> transformisiRecept(@PathVariable Long id) {
         String xmlPutanja = "src/main/resources/generated/recepti.xml";
         String xslPutanja = "src/main/resources/xsl/recepti.xsl";
         String htmlPutanja = "src/main/resources/generated/recepti.html";

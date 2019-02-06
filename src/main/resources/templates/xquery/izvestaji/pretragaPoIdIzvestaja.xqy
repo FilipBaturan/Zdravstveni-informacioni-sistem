@@ -26,7 +26,6 @@ declare function local:dobavi-lekara ($id as xs:anyURI) as element()* {
             </korisnik:korisnik>
             {$lekar/lkr:tip}
             {$lekar/lkr:oblast_zastite}
-            {$lekar/lkr:broj_pacijenata}
         </lkr:lekar>
 };
 
@@ -34,6 +33,7 @@ for $izvestaj in fn:doc("/db/rs/zis/izvestaji.xml")/izvestaji:izvestaji/izvestaj
 let $lekar := local:dobavi-lekara($izvestaj/izvestaj:lekar/@izvestaj:identifikator)
 let $pacijent := for $pc in fn:doc("/db/rs/zis/zdravstveni_kartoni.xml")/zd:zdravstveni_kartoni/zko:zdravstveni_karton
 where $lekar/@id = $izvestaj/izvestaj:lekar/@izvestaj:identifikator and $izvestaj/@id = "%1$s"
+        and $izvestaj/@aktivan = "true"
 and $izvestaj/izvestaj:osigurano_lice/@izvestaj:identifikator = $pc/@id return $pc
 
 return <izvestaj:izvestaj xmlns:izvestaj="http://www.zis.rs/seme/izvestaj">

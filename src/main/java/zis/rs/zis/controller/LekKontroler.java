@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import zis.rs.zis.domain.enums.TipAkcije;
 import zis.rs.zis.service.nonProcessService.LekServis;
-import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.Validator;
 import zis.rs.zis.util.akcije.Akcija;
 
@@ -20,11 +20,9 @@ import java.util.Calendar;
  */
 @RestController
 @RequestMapping("/lekovi")
-public class LekKontroler {
+public class LekKontroler extends ValidatorKontoler {
 
     private static final Logger logger = LoggerFactory.getLogger(LekKontroler.class);
-
-    private static final String URI_PREFIX = "/lekovi";
 
     @Autowired
     private LekServis lekServis;
@@ -32,11 +30,8 @@ public class LekKontroler {
     @Autowired
     private Validator validator;
 
-    @Autowired
-    private Maper maper;
-
     /**
-     * GET /rs/zis/lekovi
+     * GET /lekovi
      *
      * @return sve lekove iz baze
      */
@@ -66,23 +61,27 @@ public class LekKontroler {
      */
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se dodavanje leka {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(lekServis.sacuvaj(akcija), HttpStatus.OK);
+        this.validirajAkciju(akcija);
+        if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
+            logger.info("Vrsi se brisanje leka {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(lekServis.obrisi(akcija), HttpStatus.OK);
+        } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString())) {
+            logger.info("Vrsi se izmena leka {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(lekServis.izmeni(akcija), HttpStatus.OK);
+        } else {
+            logger.info("Vrsi se dodavanje leka {}.", Calendar.getInstance().getTime());
+            return new ResponseEntity<>(lekServis.sacuvaj(akcija), HttpStatus.OK);
+        }
     }
 
-    @PostMapping(value = "/obrisi", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> obrisi(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se brisanje leka {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(lekServis.obrisi(akcija), HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/izmeni", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-    public ResponseEntity<String> izmeni(@RequestBody Akcija akcija) {
-        logger.info("Vrsi se izmena leka {}.", Calendar.getInstance().getTime());
-        return new ResponseEntity<>(lekServis.izmeni(akcija), HttpStatus.OK);
-    }
-
-    @GetMapping(value = "/{dijagnoza}/{pacijentId}",  produces = MediaType.APPLICATION_XML_VALUE)
+    /**
+     * GET /lekovi/{dijagnoza}/{pacijentId}
+     *
+     * @param dijagnoza  pacijenta
+     * @param pacijentId id pacijenta
+     * @return lekevo za pogodni za datu dijagnozu
+     */
+    @GetMapping(value = "/{dijagnoza}/{pacijentId}", produces = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<String> dijagnozaPacijenta(@PathVariable String dijagnoza, @PathVariable String pacijentId) {
         logger.info("Vrsi se dobavljanje leka po dijagnozi{}.", Calendar.getInstance().getTime());
         return new ResponseEntity<>(lekServis.dobaviLekZaDijagnozu(dijagnoza,

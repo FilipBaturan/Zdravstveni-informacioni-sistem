@@ -21,5 +21,4 @@ return <lkr:lekar xmlns:lkr="http://www.zis.rs/seme/lekar" xmlns:voc="http://www
     </korisnik:korisnik>
     {$lekar/lkr:tip}
     {$lekar/lkr:oblast_zastite}
-    {$lekar/lkr:broj_pacijenata}
 </lkr:lekar>
