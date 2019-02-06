@@ -27,6 +27,6 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
 
     public String opstiUpit(UpitPretrage upitPretrage)
     {
-        return "";
+        return "asdasd";
     }
 }

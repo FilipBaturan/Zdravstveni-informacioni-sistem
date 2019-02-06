@@ -8,6 +8,7 @@ import org.apache.jena.update.UpdateExecutionFactory;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateProcessor;
 import org.apache.jena.update.UpdateRequest;
+import org.apache.jena.util.FileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.Document;
@@ -18,6 +19,7 @@ import zis.rs.zis.util.SPARQLMaper;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.StringWriter;
 
 @Repository
 public class RDFRepozitorijum {
@@ -95,5 +97,19 @@ public class RDFRepozitorijum {
     private String dobaviId(String sadrzaj) {
         Document dok = maper.konvertujUDokument(sadrzaj);
         return dok.getFirstChild().getAttributes().getNamedItem("id").getNodeValue();
+    }
+
+
+    public String izveziMetapodatke(String dokument, String format)
+    {
+        String end = konekcija.getDataEndpoint();
+        String sadrzaj = sparqlMaper.selectData(end + "/uputi", "?s ?p ?o");
+        ByteArrayInputStream rdf = ekstraktor.ekstraktujMetaPodatke(new ByteArrayInputStream(sadrzaj.getBytes()),
+                new ByteArrayOutputStream());
+
+        StringWriter out = new StringWriter();
+        Model model = FileManager.get().loadModel("asd");
+        model.write(out, "RDF/XML");
+        return out.toString();
     }
 }

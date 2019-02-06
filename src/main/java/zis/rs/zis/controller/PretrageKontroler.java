@@ -25,4 +25,14 @@ public class PretrageKontroler {
         return new ResponseEntity<>(new DTO(pretrageServis.opstiUpit(upit) ), HttpStatus.OK);
     }
 
+    @GetMapping(path = "/json/{dokument}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<DTO> izvozMetaPodatakaJson(@PathVariable String dokument) {
+        return new ResponseEntity<>(new DTO(pretrageServis.izveziMetapodatke(dokument, "json") ), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/rdf/{dokument}", produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<DTO> izvozMetaPodatakaRDF(@PathVariable String dokument, @PathVariable String format) {
+        return new ResponseEntity<>(new DTO(pretrageServis.izveziMetapodatke(dokument, "rdf") ), HttpStatus.OK);
+    }
+
 }
