@@ -65,7 +65,7 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
     }
 
     /**
-     * GET /kartoni/pretraga{tekst}
+     * GET /kartoni/pretraga/{tekst}
      *
      * @param tekst koji karton treba da sadrzi
      * @return karton sa trazenim tekstom

@@ -18,7 +18,7 @@
                         <xs:sequence>
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="link">
                                 <xs:complexType>
-                                    <xs:attribute ref="izvestaj:identifikator"/>
+                                    <xs:attribute ref="izvestaj:identifikator" use="required"/>
                                     <xs:anyAttribute processContents="lax"/>
                                 </xs:complexType>
                             </xs:element>
@@ -26,11 +26,11 @@
                     </xs:complexType>
                 </xs:element>
                 <xs:element name="terapija">
-                    <xs:complexType>
+                    <xs:complexType mixed="true">
                         <xs:sequence>
                             <xs:element maxOccurs="unbounded" minOccurs="0" name="link">
                                 <xs:complexType>
-                                    <xs:attribute ref="izvestaj:identifikator"/>
+                                    <xs:attribute ref="izvestaj:identifikator" use="required"/>
                                     <xs:anyAttribute processContents="lax"/>
                                 </xs:complexType>
                             </xs:element>

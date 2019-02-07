@@ -55,10 +55,10 @@ public class PoslovniProces extends IOStrimer {
     @Before("execution(* zis.rs.zis.service.states.IzmenjenTermin.obradiZahtev(..)) && args(akcija,..)")
     public void prePrihvatanjaIzmenjenogTermina(Akcija akcija) {
         if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {
-            proces.getPrihvatanjeTermina().setOpcija(Opcije.ODBIJANJE_PREGLEDA);
+            proces.getIzmenjenTermin().setOpcija(Opcije.ODBIJANJE_PREGLEDA);
         } else if (akcija.getFunkcija().equals(TipAkcije.IZMENA.toString()) &&
                 akcija.getKontekst().equals(Kontekst.PRIHVATANJE.toString())) {
-            proces.getPrihvatanjeTermina().setOpcija(Opcije.PRIHVATANJE_PREGLEDA);
+            proces.getIzmenjenTermin().setOpcija(Opcije.PRIHVATANJE_PREGLEDA);
         } else {
             throw new ValidacioniIzuzetak("Nevalidna prosledjena akcija!");
         }

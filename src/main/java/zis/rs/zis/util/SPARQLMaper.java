@@ -68,36 +68,10 @@ public class SPARQLMaper {
             + "INSERT DATA { GRAPH <%1$s> {  <%2$s> %3$s %4$s } }";
 
     private String SELEKTOVANJE_FILTER;
-//    = VOCABULAR + " SELECT DISTINCT  ?s \n" +
-//            "FROM <" + this.dobaviPrefiks() + "zdravstveni_kartoni>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "recepti>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "izvestaji>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "uputi>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "lekari>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "izbori>" +
-//            "WHERE { %1$s }";
 
     private String SELEKTOVANJE_LINKOVA;
-//    = VOCABULAR +
-//            "SELECT DISTINCT  ?s\n" +
-//            "FROM <" + this.dobaviPrefiks() + "zdravstveni_kartoni>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "recepti>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "izvestaji>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "uputi>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "lekari>\n" +
-//            "FROM <" + this.dobaviPrefiks() + "izbori>" +
-//            "WHERE {\n" +
-//            "  ?s ?p <%1$s>\n" +
-//            "  }";
 
     private String BRISANJE_TEMPLEJT_GRAF;
-//    = VOCABULAR +
-//            "WITH <%1$s> DELETE { <%2$s> ?p ?o. } WHERE { <%2$s> ?p ?o.};\n" +
-//            "WITH <" + this.dobaviPrefiks() + "zdravstveni_kartoni> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
-//            "WITH <" + this.dobaviPrefiks() + "recepti> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
-//            "WITH <" + this.dobaviPrefiks() + "izvestaji> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
-//            "WITH <" + this.dobaviPrefiks() + "uputi> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
-//            "WITH <" + this.dobaviPrefiks() + "izbori> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" ;
 
     public static final String NTRIPLES = "N-TRIPLES";
 
@@ -133,7 +107,6 @@ public class SPARQLMaper {
         return String.format(BRISANJE_TEMPLEJT_GRAF, grafURI, cvorURI);
     }
 
-    @PostConstruct
     public String dobaviPrefiks() {
         if (this.prefiks == null) {
             this.prefiks = konekcija.getDataEndpoint() + "/";
