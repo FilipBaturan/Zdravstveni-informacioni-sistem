@@ -272,7 +272,7 @@ public class GeneratorMetaPodataka {
                                     link.setAttribute("rel", "voc:referencaNaDokument");
                                     link.setAttribute("href", dokId);
                                 }
-                            } catch (ClassCastException e) {
+                            } catch (ClassCastException ignored) {
                             }
                         }
                         break;
@@ -288,7 +288,7 @@ public class GeneratorMetaPodataka {
                                     lk.setAttribute("rel", "voc:referencaNaDokument");
                                     lk.setAttribute("href", dId);
                                 }
-                            } catch (ClassCastException e) {
+                            } catch (ClassCastException ignored) {
                             }
                         }
                         break;
@@ -345,7 +345,7 @@ public class GeneratorMetaPodataka {
                                     link.setAttribute("rel", "voc:referencaNaDokument");
                                     link.setAttribute("href", dokId);
                                 }
-                            } catch (ClassCastException e) {
+                            } catch (ClassCastException ignored) {
                             }
                         }
                         break;
@@ -399,7 +399,7 @@ public class GeneratorMetaPodataka {
                                     link.setAttribute("rel", "voc:referencaNaDokument");
                                     link.setAttribute("href", dokId);
                                 }
-                            } catch (ClassCastException e) {
+                            } catch (ClassCastException ignored) {
                             }
                         }
                         break;

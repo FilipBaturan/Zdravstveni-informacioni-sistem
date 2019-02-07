@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.IOStrimer;
 import zis.rs.zis.util.Maper;
+import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Repository
@@ -72,12 +73,15 @@ public class IzborPromenaXMLRepozitorijum extends IOStrimer {
                         prosliLekar = element.getAttributes().item(0).getNodeValue();
                         break;
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
         lekarXMLRepozitorijum.pretragaPoId(lekarId);
         lekarXMLRepozitorijum.pretragaPoId(prosliLekar);
         kartonXMLRepozitorijum.pretragaPoId(kartonId);
+        if (prosliLekar.equals(lekarId)) {
+            throw new ValidacioniIzuzetak("Isti lekari prosledjeni!");
+        }
         ogranicenjaRepozitorijum.proveriOgranicenjaIzboraLekara(kartonId, prosliLekar, lekarId);
 
     }

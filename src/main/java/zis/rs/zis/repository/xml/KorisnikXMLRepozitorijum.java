@@ -50,10 +50,6 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
     @Autowired
     private Sekvencer sekvencer;
 
-    public String dobaviSve() {
-        return null;
-    }
-
     public Prijava prijava(String korisnickoIme, String lozinka) {
         ResursiBaze resursi = null;
         try {
@@ -362,10 +358,12 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
     private Node dobaviKorisnika(NodeList lista) {
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("korisnik")) {
-                return element;
-            }
+            try {
+                element = lista.item(i);
+                if (element.getLocalName().equals("korisnik")) {
+                    return element;
+                }
+            } catch (Exception ignore) {}
         }
         return null;
     }
@@ -377,12 +375,15 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
     private Node dobaviOsobu(NodeList lista) {
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("lekar") ||
-                    element.getLocalName().equals("medicinska_sestra") ||
-                    element.getLocalName().equals("zdravstveni_karton")) {
-                return element;
-            }
+            try {
+                element = lista.item(i);
+                if (element.getLocalName().equals("lekar") ||
+                        element.getLocalName().equals("medicinska_sestra") ||
+                        element.getLocalName().equals("zdravstveni_karton")) {
+                    return element;
+                }
+            } catch (Exception ignored) {}
+
         }
         return null;
     }

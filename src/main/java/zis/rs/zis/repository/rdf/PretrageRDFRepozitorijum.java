@@ -34,10 +34,8 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
 
         String sparqlUpit = sparqlMaper.selektujFilter(uslovi);
 
-        // Create a QueryExecution that will access a SPARQL service over HTTP
         QueryExecution upit = QueryExecutionFactory.sparqlService(konekcija.getQueryEndpoint(), sparqlUpit);
 
-        // Query the SPARQL endpoint, iterate over the result set...
         ResultSet rezultati = upit.execSelect();
 
         String naziv;
@@ -47,11 +45,9 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
 
         while (rezultati.hasNext()) {
 
-            // A single answer from a SELECT query
             QuerySolution rezultat = rezultati.next();
             Iterator<String> bajdinzi = rezultat.varNames();
 
-            // Retrieve variable bindings
             while (bajdinzi.hasNext()) {
 
                 naziv = bajdinzi.next();
@@ -69,6 +65,10 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
 
         return rez.toString();
 
+    }
+
+    public String linkoviNaDokument(String id) {
+        return "";
     }
 
     private String konstruisiUpit(UpitPretrage upitPretrage) {
