@@ -8,13 +8,17 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import zis.rs.zis.util.CRUD.Operacije;
 import zis.rs.zis.util.IOStrimer;
+import zis.rs.zis.util.Maper;
 import zis.rs.zis.util.akcije.Akcija;
 
 @Repository
 public class LekXMLRepozitorijum extends IOStrimer {
 
     @Autowired
-    Operacije operacije;
+    private Operacije operacije;
+
+    @Autowired
+    private Maper maper;
 
     private String dokument = "lekovi";
     private String prefiksDokumenta = "lek";
@@ -28,7 +32,7 @@ public class LekXMLRepozitorijum extends IOStrimer {
     }
 
     public String sacuvaj(Akcija akcija) {
-        return operacije.sacuvaj(dobaviDokument(akcija, "lek"), dokument, prefiksDokumenta);
+        return operacije.sacuvaj(maper.dobaviDokument(akcija, "lek"), dokument, prefiksDokumenta);
     }
 
     public String obrisi(Akcija akcija) {
@@ -41,19 +45,5 @@ public class LekXMLRepozitorijum extends IOStrimer {
 
     public String dobaviLekZaDijagnozu(String dijagnoza, String pacijentId) {
         return operacije.dobaviLekZaDijagnozu(dijagnoza, pacijentId);
-    }
-
-
-    private Node dobaviDokument(Akcija akcija, String nazivDokumenta) {
-        Document dok = ((ElementNSImpl) akcija.getSadrzaj().getAny()).getOwnerDocument();
-        NodeList lista = dok.getFirstChild().getChildNodes();
-        Node element;
-        for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
-            }
-        }
-        return null;
     }
 }

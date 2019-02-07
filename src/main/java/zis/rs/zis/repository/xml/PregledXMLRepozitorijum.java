@@ -143,7 +143,7 @@ public class PregledXMLRepozitorijum extends IOStrimer {
                 } else if (element.getLocalName().equals("lekar")) {
                     lekarId = element.getAttributes().item(0).getNodeValue();
                 }
-            } catch (NullPointerException e) {
+            } catch (Exception ignored) {
             }
         }
         lekarXMLRepozitorijum.pretragaPoId(lekarId);

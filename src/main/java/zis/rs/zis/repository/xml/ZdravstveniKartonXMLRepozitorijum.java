@@ -192,7 +192,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
                         element.setAttribute("href", lekar);
                         break;
                     }
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
             izmena = maper.konvertujUString(dok);
@@ -295,7 +295,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
                         element.setTextContent(prezime);
                         break;
                 }
-            } catch (ClassCastException | NullPointerException ignored) {
+            } catch (Exception ignored) {
             }
 
         }

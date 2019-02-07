@@ -35,12 +35,8 @@ public class TransformacijeServis {
             bis.close();
             PDFTransformator.generateHTML(xmlPutanja, xslPutanja, htmlPutanja);
             PDFTransformator.generatePDF(pdfPutanja, htmlPutanja);
-        } catch (FileNotFoundException e) {
+        } catch (IOException | DocumentException e) {
             e.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (DocumentException e2) {
-            e2.printStackTrace();
         }
         return xml;
     }

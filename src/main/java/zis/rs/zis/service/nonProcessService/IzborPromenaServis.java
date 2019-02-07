@@ -71,7 +71,7 @@ public class IzborPromenaServis {
                         kartonId = element.getAttributes().item(0).getNodeValue();
                         break;
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
 
             }
 

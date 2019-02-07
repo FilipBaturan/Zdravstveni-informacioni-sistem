@@ -54,15 +54,22 @@ public class ReceptXMLRepozitorijum extends IOStrimer {
         String lekId = "";
         NodeList lista = sadrzaj.getChildNodes();
         Node element;
+        label:
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("osigurano_lice")) {
-                korisnikId = element.getAttributes().item(0).getNodeValue();
-            } else if (element.getLocalName().equals("propisani_lek")) {
-                lekId = element.getAttributes().item(0).getNodeValue();
-            } else if (element.getLocalName().equals("lekar")) {
-                lekarId = element.getAttributes().item(0).getNodeValue();
-                break;
+            try {
+                element = lista.item(i);
+                switch (element.getLocalName()) {
+                    case "osigurano_lice":
+                        korisnikId = element.getAttributes().item(0).getNodeValue();
+                        break;
+                    case "propisani_lek":
+                        lekId = element.getAttributes().item(0).getNodeValue();
+                        break;
+                    case "lekar":
+                        lekarId = element.getAttributes().item(0).getNodeValue();
+                        break label;
+                }
+            } catch (Exception ignored) {
             }
         }
         lekarXMLRepozitorijum.pretragaPoId(lekarId);

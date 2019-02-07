@@ -11,13 +11,13 @@ import zis.rs.zis.util.akcije.Akcija;
 public class UputServis {
 
     @Autowired
-    UputXMLRepozitorijum uputXMLRepozitorijum;
+    private UputXMLRepozitorijum uputXMLRepozitorijum;
 
     @Autowired
-    RDFRepozitorijum rdfRepozitorijum;
+    private RDFRepozitorijum rdfRepozitorijum;
 
     @Autowired
-    Maper maper;
+    private Maper maper;
 
     public String dobaviSve() {
         return uputXMLRepozitorijum.dobaviSve();

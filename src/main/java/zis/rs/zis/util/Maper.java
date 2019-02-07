@@ -350,11 +350,13 @@ public class Maper {
         NodeList lista = konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("izvestaj")) {
-                return element.getChildNodes().item(4)
-                        .getAttributes().item(0).getNodeValue();
-            }
+            try {
+                element = lista.item(i);
+                if (element.getLocalName().equals("izvestaj")) {
+                    return element.getChildNodes().item(4)
+                            .getAttributes().item(0).getNodeValue();
+                }
+            } catch (Exception ignored) {}
         }
         throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
     }
@@ -363,10 +365,12 @@ public class Maper {
         NodeList lista = konvertujUDokument(akcija).getFirstChild().getLastChild().getFirstChild().getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals("osigurano_lice")) {
-                return element.getAttributes().item(0).getNodeValue();
-            }
+            try {
+                element = lista.item(i);
+                if (element.getLocalName().equals("osigurano_lice")) {
+                    return element.getAttributes().item(0).getNodeValue();
+                }
+            } catch (Exception ignored) {}
         }
         throw new ValidacioniIzuzetak("Nevalidan sadrzaj akcije!");
     }
@@ -381,10 +385,13 @@ public class Maper {
         NodeList lista = dok.getChildNodes();
         Node element;
         for (int i = 0; i < lista.getLength(); i++) {
-            element = lista.item(i);
-            if (element.getLocalName().equals(nazivDokumenta)) {
-                return element;
-            }
+            try {
+                element = lista.item(i);
+                if (element.getLocalName().equals(nazivDokumenta)) {
+                    return element;
+                }
+            } catch (Exception ignored) {}
+
         }
         return null;
     }

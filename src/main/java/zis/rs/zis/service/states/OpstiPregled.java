@@ -109,7 +109,7 @@ public class OpstiPregled extends Stanje {
                     return element;
                 }
             }
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             return null;
         }
         return null;
