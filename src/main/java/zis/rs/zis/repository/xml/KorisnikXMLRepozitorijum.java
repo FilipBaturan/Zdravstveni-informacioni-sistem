@@ -1,5 +1,6 @@
 package zis.rs.zis.repository.xml;
 
+import org.apache.batik.dom.util.DocumentFactory;
 import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.validation.SchemaFactory;
 import java.io.IOException;
+import java.time.LocalDateTime;
+
+import static org.exist.security.internal.SMEvents.PREFIX;
 
 
 @Repository
@@ -130,6 +134,80 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             return "Korisnik uspesno obrisan!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
+    public void dodajObavestenje(String id, String text) {
+        String putanja = ogranicenjaRepozitorijum.pronalazenjePutanje(id, "pacijenti",
+                "Trazeni pacijent ne postoji!");
+        String prefiks = putanja.split("/")[2].split(":")[0];
+
+        putanja += "/" + prefiks + ":obavestenja";
+
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("pacijenti"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dodavanje")).getPath();
+            XUpdateQueryService xupdateService = (XUpdateQueryService) resursi.getKolekcija()
+                    .getService("XUpdateQueryService", "1.0");
+            xupdateService.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita),
+                    prefiks, maper.dobaviPrefiks("pacijent"), putanja, kreirajObavestenje(text),
+                    maper.dobaviPrefiks("pacijenti"));
+            long mods = xupdateService.updateResource(maper.dobaviDokument("pacijenti"), sadrzajUpita);
+            logger.info(mods + " izmene procesirane.");
+
+            konekcija.oslobodiResurse(resursi);
+            if (mods == 0) {
+                throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
+                XMLDBException | IOException e) {
+            konekcija.oslobodiResurse(resursi);
+            throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
+        }
+    }
+
+    public String dobavljanjeObavestenja(String id) {
+        ResursiBaze resursi = null;
+        try {
+            resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
+                    maper.dobaviDokument("zdravstveni_kartoni"));
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("dobavljanjeObavestenja"))
+                    .getPath();
+            XQueryService upitServis = (XQueryService) resursi.getKolekcija().getService("XQueryService", "1.0");
+            upitServis.setProperty("indent", "yes");
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), id);
+            logger.info(sadrzajUpita);
+            CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
+            ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
+            ResourceIterator i = rezultat.getIterator();
+            Resource res = null;
+
+            StringBuilder sb = new StringBuilder();
+
+            while (i.hasMoreResources()) {
+
+                try {
+                    res = i.nextResource();
+                    sb.append(res.getContent().toString());
+                } finally {
+                    if (res != null)
+                        ((EXistResource) res).freeResources();
+
+                }
+            }
+            String rez = sb.toString();
+            konekcija.oslobodiResurse(resursi);
+            if (rez.isEmpty()) {
+                throw new ValidacioniIzuzetak("Trazeni pacijent ne postoji u bazi!");
+            } else {
+                return rez;
+            }
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | XMLDBException |
+                IOException e) {
             konekcija.oslobodiResurse(resursi);
             throw new KonekcijaSaBazomIzuzetak("Onemogucen pristup bazi!");
         }
@@ -449,6 +527,26 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             throw new TransformacioniIzuzetak("Onemogucena obrada podataka!");
         } catch (SAXException e) {
             throw new ValidacioniIzuzetak("Nevalidan sadrzaj osobe!");
+        }
+    }
+
+    private String kreirajObavestenje(String text) {
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        dbf.setNamespaceAware(true);
+        dbf.setIgnoringElementContentWhitespace(true);
+        dbf.setValidating(false);
+        Document dok;
+        try {
+            final String PREFIX = "pacijent";
+
+            dok = dbf.newDocumentBuilder().newDocument();
+            Element obavestenje = dok.createElement(PREFIX + ":obavestenje");
+            obavestenje.setAttribute("datum", String.valueOf(LocalDateTime.now()));
+            obavestenje.setTextContent(text);
+            dok.appendChild(obavestenje);
+            return maper.konvertujUString(dok);
+        } catch (ParserConfigurationException e) {
+            throw new TransformacioniIzuzetak("Greska pri obradi podataka!");
         }
     }
 }

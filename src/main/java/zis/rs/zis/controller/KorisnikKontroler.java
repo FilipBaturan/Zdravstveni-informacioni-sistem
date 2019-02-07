@@ -67,14 +67,28 @@ public class KorisnikKontroler extends ValidatorKontoler {
      * @return rezultat akcije
      */
     @PostMapping(path = "/prijava", consumes = MediaType.APPLICATION_XML_VALUE,
-            produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> prijava(@RequestBody Akcija akcija, HttpSession sesija) {
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Prijava> prijava(@RequestBody Akcija akcija, HttpSession sesija) {
         this.validirajAkciju(akcija);
         logger.info("Vrsi se prijavljivanje korisnika {}.", Calendar.getInstance().getTime());
         Prijava prijava = korisnikServis.prijava(akcija);
         sesija.setAttribute("id", prijava.getId());
         sesija.setAttribute("tip", prijava.getTip());
-        return new ResponseEntity<>("Uspesna prijava na sistem!", HttpStatus.OK);
+        return new ResponseEntity<>(prijava, HttpStatus.OK);
+    }
+
+    /**
+     * POST /korisnici/obavestenja
+     *
+     * @param akcija koja se izvrsava
+     * @return rezultat akcije
+     */
+    @PostMapping(path = "/obavestenja", consumes = MediaType.APPLICATION_XML_VALUE,
+            produces = MediaType.APPLICATION_XML_VALUE)
+    public ResponseEntity<String> dobavljanjeObavestenja(@RequestBody Akcija akcija) {
+        this.validirajAkciju(akcija);
+        logger.info("Vrsi se dobavljanje obavestenja korisnika {}.", Calendar.getInstance().getTime());
+        return new ResponseEntity<>(korisnikServis.dobavljanjeObavestenja(akcija.getKontekst()), HttpStatus.OK);
     }
 
     /**

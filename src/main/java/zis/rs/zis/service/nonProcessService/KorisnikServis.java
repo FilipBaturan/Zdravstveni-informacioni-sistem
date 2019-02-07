@@ -62,6 +62,10 @@ public class KorisnikServis {
 
     public String obrisi(String id) { return korisnikXMLRepozitorijum.obrisi(id); }
 
+    public String dobavljanjeObavestenja(String id) {
+        return korisnikXMLRepozitorijum.dobavljanjeObavestenja(id);
+    }
+
     private String[] preProcesiranje(String glavni, String pomocni) {
         String graf = maper.dobaviGraf("zdravstveni_kartoni");
         glavni = glavni.trim().replaceFirst(" ", "  " + maper.dobaviPrefiks("vokabular")

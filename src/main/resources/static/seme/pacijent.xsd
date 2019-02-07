@@ -23,8 +23,6 @@
                                 <xs:complexType>
                                     <xs:simpleContent>
                                         <xs:extension base="xs:string">
-                                            <xs:attribute name="aktivan" type="xs:boolean"
-                                                use="required"/>
                                             <xs:attribute name="datum" type="xs:dateTime"
                                                 use="required"/>
                                         </xs:extension>

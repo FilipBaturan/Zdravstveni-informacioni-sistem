@@ -87,7 +87,7 @@ public class PoslovniProces extends IOStrimer {
         proces.getProcesi().remove(pacijent);
     }
 
-    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.prihvatanjeTermina(..)) && args(akcija,..)")
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.PrihvatanjeTermina.obradaTermina(..)) && args(akcija,..)")
     public void nakonPrihvatanjaTermina(Akcija akcija) {
         String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);
@@ -107,7 +107,7 @@ public class PoslovniProces extends IOStrimer {
         proces.getProcesi().remove(pacijent);
     }
 
-    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.prihvatanjeTermina(..)) && args(akcija,..)")
+    @AfterReturning(pointcut = "execution(* zis.rs.zis.service.states.IzmenjenTermin.obradaTermina(..)) && args(akcija,..)")
     public void nakonPrihvatanjaIzmenjenogTermina(Akcija akcija) {
         String tipLekara = maper.dobaviTipLekaraIzPregleda(akcija);
         String pacijent = maper.dobaviPacijentaIzPregleda(akcija);

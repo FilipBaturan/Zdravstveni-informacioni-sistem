@@ -71,13 +71,13 @@ public class Operacije extends IOStrimer {
 
                 }
             }
-            String recepti = sb.toString();
+            String rez = sb.toString();
             konekcija.oslobodiResurse(resursi);
-            if (recepti.isEmpty()) {
+            if (rez.isEmpty()) {
                 String ime = dokument.substring(0, dokument.length() - 1);
                 throw new ValidacioniIzuzetak("Ne postoji ni jedan " + ime + " u bazi!");
             } else {
-                return recepti;
+                return rez;
             }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException | NullPointerException e) {
@@ -114,13 +114,13 @@ public class Operacije extends IOStrimer {
 
                 }
             }
-            String recepti = sb.toString();
+            String rezultat = sb.toString();
             konekcija.oslobodiResurse(resursi);
-            if (recepti.isEmpty()) {
+            if (rezultat.isEmpty()) {
                 String ime = dokument.substring(0, dokument.length() - 1);
                 throw new ValidacioniIzuzetak("Trazeni " + ime + " ne postoji u bazi!");
             } else {
-                return recepti;
+                return rezultat;
             }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
