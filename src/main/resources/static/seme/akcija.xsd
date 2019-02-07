@@ -10,6 +10,7 @@
                 <xs:element name="funkcija">
                     <xs:simpleType>
                         <xs:restriction base="xs:string">
+                            <xs:enumeration value="SELEKTOVANJE"/>
                             <xs:enumeration value="DODAVANJE"/>
                             <xs:enumeration value="BRISANJE"/>
                             <xs:enumeration value="IZMENA"/>

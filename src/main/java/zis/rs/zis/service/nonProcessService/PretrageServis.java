@@ -15,8 +15,6 @@ public class PretrageServis {
     @Autowired
     private RDFRepozitorijum rdfRepozitorijum;
 
-
-
     public PretrageServis() {
     }
 
@@ -27,4 +25,6 @@ public class PretrageServis {
     public String izveziMetapodatke(String dokument, String format) {
         return rdfRepozitorijum.izveziMetapodatke(dokument, format);
     }
+
+    public String linkoviNaDokument(String id) { return pretrageRDFRepozitorijum.linkoviNaDokument(id); }
 }

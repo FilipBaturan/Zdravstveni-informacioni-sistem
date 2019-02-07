@@ -31,16 +31,12 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
     public String opstiUpit(UpitPretrage upitPretrage) {
 
         String uslovi = konstruisiUpit(upitPretrage);
-
         String sparqlUpit = sparqlMaper.selektujFilter(uslovi);
-
         QueryExecution upit = QueryExecutionFactory.sparqlService(konekcija.getQueryEndpoint(), sparqlUpit);
-
         ResultSet rezultati = upit.execSelect();
 
         String naziv;
         RDFNode vrednost;
-
         StringBuilder rez = new StringBuilder();
 
         while (rezultati.hasNext()) {
@@ -49,7 +45,6 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
             Iterator<String> bajdinzi = rezultat.varNames();
 
             while (bajdinzi.hasNext()) {
-
                 naziv = bajdinzi.next();
                 vrednost = rezultat.get(naziv);
                 rez.append(vrednost.toString());
@@ -60,15 +55,38 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
         }
 
         rez.deleteCharAt(rez.length() - 1);
-
         upit.close();
-
         return rez.toString();
 
     }
 
     public String linkoviNaDokument(String id) {
-        return "";
+
+        String sparqlUpit = sparqlMaper.selektujLinkove(id);
+        QueryExecution upit = QueryExecutionFactory.sparqlService(konekcija.getQueryEndpoint(), sparqlUpit);
+        ResultSet rezultati = upit.execSelect();
+
+        String naziv;
+        RDFNode vrednost;
+
+        StringBuilder rez = new StringBuilder();
+        while (rezultati.hasNext()) {
+
+            QuerySolution rezultat = rezultati.next();
+            Iterator<String> bajdinzi = rezultat.varNames();
+            while (bajdinzi.hasNext()) {
+                naziv = bajdinzi.next();
+                vrednost = rezultat.get(naziv);
+                rez.append(vrednost.toString());
+                rez.append("-");
+                System.out.println(naziv + ": " + vrednost);
+            }
+            System.out.println();
+        }
+
+        rez.deleteCharAt(rez.length() - 1);
+        upit.close();
+        return rez.toString();
     }
 
     private String konstruisiUpit(UpitPretrage upitPretrage) {
