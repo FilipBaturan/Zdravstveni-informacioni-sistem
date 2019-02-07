@@ -24,9 +24,6 @@ public class ReceptKontroler extends ValidatorKontoler {
     @Autowired
     private ReceptServis receptServis;
 
-    @Autowired
-    private Validator validator;
-
     /**
      * GET /recepti
      *

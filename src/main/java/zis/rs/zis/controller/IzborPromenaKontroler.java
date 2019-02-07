@@ -51,7 +51,7 @@ public class IzborPromenaKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         this.validirajAkciju(akcija);
         if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {

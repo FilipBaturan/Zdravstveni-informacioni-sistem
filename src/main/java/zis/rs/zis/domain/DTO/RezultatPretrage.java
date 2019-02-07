@@ -1,17 +1,17 @@
-package zis.rs.zis.domain;
+package zis.rs.zis.domain.DTO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class DTO {
+public class RezultatPretrage {
 
     private ArrayList<String> listaId;
 
-    public DTO() {
+    public RezultatPretrage() {
         this.listaId = new ArrayList<>();
     }
 
-    public DTO(String tekst) {
+    public RezultatPretrage(String tekst) {
         this.listaId = new ArrayList<>();
         this.listaId.addAll(Arrays.asList(tekst.split("-")));
     }

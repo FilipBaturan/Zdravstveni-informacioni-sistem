@@ -27,9 +27,6 @@ public class LekKontroler extends ValidatorKontoler {
     @Autowired
     private LekServis lekServis;
 
-    @Autowired
-    private Validator validator;
-
     /**
      * GET /lekovi
      *
@@ -59,7 +56,7 @@ public class LekKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         this.validirajAkciju(akcija);
         if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {

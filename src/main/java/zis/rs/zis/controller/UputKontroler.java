@@ -24,9 +24,6 @@ public class UputKontroler extends ValidatorKontoler {
     @Autowired
     private UputServis uputServis;
 
-    @Autowired
-    private Validator validator;
-
     /**
      * GET /uputi
      *

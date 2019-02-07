@@ -4,7 +4,6 @@ import org.exist.xmldb.EXistResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
@@ -15,6 +14,7 @@ import org.xml.sax.SAXException;
 import org.xmldb.api.base.*;
 import org.xmldb.api.modules.XQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
+import zis.rs.zis.domain.DTO.Prijava;
 import zis.rs.zis.domain.enums.TipKorisnika;
 import zis.rs.zis.util.*;
 import zis.rs.zis.util.akcije.Akcija;
@@ -45,9 +45,6 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
     private GeneratorMetaPodataka generatorMetaPodataka;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
     private Maper maper;
 
     @Autowired
@@ -57,16 +54,16 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
         return null;
     }
 
-    public String pretraga(String id) {
+    public Prijava prijava(String korisnickoIme, String lozinka) {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(),
                     maper.dobaviDokument("korisnici"));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("pretragaPoIdKorisnika")).getPath();
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("prijava")).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija()
                     .getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
-            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), id);
+            String sadrzajUpita = String.format(this.ucitajSadrzajFajla(putanjaDoUpita), korisnickoIme, lozinka);
             CompiledExpression kompajliraniSadrzajUpita = upitServis.compile(sadrzajUpita);
             ResourceSet rezultat = upitServis.execute(kompajliraniSadrzajUpita);
             ResourceIterator i = rezultat.getIterator();
@@ -79,18 +76,18 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
                 try {
                     res = i.nextResource();
                     sb.append(res.getContent().toString());
+                    sb.append("-");
                 } finally {
                     if (res != null)
                         ((EXistResource) res).freeResources();
 
                 }
             }
-            String karton = sb.toString();
             konekcija.oslobodiResurse(resursi);
-            if (karton.isEmpty()) {
-                throw new ValidacioniIzuzetak("Trazeni korisnik sa id: " + id + " ne postoji!");
+            if (sb.toString().isEmpty()) {
+                throw new ValidacioniIzuzetak("Pogresno korisnicko ime ili lozinka!");
             } else {
-                return karton;
+                return new Prijava(sb.toString());
             }
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {

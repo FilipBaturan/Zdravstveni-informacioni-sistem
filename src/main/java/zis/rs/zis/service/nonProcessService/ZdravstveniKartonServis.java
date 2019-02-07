@@ -43,9 +43,11 @@ public class ZdravstveniKartonServis {
 
     }
 
-    public String opstaPretraga(String tekst) {
-        return repozitorijum.opstaPretraga(tekst);
+    public String opstaPretragaLekara(String tekst) {
+        return repozitorijum.opstaPretraga(tekst, "opstaPretragaKartona");
     }
 
-
+    public String opstaPretragaPacijenta(String tekst) {
+        return repozitorijum.opstaPretraga(tekst, "opstaPregragaDokumenata");
+    }
 }

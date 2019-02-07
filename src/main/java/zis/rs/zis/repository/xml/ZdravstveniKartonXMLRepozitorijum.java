@@ -226,11 +226,11 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
         }
     }
 
-    public String opstaPretraga(String text) {
+    public String opstaPretraga(String text, String upit) {
         ResursiBaze resursi = null;
         try {
             resursi = konekcija.uspostaviKonekciju(maper.dobaviKolekciju(), maper.dobaviDokument("lekari"));
-            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit("opstaPretragaKartona")).getPath();
+            String putanjaDoUpita = ResourceUtils.getFile(maper.dobaviUpit(upit)).getPath();
             XQueryService upitServis = (XQueryService) resursi.getKolekcija()
                     .getService("XQueryService", "1.0");
             upitServis.setProperty("indent", "yes");
@@ -295,7 +295,7 @@ public class ZdravstveniKartonXMLRepozitorijum extends IOStrimer {
                         element.setTextContent(prezime);
                         break;
                 }
-            } catch (ClassCastException | NullPointerException e) {
+            } catch (ClassCastException | NullPointerException ignored) {
             }
 
         }

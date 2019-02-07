@@ -13,7 +13,9 @@ public class PretrageServis {
     private PretrageRDFRepozitorijum pretrageRDFRepozitorijum;
 
     @Autowired
-    RDFRepozitorijum rdfRepozitorijum;
+    private RDFRepozitorijum rdfRepozitorijum;
+
+
 
     public PretrageServis() {
     }

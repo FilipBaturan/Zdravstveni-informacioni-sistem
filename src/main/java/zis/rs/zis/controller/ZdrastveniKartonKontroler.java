@@ -7,12 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import zis.rs.zis.domain.DTO;
+import zis.rs.zis.domain.DTO.RezultatPretrage;
 import zis.rs.zis.domain.enums.TipAkcije;
+import zis.rs.zis.domain.enums.TipKorisnika;
 import zis.rs.zis.service.nonProcessService.ZdravstveniKartonServis;
 import zis.rs.zis.util.ValidacioniIzuzetak;
 import zis.rs.zis.util.akcije.Akcija;
 
+import javax.servlet.http.HttpSession;
 import java.util.Calendar;
 
 @RestController
@@ -69,10 +71,16 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
      * @return karton sa trazenim tekstom
      */
     @GetMapping(path = "pretraga/{tekst}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<DTO> opstaPretraga(@PathVariable String tekst) {
+    public ResponseEntity<RezultatPretrage> opstaPretraga(@PathVariable String tekst, HttpSession sesija) {
         logger.info("Traze se zdravstveni karton sa tekstom ={}: {}.", tekst, Calendar.getInstance().getTime());
-        return new ResponseEntity<>(new DTO(zdravstveniKartonServis.
-                opstaPretraga(tekst)), HttpStatus.OK);
+        if (sesija.getAttribute("tip").equals(TipKorisnika.PACIJENT.toString())) {
+            return new ResponseEntity<>(new RezultatPretrage(zdravstveniKartonServis.
+                    opstaPretragaPacijenta(tekst)), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new RezultatPretrage(zdravstveniKartonServis.
+                    opstaPretragaLekara(tekst)), HttpStatus.OK);
+        }
+
     }
 
     /**
@@ -81,7 +89,7 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
      * @param akcija koja se izvrsava
      * @return rezultat akcije
      */
-    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
     public ResponseEntity<String> sacuvaj(@RequestBody Akcija akcija) {
         this.validirajAkciju(akcija);
         logger.info("Vrsi se azuriranje zdravstvenog kartona {}.", Calendar.getInstance().getTime());
