@@ -154,6 +154,9 @@ public class Operacije extends IOStrimer {
             if (mods == 0) {
                 throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
             }
+
+            rdfRepozitorijum.obrisi(maper.dobaviGraf(dokument), id);
+
             return prefiksDokumenta + " uspesno obrisan!";
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {

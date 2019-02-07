@@ -1,9 +1,52 @@
 package zis.rs.zis.util;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 @Component
 public class SPARQLMaper {
+
+    @Autowired
+    private KonfiguracijaKonekcija konekcija;
+
+    public SPARQLMaper() {
+
+    }
+
+    @PostConstruct
+    public void init() {
+        this.prefiks = konekcija.getDataEndpoint() + "/";
+        SELEKTOVANJE_FILTER = VOCABULAR + " SELECT DISTINCT  ?s \n" +
+                "FROM <" + this.dobaviPrefiks() + "zdravstveni_kartoni>\n" +
+                "FROM <" + this.dobaviPrefiks() + "recepti>\n" +
+                "FROM <" + this.dobaviPrefiks() + "izvestaji>\n" +
+                "FROM <" + this.dobaviPrefiks() + "uputi>\n" +
+                "FROM <" + this.dobaviPrefiks() + "lekari>\n" +
+                "FROM <" + this.dobaviPrefiks() + "izbori>" +
+                "WHERE { %1$s }";
+        SELEKTOVANJE_LINKOVA = VOCABULAR +
+                "SELECT DISTINCT  ?s\n" +
+                "FROM <" + this.dobaviPrefiks() + "zdravstveni_kartoni>\n" +
+                "FROM <" + this.dobaviPrefiks() + "recepti>\n" +
+                "FROM <" + this.dobaviPrefiks() + "izvestaji>\n" +
+                "FROM <" + this.dobaviPrefiks() + "uputi>\n" +
+                "FROM <" + this.dobaviPrefiks() + "lekari>\n" +
+                "FROM <" + this.dobaviPrefiks() + "izbori>" +
+                "WHERE {\n" +
+                "  ?s ?p <%1$s>\n" +
+                "  }";
+        BRISANJE_TEMPLEJT_GRAF = VOCABULAR +
+                "WITH <%1$s> DELETE { <%2$s> ?p ?o. } WHERE { <%2$s> ?p ?o.};\n" +
+                "WITH <" + this.dobaviPrefiks() + "zdravstveni_kartoni> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+                "WITH <" + this.dobaviPrefiks() + "recepti> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+                "WITH <" + this.dobaviPrefiks() + "izvestaji> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+                "WITH <" + this.dobaviPrefiks() + "uputi> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+                "WITH <" + this.dobaviPrefiks() + "izbori> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" ;
+    }
+
+    private String prefiks;
 
     private final String OBRISI_BAZU = "DROP ALL";
 
@@ -24,26 +67,37 @@ public class SPARQLMaper {
     private final String ZAMENA_POLJA = VOCABULAR + "WITH <%1$s> DELETE { <%2$s> %3$s ?o. } WHERE { <%2$s> %3$s ?o.};"
             + "INSERT DATA { GRAPH <%1$s> {  <%2$s> %3$s %4$s } }";
 
-    private final String SELEKTOVANJE_FILTER = VOCABULAR + " SELECT DISTINCT  ?s \n" +
-            "FROM <http://localhost:3030/Zis/data/zdravstveni_kartoni>\n" +
-            "FROM <http://localhost:3030/Zis/data/recepti>\n" +
-            "FROM <http://localhost:3030/Zis/data/izvestaji>\n" +
-            "FROM <http://localhost:3030/Zis/data/uputi>\n" +
-            "FROM <http://localhost:3030/Zis/data/lekari>\n" +
-            "FROM <http://localhost:3030/Zis/data/izbori>" +
-            "WHERE { %1$s }";
+    private String SELEKTOVANJE_FILTER;
+//    = VOCABULAR + " SELECT DISTINCT  ?s \n" +
+//            "FROM <" + this.dobaviPrefiks() + "zdravstveni_kartoni>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "recepti>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "izvestaji>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "uputi>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "lekari>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "izbori>" +
+//            "WHERE { %1$s }";
 
-    private final String SELEKTOVANJE_LINKOVA = VOCABULAR +
-            "SELECT DISTINCT  ?s\n" +
-            "FROM <http://localhost:3030/Zis/data/zdravstveni_kartoni>\n" +
-            "FROM <http://localhost:3030/Zis/data/recepti>\n" +
-            "FROM <http://localhost:3030/Zis/data/izvestaji>\n" +
-            "FROM <http://localhost:3030/Zis/data/uputi>\n" +
-            "FROM <http://localhost:3030/Zis/data/lekari>\n" +
-            "FROM <http://localhost:3030/Zis/data/izbori>\n" +
-            "WHERE {\n" +
-            "  ?s ?p <%1$s>\n" +
-            "  }";
+    private String SELEKTOVANJE_LINKOVA;
+//    = VOCABULAR +
+//            "SELECT DISTINCT  ?s\n" +
+//            "FROM <" + this.dobaviPrefiks() + "zdravstveni_kartoni>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "recepti>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "izvestaji>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "uputi>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "lekari>\n" +
+//            "FROM <" + this.dobaviPrefiks() + "izbori>" +
+//            "WHERE {\n" +
+//            "  ?s ?p <%1$s>\n" +
+//            "  }";
+
+    private String BRISANJE_TEMPLEJT_GRAF;
+//    = VOCABULAR +
+//            "WITH <%1$s> DELETE { <%2$s> ?p ?o. } WHERE { <%2$s> ?p ?o.};\n" +
+//            "WITH <" + this.dobaviPrefiks() + "zdravstveni_kartoni> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+//            "WITH <" + this.dobaviPrefiks() + "recepti> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+//            "WITH <" + this.dobaviPrefiks() + "izvestaji> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+//            "WITH <" + this.dobaviPrefiks() + "uputi> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" +
+//            "WITH <" + this.dobaviPrefiks() + "izbori> DELETE { ?s ?p <%2$s>. } WHERE { ?s ?p <%2$s>.};\n" ;
 
     public static final String NTRIPLES = "N-TRIPLES";
 
@@ -73,5 +127,17 @@ public class SPARQLMaper {
 
     public String selektujLinkove(String id) {
         return String.format(SELEKTOVANJE_LINKOVA, id);
+    }
+
+    public String brisanjePodataka(String grafURI, String cvorURI) {
+        return String.format(BRISANJE_TEMPLEJT_GRAF, grafURI, cvorURI);
+    }
+
+    @PostConstruct
+    public String dobaviPrefiks() {
+        if (this.prefiks == null) {
+            this.prefiks = konekcija.getDataEndpoint() + "/";
+        }
+        return this.prefiks;
     }
 }

@@ -75,6 +75,14 @@ public class RDFRepozitorijum {
         procesor.execute();
     }
 
+    public void obrisi(String graf, String cvor) {
+        String sparqlUpit = sparqlMaper.brisanjePodataka(konekcija.getDataEndpoint() + "/" + graf, cvor);
+        System.out.println(sparqlUpit);
+        UpdateRequest izmena = UpdateFactory.create(sparqlUpit);
+        UpdateProcessor procesor = UpdateExecutionFactory.createRemote(izmena, konekcija.getUpdateEndpoint());
+        procesor.execute();
+    }
+
     public void izmeniPoljeUKartonu(String karton, String polje, String vrednost) {
         String sparqlUpit = sparqlMaper.zameniPolje(konekcija.getDataEndpoint() + "/" +
                 maper.dobaviGraf("zdravstveni_kartoni"), karton, polje, vrednost);
@@ -122,6 +130,7 @@ public class RDFRepozitorijum {
         try {
             String put = "./exports/" + dokument + "-" + format + ".txt";
             File file = new File(put);
+            //noinspection ResultOfMethodCallIgnored
             file.getParentFile().mkdirs();
             FileOutputStream out =
                     new FileOutputStream(file);

@@ -1,3 +1,5 @@
+xquery version "3.1";
+
 declare namespace izvestaji = "http://www.zis.rs/seme/izvestaji";
 declare namespace izvestaj = "http://www.zis.rs/seme/izvestaj";
 
@@ -30,13 +32,14 @@ declare function local:dobavi-lekara ($id as xs:anyURI) as element()* {
 };
 
 for $izvestaj in fn:doc("/db/rs/zis/izvestaji.xml")/izvestaji:izvestaji/izvestaj:izvestaj
-let $lekar := local:dobavi-lekara($izvestaj/izvestaj:lekar/@izvestaj:identifikator)
+let $lekar := local:dobavi-lekara(for $lk in fn:doc("/db/rs/zis/lekari.xml")/lekari:lekari/lkr:lekar
+where $lk/@id = $izvestaj/izvestaj:lekar/@izvestaj:identifikator return $lk)
 let $pacijent := for $pc in fn:doc("/db/rs/zis/zdravstveni_kartoni.xml")/zd:zdravstveni_kartoni/zko:zdravstveni_karton
-where $lekar/@id = $izvestaj/izvestaj:lekar/@izvestaj:identifikator and $izvestaj/@id = "%1$s"
-        and $izvestaj/@aktivan = "true"
-and $izvestaj/izvestaj:osigurano_lice/@izvestaj:identifikator = $pc/@id return $pc
+where $pc/@id = $izvestaj/izvestaj:osigurano_lice/@izvestaj:identifikator return $pc
+where $izvestaj/@id = "http://www.zis.rs/izvestaji/id137" and $izvestaj/@aktivan = "true"
 
-return <izvestaj:izvestaj xmlns:izvestaj="http://www.zis.rs/seme/izvestaj">
+return <izvestaj:izvestaj xmlns:izvestaj="%1$s"
+about="{$izvestaj/@id}" aktivan="true" id="{$izvestaj/@id}" oznaka="il1">
     <izvestaj:lekar>{$lekar}</izvestaj:lekar>
     {$izvestaj/izvestaj:anamneza}
     {$izvestaj/izvestaj:dijagnoza}

@@ -28,6 +28,14 @@ public class PoslovniProces extends IOStrimer {
     @Autowired
     private Proces proces;
 
+    @Before("execution(* zis.rs.zis.service.states.ZakazivanjePregleda.obradiZahtev(..)) && args(akcija,..)")
+    public void preKreiranjaTermina(Akcija akcija) {
+        if (!akcija.getFunkcija().equals(TipAkcije.DODAVANJE.toString())) {
+            throw new ValidacioniIzuzetak("Nevalidna prosledjena akcija!");
+        }
+
+    }
+
     @Before("execution(* zis.rs.zis.service.states.PrihvatanjeTermina.obradiZahtev(..)) && args(akcija,..)")
     public void prePrihvatanjaTermina(Akcija akcija) {
         if (akcija.getFunkcija().equals(TipAkcije.BRISANJE.toString())) {

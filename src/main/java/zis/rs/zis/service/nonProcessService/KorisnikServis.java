@@ -60,7 +60,11 @@ public class KorisnikServis {
         return "Uspesna registracija!";
     }
 
-    public String obrisi(String id) { return korisnikXMLRepozitorijum.obrisi(id); }
+    public String obrisi(String id) {
+        String kartonId = korisnikXMLRepozitorijum.obrisi(id);
+        rdfRepozitorijum.obrisi("zdravstveni_kartoni", kartonId);
+        return "Korisnik uspesno obrisan!";
+    }
 
     public String dobavljanjeObavestenja(String id) {
         return korisnikXMLRepozitorijum.dobavljanjeObavestenja(id);

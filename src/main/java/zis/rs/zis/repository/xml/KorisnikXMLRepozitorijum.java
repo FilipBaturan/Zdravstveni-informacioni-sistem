@@ -131,7 +131,7 @@ public class KorisnikXMLRepozitorijum extends IOStrimer {
             if (mods == 0) {
                 throw new KonekcijaSaBazomIzuzetak("Greska prilikom snimanja podataka");
             }
-            return "Korisnik uspesno obrisan!";
+            return kartonId;
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException |
                 XMLDBException | IOException e) {
             konekcija.oslobodiResurse(resursi);

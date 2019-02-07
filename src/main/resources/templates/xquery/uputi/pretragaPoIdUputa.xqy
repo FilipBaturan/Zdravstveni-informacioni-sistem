@@ -36,7 +36,7 @@ let $lekar := local:dobavi-lekara($uput/uput:lekar/@uput:identifikator)
 let $specijalista := local:dobavi-lekara($uput/uput:specialista/@uput:identifikator)
 let $pacijent := for $pc in fn:doc("/db/rs/zis/zdravstveni_kartoni.xml")/zd:zdravstveni_kartoni/zko:zdravstveni_karton
 where $uput/uput:osigurano_lice/@uput:identifikator = $pc/@id return $pc
-where $uput/@aktivan = "true" and $uput/@id = "$1%s"
+where $uput/@aktivan = "true" and $uput/@id = "%1$s"
 return <uput:uput xmlns:uput="http://www.zis.rs/seme/uput" id="{$uput/@id}">
     <uput:osigurano_lice>{$pacijent}</uput:osigurano_lice>
     {$uput/uput:misljenje}
