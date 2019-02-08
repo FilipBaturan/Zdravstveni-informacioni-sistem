@@ -20,8 +20,8 @@ public class TransformacijeKontroler {
     public ResponseEntity<String> transformisiRecept(@PathVariable Long id) {
         String xmlPutanja = "src/main/resources/generated/recepti.xml";
         String xslPutanja = "src/main/resources/xsl/recepti.xsl";
-        String htmlPutanja = "src/main/resources/generated/recepti.html";
-        String pdfPutanja = "src/main/resources/generated/recepti.pdf";
+        String htmlPutanja = "src/main/resources/static/recepti" + id.toString() + ".html";
+        String pdfPutanja = "src/main/resources/static/recepti" + id.toString() + ".pdf";
         String xml = transformacijeServis.transformisiRecept(id, xmlPutanja, xslPutanja, htmlPutanja, pdfPutanja);
         return new ResponseEntity<String>(xml, HttpStatus.OK);
     }
@@ -30,8 +30,8 @@ public class TransformacijeKontroler {
     public ResponseEntity<String> transformisiUput(@PathVariable Long id) {
         String xmlPutanja = "src/main/resources/generated/uput.xml";
         String xslPutanja = "src/main/resources/xsl/uputi.xsl";
-        String htmlPutanja = "src/main/resources/generated/uput.html";
-        String pdfPutanja = "src/main/resources/generated/uput.pdf";
+        String htmlPutanja = "src/main/resources/static/uput" + id.toString() + ".html";
+        String pdfPutanja = "src/main/resources/static/uput" + id.toString() + ".pdf";
         String xml = transformacijeServis.transformisiUput(id, xmlPutanja, xslPutanja, htmlPutanja, pdfPutanja);
         return new ResponseEntity<String>(xml, HttpStatus.OK);
     }
