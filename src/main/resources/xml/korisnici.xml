@@ -1,38 +1,58 @@
-<ko:korisnici xmlns:ko="http://www.zis.rs/seme/korisnici" xmlns:xs="http://www.w3.org/2001/XMLSchema#"
-              xmlns:voc="http://www.zis.rs/rdf/voc#" xmlns:korisnik="http://www.zis.rs/seme/korisnik">
-    <korisnik:korisnik id="http://www.zis.rs/korisnici/id1" aktivan="true">
-        <korisnik:ime property="voc:ime" datatype="xs:string">Nebojsa</korisnik:ime>
-        <korisnik:prezime property="voc:prezime" datatype="xs:string">Jovanovic</korisnik:prezime>
-        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">1407986856324</korisnik:jmbg>
+<ko:korisnici xmlns:ko="http://www.zis.rs/seme/korisnici" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:korisnik="http://www.zis.rs/seme/korisnik">
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id66">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Nebojsa</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Jovanovic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">1407986856324</korisnik:jmbg>
         <korisnik:korisnicko_ime>nebojsa</korisnik:korisnicko_ime>
-        <korisnik:lozinka>nebojsa</korisnik:lozinka>
+        <korisnik:lozinka>123456</korisnik:lozinka>
     </korisnik:korisnik>
-    <korisnik:korisnik id="http://www.zis.rs/korisnici/id3" aktivan="true">
-        <korisnik:ime property="voc:ime" datatype="xs:string">Predrag</korisnik:ime>
-        <korisnik:prezime property="voc:prezime" datatype="xs:string">Stankovic</korisnik:prezime>
-        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">2305979265742</korisnik:jmbg>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id68">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Predrag</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Stankovic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">2305979265742</korisnik:jmbg>
         <korisnik:korisnicko_ime>predrag</korisnik:korisnicko_ime>
-        <korisnik:lozinka>predrag</korisnik:lozinka>
+        <korisnik:lozinka>123456</korisnik:lozinka>
     </korisnik:korisnik>
-    <korisnik:korisnik id="http://www.zis.rs/korisnici/id5" aktivan="true">
-        <korisnik:ime property="voc:ime" datatype="xs:string">Jelena</korisnik:ime>
-        <korisnik:prezime property="voc:prezime" datatype="xs:string">Lazarevic</korisnik:prezime>
-        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">2011990324856</korisnik:jmbg>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id70">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Jelena</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Lazarovic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">2011990324856</korisnik:jmbg>
         <korisnik:korisnicko_ime>jelena</korisnik:korisnicko_ime>
-        <korisnik:lozinka>jelena</korisnik:lozinka>
+        <korisnik:lozinka>123456</korisnik:lozinka>
     </korisnik:korisnik>
-    <korisnik:korisnik id="http://www.zis.rs/korisnici/id7" aktivan="true">
-        <korisnik:ime property="voc:ime" datatype="xs:string">Jadranka</korisnik:ime>
-        <korisnik:prezime property="voc:prezime" datatype="xs:string">Zrnic</korisnik:prezime>
-        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">0203987297351</korisnik:jmbg>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id72">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Jadranka</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Zrnic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">0203987297351</korisnik:jmbg>
         <korisnik:korisnicko_ime>jadranka</korisnik:korisnicko_ime>
-        <korisnik:lozinka>jadranka</korisnik:lozinka>
+        <korisnik:lozinka>123456</korisnik:lozinka>
     </korisnik:korisnik>
-    <korisnik:korisnik id="http://www.zis.rs/korisnici/id9" aktivan="true">
-        <korisnik:ime property="voc:ime" datatype="xs:string">Milica</korisnik:ime>
-        <korisnik:prezime property="voc:prezime" datatype="xs:string">Paunovic</korisnik:prezime>
-        <korisnik:jmbg property="voc:jmbg" datatype="xs:string">0709989652763</korisnik:jmbg>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id74">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Milica</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Paunovic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">0709989652763</korisnik:jmbg>
         <korisnik:korisnicko_ime>milica</korisnik:korisnicko_ime>
-        <korisnik:lozinka>milica</korisnik:lozinka>
+        <korisnik:lozinka>123456</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id76">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Bojana</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Stojkovic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">2211990324856</korisnik:jmbg>
+        <korisnik:korisnicko_ime>bojana</korisnik:korisnicko_ime>
+        <korisnik:lozinka>123456</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id80">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Goran</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Obradovic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">0055070707700</korisnik:jmbg>
+        <korisnik:korisnicko_ime>goran</korisnik:korisnicko_ime>
+        <korisnik:lozinka>123456</korisnik:lozinka>
+    </korisnik:korisnik>
+    <korisnik:korisnik aktivan="true" id="http://www.zis.rs/korisnici/id91">
+        <korisnik:ime datatype="xs:string" property="voc:ime">Nikolina</korisnik:ime>
+        <korisnik:prezime datatype="xs:string" property="voc:prezime">Blagojevic</korisnik:prezime>
+        <korisnik:jmbg datatype="xs:string" property="voc:jmbg">2105997707700</korisnik:jmbg>
+        <korisnik:korisnicko_ime>nikolina</korisnik:korisnicko_ime>
+        <korisnik:lozinka>123456</korisnik:lozinka>
     </korisnik:korisnik>
 </ko:korisnici>

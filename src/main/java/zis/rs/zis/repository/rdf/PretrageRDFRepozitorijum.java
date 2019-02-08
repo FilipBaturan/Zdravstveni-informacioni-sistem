@@ -53,11 +53,14 @@ public class PretrageRDFRepozitorijum extends IOStrimer {
             }
             System.out.println();
         }
-
-        rez.deleteCharAt(rez.length() - 1);
-        upit.close();
-        return rez.toString();
-
+        try {
+            rez.deleteCharAt(rez.length() - 1);
+            upit.close();
+            return rez.toString();
+        } catch (StringIndexOutOfBoundsException e) {
+            upit.close();
+            return "";
+        }
     }
 
     public String linkoviNaDokument(String id) {

@@ -1,17 +1,27 @@
 <pr:pregledi xmlns:pr="http://www.zis.rs/seme/pregledi" xmlns:pregled="http://www.zis.rs/seme/pregled">
-    <pregled:pregled tip="opsta_praksa" id="http://www.zis.rs/pregledi/id1" aktivan="true">
-        <pregled:lekar pregled:identifikator="http://www.zis.rs/lekari/id2"/>
-        <pregled:datum>2006-05-04T00:00:00</pregled:datum>
-        <pregled:pacijent pregled:identifikator="http://www.oxygenxml.com/"/>
-    </pregled:pregled>
-    <pregled:pregled tip="specijalista" id="http://www.zis.rs/pregledi/id2" aktivan="true">
-        <pregled:lekar pregled:identifikator="http://www.zis.rs/lekari/id4"/>
-        <pregled:datum>2016-05-04T00:00:00</pregled:datum>
-        <pregled:pacijent pregled:identifikator="http://www.oxygenxml.com/"/>
-    </pregled:pregled>
-    <pregled:pregled tip="opsta_praksa" id="http://www.zis.rs/pregledi/id3" aktivan="true">
-        <pregled:lekar pregled:identifikator="http://www.zis.rs/lekari/id6"/>
-        <pregled:datum>2026-05-04T00:00:00</pregled:datum>
-        <pregled:pacijent pregled:identifikator="http://www.oxygenxml.com/"/>
-    </pregled:pregled>
+    <preg:pregled xmlns:preg="http://www.zis.rs/seme/pregled" aktivan="true" id="http://www.zis.rs/pregledi/id86" tip="opsta_praksa">
+        <preg:lekar preg:identifikator="http://www.zis.rs/lekari/id67"/>
+        <preg:datum>2021-05-22T02:00:00</preg:datum>
+        <preg:pacijent preg:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
+    </preg:pregled>
+    <preg:pregled xmlns:preg="http://www.zis.rs/seme/pregled" aktivan="true" id="http://www.zis.rs/pregledi/id89" tip="opsta_praksa">
+        <preg:lekar preg:identifikator="http://www.zis.rs/lekari/id67"/>
+        <preg:datum>2021-05-23T02:00:00</preg:datum>
+        <preg:pacijent preg:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
+    </preg:pregled>
+    <preg:pregled xmlns:preg="http://www.zis.rs/seme/pregled" aktivan="true" id="http://www.zis.rs/pregledi/id92" tip="specijalista">
+        <preg:lekar preg:identifikator="http://www.zis.rs/lekari/id71"/>
+        <preg:datum>2021-07-17T02:00:00</preg:datum>
+        <preg:pacijent preg:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
+    </preg:pregled>
+    <preg:pregled xmlns:preg="http://www.zis.rs/seme/pregled" aktivan="true" id="http://www.zis.rs/pregledi/id94" tip="opsta_praksa">
+        <preg:lekar preg:identifikator="http://www.zis.rs/lekari/id67"/>
+        <preg:datum>2021-07-25T02:00:00</preg:datum>
+        <preg:pacijent preg:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
+    </preg:pregled>
+    <preg:pregled xmlns:preg="http://www.zis.rs/seme/pregled" aktivan="true" id="http://www.zis.rs/pregledi/id97" tip="opsta_praksa">
+        <preg:lekar preg:identifikator="http://www.zis.rs/lekari/id67"/>
+        <preg:datum>2021-08-22T02:00:00</preg:datum>
+        <preg:pacijent preg:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
+    </preg:pregled>
 </pr:pregledi>
