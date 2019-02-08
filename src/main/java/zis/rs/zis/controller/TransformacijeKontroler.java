@@ -25,4 +25,14 @@ public class TransformacijeKontroler {
         String xml = transformacijeServis.transformisiRecept(id, xmlPutanja, xslPutanja, htmlPutanja, pdfPutanja);
         return new ResponseEntity<String>(xml, HttpStatus.OK);
     }
+
+    @GetMapping("/uput/{id}")
+    public ResponseEntity<String> transformisiUput(@PathVariable Long id) {
+        String xmlPutanja = "src/main/resources/generated/uput.xml";
+        String xslPutanja = "src/main/resources/xsl/uputi.xsl";
+        String htmlPutanja = "src/main/resources/generated/uput.html";
+        String pdfPutanja = "src/main/resources/generated/uput.pdf";
+        String xml = transformacijeServis.transformisiUput(id, xmlPutanja, xslPutanja, htmlPutanja, pdfPutanja);
+        return new ResponseEntity<String>(xml, HttpStatus.OK);
+    }
 }
