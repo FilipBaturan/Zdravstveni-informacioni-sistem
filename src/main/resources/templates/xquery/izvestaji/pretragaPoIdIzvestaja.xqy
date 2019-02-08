@@ -36,9 +36,9 @@ let $lekar := local:dobavi-lekara(for $lk in fn:doc("/db/rs/zis/lekari.xml")/lek
 where $lk/@id = $izvestaj/izvestaj:lekar/@izvestaj:identifikator return $lk)
 let $pacijent := for $pc in fn:doc("/db/rs/zis/zdravstveni_kartoni.xml")/zd:zdravstveni_kartoni/zko:zdravstveni_karton
 where $pc/@id = $izvestaj/izvestaj:osigurano_lice/@izvestaj:identifikator return $pc
-where $izvestaj/@id = "http://www.zis.rs/izvestaji/id137" and $izvestaj/@aktivan = "true"
+where $izvestaj/@id = "%1$s" and $izvestaj/@aktivan = "true"
 
-return <izvestaj:izvestaj xmlns:izvestaj="%1$s"
+return <izvestaj:izvestaj xmlns:izvestaj="http://www.zis.rs/seme/izvestaj"
 about="{$izvestaj/@id}" aktivan="true" id="{$izvestaj/@id}" oznaka="il1">
     <izvestaj:lekar>{$lekar}</izvestaj:lekar>
     {$izvestaj/izvestaj:anamneza}
