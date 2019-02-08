@@ -4,6 +4,7 @@ import com.itextpdf.text.DocumentException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zis.rs.zis.repository.xml.IzborPromenaXMLRepozitorijum;
+import zis.rs.zis.repository.xml.IzvestajXMLRepozitorijum;
 import zis.rs.zis.repository.xml.ReceptXMLRepozitorijum;
 import zis.rs.zis.repository.xml.UputXMLRepozitorijum;
 import zis.rs.zis.util.transformatori.PDFTransformator;
@@ -24,6 +25,9 @@ public class TransformacijeServis {
 
     @Autowired
     private IzborPromenaXMLRepozitorijum izborPromenaXMLRepozitorijum;
+
+    @Autowired
+    private IzvestajXMLRepozitorijum izvestajXMLRepozitorijum;
 
     public String transformisiRecept(Long id, String xmlPutanja, String xslPutanja, String htmlPutanja, String pdfPutanja) {
         String xml = receptXMLRepozitorijum.pretragaPoId("http://www.zis.rs/recepti/id" + id);
@@ -98,4 +102,30 @@ public class TransformacijeServis {
         }
         return xml;
     }
+
+    public String transformisiIzvestaj(Long id, String xmlPutanja, String xslPutanja, String htmlPutanja, String pdfPutanja) {
+        String xml = izvestajXMLRepozitorijum.pretragaPoId("http://www.zis.rs/izvestaji/id" + id);
+        try {
+            File newFile = new File("src/main/resources/generated/izvestaji.xml");
+            newFile.createNewFile();
+
+            BufferedWriter bis = new BufferedWriter(new PrintWriter(newFile));
+            bis.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                    "<?xml-stylesheet type=\"text/xsl\" href=\"src/main/resources/xsl/izvestaji.xsl\"?>\n" +
+                    "<izvestaji:izvestaji\n" +
+                    " xmlns:izvestaj=\"http://www.zis.rs/seme/izvestaj\"\n" +
+                    " xmlns:izvestaji=\"http://www.zis.rs/seme/izvestaji\"\n" +
+                    ">\n");
+            bis.append(xml);
+            bis.append("\n</izvestaji:izvestaji>");
+            bis.close();
+            PDFTransformator.generateHTML(xmlPutanja, xslPutanja, htmlPutanja);
+            PDFTransformator.generatePDF(pdfPutanja, htmlPutanja);
+        } catch (IOException | DocumentException e) {
+            e.printStackTrace();
+        }
+        return xml;
+    }
+
+
 }

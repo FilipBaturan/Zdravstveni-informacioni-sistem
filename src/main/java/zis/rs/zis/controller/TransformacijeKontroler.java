@@ -46,5 +46,13 @@ public class TransformacijeKontroler {
         return new ResponseEntity<String>(xml, HttpStatus.OK);
     }
 
-
+    @GetMapping("/izvestaj/{id}")
+    public ResponseEntity<String> transformisiIzvestaj(@PathVariable Long id) {
+        String xmlPutanja = "src/main/resources/generated/izvestaji.xml";
+        String xslPutanja = "src/main/resources/xsl/izvestaj1.xsl";
+        String htmlPutanja = "src/main/resources/static/izvestaj"+id.toString()+".html";
+        String pdfPutanja = "src/main/resources/static/izvestaj"+id.toString()+"pdf";
+        String xml = transformacijeServis.transformisiIzvestaj(id, xmlPutanja, xslPutanja, htmlPutanja, pdfPutanja);
+        return new ResponseEntity<String>(xml, HttpStatus.OK);
+    }
 }
