@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 xmlns:recepti="http://www.zis.rs/seme/recepti"
                 xmlns:recept="http://www.zis.rs/seme/recept"
                 xmlns:zko="http://www.zis.rs/seme/zdravstveni_karton"
@@ -27,9 +26,7 @@
             <body>
                 <div style="padding:30px;">
                     <p style="margin-bottom: 60px;">Obr. LR-1</p>
-                    <p align="center" style="color:DimGray"><xsl:value-of select="//recept:naziv_zdrastvene_ustanove"/></p>
-                    <p align="center">____________________________________________________________</p>
-                    <p align="center">Naziv zdravstvene ustanove</p>
+
                     <p style="color:DimGray" align="center"><xsl:value-of select="//zko:prezime"/>
                         <span style="color:white">-</span><xsl:value-of select="//zko:ime"/></p>
                     <p align="center">____________________________________________________________</p>
