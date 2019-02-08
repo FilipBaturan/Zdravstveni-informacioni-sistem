@@ -1,9 +1,8 @@
-<me:medicinske_sestre xmlns:ms="http://www.zis.rs/seme/medicinska_sestra"
-                      xmlns:me="http://www.zis.rs/seme/medicinske_sestre">
-    <ms:medicinska_sestra id="http://www.zis.rs/medicinske_sestre/id8">
-        <ms:korisnik ms:identifikator="http://www.zis.rs/korisnici/id7"/>
-    </ms:medicinska_sestra>
-    <ms:medicinska_sestra id="http://www.zis.rs/medicinske_sestre/id10">
-        <ms:korisnik ms:identifikator="http://www.zis.rs/korisnici/id9"/>
-    </ms:medicinska_sestra>
+<me:medicinske_sestre xmlns:ms="http://www.zis.rs/seme/medicinska_sestra" xmlns:me="http://www.zis.rs/seme/medicinske_sestre">
+    <med:medicinska_sestra xmlns:med="http://www.zis.rs/seme/medicinska_sestra" id="http://www.zis.rs/medicinska_sestra/id73">
+        <med:korisnik med:identifikator="http://www.zis.rs/korisnici/id72"/>
+    </med:medicinska_sestra>
+    <med:medicinska_sestra xmlns:med="http://www.zis.rs/seme/medicinska_sestra" id="http://www.zis.rs/medicinska_sestra/id75">
+        <med:korisnik med:identifikator="http://www.zis.rs/korisnici/id74"/>
+    </med:medicinska_sestra>
 </me:medicinske_sestre>

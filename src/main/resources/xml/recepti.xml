@@ -1,37 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="src/main/resources/xsl/recepti.xsl"?>
-<recepti:recepti
- xmlns:recept="http://www.zis.rs/seme/recept"
- xmlns:recepti="http://www.zis.rs/seme/recepti"
->
-    <recept:recept oznaka="lr1" id="http://zis.rs/seme/recepti/id1" aktivan="true">
-        <recept:naziv_zdrastvene_ustanove>tmWq2wBCR</recept:naziv_zdrastvene_ustanove>
-        <recept:osigurano_lice recept:identifikator="http://zlexpags/"/>
+<recepti:recepti xmlns:recepti="http://www.zis.rs/seme/recepti" xmlns:recept="http://www.zis.rs/seme/recept">
+    <recept:recept about="http://www.zis.rs/recepti/id87" aktivan="true" id="http://www.zis.rs/recepti/id87" oznaka="lr1">
+        <recept:naziv_zdrastvene_ustanove>Dom Zdravlja</recept:naziv_zdrastvene_ustanove>
+        <recept:osigurano_lice href="http://www.zis.rs/zdravstveni_kartoni/id81" recept:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81" rel="voc:osiguranoLice"/>
         <recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije>
-        <recept:datum>2019-06-21Z</recept:datum>
+        <recept:datum datatype="xs:date" property="voc:datum">2019-06-21</recept:datum>
         <recept:dijagnoza>6248</recept:dijagnoza>
-        <recept:opis>B1</recept:opis>
-        <recept:propisani_lek recept:identifikator="http://www.zis.rs/lekovi/id2"/>
-        <recept:lekar recept:identifikator="http://www.zis.rs/lekari/id2"/>
-    </recept:recept>
-    <recept:recept oznaka="lr1" id="http://zis.rs/seme/recepti/id2" aktivan="true">
-        <recept:naziv_zdrastvene_ustanove>wEcMuZdF1RS33U6c4Or</recept:naziv_zdrastvene_ustanove>
-        <recept:osigurano_lice recept:identifikator="http://zis.rs/seme/recept/id2"/>
-        <recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije>
-        <recept:datum>2019-08-26Z</recept:datum>
-        <recept:dijagnoza>4610</recept:dijagnoza>
-        <recept:opis>eU-MAqluKTiY</recept:opis>
-        <recept:propisani_lek recept:identifikator="http://www.zis.rs/lekovi/id1"/>
-        <recept:lekar recept:identifikator="http://www.zis.rs/lekari/id2"/>
-    </recept:recept>
-    <recept:recept oznaka="lr1" id="http://zis.rs/seme/recepti/id3" aktivan="true">
-        <recept:naziv_zdrastvene_ustanove>m5dR1g5Uvue_8uPwpSmqvvimiM4eH</recept:naziv_zdrastvene_ustanove>
-        <recept:osigurano_lice recept:identifikator="http://hvEYzNTE/"/>
-        <recept:osnova_oslobadjenja_participacije>512</recept:osnova_oslobadjenja_participacije>
-        <recept:datum>2019-06-30</recept:datum>
-        <recept:dijagnoza>6458</recept:dijagnoza>
-        <recept:opis>mWhPm55Gu_dg7ge3Hb0Pt5D7L</recept:opis>
-        <recept:propisani_lek recept:identifikator="http://www.zis.rs/lekovi/id1"/>
-        <recept:lekar recept:identifikator="http://www.zis.rs/lekari/id4"/>
+        <recept:opis>Brufen 2x1</recept:opis>
+        <recept:propisani_lek href="http://www.zis.rs/lekovi/id1" recept:identifikator="http://www.zis.rs/lekovi/id1" rel="voc:lek"/>
+        <recept:lekar href="http://www.zis.rs/lekari/id67" recept:identifikator="http://www.zis.rs/lekari/id67" rel="voc:lekar"/>
     </recept:recept>
 </recepti:recepti>

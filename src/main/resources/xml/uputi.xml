@@ -1,37 +1,17 @@
-<uputi:uputi
- xmlns:uput="http://www.zis.rs/seme/uput"
- xmlns:uputi="http://www.zis.rs/seme/uputi">
-    <uput:uput oznaka="oz2" id="http://www.zis.rs/uputi/id1" aktivan="true">
+<uputi:uputi xmlns:uputi="http://www.zis.rs/seme/uputi" xmlns:uput="http://www.zis.rs/seme/uput">
+    <uput:uput about="http://www.zis.rs/uputi/id90" aktivan="true" id="http://www.zis.rs/uputi/id90" oznaka="oz2">
         <uput:zdrastvene_ustanove>
-            <uput:primalac>c</uput:primalac>
-            <uput:posaljilac>KBUB8ts</uput:posaljilac>
+            <uput:primalac>Dom Zdravlja</uput:primalac>
+            <uput:posaljilac>Dom Zdravlja</uput:posaljilac>
         </uput:zdrastvene_ustanove>
-        <uput:osigurano_lice uput:identifikator="http://jViBGIAN/"/>
-        <uput:misljenje>B3c4.hdUIw2.L8v-ffY8RKJ7pk0Zv</uput:misljenje>
-        <uput:lekar uput:identifikator="http://ErqpkmRf/"/>
-        <uput:datum>2019-08-06</uput:datum>
-        <uput:specialista uput:identifikator="http://EbpkMBfh/"/>
-    </uput:uput>
-    <uput:uput oznaka="oz2" id="http://www.zis.rs/uputi/id2" aktivan="true">
-        <uput:zdrastvene_ustanove>
-            <uput:primalac>c</uput:primalac>
-            <uput:posaljilac>KBUB8ts</uput:posaljilac>
-        </uput:zdrastvene_ustanove>
-        <uput:osigurano_lice uput:identifikator="http://jViBGIAN/"/>
-        <uput:misljenje>B3c4.hdUIw2.L8v-ffY8RKJ7pk0Zv</uput:misljenje>
-        <uput:lekar uput:identifikator="http://ErqpkmRf/"/>
-        <uput:datum>2019-08-06</uput:datum>
-        <uput:specialista uput:identifikator="http://EbpkMBfh/"/>
-    </uput:uput>
-    <uput:uput oznaka="oz2" id="http://www.zis.rs/uputi/id3" aktivan="true">
-        <uput:zdrastvene_ustanove>
-            <uput:primalac>c</uput:primalac>
-            <uput:posaljilac>KBUB8ts</uput:posaljilac>
-        </uput:zdrastvene_ustanove>
-        <uput:osigurano_lice uput:identifikator="http://jViBGIAN/"/>
-        <uput:misljenje>B3c4.hdUIw2.L8v-ffY8RKJ7pk0Zv</uput:misljenje>
-        <uput:lekar uput:identifikator="http://ErqpkmRf/"/>
-        <uput:datum>2019-08-06</uput:datum>
-        <uput:specialista uput:identifikator="http://EbpkMBfh/"/>
+        <uput:osigurano_lice href="http://www.zis.rs/zdravstveni_kartoni/id81" rel="voc:osiguranoLice" uput:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
+        <uput:misljenje>
+            Na osnovu izvestaja
+            <uput:link href="http://www.zis.rs/izvestaji/id88" identifikator="http://www.zis.rs/izvestaji/id88" rel="voc:referencaNaDokument"/>
+            ustanovili smo da je potrebno da se obrati lekaru specijalisti.
+        </uput:misljenje>
+        <uput:lekar href="http://www.zis.rs/lekari/id67" rel="voc:lekar" uput:identifikator="http://www.zis.rs/lekari/id67"/>
+        <uput:datum datatype="xs:date" property="voc:datum">2019-05-01</uput:datum>
+        <uput:specialista href="http://www.zis.rs/lekari/id71" rel="voc:specijalista" uput:identifikator="http://www.zis.rs/lekari/id71"/>
     </uput:uput>
 </uputi:uputi>

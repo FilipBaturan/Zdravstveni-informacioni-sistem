@@ -1,18 +1,22 @@
-<lekari:lekari xmlns:lkr="http://www.zis.rs/seme/lekar" xmlns:lekari="http://www.zis.rs/seme/lekari"
-               xmlns:voc="http://www.zis.rs/rdf/voc#" xmlns:xs="http://www.w3.org/2001/XMLSchema#">
-    <lkr:lekar about="http://www.zis.rs/lekari/id2" id="http://www.zis.rs/lekari/id2">
-        <lkr:korisnik lkr:identifikator="http://www.zis.rs/korisnici/id1"/>
-        <lkr:tip property="voc:tipLekara" datatype="xs:string">opsta_praksa</lkr:tip>
-        <lkr:oblast_zastite property="voc:oblastZastite" datatype="xs:string">odrasli</lkr:oblast_zastite>
-    </lkr:lekar>
-    <lkr:lekar about="http://www.zis.rs/lekari/id4" id="http://www.zis.rs/lekari/id4">
-        <lkr:korisnik lkr:identifikator="http://www.zis.rs/korisnici/id3"/>
-        <lkr:tip property="voc:tipLekara" datatype="xs:string">dermatolog</lkr:tip>
-        <lkr:oblast_zastite property="voc:oblastZastite" datatype="xs:string">odrasli</lkr:oblast_zastite>
-    </lkr:lekar>
-    <lkr:lekar about="http://www.zis.rs/lekari/id6" id="http://www.zis.rs/lekari/id6">
-        <lkr:korisnik lkr:identifikator="http://www.zis.rs/korisnici/id5"/>
-        <lkr:tip property="voc:tipLekara" datatype="xs:string">pedijatar</lkr:tip>
-        <lkr:oblast_zastite property="voc:oblastZastite" datatype="xs:string">deca</lkr:oblast_zastite>
-    </lkr:lekar>
+<lekari:lekari xmlns:lkr="http://www.zis.rs/seme/lekar" xmlns:lekari="http://www.zis.rs/seme/lekari">
+    <lekar:lekar xmlns:lekar="http://www.zis.rs/seme/lekar" about="http://www.zis.rs/lekari/id67" id="http://www.zis.rs/lekari/id67" typeof="voc:Lekar">
+        <lekar:korisnik lekar:identifikator="http://www.zis.rs/korisnici/id66"/>
+        <lekar:tip datatype="xs:string" property="voc:tipLekara">opsta_praksa</lekar:tip>
+        <lekar:oblast_zastite datatype="xs:string" property="voc:oblastZastite">odrasli</lekar:oblast_zastite>
+    </lekar:lekar>
+    <lekar:lekar xmlns:lekar="http://www.zis.rs/seme/lekar" about="http://www.zis.rs/lekari/id69" id="http://www.zis.rs/lekari/id69" typeof="voc:Lekar">
+        <lekar:korisnik lekar:identifikator="http://www.zis.rs/korisnici/id68"/>
+        <lekar:tip datatype="xs:string" property="voc:tipLekara">dermatolog</lekar:tip>
+        <lekar:oblast_zastite datatype="xs:string" property="voc:oblastZastite">odrasli</lekar:oblast_zastite>
+    </lekar:lekar>
+    <lekar:lekar xmlns:lekar="http://www.zis.rs/seme/lekar" about="http://www.zis.rs/lekari/id71" id="http://www.zis.rs/lekari/id71" typeof="voc:Lekar">
+        <lekar:korisnik lekar:identifikator="http://www.zis.rs/korisnici/id70"/>
+        <lekar:tip datatype="xs:string" property="voc:tipLekara">pedijatar</lekar:tip>
+        <lekar:oblast_zastite datatype="xs:string" property="voc:oblastZastite">odrasli</lekar:oblast_zastite>
+    </lekar:lekar>
+    <lekar:lekar xmlns:lekar="http://www.zis.rs/seme/lekar" about="http://www.zis.rs/lekari/id77" id="http://www.zis.rs/lekari/id77" typeof="voc:Lekar">
+        <lekar:korisnik lekar:identifikator="http://www.zis.rs/korisnici/id76"/>
+        <lekar:tip datatype="xs:string" property="voc:tipLekara">opsta_praksa</lekar:tip>
+        <lekar:oblast_zastite datatype="xs:string" property="voc:oblastZastite">odrasli</lekar:oblast_zastite>
+    </lekar:lekar>
 </lekari:lekari>

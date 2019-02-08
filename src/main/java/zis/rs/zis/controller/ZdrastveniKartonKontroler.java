@@ -73,12 +73,15 @@ public class ZdrastveniKartonKontroler extends ValidatorKontoler {
     @GetMapping(path = "pretraga/{tekst}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RezultatPretrage> opstaPretraga(@PathVariable String tekst, HttpSession sesija) {
         logger.info("Traze se zdravstveni karton sa tekstom ={}: {}.", tekst, Calendar.getInstance().getTime());
+        try {
         if (sesija.getAttribute("tip").equals(TipKorisnika.PACIJENT.toString())) {
             return new ResponseEntity<>(new RezultatPretrage(zdravstveniKartonServis.
                     opstaPretragaPacijenta(tekst)), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(new RezultatPretrage(zdravstveniKartonServis.
                     opstaPretragaLekara(tekst)), HttpStatus.OK);
+        }} catch (NullPointerException e) {
+            throw new ValidacioniIzuzetak("Korisnik nije ulogovan.");
         }
 
     }

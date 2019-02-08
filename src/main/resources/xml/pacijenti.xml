@@ -1,21 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<pa:pacijenti
- xmlns:pacijent="http://www.zis.rs/seme/pacijent"
- xmlns:pa="http://www.zis.rs/seme/pacijenti">
-    <pacijent:pacijent id="http://www.oxygenxml.com/">
-        <pacijent:korisnik pacijent:identifikator="http://www.oxygenxml.com/"/>
-        <pacijent:zdravstveni_karton pacijent:identifikator="http://www.oxygenxml.com/"/>
+<pa:pacijenti xmlns:pacijent="http://www.zis.rs/seme/pacijent" xmlns:pa="http://www.zis.rs/seme/pacijenti">
+    <pacijent:pacijent id="http://www.zis.rs/pacijenti/id82">
+        <pacijent:korisnik pacijent:identifikator="http://www.zis.rs/korisnici/id80"/>
+        <pacijent:zdravstveni_karton pacijent:identifikator="http://www.zis.rs/zdravstveni_kartoni/id81"/>
         <pacijent:obavestenja>
-            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje0</pacijent:obavestenje>
-            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje1</pacijent:obavestenje>
+            <pacijent:obavestenje datum="2019-02-07T21:32:40.488">Prihvacen termin.</pacijent:obavestenje>
+            <pacijent:obavestenje datum="2019-02-07T22:49:32.947">Prihvacen termin.</pacijent:obavestenje>
+            <pacijent:obavestenje datum="2019-02-07T23:15:15.582">Prihvacen termin.</pacijent:obavestenje>
+            <pacijent:obavestenje datum="2019-02-07T23:21:42.968">Prihvacen termin.</pacijent:obavestenje>
+            <pacijent:obavestenje datum="2019-02-07T23:44:35.500">Odbijen termin.</pacijent:obavestenje>
         </pacijent:obavestenja>
     </pacijent:pacijent>
-    <pacijent:pacijent id="http://www.oxygenxml.com/">
-        <pacijent:korisnik pacijent:identifikator="http://www.oxygenxml.com/"/>
-        <pacijent:zdravstveni_karton pacijent:identifikator="http://www.oxygenxml.com/"/>
-        <pacijent:obavestenja>
-            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje2</pacijent:obavestenje>
-            <pacijent:obavestenje aktivan="false" datum="2006-05-04T18:13:51.0">obavestenje3</pacijent:obavestenje>
-        </pacijent:obavestenja>
+    <pacijent:pacijent id="http://www.zis.rs/pacijenti/id93">
+        <pacijent:korisnik pacijent:identifikator="http://www.zis.rs/korisnici/id91"/>
+        <pacijent:zdravstveni_karton pacijent:identifikator="http://www.zis.rs/zdravstveni_kartoni/id92"/>
+        <pacijent:obavestenja/>
     </pacijent:pacijent>
 </pa:pacijenti>
