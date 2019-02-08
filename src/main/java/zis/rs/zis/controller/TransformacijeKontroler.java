@@ -40,8 +40,8 @@ public class TransformacijeKontroler {
     public ResponseEntity<String> transformisiIzbor(@PathVariable Long id) {
         String xmlPutanja = "src/main/resources/generated/izbori.xml";
         String xslPutanja = "src/main/resources/xsl/izbor.xsl";
-        String htmlPutanja = "src/main/resources/static/izbori/"+id.toString()+".html";
-        String pdfPutanja = "src/main/resources/static/izbori/"+id.toString()+"pdf";
+        String htmlPutanja = "src/main/resources/static/izbor"+id.toString()+".html";
+        String pdfPutanja = "src/main/resources/static/izbor"+id.toString()+"pdf";
         String xml = transformacijeServis.transformisiIzbor(id, xmlPutanja, xslPutanja, htmlPutanja, pdfPutanja);
         return new ResponseEntity<String>(xml, HttpStatus.OK);
     }
